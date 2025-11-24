@@ -136,4 +136,4 @@ All endpoints should send requests through `HTTPClient.request()` and be attache
 ## Questions?
 Open an issue or discussion!
 
-Want to understand the architecture? See the [Technical Deep-Dive](https://furmissile.github.io/scurrypy/technical_writeup)!
+Want to understand the architecture? See the [Technical Deep-Dive](https://scurry-works.github.io/scurrypy/technical_writeup)!
