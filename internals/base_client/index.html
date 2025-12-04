@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://furmissile.github.io/scurrypy/internals/gateway/">
+        <link rel="canonical" href="https://furmissile.github.io/scurrypy/internals/base_client/">
       
       
-        <link rel="prev" href="../http/">
+        <link rel="prev" href="../model/">
       
       
-        <link rel="next" href="../logger/">
+        <link rel="next" href="../http/">
       
       
       <link rel="icon" href="../../assets/wizard.svg">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Gateway - ScurryPy</title>
+        <title>Base Client - ScurryPy</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gateway" class="md-skip">
+        <a href="#base-client" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Gateway
+              Base Client
             
           </span>
         </div>
@@ -1466,10 +1466,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../base_client/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Base Client
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1480,6 +1500,246 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#base-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      Base Client
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BaseClient
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" BaseClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.token" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.application_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;application_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.intents" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;intents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.shards" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;shards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.logger" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;logger
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.events" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;events
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.startup_hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;startup_hooks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.shutdown_hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;shutdown_hooks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.add_event_listener" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;add_event_listener
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.add_startup_hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;add_startup_hook
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.add_shutdown_hook" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;add_shutdown_hook
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_application" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_application
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_bot_emojis" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_bot_emojis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_guild" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_guild
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_channel" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_channel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_message" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_message
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_interaction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_user" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_user
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.listen_shard" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;listen_shard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.register_guild_commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;register_guild_commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.register_global_commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;register_global_commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.start" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;start
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1512,32 +1772,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Gateway
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../gateway/" class="md-nav__link">
         
   
   
@@ -1548,281 +1786,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;GatewayClient
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" GatewayClient">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.logger" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;logger
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.shard_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;shard_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.total_shards" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;total_shards
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.ws" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ws
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.seq" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;seq
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.session_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;session_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.allow_resume" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;allow_resume
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.heartbeat_task" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;heartbeat_task
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.heartbeat_interval" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;heartbeat_interval
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.event_queue" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;event_queue
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.base_url" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;base_url
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.url_params" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;url_params
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.connect_ws" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;connect_ws
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.start" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;start
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.send" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;send
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.receive" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;receive
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.heartbeat" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;heartbeat
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.identify" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;identify
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.resume" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;resume
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient._listen" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;_listen
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.close_ws" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;close_ws
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scurrypy.events.hello_event.HelloEvent" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;HelloEvent
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" HelloEvent">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.hello_event.HelloEvent.heartbeat_interval" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;heartbeat_interval
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.hello_event.HelloEvent.name" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;name
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.hello_event.HelloEvent.raw" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.hello_event.HelloEvent.to_dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_dict
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1921,8 +1884,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1931,17 +1892,62 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient" class="md-nav__link">
+  <a href="#base-client" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;GatewayClient
+      Base Client
     </span>
   </a>
   
-    <nav class="md-nav" aria-label=" GatewayClient">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BaseClient
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" BaseClient">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.logger" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.token" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;token
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.application_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;application_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.intents" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;intents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.shards" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;shards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.logger" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;logger
     </span>
@@ -1950,231 +1956,153 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.shard_id" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.events" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;shard_id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;events
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.total_shards" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.startup_hooks" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;total_shards
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;startup_hooks
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.ws" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.shutdown_hooks" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ws
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;shutdown_hooks
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.seq" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.add_event_listener" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;seq
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;add_event_listener
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.session_id" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.add_startup_hook" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;session_id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;add_startup_hook
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.allow_resume" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.add_shutdown_hook" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;allow_resume
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;add_shutdown_hook
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.heartbeat_task" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_application" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;heartbeat_task
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_application
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.heartbeat_interval" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_bot_emojis" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;heartbeat_interval
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_bot_emojis
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.event_queue" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_guild" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;event_queue
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_guild
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.base_url" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_channel" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;base_url
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_channel
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.url_params" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_message" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;url_params
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_message
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.connect_ws" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_interaction" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;connect_ws
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_interaction
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.start" class="md-nav__link">
+  <a href="#scurrypy.core.base_client.BaseClient.fetch_user" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_user
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.listen_shard" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;listen_shard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.register_guild_commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;register_guild_commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.register_global_commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;register_global_commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.core.base_client.BaseClient.start" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;start
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.send" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;send
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.receive" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;receive
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.heartbeat" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;heartbeat
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.identify" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;identify
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.resume" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;resume
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient._listen" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;_listen
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.core.gateway.GatewayClient.close_ws" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;close_ws
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scurrypy.events.hello_event.HelloEvent" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;HelloEvent
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" HelloEvent">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.hello_event.HelloEvent.heartbeat_interval" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;heartbeat_interval
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.hello_event.HelloEvent.name" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;name
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.hello_event.HelloEvent.raw" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.hello_event.HelloEvent.to_dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_dict
     </span>
   </a>
   
@@ -2204,7 +2132,9 @@
   
 
 
-<h1 id="gateway">Gateway<a class="headerlink" href="#gateway" title="Permanent link">&para;</a></h1>
+  <h1>Base Client</h1>
+
+<h2 id="base-client">Base Client<a class="headerlink" href="#base-client" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Internal API</p>
 <p>These classes are for internal use only.</p>
@@ -2217,331 +2147,281 @@
 
 
 
-<h2 id="scurrypy.core.gateway.GatewayClient" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>              <code class="highlight language-python"><span class="n">GatewayClient</span></code>
+<h2 id="scurrypy.core.base_client.BaseClient" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>BaseClient</code>
 
-<a href="#scurrypy.core.gateway.GatewayClient" class="headerlink" title="Permanent link">&para;</a></h2>
+
+<a href="#scurrypy.core.base_client.BaseClient" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
     <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="typing.Protocol">Protocol</span></code></p>
 
 
-        <p>Initialize this websocket.</p>
+        <p>Exposes a common interface for <a class="autorefs autorefs-internal" title="              Client" href="../../api/client/#scurrypy.client.Client"><code>Client</code></a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.token" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">token</span><span class="p">:</span> <span class="nb">str</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.token" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bot's token.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.application_id" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">application_id</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.application_id" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bot's application ID.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.intents" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">intents</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.intents" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bot intents for listening to events.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.shards" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">shards</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">GatewayClient</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.shards" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Shards as a list of gateways.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.logger" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">logger</span><span class="p">:</span> <span class="n">LoggerLike</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.logger" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Logger instance to log events.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.events" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">events</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">:(</span><span class="nb">list</span><span class="p">[</span><span class="nb">callable</span><span class="p">])]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.events" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Events for the client to listen to.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.startup_hooks" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">startup_hooks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">callable</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.startup_hooks" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Handlers to call once before the bot starts.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.shutdown_hooks" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">shutdown_hooks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">callable</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.shutdown_hooks" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Handlers to call once after the bot shuts down.</p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.add_event_listener" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">add_event_listener</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span></code>
+
+<a href="#scurrypy.core.base_client.BaseClient.add_event_listener" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Helper function to register listener functions.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-            <b><code>gateway_url</code></b>
+            <b><code>event</code></b>
               (<code><span title="str">str</span></code>)
           –
           <div class="doc-md-description">
-            <p>gateway URL provided by GET /gateway/bot endpoint</p>
+            <p>name of the event to listen</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-            <b><code>shard_id</code></b>
-              (<code><span title="int">int</span></code>)
+            <b><code>handler</code></b>
+              (<code><span title="callable">callable</span></code>)
           –
           <div class="doc-md-description">
-            <p>assigned shard ID</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>total_shards</code></b>
-              (<code><span title="int">int</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>total shard count provided by GET /gateway/bot endpoint</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>logger</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            LoggerLike (scurrypy.core.logger.LoggerLike)" href="../logger/#scurrypy.core.logger.LoggerLike">LoggerLike</a></code>)
-          –
-          <div class="doc-md-description">
-            <p>logger instance for logging events</p>
+            <p>listener function</p>
           </div>
         </li>
     </ul>
 
 
-
-
-
-
-
-
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.logger" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">logger</span> <span class="o">=</span> <span class="n">logger</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.logger" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
     </div>
 
 </div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.shard_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">shard_id</span> <span class="o">=</span> <span class="n">shard_id</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.shard_id" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.total_shards" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">total_shards</span> <span class="o">=</span> <span class="n">total_shards</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.total_shards" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.ws" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">ws</span> <span class="o">=</span> <span class="kc">None</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.ws" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.seq" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">seq</span> <span class="o">=</span> <span class="kc">None</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.seq" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.session_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">session_id</span> <span class="o">=</span> <span class="kc">None</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.session_id" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.allow_resume" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">allow_resume</span> <span class="o">=</span> <span class="kc">False</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.allow_resume" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.heartbeat_task" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">heartbeat_task</span> <span class="o">=</span> <span class="kc">None</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.heartbeat_task" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.heartbeat_interval" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">heartbeat_interval</span> <span class="o">=</span> <span class="kc">None</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.heartbeat_interval" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.event_queue" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">event_queue</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.event_queue" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.base_url" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">base_url</span> <span class="o">=</span> <span class="n">gateway_url</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.base_url" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.url_params" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">url_params</span> <span class="o">=</span> <span class="s1">&#39;?v=10&amp;encoding=json&#39;</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.url_params" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-
-
 
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scurrypy.core.gateway.GatewayClient.connect_ws" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">connect_ws</span></code>
+<h3 id="scurrypy.core.base_client.BaseClient.add_startup_hook" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">add_startup_hook</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span></code>
 
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.connect_ws" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.core.base_client.BaseClient.add_startup_hook" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Connect to Discord's Gateway (websocket).</p>
+        <p>Helper function to register startup functions.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>handler</code></b>
+              (<code><span title="callable">callable</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>startup function</p>
+          </div>
+        </li>
+    </ul>
 
 
     </div>
@@ -2551,19 +2431,28 @@
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scurrypy.core.gateway.GatewayClient.start" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">start</span></code>
+<h3 id="scurrypy.core.base_client.BaseClient.add_shutdown_hook" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">add_shutdown_hook</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span></code>
 
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.start" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.core.base_client.BaseClient.add_shutdown_hook" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Starts the websocket and handles reconnections.</p>
+        <p>Helper function to register shutdown functions.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>handler</code></b>
+              (<code><span title="callable">callable</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>shutdown function</p>
+          </div>
+        </li>
+    </ul>
 
 
     </div>
@@ -2573,302 +2462,534 @@
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scurrypy.core.gateway.GatewayClient.send" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">send</span></code>
+<h3 id="scurrypy.core.base_client.BaseClient.fetch_application" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">fetch_application</span><span class="p">(</span><span class="n">application_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span></code>
 
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.send" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.core.base_client.BaseClient.fetch_application" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Send data through the websocket.</p>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.receive" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">receive</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.receive" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Receive data through the websocket.</p>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.heartbeat" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">heartbeat</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.heartbeat" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Heartbeat task to keep connection alive.</p>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.identify" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">identify</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.identify" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Send an IDENTIFY payload to handshake for bot.</p>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.resume" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">resume</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.resume" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Send a RESUME payload to resume a connection.</p>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient._listen" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">_listen</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient._listen" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Listen for events and queue them to be picked up by Client.</p>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.core.gateway.GatewayClient.close_ws" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">close_ws</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.core.gateway.GatewayClient.close_ws" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Close the websocket connection if one is still open.</p>
-
-
-    </div>
-
-</div>
-
-
-
-  </div>
-
-    </div>
-
-</div><hr />
-
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="scurrypy.events.hello_event.HelloEvent" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>              <code class="highlight language-python"><span class="n">HelloEvent</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
-  </span>
-
-<a href="#scurrypy.events.hello_event.HelloEvent" class="headerlink" title="Permanent link">&para;</a></h2>
-
-
-    <div class="doc doc-contents first">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="            Event (scurrypy.events.base_event.Event)" href="../model/#scurrypy.events.base_event.Event">Event</a></code>, <code><a class="autorefs autorefs-internal" title="              DataModel
-
-  
-      dataclass
-   (scurrypy.core.model.DataModel)" href="../model/#scurrypy.core.model.DataModel">DataModel</a></code></p>
-
-
-        <p>Heartbeat interval event.</p>
-
-
-
-
-
-
-
-
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.events.hello_event.HelloEvent.heartbeat_interval" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">heartbeat_interval</span><span class="p">:</span> <span class="nb">int</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.events.hello_event.HelloEvent.heartbeat_interval" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Heartbeat interval in milliseconds.</p>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.events.hello_event.HelloEvent.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.events.hello_event.HelloEvent.name" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Dispatch name of event.</p>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.events.hello_event.HelloEvent.raw" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">raw</span><span class="p">:</span> <span class="nb">dict</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.events.hello_event.HelloEvent.raw" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Event's raw JSON payload. NOT A DATACLASS.</p>
-
-    </div>
-
-</div>
-
-
-
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.events.hello_event.HelloEvent.to_dict" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">to_dict</span></code>
-
-<a href="#scurrypy.events.hello_event.HelloEvent.to_dict" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Recursively turns the dataclass into a dictionary and drops empty fields.</p>
+        <p>Creates an interactable application resource.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>application_id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>ID of target application</p>
+          </div>
+        </li>
+    </ul>
 
 
 <p><span class="doc-section-title">Returns:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-              <code><span title="dict">dict</span></code>
+              <code><a class="autorefs autorefs-internal" title="              Application
+
+  
+      dataclass
+   (scurrypy.resources.Application)" href="../../resources/application/#scurrypy.resources.application.Application">Application</a></code>
           –
           <div class="doc-md-description">
-            <p>serialized dataclasss</p>
+            <p>the Application resource</p>
           </div>
         </li>
     </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.fetch_bot_emojis" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">fetch_bot_emojis</span><span class="p">()</span></code>
+
+<a href="#scurrypy.core.base_client.BaseClient.fetch_bot_emojis" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates an interactable bot emojis resource.</p>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              BotEmojis (scurrypy.resources.BotEmojis)" href="../../resources/bot_emojis/#scurrypy.resources.bot_emojis.BotEmojis">BotEmojis</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the BotEmojis resource</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.fetch_guild" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">fetch_guild</span><span class="p">(</span><span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#scurrypy.core.base_client.BaseClient.fetch_guild" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates an interactable guild resource.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>guild_id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>ID of target guild</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>context</code></b>
+              (<code><span title="Any">Any</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>optional associated data </p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              Guild
+
+  
+      dataclass
+   (scurrypy.resources.Guild)" href="../../resources/guild/#scurrypy.resources.guild.Guild">Guild</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the Guild resource</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.fetch_channel" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">fetch_channel</span><span class="p">(</span><span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#scurrypy.core.base_client.BaseClient.fetch_channel" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates an interactable channel resource.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>channel_id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>ID of target channel</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>context</code></b>
+              (<code><span title="Any">Any</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>optional associated data</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              Channel
+
+  
+      dataclass
+   (scurrypy.resources.Channel)" href="../../resources/channel/#scurrypy.resources.channel.Channel">Channel</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the Channel resource</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.fetch_message" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">fetch_message</span><span class="p">(</span><span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#scurrypy.core.base_client.BaseClient.fetch_message" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates an interactable message resource.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>message_id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>ID of target message</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>channel_id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>channel ID of target message</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>context</code></b>
+              (<code><span title="Any">Any</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>optional associated data</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              Message
+
+  
+      dataclass
+   (scurrypy.resources.Message)" href="../../resources/message/#scurrypy.resources.message.Message">Message</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the Message resource</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.fetch_interaction" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">fetch_interaction</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#scurrypy.core.base_client.BaseClient.fetch_interaction" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates an interactable interaction resource.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>ID of the interaction</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>token</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>interaction token</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>context</code></b>
+              (<code><span title="Any">Any</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>optional associated data</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              Interaction
+
+  
+      dataclass
+   (scurrypy.resources.Interaction)" href="../../resources/interaction/#scurrypy.resources.interaction.Interaction">Interaction</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the Interaction resource</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.fetch_user" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">fetch_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#scurrypy.core.base_client.BaseClient.fetch_user" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates an interactable user resource.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>user_id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>ID of target user</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>context</code></b>
+              (<code><span title="Any">Any</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>optional associated data</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              User
+
+  
+      dataclass
+   (scurrypy.resources.User)" href="../../resources/user/#scurrypy.resources.user.User">User</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the User resource</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.listen_shard" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">listen_shard</span><span class="p">(</span><span class="n">shard</span><span class="p">:</span> <span class="n">GatewayClient</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.listen_shard" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Listen to websocket queue for events. Only OP code 0 passes!</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>shard</code></b>
+              (<code><a class="autorefs autorefs-internal" title="              GatewayClient (scurrypy.core.gateway.GatewayClient)" href="../gateway/#scurrypy.core.gateway.GatewayClient">GatewayClient</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>the shard or gateway to listen on</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.register_guild_commands" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">register_guild_commands</span><span class="p">(</span><span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SlashCommand</span> <span class="o">|</span> <span class="n">UserCommand</span> <span class="o">|</span> <span class="n">MessageCommand</span><span class="p">],</span> <span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.register_guild_commands" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Registers commands at the guild level.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>commands</code></b>
+              (<code><span title="list">list</span>[<a class="autorefs autorefs-internal" title="              SlashCommand
+
+  
+      dataclass
+   (scurrypy.parts.command.SlashCommand)" href="../../api/commands/#scurrypy.parts.command.SlashCommand">SlashCommand</a> | <a class="autorefs autorefs-internal" title="              UserCommand
+
+  
+      dataclass
+   (scurrypy.parts.command.UserCommand)" href="../../api/commands/#scurrypy.parts.command.UserCommand">UserCommand</a> | <a class="autorefs autorefs-internal" title="              MessageCommand
+
+  
+      dataclass
+   (scurrypy.parts.command.MessageCommand)" href="../../api/commands/#scurrypy.parts.command.MessageCommand">MessageCommand</a>]</code>)
+          –
+          <div class="doc-md-description">
+            <p>commands to register</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>guild_id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>ID of guild in which to register command</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.register_global_commands" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">register_global_commands</span><span class="p">(</span><span class="n">commands</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SlashCommand</span> <span class="o">|</span> <span class="n">UserCommand</span> <span class="o">|</span> <span class="n">MessageCommand</span><span class="p">])</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.register_global_commands" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Registers a command at the global/bot level. (ALL GUILDS)</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>commands</code></b>
+              (<code><span title="list">list</span>[<a class="autorefs autorefs-internal" title="              SlashCommand
+
+  
+      dataclass
+   (scurrypy.parts.command.SlashCommand)" href="../../api/commands/#scurrypy.parts.command.SlashCommand">SlashCommand</a> | <a class="autorefs autorefs-internal" title="              UserCommand
+
+  
+      dataclass
+   (scurrypy.parts.command.UserCommand)" href="../../api/commands/#scurrypy.parts.command.UserCommand">UserCommand</a> | <a class="autorefs autorefs-internal" title="              MessageCommand
+
+  
+      dataclass
+   (scurrypy.parts.command.MessageCommand)" href="../../api/commands/#scurrypy.parts.command.MessageCommand">MessageCommand</a>]</code>)
+          –
+          <div class="doc-md-description">
+            <p>commands to register</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.core.base_client.BaseClient.start" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">start</span><span class="p">()</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#scurrypy.core.base_client.BaseClient.start" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Starts the HTTP/Websocket client, run startup logic, and registers commands.</p>
 
 
     </div>
