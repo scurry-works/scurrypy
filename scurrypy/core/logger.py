@@ -1,7 +1,17 @@
-class Logger:
+from typing import Protocol
+
+class LoggerLike(Protocol):
+    def log_info(self, message: str): ...
+    def log_warn(self, message: str): ...
+    def log_error(self, message: str): ...
+    def log_high_priority(self, message: str): ...
+    def close(self): ...
+
+class Logger(LoggerLike):
     """A utility class for logging messages, supporting log levels, color-coded console output, 
         optional file logging, and redaction of sensitive information. 
     """
+
     DEBUG = '\033[36m'
     """Debug color: CYCAN"""
 
@@ -38,12 +48,12 @@ class Logger:
 
         self.quiet = quiet
         """If only high-level logs should be printed."""
-    
+
     def log_traceback(self):
         import traceback
-        self._log("DEBUG", self.DEBUG, traceback.format_exc())
+        self.log("DEBUG", self.DEBUG, traceback.format_exc())
     
-    def _log(self, level: str, color: str, message: str):
+    def log(self, level: str, color: str, message: str):
         """Internal helper that writes formatted log to both file and console.
 
         Args:
@@ -67,7 +77,7 @@ class Logger:
         Args:
             message (str): descriptive message to log
         """
-        self._log("INFO", self.INFO, message)
+        self.log("INFO", self.INFO, message)
     
     def log_warn(self, message: str):
         """Logs a warn-level message.
@@ -75,7 +85,7 @@ class Logger:
         Args:
             message (str): descriptive message to log
         """
-        self._log("WARN", self.WARNING, message)
+        self.log("WARN", self.WARNING, message)
     
     def log_error(self, message: str):
         """Logs a error-level message.
@@ -83,7 +93,7 @@ class Logger:
         Args:
             message (str): descriptive message to log
         """
-        self._log("ERROR", self.ERROR, message)
+        self.log("ERROR", self.ERROR, message)
 
         if self.debug_mode == True:
             self.log_traceback()
@@ -94,7 +104,7 @@ class Logger:
         Args:
             message (str): descriptive message to log
         """
-        self._log("HIGH", self.INFO, message)
+        self.log("HIGH", self.INFO, message)
     
     def close(self):
         """Closes the log file."""

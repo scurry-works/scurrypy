@@ -1,21 +1,18 @@
 from dataclasses import dataclass, fields, is_dataclass
 from typing import get_args, get_origin, Union
 
-from .http import HTTPClient
-
 @dataclass
 class DataModel:    
-    """DataModel is a base class for Discord JSONs that provides hydration from raw dicts, 
-        optional field defaults, and access to HTTP-bound methods.
+    """DataModel is a base class for Discord JSONs that provides 
+        hydration from raw dicts, and optional field defaults.
     """
     
     @classmethod
-    def from_dict(cls, data: dict, http: 'HTTPClient' = None):
+    def from_dict(cls, data: dict):
         """Hydrates the given data into the dataclass child.
 
         Args:
             data (dict): JSON data
-            http (HTTPClient, optional): HTTP session for requests
 
         Returns:
             (dataclass): hydrated dataclass
@@ -34,19 +31,17 @@ class DataModel:
             if v is None:
                 kwargs[f.name] = None
             elif is_dataclass(t):
-                kwargs[f.name] = t.from_dict(v, http)
+                kwargs[f.name] = t.from_dict(v)
             elif get_origin(t) is list:
                 lt = get_args(t)[0]
-                kwargs[f.name] = [lt.from_dict(x, http) if is_dataclass(lt) else x for x in v]
+                kwargs[f.name] = [lt.from_dict(x) if is_dataclass(lt) else x for x in v]
             else:
                 try:
                     kwargs[f.name] = t(v)
                 except Exception:
                     kwargs[f.name] = v  # fallback to raw
 
-        inst = cls(**kwargs)
-        if http: inst._http = http
-        return inst
+        return cls(**kwargs)
 
     def to_dict(self):
         """Recursively turns the dataclass into a dictionary and drops empty fields.

@@ -4,7 +4,7 @@ from ..core.model import DataModel
 from typing import Optional
 
 @dataclass
-class RoleColors(DataModel):
+class RoleColorModel(DataModel):
     """Role color data."""
 
     primary_color: int
@@ -26,7 +26,7 @@ class RoleModel(DataModel):
     name: str
     """Name of the role."""
 
-    colors: RoleColors
+    colors: RoleColorModel
     """Colors of the role."""
 
     hoist: bool
@@ -47,8 +47,8 @@ class RoleModel(DataModel):
     flags: int
     """Role flags combined as a bitfield."""
 
-    icon: Optional[str] = None
+    icon: Optional[str]
     """Icon hash of the role."""
 
-    unicode_emoji: Optional[str] = None
+    unicode_emoji: Optional[str]
     """Unicode emoji of the role."""

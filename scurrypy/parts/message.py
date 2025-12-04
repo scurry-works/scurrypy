@@ -1,6 +1,8 @@
 from dataclasses import dataclass, field
-from typing import Optional, TypedDict, Unpack
 from ..core.model import DataModel
+
+from typing import Optional, TypedDict, Unpack
+
 from .embed import EmbedPart
 from .components import ActionRowPart
 from .components_v2 import ContainerPart
@@ -89,7 +91,11 @@ class MessagePart(DataModel):
     """Message text content."""
 
     flags: Optional[int] = 0
-    """Message flags. See [`MessageFlags`][scurrypy.parts.message.MessageFlags]."""
+    """Message flags. See [`MessageFlags`][scurrypy.parts.message.MessageFlags].
+
+    !!! note
+        Flags are ignored if editing an existing message.
+    """
 
     components: Optional[list[ActionRowPart | ContainerPart]] = field(default_factory=list)
     """Components to be attached to this message."""

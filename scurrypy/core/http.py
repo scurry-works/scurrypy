@@ -25,13 +25,13 @@ from typing import Any
 from dataclasses import dataclass
 
 from .error import DiscordError
-from .logger import Logger
+from .logger import LoggerLike
 
 @dataclass
 class RequestItem:
     method: str
     endpoint: str
-    data: Any = None
+    data: dict = None
     params: dict = None
     files: dict = None
     future: asyncio.Future = None
@@ -47,7 +47,7 @@ class HTTPClient:
     BASE = "https://discord.com/api/v10"
     MAX_RETRIES = 3
 
-    def __init__(self, logger: Logger):
+    def __init__(self, logger: LoggerLike):
         self.session = None
         self.logger = logger
 
@@ -86,7 +86,7 @@ class HTTPClient:
         method: str,
         endpoint: str,
         *,
-        data: Any | None = None,
+        data: dict | None = None,
         params: dict | None = None,
         files: Any | None = None,
     ):
@@ -95,14 +95,13 @@ class HTTPClient:
         Args:
             method (str): HTTP method (e.g., POST, GET, DELETE, PATCH, etc.)
             endpoint (str): Discord endpoint (e.g., /channels/123/messages)
-            data (dict, optional): relevant data
-            params (dict, optional): relevant query params
-            files (list[str], optional): relevant files
+            data (dict | None, optional): relevant data
+            params (dict | None, optional): relevant query params
+            files (Any | None, optional): relevant files
 
         Returns:
-            (Future): result or promise of request
+            (Future | None): result or promise of request or None if failed
         """
-
         # ensure a queue is in place for the requested endpoint
         async with self.queues_lock:
             queue = self.queues.setdefault(endpoint, asyncio.Queue())
@@ -130,7 +129,11 @@ class HTTPClient:
         await queue.put(RequestItem(method, endpoint, data, sanitize_query_params(params), files, future))
 
         # return promise
-        return await future
+        try:
+            return await future
+        except DiscordError as e:
+            self.logger.log_error(e)
+            return None
 
     async def _worker(self, endpoint: str):
         """Background worker that processes requests for this endpoint.
@@ -138,7 +141,6 @@ class HTTPClient:
         Args:
             endpoint (str): the endpoint to receive requests
         """
-
         # fetch the queue by endpoint
         queue = self.queues[endpoint]
 
@@ -211,7 +213,6 @@ class HTTPClient:
                 except aiohttp.ContentTypeError:
                     body = await resp.text()
                 raise DiscordError(resp.status, body)
-
             
     async def _update_bucket_rate_limit(self, resp: aiohttp.ClientResponse, bucket_id: str, endpoint: str):
         """Update the bucket for this endpoint and sleep if necessary.
@@ -280,15 +281,8 @@ class HTTPClient:
     async def _send(self, item: RequestItem):
         """Core HTTP request executor.
 
-        Sends a request to Discord, handling JSON payloads, files, query parameters,
-        and rate limits.
-
         Args:
             item (RequestItem): request object
-
-        Raises:
-            (DiscordError): If the request fails after the maximum number of retries
-                or receives an error response.
 
         Returns:
             (dict | str | None): Parsed JSON response if available, raw text if the

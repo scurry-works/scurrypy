@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from ..core.model import DataModel
+
 from .components_v2 import Label
 
 @dataclass

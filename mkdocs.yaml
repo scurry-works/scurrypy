@@ -77,11 +77,9 @@ watch:
 
 nav:
   - Home: index.md
-  - Getting Started: getting_started.md
-  - Examples: examples.md
-  - Advanced Examples: advanced_examples.md
-  - Legacy Examples: legacy_examples.md
-  - Technical Writeup: technical_writeup.md
+  - Getting Started: easy_examples.md
+  - Raw ScurryPy: raw_scurrypy.md
+  - Migrations: migrations.md
   - API Reference:
     - Overview: api/index.md
     - Client: api/client.md
@@ -111,12 +109,21 @@ nav:
     - Guild: events/guild.md
     - Reactions: events/reaction.md
     - Ready: events/ready.md
+  - Addons:
+    - Overview: addons/index.md
+    - Addon: addons/addon.md
+    - AddonManager: addons/addon_manager.md
+    - EasyBot: addons/easy_bot.md
+    - EventsAddon: addons/events.md
+    - PrefixAddon: addons/prefix.md
+    - InteractionAddon: addons/interaction.md
+    - ComponentBuilder: addons/component_builder.md
+    - EmbedBuilder: addons/embed_builder.md
   - Internals:
     - Overview: internals/index.md
     - Base Models: internals/model.md
     - HTTP: internals/http.md
-    - Dispatcher: internals/dispatchers.md
     - Gateway: internals/gateway.md
     - Logger: internals/logger.md
     - Discord Error: internals/error.md
-  - Migrations: migrations.md
+    - Technical Writeup: internals/technical_writeup.md

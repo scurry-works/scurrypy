@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
-from typing import Optional
 from ..core.model import DataModel
+
+from typing import Optional
 
 from .component_types import *
 
@@ -18,7 +19,7 @@ class ComponentV2Types:
 class SectionPart(DataModel, ContainerChild):
     """Represents the Section component."""
 
-    accessory: Optional[SectionAccessory] = None
+    accessory: SectionAccessoryChild = None
     """A component that is contextually associated to the content of the section."""
 
     components: list[SectionChild] = field(default_factory=list)
@@ -31,17 +32,17 @@ class SectionPart(DataModel, ContainerChild):
 class TextDisplay(DataModel, ContainerChild, SectionChild):
     """Represents the Text Display component."""
 
-    content: str
+    content: str = None
     """Text that will be displayed similar to a message."""
 
     type: int = field(init=False, default=ComponentV2Types.TEXT_DISPLAY)
     """Component type. Always `ComponentV2Types.TEXT_DISPLAY` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
 
 @dataclass
-class Thumbnail(DataModel, SectionAccessory):
+class Thumbnail(DataModel, SectionAccessoryChild):
     """Represents the Thumbnail component."""
     
-    media: str
+    media: str = None
     """Media of the thumbnail. http or attachment://<filename> scheme."""
 
     description: Optional[str] = None
@@ -57,7 +58,7 @@ class Thumbnail(DataModel, SectionAccessory):
 class MediaGalleryItem(DataModel):
     """Represents the Media Gallery Item component."""
 
-    media: str
+    media: str = None
     """Image data. http or attachment://<filename> scheme."""
 
     description: Optional[str] = None
@@ -80,7 +81,7 @@ class MediaGallery(DataModel, ContainerChild):
 class File(DataModel, ContainerChild):
     """Represents the File component."""
 
-    file: str
+    file: str = None
     """File name. ONLY supports attachment://<filename> scheme."""
 
     spoiler: Optional[bool] = False
@@ -131,7 +132,7 @@ class ContainerPart(DataModel):
 class Label(DataModel):
     """Represents the Discord Label component."""
 
-    label: str
+    label: str = None
     """Label text."""
 
     component: LabelChild = None

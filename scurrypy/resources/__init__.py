@@ -1,17 +1,12 @@
 # scurrypy/resources
 
-from .application import (
-    ApplicationFlags,
-    Application
-)
-
+from .application import Application
 from .bot_emojis import BotEmojis
 
 from .channel import (
     # MessagesFetchParams,
     # PinsFetchParams,
     # ThreadFromMessageParams,
-    PinnedMessage,
     Channel
 )
 
@@ -21,11 +16,7 @@ from .guild import (
     Guild
 )
 
-from .interaction import (
-    InteractionDataTypes,
-    InteractionCallbackTypes,
-    Interaction
-)
+from .interaction import Interaction
 
 from .message import Message
 
@@ -35,11 +26,11 @@ from .user import (
 )
 
 __all__ = [
-    "ApplicationFlags", "Application",
+    "Application",
     "BotEmojis",
-    "PinnedMessage", "Channel",
+    "Channel",
     "Guild",
-    "InteractionDataTypes", "InteractionCallbackTypes", "Interaction",
+    "Interaction",
     "Message",
     "User"
 ]

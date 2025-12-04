@@ -11,6 +11,6 @@ __all__ = [
 from .events import *
 from .parts import *
 from .resources import *
-from .dispatch import *
 from .models import *
 from .core import *
+from .addons import *

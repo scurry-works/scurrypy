@@ -1,10 +1,13 @@
 from dataclasses import dataclass
 from ..core.model import DataModel
+from .base_event import Event
 
-from ..models import UserModel, ReadyGuildModel, ApplicationModel
+from ..models.user import UserModel
+from ..models.guild import ReadyGuildModel
+from ..models.application import ApplicationModel
 
 @dataclass
-class ReadyEvent(DataModel):
+class ReadyEvent(Event, DataModel):
     """Received when bot goes online."""
 
     v: int

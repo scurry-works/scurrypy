@@ -1,11 +1,12 @@
 from dataclasses import dataclass
 from ..core.model import DataModel
+from .base_event import Event
 
-from ..models import MemberModel
-from ..resources.channel import Channel
+from ..models.guild_member import GuildMemberModel
+from ..models.channel import ChannelModel
 
 @dataclass
-class GuildEvent(DataModel):
+class GuildEvent(Event, DataModel):
     """Base guild event."""
     
     joined_at: str
@@ -17,10 +18,10 @@ class GuildEvent(DataModel):
     member_count: int
     """Total number of members in the guild."""
 
-    members: list[MemberModel]
+    members: list[GuildMemberModel]
     """Users in the guild."""
 
-    channels: list[Channel]
+    channels: list[ChannelModel]
     """Channels in the guild."""
 
 class GuildCreateEvent(GuildEvent):
@@ -35,18 +36,18 @@ class GuildDeleteEvent(GuildEvent):
     """Received when the bot has left a guild or the guild was deleted."""
     pass
 
-from ..models.user import MemberModel, UserModel
-
 @dataclass
-class GuildMemberAddEvent(MemberModel):
+class GuildMemberAddEvent(Event, GuildMemberModel):
     """Received when a member joins a guild the bot is in."""
 
     guild_id: int
     """ID of the guild."""
 
 
+from ..models.user import UserModel
+
 @dataclass
-class GuildMemberRemoveEvent(DataModel):
+class GuildMemberRemoveEvent(Event, DataModel):
     """Received when a member leaves or is kicked/banned from a guild the bot is in."""
 
     guild_id: int

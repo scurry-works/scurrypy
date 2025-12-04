@@ -6,6 +6,23 @@ A lightweight, fully readable Discord API framework built to accommodate everyth
 
 While ScurryPy powers many squirrel-related shenanigans, it works just as well for game bots, interactive components, and educational projects.
 
+## Philosophy
+
+ScurryPy is built on a simple idea: clarity over magic.
+
+* Every operation should be traceable.
+* No hidden behavior or side effects.
+* Explicit design over clever abstractions.
+* If you can’t explain a function in 3–6 steps, simplify it.
+* Legacy features can be removed or replaced without rewriting the library.
+* Models = pure data
+* Resources = HTTP logic
+* Nothing mixes responsibilities.
+
+ScurryPy is not discord.py, hikari, disnake, or any other framework.
+ScurryPy is built from scratch.
+It is a true Discord API wrapper built on predictable, modern Python principles.
+
 ## Features
 * Easy to extend and build frameworks on top
 * Lightweight core (<1000 lines)
@@ -29,24 +46,22 @@ To install the ScurryPy package, run:
 pip install scurrypy
 ```
 
+> **About the Following Examples**:
+    These examples are built using [EasyBot](https://scurry-works.github.io/scurrypy/addons/easy_bot), an extension of ScurryPy designed with pre-packaged convenience!
+
 ## Minimal Slash Command
 
 The following demonstrates building and responding to a slash command.
 
 ```py
-import scurrypy
+import scurrypy 
+from scurrypy.addons.easy_bot import EasyBot
 
-client = scurrypy.Client(
-    token='your-token',
-    application_id=APPLICATION_ID  # your bot's application ID
-)
+client = EasyBot(token=TOKEN, application_id=APP_ID)
 
-@client.command(
-    scurrypy.SlashCommand('example', 'Demonstrate the minimal slash command!'), 
-    GUILD_ID  # must be a guild ID your bot is in
-)
-async def example(bot: scurrypy.Client, event: scurrypy.InteractionEvent):
-    await event.interaction.respond(f'Hello, {event.interaction.member.user.username}!')
+@client.slash_command("hello", "Say hello", guild_ids=GUILD_ID) # specify guild ID for guild command
+async def hello(bot, interaction: scurrypy.Interaction):
+    await interaction.respond("Hello!")
 
 client.run()
 ```
@@ -56,18 +71,14 @@ client.run()
 The following demonstrates building and responding to a message prefix command.
 
 ```py
-import scurrypy
+import scurrypy 
+from scurrypy.addons.easy_bot import EasyBot
 
-client = scurrypy.Client(
-    token='your-token',
-    application_id=APPLICATION_ID,  # your bot's application ID
-    intents=scurrypy.set_intents(message_content=True),
-    prefix='!'  # your custom prefix
-)
+client = EasyBot(token=TOKEN, application_id=APP_ID, prefix="!")
 
-@client.prefix_command("ping")
-async def on_ping(bot: scurrypy.Client, event: scurrypy.MessageCreateEvent):
-    await event.message.send("Pong!")
+@client.prefix("ping")
+async def ping_cmd(bot, message: scurrypy.Message):
+    await message.send("Pong!")
 
 client.run()
 ```
@@ -75,28 +86,7 @@ client.run()
 ## Building on Top of ScurryPy
 
 ScurryPy is designed to be easy to extend with your own abstractions.
-
-The following demonstrates integrating a custom cache into your client configuration:
-
-```py
-class CacheProtocol(Protocol):
-    async def get_user(self, user_id: int) ...
-
-    # and the rest...
-
-class MyCache(CacheProtocol):
-    # your implementation...
-
-class MyConfig(BaseConfig):
-    cache: MyCache
-    # other stuff here...
-
-client = scurrypy.Client(
-    token = 'your-token',
-    application_id = 123456789012345,
-    config = MyConfig()
-)
-```
+See [Addons](https://scurry-works.github.io/scurrypy/addons) documentation for details!
 
 ## Like What You See?
 Explore the full [documentation](https://scurry-works.github.io/scurrypy) for more examples, guides, and API reference.

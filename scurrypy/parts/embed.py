@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
-from typing import Optional
 from ..core.model import DataModel
+
+from typing import Optional
 
 @dataclass
 class EmbedAuthor(DataModel):

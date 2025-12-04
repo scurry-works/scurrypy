@@ -1,8 +1,20 @@
 from dataclasses import dataclass
-from typing import Optional
 from ..core.model import DataModel
 
-from ..models import RoleColors
+from typing import Optional
+
+@dataclass
+class RoleColors(DataModel):
+    """Parameters for setting role colors."""
+
+    primary_color: int
+    """Primary color of the role."""
+
+    secondary_color: int
+    """Secondary color of the role. Creates a gradient."""
+
+    tertiary_color: int
+    """Tertiary color of the role. Creates a holographic style."""
 
 @dataclass
 class Role(DataModel):

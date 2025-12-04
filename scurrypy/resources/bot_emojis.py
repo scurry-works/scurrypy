@@ -1,5 +1,5 @@
 from ..core.http import HTTPClient
-from ..models import EmojiModel
+from ..models.emoji import EmojiModel
 
 class BotEmojis:
     """Represents a collection of the bot's emojis."""

@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
-from typing import Literal, Optional
 from ..core.model import DataModel
 
-from .component_types import *
+from typing import Literal, Optional
 
+from .component_types import *
 from ..models import EmojiModel
 
 class ComponentTypes:
@@ -45,26 +45,29 @@ class ButtonStyles:
     """Navigates to a URL. (Gray + window)"""
 
 @dataclass
-class Button(DataModel, ActionRowChild, SectionAccessory):
+class Button(DataModel, ActionRowChild, SectionAccessoryChild):
     """Represents the Button component."""
 
-    style: int
+    style: int = None
     """A button style. See [`ButtonStyles`][scurrypy.parts.components.ButtonStyles]."""
 
-    custom_id: str
-    """ID for the button."""
+    custom_id: str = None
+    """ID for the button. Do not supply for `LINK` style buttons."""
 
     label: Optional[str] = None
     """Text that appears on the button."""
 
     emoji: EmojiModel = None
-    """Partial emoji icon."""
+    """Emoji icon as emoji string or EmojiModel if custom."""
 
     url: Optional[str] = None
     """URL for link-style buttons."""
 
     disabled: Optional[bool] = False
     """Whether the button is disabled. Defaults to False."""
+
+    link: Optional[str] = None
+    """Hyperlink for button. For `LINK` style only."""
 
     type: int = field(init=False, default=ComponentTypes.BUTTON)
     """Component type. Always `ComponentTypes.BUTTON` for this class. See [`ComponentTypes`][scurrypy.parts.components.ComponentTypes]."""
@@ -73,17 +76,17 @@ class Button(DataModel, ActionRowChild, SectionAccessory):
 class SelectOption(DataModel):
     """Represents the Select Option component"""
 
-    label: str
+    label: str = None
     """User-facing name of the option."""
 
-    value: str
+    value: str = None
     """Developer-defined value of the option."""
 
     description: Optional[str] = None
     """Additional description of the option."""
 
     emoji: Optional[EmojiModel] = None
-    """Partial emoji obhect."""
+    """Partial emoji object."""
 
     default: Optional[bool] = False
     """Whether this option is selected by default."""
@@ -92,7 +95,7 @@ class SelectOption(DataModel):
 class StringSelect(DataModel, ActionRowChild, LabelChild):
     """Represents the String Select component."""
 
-    custom_id: str
+    custom_id: str = None
     """ID for the select menu."""
 
     options: list[SelectOption] = field(default_factory=list)
@@ -129,14 +132,11 @@ class TextInputStyles:
 class TextInput(DataModel, LabelChild):
     """Represents the Text Input component."""
 
-    style: TextInputStyles = TextInputStyles.SHORT
-    """Text input style. See [`TextInputStyles`][scurrypy.parts.components.TextInputStyles]."""
-
     custom_id: str = None
     """ID for the input."""
 
-    required: Optional[bool] = False
-    """Whether this component is required to be filled."""
+    style: TextInputStyles = TextInputStyles.SHORT
+    """Text input style. See [`TextInputStyles`][scurrypy.parts.components.TextInputStyles]."""
 
     min_length: Optional[int] = None
     """Minimum input length for a text input."""
@@ -160,23 +160,23 @@ class TextInput(DataModel, LabelChild):
 class DefaultValue(DataModel):
     """Represents the Default Value for Select components."""
 
-    id: int
+    id: int = None
     """ID of role, user, or channel."""
 
-    type: Literal["role", "user", "channel"]
+    type: Literal["role", "user", "channel"] = None
     """Type of value that `id` represents."""
 
 @dataclass
 class SelectMenu(DataModel):
     """Represents common fields for Discord's select menus."""
 
-    custom_id: str
+    custom_id: str = None
     """ID for the select menu."""
 
     placeholder: Optional[str] = None
     """Placeholder text if nothing is selected."""
 
-    default_values: list[DefaultValue] = field(default_factory=list)
+    default_values: Optional[list[DefaultValue]] = field(default_factory=list)
     """
         List of default values for auto-populated select menu components. See [`DefaultValue`][scurrypy.parts.components.DefaultValue].
         Number of default values must be in the range of `min_values` to `max_values`.
@@ -189,7 +189,7 @@ class SelectMenu(DataModel):
     """Maximum number of items that can be chosen. Defaults to 1."""
 
     required: Optional[bool] = False
-    """Whether the user select is required to answer in a modal. Defaults to False."""
+    """Whether the select is required to answer in a modal. Defaults to False."""
 
     disabled: Optional[bool] = False
     """Whether select menu is disabled in a message. Defaults to False."""

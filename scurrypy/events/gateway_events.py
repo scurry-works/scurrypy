@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 from ..core.model import DataModel
+from .base_event import Event
 
 @dataclass
-class SessionStartLimit(DataModel):
+class SessionStartLimit(Event, DataModel):
     """Represents the Session Start Limit object."""
 
     total: int
@@ -18,7 +19,7 @@ class SessionStartLimit(DataModel):
     """How many shards can be started at once."""
 
 @dataclass
-class GatewayEvent(DataModel):
+class GatewayEvent(Event, DataModel):
     """Represents the Gateway Event object."""
 
     url: str 

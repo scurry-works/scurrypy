@@ -2,26 +2,25 @@ import asyncio
 import json
 import websockets
 
-from .client_like import ClientLike
+from .logger import LoggerLike
 
 class GatewayClient:
-    def __init__(self, client: ClientLike, gateway_url: str, shard_id: int, total_shards: int):
+    def __init__(self, gateway_url: str, shard_id: int, total_shards: int, logger: LoggerLike):
         """Initialize this websocket.
 
         Args:
-            client (ClientLike): the bot client
             gateway_url (str): gateway URL provided by GET /gateway/bot endpoint
             shard_id (int): assigned shard ID
             total_shards (int): total shard count provided by GET /gateway/bot endpoint
+            logger (LoggerLike): logger instance for logging events
         """
-        self.token = client.token
-        self.intents = client.intents
-        self.logger = client._logger
+        self.logger = logger
         self.shard_id = shard_id
         self.total_shards = total_shards
         self.ws = None
         self.seq = None
         self.session_id = None
+        self.allow_resume = False # default: assume IDENTIFY
         self.heartbeat_task = None
         self.heartbeat_interval = None
         self.event_queue = asyncio.Queue()
@@ -50,7 +49,7 @@ class GatewayClient:
         except Exception as e:
             self.logger.log_error(f"SHARD ID {self.shard_id}: Connection Error - {e}")
 
-    async def start(self):
+    async def start(self, token, intents):
         """Starts the websocket and handles reconnections."""
 
         backoff = 1
@@ -58,10 +57,10 @@ class GatewayClient:
             try:
                 await self.connect_ws()
                 
-                if self.session_id and self.seq:
-                    await self.resume()
+                if self.allow_resume and self.session_id and self.seq:
+                    await self.resume(token)
                 else:
-                    await self.identify()
+                    await self.identify(token, intents)
                 
                 await self._listen()  # blocks until disconnect
 
@@ -101,14 +100,14 @@ class GatewayClient:
             await self.send({"op": 1, "d": self.seq})
             self.logger.log_info(f"SHARD ID {self.shard_id} Heartbeat sent")
 
-    async def identify(self):
+    async def identify(self, token, intents):
         """Send an IDENTIFY payload to handshake for bot."""
 
         await self.send({
             'op': 2,
             'd': {
-                'token': f"Bot {self.token}",
-                'intents': self.intents,
+                'token': f"Bot {token}",
+                'intents': intents,
                 'properties': {
                     'os': 'my_os',
                     'browser': 'my_browser',
@@ -119,13 +118,13 @@ class GatewayClient:
         })
         self.logger.log_info(f"SHARD ID {self.shard_id}: IDENIFY Sent.")
 
-    async def resume(self):
+    async def resume(self, token):
         """Send a RESUME payload to resume a connection."""
 
         await self.send({
             'op': 6,
             'd': {
-                'token': f"Bot {self.token}",
+                'token': f"Bot {token}",
                 'session_id': self.session_id,
                 'seq': self.seq
             }
@@ -154,15 +153,23 @@ class GatewayClient:
 
                         await self.event_queue.put((dispatcher_type, event_data))
                     case 7:
+                        self.allow_resume = True
                         raise ConnectionError("Reconnect requested by server.")
                     case 9:
                         self.session_id = self.seq = None
+                        self.allow_resume = False
                         raise ConnectionError("Invalid session.")
                     case 11:
                         self.logger.log_info(f"SHARD ID {self.shard_id}: Heartbeat ACK")
 
-            except websockets.exceptions.ConnectionClosedOK:
+            except websockets.exceptions.ConnectionClosed as e:
+                if e.code in (4009, 4011):
+                    self.allow_resume = True
+                else:
+                    self.session_id = self.seq = None
+                    self.allow_resume = False
                 break
+
             except Exception as e:
                 self.logger.log_error(f"SHARD ID {self.shard_id}: Listen Error - {e}")
                 break

@@ -1,10 +1,11 @@
 from dataclasses import dataclass
-from typing import Optional, TypedDict, Unpack
+from typing import TypedDict, Unpack
 
-from ..core.http import HTTPClient
-from ..core.model import DataModel
+from .base_resource import BaseResource
 
-from ..models import GuildModel, MemberModel
+from ..models.guild import GuildModel
+from ..models.guild_member import GuildMemberModel
+from ..models.user import UserModel
 
 class FetchUserGuildsParams(TypedDict, total=False):
     before: int
@@ -20,44 +21,11 @@ class FetchUserGuildsParams(TypedDict, total=False):
     """Include approximate member and presence count."""
 
 @dataclass
-class User(DataModel):
+class User(BaseResource):
     """A Discord user."""
 
     id: int
     """ID of the user."""
-
-    _http: HTTPClient
-    """HTTP session for requests."""
-
-    username: str = None
-    """Username of the user."""
-
-    discriminator: str = None
-    """Discriminator of the user (#XXXX)"""
-
-    global_name: str = None
-    """Global name of the user."""
-
-    avatar: str = None
-    """Image hash of the user's avatar."""
-
-    bot: Optional[bool] = None
-    """If the user is a bot."""
-
-    system: Optional[bool] = None
-    """If the user belongs to an OAuth2 application."""
-
-    mfa_enabled: Optional[bool] = None
-    """Whether the user has two factor enabled."""
-
-    banner: Optional[str] = None
-    """Image hash of the user's banner."""
-
-    accent_color: Optional[int] = None
-    """Color of user's banner represented as an integer."""
-
-    locale: Optional[str] = None
-    """Chosen language option of the user."""
 
     async def fetch(self):
         """Fetch this user by ID.
@@ -65,11 +33,11 @@ class User(DataModel):
             Fetch includes both /users/@me AND /users/{user.id}!
 
         Returns:
-            (User): the User object
+            (UserModel): the User object
         """
         data = await self._http.request('GET', f'/users/{self.id}')
 
-        return User.from_dict(data, self._http)
+        return UserModel.from_dict(data)
     
     async def fetch_guilds(self, **kwargs: Unpack[FetchUserGuildsParams]):
         """Fetch this user's guilds.
@@ -103,8 +71,8 @@ class User(DataModel):
             guild_id (int): ID of guild to fetch data from
 
         Returns:
-            (MemberModel): member data from guild
+            (GuildMemberModel): member data from guild
         """
         data = await self._http.request('GET', f'/users/@me/{guild_id}/member')
 
-        return MemberModel.from_dict(data)
+        return GuildMemberModel.from_dict(data)

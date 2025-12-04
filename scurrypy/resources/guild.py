@@ -1,15 +1,15 @@
 from dataclasses import dataclass
 from typing import Optional, TypedDict, Unpack
 
-from ..core.http import HTTPClient
-from ..core.model import DataModel
-
-from .channel import Channel
+from .base_resource import BaseResource
 
 from ..parts.channel import GuildChannel
 from ..parts.role import Role
 
-from ..models import EmojiModel, MemberModel, RoleModel
+from ..models.role import RoleModel
+from ..models.guild import GuildModel
+from ..models.guild_member import GuildMemberModel
+from ..models.channel import ChannelModel
 
 class FetchGuildMembersParams(TypedDict, total=False):
     """Params when fetching guild members."""
@@ -27,73 +27,11 @@ class FetchGuildParams(TypedDict, total=False):
     """If True, return the approximate member and presence counts for the guild."""
 
 @dataclass
-class Guild(DataModel):
+class Guild(BaseResource):
     """Represents a Discord guild."""
+    
     id: int
     """ID of the guild."""
-
-    _http: HTTPClient
-    """HTTP session for requests."""
-
-    name: str = None
-    """Name of the guild."""
-
-    icon: str = None
-    """Image hash of the guild's icon."""
-
-    splash: str = None
-    """Image hash of the guild's splash."""
-
-    owner: Optional[bool] = None
-    """If the member is the owner. (Get Current User Guilds)"""
-
-    owner_id: int = None
-    """OD of the owner of the guild."""
-
-    roles: list[int] = None
-    """List of IDs registered in the guild."""
-
-    emojis: list[EmojiModel] = None
-    """List of emojis registered in the guild."""
-
-    mfa_level: int = None
-    """Required MFA level of the guild."""
-
-    application_id: int = None
-    """ID of the application if the guild is created by a bot."""
-
-    system_channel_id: int = None
-    """Channel ID where system messages go (e.g., welcome messages, boost events)."""
-
-    system_channel_flags: int = None
-    """System channel flags."""
-
-    rules_channel_id: int = None
-    """Channel ID where rules are posted."""
-
-    max_members: Optional[int] = None
-    """Maximum member capacity for the guild."""
-
-    description: str = None
-    """Description of the guild."""
-
-    banner: str = None
-    """Image hash of the guild's banner."""
-
-    preferred_locale: str = None
-    """Preferred locale of the guild."""
-
-    public_updates_channel_id: int = None
-    """Channel ID of announcement or public updates."""
-
-    approximate_member_count: int = None
-    """Approximate number of members in the guild."""
-
-    nsfw_level: int = None
-    """NSFW level of the guild."""
-
-    safety_alerts_channel_id: int = None
-    """Channel ID for safety alerts."""
 
     async def fetch(self, **kwargs: Unpack[FetchGuildParams]):
         """Fetch the Guild object by the given ID.
@@ -104,23 +42,23 @@ class Guild(DataModel):
                     If no kwargs are provided, default to with_counts = False
             
         Returns:
-            (Guild): the Guild object
+            (GuildModel): the Guild object
         """
         params = {'with_counts': False, **kwargs}
 
         data = await self._http.request('GET', f'/guilds/{self.id}', params=params)
 
-        return Guild.from_dict(data, self._http)
+        return GuildModel.from_dict(data)
 
     async def fetch_channels(self):
         """Fetch this guild's channels.
 
         Returns:
-            (list[Channel]): list of the guild's channels
+            (list[ChannelModel]): list of the guild's channels
         """
         data = await self._http.request('GET', f'guilds/{self.id}/channels')
 
-        return [Channel.from_dict(channel, self._http) for channel in data]
+        return [ChannelModel.from_dict(channel) for channel in data]
 
     async def create_channel(self, channel: GuildChannel):
         """Create a channel in this guild.
@@ -132,11 +70,11 @@ class Guild(DataModel):
             channel (GuildChannel): the buildable guild channel
 
         Returns:
-            (Channel): the created channel
+            (ChannelModel): the created channel
         """
         data = await self._http.request('POST', f'/guilds/{self.id}/channels', data=channel.to_dict())
 
-        return Channel.from_dict(data, self._http)
+        return ChannelModel.from_dict(data)
 
     async def fetch_guild_member(self, user_id: int):
         """Fetch a member in this guild.
@@ -147,11 +85,11 @@ class Guild(DataModel):
             user_id (int): user ID of the member to fetch
 
         Returns:
-            (MemberModel): member's data
+            (GuildMemberModel): member's data
         """
         data = await self._http.request('GET', f'/guilds/{self.id}/members/{user_id}')
 
-        return MemberModel.from_dict(data)
+        return GuildMemberModel.from_dict(data)
     
     async def fetch_guild_members(self, **kwargs: Unpack[FetchGuildMembersParams]):
         """Fetch guild members in this guild.
@@ -164,13 +102,13 @@ class Guild(DataModel):
                     If no kwargs are provided, default to 1 guild member limit.
 
         Returns:
-            (list[MemberModel]): list of member data
+            (list[GuildMemberModel]): list of member data
         """
         params = {"limit": 1, **kwargs}
 
         data = await self._http.request('GET', f'/guilds/{self.id}/members', params=params)
 
-        return [MemberModel.from_dict(member) for member in data]
+        return [GuildMemberModel.from_dict(member) for member in data]
 
     async def add_guild_member_role(self, user_id: int, role_id: int):
         """Append a role to a guild member of this guild.

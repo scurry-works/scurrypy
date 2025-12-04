@@ -1,0 +1,125 @@
+from ..client import Client
+from ..core.intents import Intents, set_intents
+from ..core.logger import Logger
+
+from ..parts.command import CommandOption
+
+class EasyBot(Client):
+    """Prepackaged interaction, prefix, and event convenience for most of your needs!"""
+
+    def __init__(self, *, token: str, application_id: int, intents = Intents.DEFAULT, prefix = None, sync_commands = True):
+        """
+        Args:
+            token (str): the bot's token
+            application_id (int): the bot's user ID
+            intents (int, optional): gateway intents. Defaults to `Intents.DEFAULT`.
+            prefix (str, optional): prefix if using prefix commands.
+            sync_commands (bool, optional): Whether commands should be synced with changes. Defaults to True.
+        """
+        # find out if message content is needed first
+        if prefix:
+            intents = set_intents(message_content=True)
+
+        # THEN init client
+        super().__init__(
+            token=token, 
+            application_id=application_id, 
+            intents=intents,
+            logger=Logger()
+        )
+
+        # init addons
+        from scurrypy.addons.prefix import PrefixAddon
+        self.prefixes = PrefixAddon(self, prefix)
+
+        from scurrypy.addons.interaction import InteractionAddon
+        self.commands = InteractionAddon(self, sync_commands)
+
+        from scurrypy.addons.events import EventsAddon
+        self.bot_events = EventsAddon(self)
+
+    def prefix(self, name: str):
+        """Register a prefix command using PrefixAddon.
+
+        Args:
+            name (str): name of the command
+                !!! warning "Important"
+                    Prefix commands are CASE-INSENSITIVE.
+        """
+        return self.prefixes.register(name)
+    
+    def event(self, event_name: str):
+        """Register an event in which to listen using EventsAddon.
+
+        Args:
+            event_name (str): event name
+        """
+        return self.bot_events.event(event_name.upper())
+    
+    def slash_command(self, name: str, description: str, *, options: list[CommandOption] = None, guild_ids: list[int] = None):
+        """Register and route a slash command using InteractionAddon.
+
+        Args:
+            name (str): command name
+            description (str): command description
+            options (list[CommandOption], optional): list of command options
+            guild_ids (list[int], optional): list of guild IDs for guild commands or omit for global
+        """
+        return self.commands.slash_command(name, description, options=options, guild_ids=guild_ids)
+    
+    def user_command(self, name: str, guild_ids: list[int] = None):
+        """Register and route a user command using InteractionAddon.
+
+        Args:
+            name (str): command name
+            guild_ids (list[int], optional): list of guild IDs for guild commands or omit for global
+        """
+        return self.commands.user_command(name, guild_ids=guild_ids)
+    
+    def message_command(self, name: str, guild_ids: list[int] = None):
+        """Register and route a message command using InteractionAddon.
+
+        Args:
+            name (str): command name
+            guild_ids (list[int], optional): list of guild IDs for guild commands or omit for global
+        """
+        return self.commands.message_command(name, guild_ids=guild_ids)
+    
+    def autocomplete(self, command_name: str, option_name: str):
+        """Register and route an autocomplete interaction using InteractionAddon.
+
+        Args:
+            command_name (str): name of command to autocomplete
+            option_name (str): name of option to autocomplete
+        """
+        return self.commands.autocomplete(command_name, option_name)
+
+    def button(self, custom_id: str):
+        """Decorator to route button interactions using InteractionAddon.
+
+        Args:
+            custom_id (str): custom ID of button
+                !!! warning "Important"
+                    Must match the `custom_id` set where the component was created.
+        """
+        return self.commands.button(custom_id)
+    
+    def select(self, custom_id: str):
+        """Decorator to route select menu interactions using InteractionAddon.
+
+        Args:
+            custom_id (str): custom ID of select menu
+                !!! warning "Important"
+                    Must match the `custom_id` set where the component was created.
+        """
+        return self.commands.select(custom_id)
+    
+    def modal(self, custom_id: str):
+        """Decorator to route modal interactions using InteractionAddon.
+
+        Args:
+            custom_id (str): custom ID of modal
+                !!! warning "Important"
+                    Must match the `custom_id` set where the component was created.
+        """
+        return self.commands.modal(custom_id)

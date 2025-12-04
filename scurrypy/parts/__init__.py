@@ -9,6 +9,7 @@ from .command import (
     CommandTypes,
     CommandOptionTypes,
     CommandOption,
+    CommandOptionChoice,
     SlashCommand, 
     UserCommand,
     MessageCommand
@@ -64,16 +65,16 @@ from .message import (
 )
 
 from .modal import ModalPart
-from .role import Role
+from .role import Role, RoleColors
 
 __all__ = [
     "ChannelTypes", "GuildChannel",
-    "CommandTypes", "CommandOption", "CommandOptionTypes", "SlashCommand", "UserCommand", "MessageCommand",
+    "CommandTypes", "CommandOption", "CommandOptionChoice", "CommandOptionTypes", "SlashCommand", "UserCommand", "MessageCommand",
     "ComponentV2Types", "SectionPart", "TextDisplay", "Thumbnail", "MediaGalleryItem", "MediaGallery",
     "File", "SeparatorTypes", "Separator", "ContainerPart", "Label",
     "ComponentTypes", "ActionRowPart", "ButtonStyles", "Button", "SelectOption", "StringSelect",
     "TextInputStyles", "TextInput", "DefaultValue", "UserSelect", "RoleSelect", "MentionableSelect",
     "ChannelSelect",
     "EmbedAuthor", "EmbedThumbnail", "EmbedField", "EmbedImage", "EmbedFooter", "EmbedPart",
-    "MessageFlags", "MessageReferenceTypes", "MessageReference", "Attachment", "MessagePart", "Role", "ModalPart"
+    "MessageFlags", "MessageReferenceTypes", "MessageReference", "Attachment", "MessagePart", "Role", "RoleColors", "ModalPart"
 ]

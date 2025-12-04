@@ -51,6 +51,8 @@ from .reaction_events import (
 
 from .ready_event import ReadyEvent
 
+from .base_event import Event
+
 __all__ = [
     "GuildChannelCreateEvent", "GuildChannelUpdateEvent", "GuildChannelDeleteEvent", "ChannelPinsUpdateEvent",
     "GuildCreateEvent", "GuildUpdateEvent", "GuildDeleteEvent",
@@ -58,5 +60,6 @@ __all__ = [
     "InteractionEvent",
     "MessageCreateEvent", "MessageUpdateEvent", "MessageDeleteEvent",
     "ReactionType", "ReactionAddEvent", "ReactionRemoveEvent", "ReactionRemoveEmojiEvent", "ReactionRemoveAllEvent",
-    "ReadyEvent"
+    "ReadyEvent", 
+    "Event"
 ]

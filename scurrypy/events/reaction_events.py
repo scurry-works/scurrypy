@@ -1,8 +1,11 @@
 from dataclasses import dataclass
-from typing import Optional
 from ..core.model import DataModel
+from .base_event import Event
 
-from ..models import MemberModel, EmojiModel
+from typing import Optional
+
+from ..models.guild_member import GuildMemberModel
+from ..models.emoji import EmojiModel
 
 class ReactionType:
     """Reaction types."""
@@ -14,7 +17,7 @@ class ReactionType:
     """A super emoji."""
 
 @dataclass
-class ReactionAddEvent(DataModel):
+class ReactionAddEvent(Event, DataModel):
     """Reaction added event."""
 
     type: int
@@ -38,14 +41,14 @@ class ReactionAddEvent(DataModel):
     burst: bool
     """Whether the emoji is super."""
 
-    member: Optional[MemberModel]
+    member: Optional[GuildMemberModel]
     """Partial member object of the guild member that added the emoji (if in a guild)."""
 
     message_author_id: Optional[int]
     """ID of the user who sent the message where the reaction was added."""
 
 @dataclass
-class ReactionRemoveEvent(DataModel):
+class ReactionRemoveEvent(Event, DataModel):
     """Reaction removed event."""
 
     type: int
@@ -69,7 +72,7 @@ class ReactionRemoveEvent(DataModel):
     burst: bool
     """If the emoji of the removed reaction is super."""
 
-class ReactionRemoveAllEvent(DataModel):
+class ReactionRemoveAllEvent(Event, DataModel):
     """Remove all reactions event."""
 
     channel_id: int
@@ -82,7 +85,7 @@ class ReactionRemoveAllEvent(DataModel):
     """ID of the guild where all reaction were removed (if in a guild)."""
 
 @dataclass
-class ReactionRemoveEmojiEvent(DataModel):
+class ReactionRemoveEmojiEvent(Event, DataModel):
     """All reactions of a specific emoji removed."""
 
     emoji: EmojiModel

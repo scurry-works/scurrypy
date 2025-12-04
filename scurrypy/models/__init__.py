@@ -1,15 +1,35 @@
 # scurrypy/models
 
+from .application import ApplicationFlags, ApplicationModel
+from .channel import ChannelModel, PinnedMessageModel
 from .emoji import EmojiModel
+from .guild_member import GuildMemberModel
 from .guild import ReadyGuildModel, GuildModel
-from .interaction import InteractionCallbackDataModel, InteractionCallbackModel
-from .role import RoleColors, RoleModel
-from .user import UserModel, MemberModel, ApplicationModel, IntegrationModel
+from .integration import IntegrationModel
+from .interaction import (
+    InteractionCallbackDataModel, 
+    InteractionCallbackModel,
+    InteractionCallbackTypes,
+    InteractionDataTypes,
+    InteractionTypes,
+    InteractionModel
+)
+from .message import MessageModel
+from .role import RoleColorModel, RoleModel
+from .user import UserModel
 
 __all__ = [
+    "ApplicationFlags", "ApplicationModel",
+    "ChannelModel", "PinnedMessageModel",
     "EmojiModel",
+    "GuildMemberModel",
     "ReadyGuildModel", "GuildModel",
-    "InteractionCallbackDataModel", "InteractionCallbackModel",
-    "RoleColors", "RoleModel",
-    "UserModel", "MemberModel", "ApplicationModel", "IntegrationModel"
+    "IntegrationModel",
+    
+    "InteractionCallbackDataModel", "InteractionCallbackModel", "InteractionCallbackTypes", 
+    "InteractionDataTypes", "InteractionTypes", "InteractionModel",
+
+    "MessageModel",
+    "RoleColorModel", "RoleModel",
+    "UserModel"
 ]
