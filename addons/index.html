@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://furmissile.github.io/scurrypy/api/">
+        <link rel="canonical" href="https://furmissile.github.io/scurrypy/addons/">
       
       
-        <link rel="prev" href="../migrations/">
+        <link rel="prev" href="../events/ready/">
       
       
-        <link rel="next" href="client/">
+        <link rel="next" href="addon/">
       
       
       <link rel="icon" href="../assets/wizard.svg">
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#overview-of-api" class="md-skip">
+        <a href="#scurrypys-addons" class="md-skip">
           Skip to content
         </a>
       
@@ -347,8 +347,6 @@
       
   
   
-    
-  
   
   
     
@@ -361,11 +359,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
@@ -381,7 +379,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             API Reference
@@ -392,32 +390,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -428,35 +404,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#welcome-to-the-api-section" class="md-nav__link">
-    <span class="md-ellipsis">
-      Welcome to the API section!
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -469,7 +416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="client/" class="md-nav__link">
+      <a href="../api/client/" class="md-nav__link">
         
   
   
@@ -492,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="intents/" class="md-nav__link">
+      <a href="../api/intents/" class="md-nav__link">
         
   
   
@@ -515,7 +462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="commands/" class="md-nav__link">
+      <a href="../api/commands/" class="md-nav__link">
         
   
   
@@ -538,7 +485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ui_components/" class="md-nav__link">
+      <a href="../api/ui_components/" class="md-nav__link">
         
   
   
@@ -561,7 +508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/" class="md-nav__link">
+      <a href="../api/components/" class="md-nav__link">
         
   
   
@@ -584,7 +531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="channel/" class="md-nav__link">
+      <a href="../api/channel/" class="md-nav__link">
         
   
   
@@ -607,7 +554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="message/" class="md-nav__link">
+      <a href="../api/message/" class="md-nav__link">
         
   
   
@@ -630,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="models/" class="md-nav__link">
+      <a href="../api/models/" class="md-nav__link">
         
   
   
@@ -653,7 +600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="role/" class="md-nav__link">
+      <a href="../api/role/" class="md-nav__link">
         
   
   
@@ -676,7 +623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="embed/" class="md-nav__link">
+      <a href="../api/embed/" class="md-nav__link">
         
   
   
@@ -1148,8 +1095,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -1160,11 +1109,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
@@ -1180,7 +1129,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Addons
@@ -1191,10 +1140,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../addons/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1205,6 +1174,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scurrypys-addons" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScurryPy's Addons
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-addons" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are Addons?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-addons-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Addons Work
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-addon-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Addon Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-addons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Addons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Default Addons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traditional-addons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traditional Addons
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semi-addons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semi-Addons
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1217,7 +1282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../addons/addon/" class="md-nav__link">
+      <a href="addon/" class="md-nav__link">
         
   
   
@@ -1240,7 +1305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../addons/addon_manager/" class="md-nav__link">
+      <a href="addon_manager/" class="md-nav__link">
         
   
   
@@ -1263,7 +1328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../addons/easy_bot/" class="md-nav__link">
+      <a href="easy_bot/" class="md-nav__link">
         
   
   
@@ -1286,7 +1351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../addons/events/" class="md-nav__link">
+      <a href="events/" class="md-nav__link">
         
   
   
@@ -1309,7 +1374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../addons/prefix/" class="md-nav__link">
+      <a href="prefix/" class="md-nav__link">
         
   
   
@@ -1332,7 +1397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../addons/interaction/" class="md-nav__link">
+      <a href="interaction/" class="md-nav__link">
         
   
   
@@ -1355,7 +1420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../addons/component_builder/" class="md-nav__link">
+      <a href="component_builder/" class="md-nav__link">
         
   
   
@@ -1378,7 +1443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../addons/embed_builder/" class="md-nav__link">
+      <a href="embed_builder/" class="md-nav__link">
         
   
   
@@ -1629,8 +1694,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1639,11 +1702,80 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#welcome-to-the-api-section" class="md-nav__link">
+  <a href="#scurrypys-addons" class="md-nav__link">
     <span class="md-ellipsis">
-      Welcome to the API section!
+      ScurryPy's Addons
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-are-addons" class="md-nav__link">
+    <span class="md-ellipsis">
+      What are Addons?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-addons-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Addons Work
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimal-addon-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Addon Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-addons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Addons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Default Addons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traditional-addons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traditional Addons
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semi-addons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semi-Addons
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1666,21 +1798,125 @@
   
 
 
-<h1 id="overview-of-api">Overview of API<a class="headerlink" href="#overview-of-api" title="Permanent link">&para;</a></h1>
-<h2 id="welcome-to-the-api-section">Welcome to the API section!<a class="headerlink" href="#welcome-to-the-api-section" title="Permanent link">&para;</a></h2>
+  <h1>Overview</h1>
+
+<h2 id="scurrypys-addons">ScurryPy's Addons<a class="headerlink" href="#scurrypys-addons" title="Permanent link">&para;</a></h2>
 <hr />
-<p>This section covers the high-level objects. It provides entry-level classes for building a bot such as the client, registering commands and event listeners, and accessing Discord resources.</p>
+<p>Welcome to the Addons section!
+Addons are a simple way to extend ScurryPy with extra helpers, patterns, and shortcuts.</p>
+<h2 id="what-are-addons">What are Addons?<a class="headerlink" href="#what-are-addons" title="Permanent link">&para;</a></h2>
 <hr />
+<p>Addons are <em>optional</em> “feature packs” that enhance ScurryPy without forcing complexity into the core library.
+They never change the Discord API or ScurryPy's core.</p>
+<p>They can provide convenience utilities, builders, and patterns that help you write Discord bots faster without hiding the underlying API.</p>
+<p>Users are encouraged to build their own addons!</p>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<hr />
+<p>ScurrPy has some default addons that can double as examples.</p>
 <ul>
-<li><a href="client/">Client</a> - main entry point for discord bot.</li>
-<li><a href="intents/">Intents</a> - specify what events you want your bot to receive.</li>
-<li><a href="commands/">Commands</a> - register and runs commands and event handlers.</li>
-<li><a href="ui_components/">UI Components</a> - tools for building Discord's new component setup.</li>
-<li><a href="components/">Components</a> - register and runs component handlers.</li>
-<li><a href="message/">Message</a> - tools for building a message.</li>
-<li><a href="models/">Models</a> - dataclasses mimicing Discord's payload structure for dot access.</li>
-<li><a href="role/">Role</a> - layout for building a role.</li>
-<li><a href="embed/">Embed (Legacy)</a> - tools for adding embedded content within a message.</li>
+<li>
+<p>EasyBot — prepackaged interaction, prefix, and event convenience.</p>
+</li>
+<li>
+<p>Interactions - decorator-based commands and automatic routing</p>
+</li>
+<li>
+<p>Prefixes - decorator-based prefixes and automatic routing</p>
+</li>
+<li>
+<p>Events - decorator-based event handling and automatic routing</p>
+</li>
+<li>
+<p>ComponentBuilder (C) — short, readable component factories</p>
+</li>
+<li>
+<p>EmbedBuilder (E) — simple embed creation</p>
+</li>
+<li>
+<p>And more... database helpers, autocomplete helpers, permissions helpers...</p>
+</li>
+</ul>
+<h2 id="how-addons-work">How Addons Work<a class="headerlink" href="#how-addons-work" title="Permanent link">&para;</a></h2>
+<hr />
+<p>Each addon is a small module that:</p>
+<ul>
+<li>exposes some helper classes or decorators</li>
+<li>optionally plugs into the client</li>
+<li>requires zero setup unless stated</li>
+</ul>
+<p>You import the addon and use it immediately. You can extend <a href="../api/client/#scurrypy.client.Client"><code>Client</code></a> and have your addons inside your class (like <a href="easy_bot/#easybot"><code>EasyBot</code></a> or have your addons live along-side your bot! They just need your client to be instantiated.</p>
+<h2 id="minimal-addon-example">Minimal Addon Example<a class="headerlink" href="#minimal-addon-example" title="Permanent link">&para;</a></h2>
+<hr />
+<p>Demonstrates the minimal addon implementation. Feel free to use this as a reference!</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyAddon</span><span class="p">(</span><span class="n">Addon</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Your custom addon.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">Client</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            client (Client): the Client object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span> <span class="o">=</span> <span class="n">client</span> <span class="c1"># REQUIRED to set up addon</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">logger</span> <span class="c1"># optional but recommended for pretty print!</span>
+
+        <span class="c1"># some handlers</span>
+
+        <span class="n">client</span><span class="o">.</span><span class="n">addons</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="c1"># REQUIRED</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets up the addon with the client.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="n">my_opening_handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">my_event_listener</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">my_dispatcher</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">add_shutdown_hook</span><span class="p">(</span><span class="n">my_closing_handler</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">my_opening_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom startup hooks.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">my_event_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Handle your event here!&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">my_closing_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom shutdown hooks.&quot;&quot;&quot;</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_dispatcher</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">Event</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Example entry point.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            event (Event): event data object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">my_handlers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">handler</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">handler</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">DiscordError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in event &#39;</span><span class="si">{</span><span class="n">handler</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unhandled error in interaction &#39;</span><span class="si">{</span><span class="n">handler</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="default-addons">Default Addons<a class="headerlink" href="#default-addons" title="Permanent link">&para;</a></h2>
+<hr />
+<p>The rest of this category documents the default addons that come with ScurryPy.</p>
+<ul>
+<li><a href="addon/"><code>Addon</code></a> - the base Addon class. ALL addons must extend this class!</li>
+<li><a href="addon_manager/"><code>AddonManager</code></a> - used by <a href="../api/client/#scurrypy.client.Client"><code>Client</code></a> to support addon development.</li>
+</ul>
+<h3 id="traditional-addons">Traditional Addons<a class="headerlink" href="#traditional-addons" title="Permanent link">&para;</a></h3>
+<p>The following addons are proper addons with their own event listeners and decorators:</p>
+<ul>
+<li><a href="prefix/#prefixaddon"><code>PrefixAddon</code></a> - implements automatic registering and decorating prefix commands</li>
+<li><a href="interaction/#interactionaddon"><code>InteractionAddon</code></a> - implements automatic registering and decorating interactions</li>
+<li><a href="events/#eventsaddon"><code>EventsAddon</code></a> - implements automatic registering and decorating events</li>
+</ul>
+<h3 id="semi-addons">Semi-Addons<a class="headerlink" href="#semi-addons" title="Permanent link">&para;</a></h3>
+<p>Builders are NOT considered proper addons because they don't implement <code>Addon.setup</code>.</p>
+<ul>
+<li><a href="component_builder/#componentbuilder"><code>CompoonentBuilder</code></a> - some helper functions for building components</li>
+<li><a href="embed_builder/#embedbuilder"><code>EmbedBuilder</code></a> - some helper functions for building embeds</li>
 </ul>
 
 

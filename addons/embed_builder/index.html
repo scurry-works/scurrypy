@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://furmissile.github.io/scurrypy/legacy_examples/">
+        <link rel="canonical" href="https://furmissile.github.io/scurrypy/addons/embed_builder/">
       
       
-        <link rel="prev" href="../advanced_examples/">
+        <link rel="prev" href="../component_builder/">
       
       
-        <link rel="next" href="../technical_writeup/">
+        <link rel="next" href="../../internals/">
       
       
-      <link rel="icon" href="../assets/wizard.svg">
+      <link rel="icon" href="../../assets/wizard.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
     
     
       
-        <title>Legacy Examples - ScurryPy</title>
+        <title>EmbedBuilder - ScurryPy</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,15 +48,15 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../css/custom_color.css">
+      <link rel="stylesheet" href="../../css/custom_color.css">
     
-      <link rel="stylesheet" href="../css/header.css">
+      <link rel="stylesheet" href="../../css/header.css">
     
-      <link rel="stylesheet" href="../css/text_alignment.css">
+      <link rel="stylesheet" href="../../css/text_alignment.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#examples" class="md-skip">
+        <a href="#embedbuilder" class="md-skip">
           Skip to content
         </a>
       
@@ -98,9 +98,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="ScurryPy" class="md-header__button md-logo" aria-label="ScurryPy" data-md-component="logo">
+    <a href="../.." title="ScurryPy" class="md-header__button md-logo" aria-label="ScurryPy" data-md-component="logo">
       
-  <img src="../assets/wizard.svg" alt="logo">
+  <img src="../../assets/wizard.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Legacy Examples
+              EmbedBuilder
             
           </span>
         </div>
@@ -233,9 +233,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="ScurryPy" class="md-nav__button md-logo" aria-label="ScurryPy" data-md-component="logo">
+    <a href="../.." title="ScurryPy" class="md-nav__button md-logo" aria-label="ScurryPy" data-md-component="logo">
       
-  <img src="../assets/wizard.svg" alt="logo">
+  <img src="../../assets/wizard.svg" alt="logo">
 
     </a>
     ScurryPy
@@ -262,7 +262,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -284,7 +284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting_started/" class="md-nav__link">
+      <a href="../../easy_examples/" class="md-nav__link">
         
   
   
@@ -306,12 +306,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../examples/" class="md-nav__link">
+      <a href="../../raw_scurrypy/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Examples
+    Raw ScurryPy
     
   </span>
   
@@ -328,116 +328,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../advanced_examples/" class="md-nav__link">
+      <a href="../../migrations/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Advanced Examples
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Legacy Examples
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    Legacy Examples
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setting-and-responding-to-a-command-prefix" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setting and Responding to a Command Prefix
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#building-an-embed" class="md-nav__link">
-    <span class="md-ellipsis">
-      Building an Embed
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../technical_writeup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Technical Writeup
+    Migrations
     
   </span>
   
@@ -467,10 +363,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -483,8 +379,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             API Reference
           </label>
@@ -497,7 +393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../../api/" class="md-nav__link">
         
   
   
@@ -520,7 +416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/client/" class="md-nav__link">
+      <a href="../../api/client/" class="md-nav__link">
         
   
   
@@ -543,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/intents/" class="md-nav__link">
+      <a href="../../api/intents/" class="md-nav__link">
         
   
   
@@ -566,7 +462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/commands/" class="md-nav__link">
+      <a href="../../api/commands/" class="md-nav__link">
         
   
   
@@ -589,7 +485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/ui_components/" class="md-nav__link">
+      <a href="../../api/ui_components/" class="md-nav__link">
         
   
   
@@ -612,7 +508,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/components/" class="md-nav__link">
+      <a href="../../api/components/" class="md-nav__link">
         
   
   
@@ -635,7 +531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/channel/" class="md-nav__link">
+      <a href="../../api/channel/" class="md-nav__link">
         
   
   
@@ -658,7 +554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/message/" class="md-nav__link">
+      <a href="../../api/message/" class="md-nav__link">
         
   
   
@@ -681,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/models/" class="md-nav__link">
+      <a href="../../api/models/" class="md-nav__link">
         
   
   
@@ -704,7 +600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/role/" class="md-nav__link">
+      <a href="../../api/role/" class="md-nav__link">
         
   
   
@@ -727,7 +623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/embed/" class="md-nav__link">
+      <a href="../../api/embed/" class="md-nav__link">
         
   
   
@@ -770,10 +666,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -786,8 +682,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Resources
           </label>
@@ -800,7 +696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/" class="md-nav__link">
+      <a href="../../resources/" class="md-nav__link">
         
   
   
@@ -823,7 +719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/application/" class="md-nav__link">
+      <a href="../../resources/application/" class="md-nav__link">
         
   
   
@@ -846,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/bot_emojis/" class="md-nav__link">
+      <a href="../../resources/bot_emojis/" class="md-nav__link">
         
   
   
@@ -869,7 +765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/channel/" class="md-nav__link">
+      <a href="../../resources/channel/" class="md-nav__link">
         
   
   
@@ -892,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/guild/" class="md-nav__link">
+      <a href="../../resources/guild/" class="md-nav__link">
         
   
   
@@ -915,7 +811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/interaction/" class="md-nav__link">
+      <a href="../../resources/interaction/" class="md-nav__link">
         
   
   
@@ -938,7 +834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/message/" class="md-nav__link">
+      <a href="../../resources/message/" class="md-nav__link">
         
   
   
@@ -961,7 +857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/user/" class="md-nav__link">
+      <a href="../../resources/user/" class="md-nav__link">
         
   
   
@@ -1004,10 +900,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
@@ -1020,8 +916,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Events
           </label>
@@ -1034,7 +930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../events/" class="md-nav__link">
+      <a href="../../events/" class="md-nav__link">
         
   
   
@@ -1057,7 +953,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../events/interaction/" class="md-nav__link">
+      <a href="../../events/interaction/" class="md-nav__link">
         
   
   
@@ -1080,7 +976,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../events/message/" class="md-nav__link">
+      <a href="../../events/message/" class="md-nav__link">
         
   
   
@@ -1103,7 +999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../events/channel/" class="md-nav__link">
+      <a href="../../events/channel/" class="md-nav__link">
         
   
   
@@ -1126,7 +1022,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../events/guild/" class="md-nav__link">
+      <a href="../../events/guild/" class="md-nav__link">
         
   
   
@@ -1149,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../events/reaction/" class="md-nav__link">
+      <a href="../../events/reaction/" class="md-nav__link">
         
   
   
@@ -1172,7 +1068,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../events/ready/" class="md-nav__link">
+      <a href="../../events/ready/" class="md-nav__link">
         
   
   
@@ -1183,6 +1079,367 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Addons
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Addons
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Addon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addon_manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AddonManager
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../easy_bot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EasyBot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    EventsAddon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prefix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PrefixAddon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    InteractionAddon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../component_builder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ComponentBuilder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    EmbedBuilder
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    EmbedBuilder
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;EmbedBuilder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" EmbedBuilder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder.user_author" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;user_author
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder.timestamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;timestamp
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder.field" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;field
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder.footer" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;footer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder.setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1215,10 +1472,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
             
   
   
@@ -1231,8 +1488,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             Internals
           </label>
@@ -1245,7 +1502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../internals/" class="md-nav__link">
+      <a href="../../internals/" class="md-nav__link">
         
   
   
@@ -1268,7 +1525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../internals/model/" class="md-nav__link">
+      <a href="../../internals/model/" class="md-nav__link">
         
   
   
@@ -1291,7 +1548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../internals/http/" class="md-nav__link">
+      <a href="../../internals/http/" class="md-nav__link">
         
   
   
@@ -1314,30 +1571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../internals/dispatchers/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Dispatcher
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../internals/gateway/" class="md-nav__link">
+      <a href="../../internals/gateway/" class="md-nav__link">
         
   
   
@@ -1360,7 +1594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../internals/logger/" class="md-nav__link">
+      <a href="../../internals/logger/" class="md-nav__link">
         
   
   
@@ -1383,7 +1617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../internals/error/" class="md-nav__link">
+      <a href="../../internals/error/" class="md-nav__link">
         
   
   
@@ -1399,31 +1633,32 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
   
   
     <li class="md-nav__item">
-      <a href="../migrations/" class="md-nav__link">
+      <a href="../../internals/technical_writeup/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Migrations
+    Technical Writeup
     
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1455,20 +1690,62 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#setting-and-responding-to-a-command-prefix" class="md-nav__link">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder" class="md-nav__link">
     <span class="md-ellipsis">
-      Setting and Responding to a Command Prefix
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;EmbedBuilder
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" EmbedBuilder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder.user_author" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;user_author
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#building-an-embed" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder.timestamp" class="md-nav__link">
     <span class="md-ellipsis">
-      Building an Embed
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;timestamp
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder.field" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;field
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder.footer" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;footer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.addons.embed_builder.EmbedBuilder.setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;setup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1491,68 +1768,294 @@
   
 
 
-<h1 id="examples"><strong>Examples</strong><a class="headerlink" href="#examples" title="Permanent link">&para;</a></h1>
+<h1 id="embedbuilder">EmbedBuilder<a class="headerlink" href="#embedbuilder" title="Permanent link">&para;</a></h1>
 <hr />
-<p>The following examples should work out-of-the-box and assume you have your bot set up.</p>
-<p>For setup, see the <a href="../getting_started/#setup">Bot setup guide</a>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Legacy Examples</p>
-<p>These features exists for compatibility with older bots.
-Prefer the <a href="../examples/">new examples</a>.
-Not sure what is the new equivalent of the legacy example? Check out <a href="../migrations/">Migrations</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following classes come from the <code>scurrypy.addons.embed_builder</code> module.</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">About these examples</p>
-<p>Each example is self-contained and can be copied directly into your bot
-between setup and <code>client.run()</code>.</p>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="scurrypy.addons.embed_builder.EmbedBuilder" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>EmbedBuilder</code>
+
+
+<a href="#scurrypy.addons.embed_builder.EmbedBuilder" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="            Addon (scurrypy.addons.addon.Addon)" href="../addon/#scurrypy.addons.addon.Addon">Addon</a></code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.addons.embed_builder.EmbedBuilder.user_author" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">user_author</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#scurrypy.addons.embed_builder.EmbedBuilder.user_author" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Embed author builder.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>user</code></b>
+              (<code><a class="autorefs autorefs-internal" title="              UserModel
+
+  
+      dataclass
+   (scurrypy.models.user.UserModel)" href="../../api/models/#scurrypy.models.user.UserModel">UserModel</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>user author</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              EmbedAuthor
+
+  
+      dataclass
+   (scurrypy.parts.embed.EmbedAuthor)" href="../../api/embed/#scurrypy.parts.embed.EmbedAuthor">EmbedAuthor</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the EmbedAuthor object</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
 </div>
-<h2 id="setting-and-responding-to-a-command-prefix">Setting and Responding to a Command Prefix<a class="headerlink" href="#setting-and-responding-to-a-command-prefix" title="Permanent link">&para;</a></h2>
-<hr />
-<p>Demonstrates responding to a message prefix command.
-Sends the message <code>Pong!</code> if <code>!ping</code> is sent.</p>
-<div class="admonition warning">
-<p class="admonition-title">Important</p>
-<p>Using message prefix commands requires the <strong>PRIVILEGED</strong> intent <code>MESSAGE_CONTENT</code>!</p>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.addons.embed_builder.EmbedBuilder.timestamp" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">timestamp</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#scurrypy.addons.embed_builder.EmbedBuilder.timestamp" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Embed timestamp builder. Adheres to ISO8601 format.</p>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="str">str</span></code>
+          –
+          <div class="doc-md-description">
+            <p>message timestamp</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
 </div>
-<div class="highlight"><pre><span></span><code><span class="nd">@client</span><span class="o">.</span><span class="n">prefix_command</span><span class="p">(</span><span class="s2">&quot;ping&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_span</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">Client</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">MessageCreateEvent</span><span class="p">):</span>
-    <span class="k">await</span> <span class="n">event</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Pong!&quot;</span><span class="p">)</span>
-</code></pre></div>
-<h2 id="building-an-embed">Building an Embed<a class="headerlink" href="#building-an-embed" title="Permanent link">&para;</a></h2>
-<hr />
-<p>Demonstrate building an embed in response to a message prefix.
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">set_timestamp</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Format time per Discord&#39;s docs.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+<div class="doc doc-object doc-function">
 
-<span class="k">def</span><span class="w"> </span><span class="nf">set_user_author</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">UserModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set the embed author to the user invoking the command.&quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">EmbedAuthor</span><span class="p">(</span>
-        <span class="n">name</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
-        <span class="n">icon_url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;https://cdn.discordapp.com/avatars/</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">avatar</span><span class="si">}</span><span class="s2">.png&quot;</span>
-    <span class="p">)</span>
+<h3 id="scurrypy.addons.embed_builder.EmbedBuilder.field" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">field</span></code>
 
-<span class="nd">@client</span><span class="o">.</span><span class="n">prefix_command</span><span class="p">(</span><span class="s2">&quot;embed&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_embed</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">Client</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">MessageCreateEvent</span><span class="p">):</span>
-    <span class="k">await</span> <span class="n">event</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">send</span><span class="p">(</span>
-        <span class="n">scurrypy</span><span class="o">.</span><span class="n">MessagePart</span><span class="p">(</span>
-            <span class="n">embeds</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">scurrypy</span><span class="o">.</span><span class="n">EmbedPart</span><span class="p">(</span>
-                    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Example Embed&#39;</span><span class="p">,</span>
-                    <span class="n">author</span><span class="o">=</span><span class="n">set_user_author</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">author</span><span class="p">),</span>
-                    <span class="n">color</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="s1">&#39;d4af37&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span>
-                    <span class="n">timestamp</span><span class="o">=</span><span class="n">set_timestamp</span><span class="p">()</span>
-                <span class="p">)</span>
-            <span class="p">]</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-</code></pre></div></p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>While this example shows building an embed in response to a message prefix, embeds can also be built in response to <a href="../events/interaction/"><code>InteractionEvent</code></a>!</p>
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#scurrypy.addons.embed_builder.EmbedBuilder.field" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Embed field builder.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>name</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>field title</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>value</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>field description</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>inline</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether the field is inline (horizontal)</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              EmbedField
+
+  
+      dataclass
+   (scurrypy.parts.embed.EmbedField)" href="../../api/embed/#scurrypy.parts.embed.EmbedField">EmbedField</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the EmbedField object</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.addons.embed_builder.EmbedBuilder.footer" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">footer</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-staticmethod"><code>staticmethod</code></small>
+  </span>
+
+<a href="#scurrypy.addons.embed_builder.EmbedBuilder.footer" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Embed footer builder.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>text</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>footer text</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>icon_url</code></b>
+              (<code><span title="str">str</span></code>, default:
+                  <code>None</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>footer icon URL</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              EmbedFooter
+
+  
+      dataclass
+   (scurrypy.parts.embed.EmbedFooter)" href="../../api/embed/#scurrypy.parts.embed.EmbedFooter">EmbedFooter</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the EmbedFooter object</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.addons.embed_builder.EmbedBuilder.setup" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">setup</span></code>
+
+<a href="#scurrypy.addons.embed_builder.EmbedBuilder.setup" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Called when adding the child addon.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
 </div>
 
 
@@ -1606,10 +2109,10 @@ Sends the message <code>Pong!</code> if <code>!ping</code> is sent.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.sections", "header.repo"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.sections", "header.repo"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

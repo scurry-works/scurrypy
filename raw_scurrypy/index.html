@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://furmissile.github.io/scurrypy/api/">
+        <link rel="canonical" href="https://furmissile.github.io/scurrypy/raw_scurrypy/">
       
       
-        <link rel="prev" href="../migrations/">
+        <link rel="prev" href="../easy_examples/">
       
       
-        <link rel="next" href="client/">
+        <link rel="next" href="../migrations/">
       
       
       <link rel="icon" href="../assets/wizard.svg">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Overview - ScurryPy</title>
+        <title>Raw ScurryPy - ScurryPy</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#overview-of-api" class="md-skip">
+        <a href="#scurrypy-without-addons" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Raw ScurryPy
             
           </span>
         </div>
@@ -303,10 +303,32 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../raw_scurrypy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Raw ScurryPy
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -317,6 +339,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-slash-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Slash Command
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -347,8 +398,6 @@
       
   
   
-    
-  
   
   
     
@@ -361,11 +410,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
@@ -381,7 +430,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             API Reference
@@ -392,32 +441,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
         
   
   
@@ -428,35 +455,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#welcome-to-the-api-section" class="md-nav__link">
-    <span class="md-ellipsis">
-      Welcome to the API section!
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -469,7 +467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="client/" class="md-nav__link">
+      <a href="../api/client/" class="md-nav__link">
         
   
   
@@ -492,7 +490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="intents/" class="md-nav__link">
+      <a href="../api/intents/" class="md-nav__link">
         
   
   
@@ -515,7 +513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="commands/" class="md-nav__link">
+      <a href="../api/commands/" class="md-nav__link">
         
   
   
@@ -538,7 +536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ui_components/" class="md-nav__link">
+      <a href="../api/ui_components/" class="md-nav__link">
         
   
   
@@ -561,7 +559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="components/" class="md-nav__link">
+      <a href="../api/components/" class="md-nav__link">
         
   
   
@@ -584,7 +582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="channel/" class="md-nav__link">
+      <a href="../api/channel/" class="md-nav__link">
         
   
   
@@ -607,7 +605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="message/" class="md-nav__link">
+      <a href="../api/message/" class="md-nav__link">
         
   
   
@@ -630,7 +628,7 @@
   
   
     <li class="md-nav__item">
-      <a href="models/" class="md-nav__link">
+      <a href="../api/models/" class="md-nav__link">
         
   
   
@@ -653,7 +651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="role/" class="md-nav__link">
+      <a href="../api/role/" class="md-nav__link">
         
   
   
@@ -676,7 +674,7 @@
   
   
     <li class="md-nav__item">
-      <a href="embed/" class="md-nav__link">
+      <a href="../api/embed/" class="md-nav__link">
         
   
   
@@ -1639,9 +1637,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#welcome-to-the-api-section" class="md-nav__link">
+  <a href="#basic-slash-command" class="md-nav__link">
     <span class="md-ellipsis">
-      Welcome to the API section!
+      Basic Slash Command
     </span>
   </a>
   
@@ -1666,22 +1664,59 @@
   
 
 
-<h1 id="overview-of-api">Overview of API<a class="headerlink" href="#overview-of-api" title="Permanent link">&para;</a></h1>
-<h2 id="welcome-to-the-api-section">Welcome to the API section!<a class="headerlink" href="#welcome-to-the-api-section" title="Permanent link">&para;</a></h2>
-<hr />
-<p>This section covers the high-level objects. It provides entry-level classes for building a bot such as the client, registering commands and event listeners, and accessing Discord resources.</p>
-<hr />
-<ul>
-<li><a href="client/">Client</a> - main entry point for discord bot.</li>
-<li><a href="intents/">Intents</a> - specify what events you want your bot to receive.</li>
-<li><a href="commands/">Commands</a> - register and runs commands and event handlers.</li>
-<li><a href="ui_components/">UI Components</a> - tools for building Discord's new component setup.</li>
-<li><a href="components/">Components</a> - register and runs component handlers.</li>
-<li><a href="message/">Message</a> - tools for building a message.</li>
-<li><a href="models/">Models</a> - dataclasses mimicing Discord's payload structure for dot access.</li>
-<li><a href="role/">Role</a> - layout for building a role.</li>
-<li><a href="embed/">Embed (Legacy)</a> - tools for adding embedded content within a message.</li>
-</ul>
+<h1 id="scurrypy-without-addons">ScurryPy without Addons<a class="headerlink" href="#scurrypy-without-addons" title="Permanent link">&para;</a></h1>
+<p>The following example demonstrates what it looks like to use ScurryPy directly without the help of addons.</p>
+<div class="admonition warning">
+<p class="admonition-title">Advanced Usage</p>
+<p>For most bots, <strong>EasyBot</strong> is recommended, which provides decorators, routing, and simplified interaction handling.</p>
+</div>
+<h2 id="basic-slash-command">Basic Slash Command<a class="headerlink" href="#basic-slash-command" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">scurrypy</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">,</span> <span class="n">application_id</span><span class="o">=</span><span class="n">APP_ID</span><span class="p">)</span>
+
+<span class="n">my_commands</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_start</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Register commands and routes.&quot;&quot;&quot;</span>
+
+    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">register_guild_commands</span><span class="p">([</span>
+        <span class="n">scurrypy</span><span class="o">.</span><span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;example&#39;</span><span class="p">,</span> <span class="s1">&#39;Example command!&#39;</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">guild_id</span><span class="o">=</span><span class="n">GUILD_ID</span><span class="p">)</span>
+    <span class="n">my_commands</span><span class="p">[</span><span class="s1">&#39;example&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">on_example</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_example</span><span class="p">(</span><span class="n">interaction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Demo interaction response.&quot;&quot;&quot;</span>
+
+    <span class="k">await</span> <span class="n">interaction</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;You got it!&quot;</span><span class="p">)</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_interaction</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">InteractionEvent</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Handles routing event by interaction type.&quot;&quot;&quot;</span>
+    <span class="n">handler</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># show how to differentiate between command types -- not needed if only slash commands!</span>
+    <span class="k">match</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">:</span>
+        <span class="k">case</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">InteractionTypes</span><span class="o">.</span><span class="n">APPLICATION_COMMAND</span><span class="p">:</span>
+            <span class="n">handler</span> <span class="o">=</span> <span class="n">my_commands</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">fetch_interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">event</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">handler</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">handler</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">res</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Command not found!&quot;</span><span class="p">,</span> <span class="n">ephemeral</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># add listeners so the client knows where to dispatch</span>
+<span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="n">on_start</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="s2">&quot;INTERACTION_CREATE&quot;</span><span class="p">,</span> <span class="n">on_interaction</span><span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">About command registration</p>
+<p><code>my_commands</code> is a <strong>global</strong> variable.
+It is advised to use <code>asyncio.Lock</code> if you plan on modifying <code>my_commands</code> from more than one function.</p>
+</div>
 
 
 
