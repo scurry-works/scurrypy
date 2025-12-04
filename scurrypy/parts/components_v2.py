@@ -14,6 +14,7 @@ class ComponentV2Types:
     SEPARATOR = 14
     CONTAINER = 17
     LABEL = 18
+    FILE_UPLOAD = 19
 
 @dataclass
 class SectionPart(DataModel, ContainerChild):
@@ -143,3 +144,22 @@ class Label(DataModel):
 
     type: int = field(init=False, default=ComponentV2Types.LABEL)
     """Component type. Always `ComponentV2Types.LABEL` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
+
+@dataclass
+class FileUpload(DataModel, ContainerChild):
+    """Represents the file upload component."""
+
+    component: LabelChild = None
+    """ID for the file upload."""
+
+    min_values: Optional[int] = 1
+    """Minimum number of items that must be uploaded."""
+
+    max_values: Optional[int] = 1
+    """Maximum number of items that can be uploaded."""
+
+    required: Optional[bool] = True
+    """Whether files are required to be uploaded."""
+
+    type: int = field(init=False, default=ComponentV2Types.FILE_UPLOAD)
+    """Component type. Always `ComponentV2Types.FILE_UPLOAD` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""

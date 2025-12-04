@@ -26,7 +26,8 @@ from .components_v2 import (
     SeparatorTypes,
     Separator,
     ContainerPart,
-    Label
+    Label,
+    FileUpload
 )
 
 from .components import (
@@ -71,7 +72,7 @@ __all__ = [
     "ChannelTypes", "GuildChannel",
     "CommandTypes", "CommandOption", "CommandOptionChoice", "CommandOptionTypes", "SlashCommand", "UserCommand", "MessageCommand",
     "ComponentV2Types", "SectionPart", "TextDisplay", "Thumbnail", "MediaGalleryItem", "MediaGallery",
-    "File", "SeparatorTypes", "Separator", "ContainerPart", "Label",
+    "File", "SeparatorTypes", "Separator", "ContainerPart", "Label", "FileUpload",
     "ComponentTypes", "ActionRowPart", "ButtonStyles", "Button", "SelectOption", "StringSelect",
     "TextInputStyles", "TextInput", "DefaultValue", "UserSelect", "RoleSelect", "MentionableSelect",
     "ChannelSelect",

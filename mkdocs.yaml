@@ -87,6 +87,7 @@ nav:
     - Commands: api/commands.md
     - UI Components: api/ui_components.md
     - Components: api/components.md
+    - Component Types: api/component_types.md
     - Channel: api/channel.md
     - Message: api/message.md
     - Models: api/models.md
@@ -122,6 +123,7 @@ nav:
   - Internals:
     - Overview: internals/index.md
     - Base Models: internals/model.md
+    - Base Client: internals/base_client.md
     - HTTP: internals/http.md
     - Gateway: internals/gateway.md
     - Logger: internals/logger.md
