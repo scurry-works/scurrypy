@@ -38,6 +38,32 @@ class EasyBot(Client):
         from scurrypy.addons.events import EventsAddon
         self.bot_events = EventsAddon(self)
 
+        self._startup_hooks = []
+        self._shutdown_hooks = []
+
+        self.add_startup_hook(self.run_startup_hooks)
+        self.add_shutdown_hook(self.run_shutdown_hooks)
+
+    async def run_startup_hooks(self):
+        """Wrapper for running user defined start hooks."""
+        for hook in self._startup_hooks:
+            await hook(self)
+
+    async def run_shutdown_hooks(self):
+        """Wrapper for running user defined end hooks."""
+        for hook in self._shutdown_hooks:
+            await hook(self)
+
+    def start_hook(self, func):
+        """Decorator to register a startup hook."""
+        self._startup_hooks.append(func)
+        return func
+    
+    def end_hook(self, func):
+        """Decorator to register a shutdown hook."""
+        self._shutdown_hooks.append(func)
+        return func
+
     def prefix(self, name: str):
         """Register a prefix command using PrefixAddon.
 
