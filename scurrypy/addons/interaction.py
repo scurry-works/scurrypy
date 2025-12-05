@@ -235,7 +235,7 @@ class InteractionAddon(Addon):
             return
 
         try:
-            res = self.bot.fetch_interaction(event.id, event.token, context=event)
+            res = self.bot.interaction(event.id, event.token, context=event)
             await handler(self.bot, res)
             self.logger.log_info(f"Interaction '{name}' Acknowledged.")
         except DiscordError as e:

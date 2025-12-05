@@ -71,7 +71,7 @@ class PrefixAddon(Addon):
 
         # now prefix info can be confidently set
         try:
-            res = self.bot.fetch_message(event.channel_id, event.id, context=event)
+            res = self.bot.message(event.channel_id, event.id, context=event)
             await handler(self.bot, res)
             
             self.logger.log_info(f"Prefix Event '{command}' acknowledged with args: {list(args) or 'No args'}")

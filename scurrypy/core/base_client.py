@@ -21,7 +21,7 @@ EVENTS = {
     'CHANNEL_PINS_UPDATE': ChannelPinsUpdateEvent,
 
     # guild events
-    'GUILDL_CREATE': GuildCreateEvent,
+    'GUILD_CREATE': GuildCreateEvent,
     'GUILD_UPDATE': GuildDeleteEvent,
     'GUILD_DELETE': GuildDeleteEvent,
     'GUILD_MEMBER_ADD': GuildMemberAddEvent,
@@ -36,10 +36,10 @@ EVENTS = {
     'MESSAGE_DELETE': MessageDeleteEvent,
 
     # reaction events
-    'REACTION_ADD': ReactionAddEvent,
-    'REACTION_REMOVE': ReactionRemoveEvent,
-    'REACTION_REMOVE_ALL': ReactionRemoveAllEvent,
-    'REACTION_REMOVE_EMOJI': ReactionRemoveEmojiEvent
+    'MESSAGE_REACTION_ADD': ReactionAddEvent,
+    'MESSAGE_REACTION_REMOVE': ReactionRemoveEvent,
+    'MESSAGE_REACTION_REMOVE_ALL': ReactionRemoveAllEvent,
+    'MESSAGE_REACTION_REMOVE_EMOJI': ReactionRemoveEmojiEvent
 }
 
 class BaseClient(Protocol):
@@ -97,7 +97,7 @@ class BaseClient(Protocol):
         """
         self.shutdown_hooks.append(handler)
 
-    def fetch_application(self, application_id: int):
+    def application(self, application_id: int):
         """Creates an interactable application resource.
 
         Args:
@@ -108,9 +108,9 @@ class BaseClient(Protocol):
         """
         from ..resources.application import Application
 
-        return Application(application_id, self._http)
+        return Application(self._http, None, application_id)
     
-    def fetch_bot_emojis(self):
+    def bot_emojis(self):
         """Creates an interactable bot emojis resource.
 
         Returns:
@@ -120,7 +120,7 @@ class BaseClient(Protocol):
 
         return BotEmojis(self._http, self.application_id)
 
-    def fetch_guild(self, guild_id: int, *, context = None):
+    def guild(self, guild_id: int, *, context = None):
         """Creates an interactable guild resource.
 
         Args:
@@ -134,7 +134,7 @@ class BaseClient(Protocol):
 
         return Guild(self._http, context, guild_id)
 
-    def fetch_channel(self, channel_id: int, *, context = None):
+    def channel(self, channel_id: int, *, context = None):
         """Creates an interactable channel resource.
 
         Args:
@@ -148,7 +148,7 @@ class BaseClient(Protocol):
 
         return Channel(self._http, context, channel_id)
 
-    def fetch_message(self, channel_id: int, message_id: int, *, context = None):
+    def message(self, channel_id: int, message_id: int, *, context = None):
         """Creates an interactable message resource.
 
         Args:
@@ -163,7 +163,7 @@ class BaseClient(Protocol):
 
         return Message(self._http, context, message_id, channel_id)
     
-    def fetch_interaction(self, id: int, token: str, *, context = None):
+    def interaction(self, id: int, token: str, *, context = None):
         """Creates an interactable interaction resource.
 
         Args:
@@ -178,7 +178,7 @@ class BaseClient(Protocol):
 
         return Interaction(self._http, context, id, token)
     
-    def fetch_user(self, user_id: int, *, context = None):
+    def user(self, user_id: int, *, context = None):
         """Creates an interactable user resource.
 
         Args:
@@ -205,6 +205,7 @@ class BaseClient(Protocol):
                 event_model = EVENTS.get(dispatch_type)
 
                 if not event_model:
+                    self.logger.log_warn(f"Event {dispatch_type} is not implemented.")
                     continue
 
                 obj = event_model.from_dict(event_data)

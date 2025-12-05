@@ -30,7 +30,7 @@ class EventsAddon(Addon):
         # lead all registered events to this dispatch
         for dispatch_type in self._events.keys():
             self.bot.add_event_listener(dispatch_type, self.dispatch)
-
+        
     def event(self, event_name: str):
         """Register an event in which to listen.
 
@@ -57,4 +57,4 @@ class EventsAddon(Addon):
         except DiscordError as e:
             self.logger.log_error(f"Error in event '{handler}': {e}")
         except Exception as e:
-            self.logger.log_error(f"Unhandled error in interaction '{handler}': {e}")
+            self.logger.log_error(f"Unhandled error in event '{handler.__name__}': {e}")

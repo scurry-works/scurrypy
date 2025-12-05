@@ -1,5 +1,5 @@
 from ..client import Client
-from ..core.intents import Intents, set_intents
+from ..core.intents import Intents
 from ..core.logger import Logger
 
 from ..parts.command import CommandOption
@@ -16,16 +16,13 @@ class EasyBot(Client):
             prefix (str, optional): prefix if using prefix commands.
             sync_commands (bool, optional): Whether commands should be synced with changes. Defaults to True.
         """
-        # find out if message content is needed first
-        if prefix:
-            intents = set_intents(message_content=True)
 
         # THEN init client
         super().__init__(
             token=token, 
             application_id=application_id, 
             intents=intents,
-            logger=Logger()
+            logger=Logger(True)
         )
 
         # init addons

@@ -106,7 +106,7 @@ Some fetches have JSON query strings attached. In this case you define them as f
 [`BaseClient`](https://scurry-works.github.io/scurrypy/internals/base_client) provides a thin layer for requesting resources. If you implement a new resource, please also add it to the client as follows:
 
     ```python
-    def fetch_me(self, some_id: int, ...):
+    def your_resource(self, some_id: int, etc, *, context = None):
         """Creates an interactable resource.
 
         Args:
@@ -117,7 +117,7 @@ Some fetches have JSON query strings attached. In this case you define them as f
         """
         from .resources.me import YourResource
 
-        return YourResource(..., self._http)
+        return YourResource(self._http, context, some_id, etc...)
     ```
     and PLEASE: document the function completely!
 

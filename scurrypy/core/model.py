@@ -17,6 +17,9 @@ class DataModel:
         Returns:
             (dataclass): hydrated dataclass
         """
+        if not data:
+            return None
+        
         def unwrap_optional(t):
             if get_origin(t) is Union:
                 args = tuple(a for a in get_args(t) if a is not type(None))

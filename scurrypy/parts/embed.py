@@ -82,3 +82,30 @@ class EmbedPart(DataModel):
 
     footer: Optional[EmbedFooter] = None
     """Embed's footer."""
+
+    def to_dict(self):
+        """
+        EXCEPTION to the "models contain no custom methods" rule for two reasons:
+
+        1. `to_dict` already exists on all models via inheritance, so overriding it
+        does not break the design model.
+
+        2. `Thumbnail` (Component V2) and `EmbedThumbnail` (Embed-only) are extremely
+        easy to confuse. This guard catches the mistake early and provides a clear,
+        actionable error instead of allowing Discord to return an obscure 400 error.
+        """
+        from .components_v2 import Thumbnail as V2Thumbnail
+
+        if isinstance(self.thumbnail, V2Thumbnail):
+            raise TypeError(
+                "EmbedPart.thumbnail received a ComponentV2 Thumbnail.\n"
+                "Use scurrypy.EmbedThumbnail(url) for embed thumbnails."
+            )
+        
+        if isinstance(self.image, V2Thumbnail):
+            raise TypeError(
+                "EmbedPart.image received a ComponentV2 Thumbnail.\n"
+                "Use scurrypy.EmbedImage(url) for embed thumbnails."
+            )
+        
+        return super().to_dict()

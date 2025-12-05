@@ -9,7 +9,11 @@ from ..models.guild_member import GuildMemberModel
 
 @dataclass
 class MessageCreateEvent(Event, MessageModel):
-    """Received when a message is created. (This event IS the MessageModel with extra fields)"""
+    """Received when a message is created. (This event IS the MessageModel with extra fields)
+    
+    !!! note
+        `member` may be missing on `MESSAGE_CREATE` and `MESSAGE_UPDATE`. Use `author` when you need the user.
+    """
 
     guild_id: Optional[int]
     """Guild ID of the updated message (if in a guild channel)."""
