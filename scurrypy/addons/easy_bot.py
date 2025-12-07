@@ -60,7 +60,7 @@ class EasyBot(Client):
         """Loads bot emojis on startup if `load_bot_emojis` is toggled."""
         await self.emojis.fetch_all()
 
-    async def get_emoji(self, name: str):
+    def get_emoji(self, name: str):
         """Get an emoji from bot emoji cache.
 
         Args:
