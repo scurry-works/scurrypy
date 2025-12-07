@@ -83,6 +83,7 @@ class BaseClient(Protocol):
 
     def add_startup_hook(self, handler):
         """Helper function to register startup functions.
+            Runs once on startup BEFORE READY event.
 
         Args:
             handler (callable): startup function
@@ -91,6 +92,7 @@ class BaseClient(Protocol):
 
     def add_shutdown_hook(self, handler):
         """Helper function to register shutdown functions.
+            Runs once on shutdown.
 
         Args:
             handler (callable): shutdown function

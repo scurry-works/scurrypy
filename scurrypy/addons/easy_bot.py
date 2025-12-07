@@ -7,7 +7,15 @@ from ..parts.command import CommandOption
 class EasyBot(Client):
     """Prepackaged interaction, prefix, and event convenience for most of your needs!"""
 
-    def __init__(self, *, token: str, application_id: int, intents = Intents.DEFAULT, prefix = None, sync_commands = True, debug_mode = False):
+    def __init__(self, *, 
+        token: str, 
+        application_id: int, 
+        intents = Intents.DEFAULT, 
+        prefix = None, 
+        sync_commands = True, 
+        load_bot_emojis = False, 
+        debug_mode = False
+    ):
         """
         Args:
             token (str): the bot's token
@@ -15,6 +23,7 @@ class EasyBot(Client):
             intents (int, optional): gateway intents. Defaults to `Intents.DEFAULT`.
             prefix (str, optional): prefix if using prefix commands.
             sync_commands (bool, optional): Whether commands should be synced with changes. Defaults to `True`.
+            load_bot_emojis (bool, optional): Whether bot emojis should be loaded on startup. Defaults to `True`.
             debug_mode (bool, optional): Whether error trace should be printed. Defaults to `False`.
         """
 
@@ -36,11 +45,33 @@ class EasyBot(Client):
         from scurrypy.addons.events import EventsAddon
         self.bot_events = EventsAddon(self)
 
+        self.emojis = self.bot_emojis()
+
         self._startup_hooks = []
         self._shutdown_hooks = []
 
         self.add_startup_hook(self.run_startup_hooks)
         self.add_shutdown_hook(self.run_shutdown_hooks)
+
+        if load_bot_emojis:
+            self.add_startup_hook(self.load_emojis)
+
+    async def load_emojis(self):
+        """Loads bot emojis on startup if `load_bot_emojis` is toggled."""
+        await self.emojis.fetch_all()
+
+    async def get_emoji(self, name: str):
+        """Get an emoji from bot emoji cache.
+
+        Args:
+            name (str): emoji name
+
+        Returns:
+            (str): formatted emoji (if it exists)
+        """
+        emoji = self.emojis.get_emoji(name)
+
+        return emoji.mention if emoji else None
 
     async def run_startup_hooks(self):
         """Wrapper for running user defined start hooks."""

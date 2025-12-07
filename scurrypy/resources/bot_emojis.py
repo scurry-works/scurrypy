@@ -30,11 +30,11 @@ class BotEmojis:
             emoji_id (int): the emoji's id
 
         Returns:
-            (EmojiModel):  the new EmojiModel object with all fields populated
+            (EmojiModel): the new EmojiModel object with all fields populated
         """
         data = await self._http.request("GET", f"/applications/{self.application_id}/emojis/{emoji_id}")
         emoji = EmojiModel.from_dict(data)
-        self._cache[emoji.id] = emoji # also add it to the cache
+        self._cache[emoji.name] = emoji # also add it to the cache
         return emoji
 
     def get_emoji(self, name: str) -> EmojiModel:
@@ -46,4 +46,4 @@ class BotEmojis:
         Returns:
             (EmojiModel): the new EmojiModel object with all fields populated
         """
-        return self._cache.get(name, EmojiModel('❓'))
+        return self._cache.get(name)
