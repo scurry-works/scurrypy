@@ -16,10 +16,10 @@ class IntegrationModel(DataModel):
     """Name of the integration."""
 
     type: str
-    """Type of integration (e.g., twitch, youtube, discord, or guild_subscription)."""
+    """Type of integration (e.g.,`'twitch'`, `'youtube'`, `'discord'`, or `'guild_subscription'`)."""
 
     enabled: bool
     """If the integration is enabled."""
 
     application: Optional[ApplicationModel]
-    """The bot aaplication for Discord integrations."""
+    """The bot application for Discord integrations."""

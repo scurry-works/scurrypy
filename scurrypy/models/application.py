@@ -74,7 +74,9 @@ class ApplicationModel(DataModel):
     """Image hash of rich presence invite cover."""
 
     flags: Optional[int]
-    """Public flags of the application. See [`ApplicationFlags`][scurrypy.models.application.ApplicationFlags]."""
+    """Public flags of the application.
+        See [`ApplicationFlags`][scurrypy.models.application.ApplicationFlags].
+    """
 
     approximate_guild_count: Optional[int]
     """Approximate guild count of the guilds that installed the application."""

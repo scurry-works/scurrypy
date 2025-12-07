@@ -80,10 +80,12 @@ nav:
   - Getting Started: easy_examples.md
   - Raw ScurryPy: raw_scurrypy.md
   - Migrations: migrations.md
+  - Footnotes: doc_notes.md
   - API Reference:
     - Overview: api/index.md
     - Client: api/client.md
     - Intents: api/intents.md
+    - Permissions: api/permissions.md
     - Commands: api/commands.md
     - UI Components: api/ui_components.md
     - Components: api/components.md

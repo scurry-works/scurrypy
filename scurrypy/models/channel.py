@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from ..core.model import DataModel
+from ..core.permissions import Permissions
 
 from typing import Optional
 
@@ -51,3 +52,24 @@ class ChannelModel(DataModel):
 
     rate_limit_per_user: Optional[int]
     """Seconds user must wait between sending messages in the channel."""
+
+    permissions: Optional[int]
+    """Permissions for the invoking user in this channel.
+        Includes role and overwrite calculations. [`INT_LIMIT`]
+    """
+
+    def user_can(self, permission_bit: int):
+        """Checks `permissions` to see if permission bit is toggled.
+
+        !!! warning
+            If `permission` field is `None`, this function always returns `False`.
+
+        Args:
+            permission_bit (int): permission bit. See [Permissions][scurrypy.core.permissions.Permissions].
+
+        Returns:
+            (bool): whether the user has this permission
+        """
+        if not self.permissions:
+            return False
+        return Permissions.has(self.permissions, permission_bit)

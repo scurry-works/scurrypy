@@ -7,14 +7,15 @@ from ..parts.command import CommandOption
 class EasyBot(Client):
     """Prepackaged interaction, prefix, and event convenience for most of your needs!"""
 
-    def __init__(self, *, token: str, application_id: int, intents = Intents.DEFAULT, prefix = None, sync_commands = True):
+    def __init__(self, *, token: str, application_id: int, intents = Intents.DEFAULT, prefix = None, sync_commands = True, debug_mode = False):
         """
         Args:
             token (str): the bot's token
             application_id (int): the bot's user ID
             intents (int, optional): gateway intents. Defaults to `Intents.DEFAULT`.
             prefix (str, optional): prefix if using prefix commands.
-            sync_commands (bool, optional): Whether commands should be synced with changes. Defaults to True.
+            sync_commands (bool, optional): Whether commands should be synced with changes. Defaults to `True`.
+            debug_mode (bool, optional): Whether error trace should be printed. Defaults to `False`.
         """
 
         # THEN init client
@@ -22,7 +23,7 @@ class EasyBot(Client):
             token=token, 
             application_id=application_id, 
             intents=intents,
-            logger=Logger(True)
+            logger=Logger(debug_mode=debug_mode)
         )
 
         # init addons

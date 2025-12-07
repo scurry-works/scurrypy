@@ -35,8 +35,8 @@ class RoleModel(DataModel):
     position: int
     """Position of the role."""
 
-    permissions: str
-    """Permission bit set."""
+    permissions: int
+    """Permission bit set. [INT_LIMIT]"""
 
     managed: bool
     """If the role is managed by an integration."""
@@ -49,6 +49,9 @@ class RoleModel(DataModel):
 
     icon: Optional[str]
     """Icon hash of the role."""
+
+    permissions: str
+    """permission bits set."""
 
     unicode_emoji: Optional[str]
     """Unicode emoji of the role."""

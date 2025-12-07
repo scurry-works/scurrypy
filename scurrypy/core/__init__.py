@@ -2,12 +2,14 @@
 
 from .base_client import BaseClient
 from .error import DiscordError
-from .intents import Intents, set_intents
+from .intents import Intents
 from .logger import Logger
+from .permissions import Permissions
 
 __all__ = [
     "BaseClient",
     "DiscordError",
-    "Intents", 'set_intents',
-    "Logger"
+    "Intents",
+    "Logger",
+    "Permissions"
 ]

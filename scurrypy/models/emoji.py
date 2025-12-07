@@ -6,6 +6,7 @@ from urllib.parse import quote
 @dataclass
 class EmojiModel(DataModel):
     """Represents a Discord emoji."""
+    
     name: str
     """Name of emoji."""
 

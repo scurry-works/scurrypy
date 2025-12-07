@@ -1,8 +1,24 @@
 from typing import TypedDict, Unpack
 
+class IntentFlagParams(TypedDict, total=False):
+    """Gateway intent selection parameters.
+    !!! important
+        Param name MUST match the intent it represents! 
+        For example, "GUILD_MESSAGES" is "guild_messages".
+    """
+    guilds: bool
+    guild_members: bool
+    guild_emojis_and_stickers: bool
+    guild_integrations: bool
+    guild_webhooks: bool
+    guild_messages: bool
+    guild_message_reactions: bool
+    message_content: bool
+
 class Intents:
     """Gateway intent flags (bitwise).  
-        For an exhaustive list what intents let your bot listen to what events, see <a href="https://discord.com/developers/docs/events/gateway#list-of-intents" target="_blank" rel="noopener">list of intents</a>.
+        For an exhaustive list what intents let your bot listen to what events, 
+        see <a href="https://discord.com/developers/docs/events/gateway#list-of-intents" target="_blank" rel="noopener">list of intents</a>.
 
     !!! note
         Not all intents are listed. Intents not listed are not yet supported.
@@ -42,44 +58,39 @@ class Intents:
 
     DEFAULT = GUILDS | GUILD_MESSAGES
 
-class IntentFlagParams(TypedDict, total=False):
-    """Gateway intent selection parameters."""
-    guilds: bool
-    guild_members: bool
-    guild_emojis_and_stickers: bool
-    guild_integrations: bool
-    guild_webhooks: bool
-    guild_messages: bool
-    guild_message_reactions: bool
-    message_content: bool
+    @staticmethod
+    def set(**flags: Unpack[IntentFlagParams]):
+        """Set bot intents. See [`Intents`][scurrypy.core.intents.Intents].
+        `Intents.DEFAULT` will also be set.
 
-def set_intents(**flags: Unpack[IntentFlagParams]):
-    """Set bot intents. See [`Intents`][scurrypy.core.intents.Intents].
-    `Intents.DEFAULT` will also be set.
+        Args:
+            **flags (Unpack[IntentFlagParams]): intents to set
 
-    Args:
-        **flags (Unpack[IntentFlagParams]): intents to set
+        Raises:
+            (ValueError): invalid flag
 
-    Raises:
-        (ValueError): invalid flag
+        Returns:
+            (int): combined intents field
+        """
+        intents = Intents.DEFAULT
+        for k, v in flags.items():
+            if v:
+                try:
+                    intents |= getattr(Intents, k.upper())
+                except AttributeError:
+                    raise ValueError(f"Unknown intent flag: '{k}'")
+        
+        return intents
 
-    Returns:
-        (int): combined intents field
-    """
-    _flag_map = {
-        'guilds': Intents.GUILDS,
-        'guild_members': Intents.GUILD_MEMBERS,
-        'guild_emojis_and_stickers': Intents.GUILD_EMOJIS_AND_STICKERS,
-        'guild_integrations': Intents.GUILD_INTEGRATIONS,
-        'guild_webhooks': Intents.GUILD_WEBHOOKS,
-        'guild_messages': Intents.GUILD_MESSAGES,
-        'guild_message_reactions': Intents.GUILD_MESSAGE_REACTIONS,
-        'message_content': Intents.MESSAGE_CONTENT
-    }
+    @staticmethod
+    def has(intents: int, intent: int):
+        """Checks if an intent bit is toggled.
 
-    intents = Intents.DEFAULT
-    for k, v in flags.items():
-        if v:
-            intents |= _flag_map.get(k)
-    
-    return intents
+        Args:
+            intents (int): bot intents
+            intent (int): intent bit to check
+
+        Returns:
+            (bool): if intent bit is toggled
+        """
+        return (intents & intent) == intent

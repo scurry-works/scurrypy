@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from ..core.model import DataModel
+from ..core.permissions import Permissions
 
 from typing import Optional
 
@@ -72,7 +73,9 @@ class InteractionCallbackDataModel(DataModel):
     """ID of the interaction."""
 
     type: int
-    """Type of interaction. See [`InteractionCallbackTypes`][scurrypy.models.interaction.InteractionCallbackTypes]."""
+    """Type of interaction.
+        See [`InteractionCallbackTypes`][scurrypy.models.interaction.InteractionCallbackTypes].
+    """
 
     activity_instance_id: str
     """Instance ID of activity if an activity was launched or joined."""
@@ -98,7 +101,9 @@ class InteractionModel(DataModel):
     """Represents the interaction model."""
 
     type: int
-    """Type of interaction. See [`InteractionTypes`][scurrypy.models.interaction.InteractionTypes]."""
+    """Type of interaction.
+        See [`InteractionTypes`][scurrypy.models.interaction.InteractionTypes].
+    """
 
     id: int
     """ID of interaction."""
@@ -113,7 +118,7 @@ class InteractionModel(DataModel):
     """ID of the application that owns the interaction."""
 
     app_permissions: int
-    """Bitwise set of permissions pertaining to the location of the interaction."""
+    """Bitwise set of permissions pertaining to the location of the interaction. [`INT_LIMIT`]"""
 
     member: GuildMemberModel # guild member invoking the interaction
     """Guild member invoking the interaction."""
@@ -132,3 +137,14 @@ class InteractionModel(DataModel):
 
     channel: Optional[ChannelModel]
     """Partial channel object the interaction was invoked."""
+
+    def bot_can(self, permission_bit: int):
+        """Checks `app_permissions` to see if permission bit is toggled.
+
+        Args:
+            permission_bit (int): permission bit. See [Permissions][scurrypy.core.permissions.Permissions].
+
+        Returns:
+            (bool): whether the bot has this permission
+        """
+        return Permissions.has(self.app_permissions, permission_bit)

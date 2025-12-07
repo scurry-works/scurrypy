@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from ..core.model import DataModel
 
+from typing import Optional
+
 from .user import UserModel
 
 @dataclass
@@ -27,3 +29,8 @@ class GuildMemberModel(DataModel):
 
     mute: bool
     """If the member is muted in VC (output)."""
+
+    permissions: Optional[int]
+    """Total permissions of the member in the channel, including overwrites, 
+        returned when in the interaction object. [`INT_LIMIT`]
+    """

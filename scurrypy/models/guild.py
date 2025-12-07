@@ -8,6 +8,7 @@ from .emoji import EmojiModel
 @dataclass
 class ReadyGuildModel(DataModel):
     """Guild info from Ready event."""
+    
     id: int
     """ID of the associated guild."""
 
