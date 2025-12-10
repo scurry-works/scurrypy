@@ -15,6 +15,14 @@ from .command import (
     MessageCommand
 )
 
+from .component_types import (
+    ContainerChild,
+    ActionRowChild,
+    LabelChild,
+    SectionAccessoryChild,
+    SectionChild
+)
+
 from .components_v2 import (
     ComponentV2Types,
     SectionPart,
@@ -71,6 +79,7 @@ from .role import Role, RoleColors
 __all__ = [
     "ChannelTypes", "GuildChannel",
     "CommandTypes", "CommandOption", "CommandOptionChoice", "CommandOptionTypes", "SlashCommand", "UserCommand", "MessageCommand",
+    "ContainerChild", "ActionRowChild", "LabelChild", "SectionAccessoryChild", "SectionChild",
     "ComponentV2Types", "SectionPart", "TextDisplay", "Thumbnail", "MediaGalleryItem", "MediaGallery",
     "File", "SeparatorTypes", "Separator", "ContainerPart", "Label", "FileUpload",
     "ComponentTypes", "ActionRowPart", "ButtonStyles", "Button", "SelectOption", "StringSelect",

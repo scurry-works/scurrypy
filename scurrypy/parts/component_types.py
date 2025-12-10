@@ -38,6 +38,7 @@ class ContainerChild:
         [`MediaGallery`][scurrypy.parts.components_v2.MediaGallery], 
         [`Separator`][scurrypy.parts.components_v2.Separator], 
         [`File`][scurrypy.parts.components_v2.File]
+        [`FileUpload`][scurrypy.parts.components_v2.FileUpload]
     """
     ...
 
