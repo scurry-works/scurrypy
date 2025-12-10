@@ -608,9 +608,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.client.Client.bot_emojis" class="md-nav__link">
+  <a href="#scurrypy.client.Client.bot_emoji" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;bot_emojis
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;bot_emoji
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.client.Client.guild_emoji" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;guild_emoji
     </span>
   </a>
   
@@ -1063,7 +1072,7 @@
   
   
   <span class="md-ellipsis">
-    Bot Emojis
+    Bot Emoji
     
   </span>
   
@@ -1110,6 +1119,29 @@
   
   <span class="md-ellipsis">
     Guild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/guild_emoji/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guild Emoji
     
   </span>
   
@@ -1400,6 +1432,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/role/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1601,6 +1656,29 @@
   
   <span class="md-ellipsis">
     InteractionAddon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../addons/caches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cache Addons
     
   </span>
   
@@ -2043,9 +2121,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.client.Client.bot_emojis" class="md-nav__link">
+  <a href="#scurrypy.client.Client.bot_emoji" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;bot_emojis
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;bot_emoji
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.client.Client.guild_emoji" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;guild_emoji
     </span>
   </a>
   
@@ -2540,24 +2627,71 @@ Ties together the moving parts: gateway, HTTP and event dispatching.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scurrypy.client.Client.bot_emojis" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">bot_emojis</span></code>
+<h3 id="scurrypy.client.Client.bot_emoji" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">bot_emoji</span></code>
 
-<a href="#scurrypy.client.Client.bot_emojis" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.client.Client.bot_emoji" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Creates an interactable bot emojis resource.</p>
+        <p>Creates an interactable bot emoji resource.</p>
 
 
 <p><span class="doc-section-title">Returns:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-internal" title="              BotEmojis (scurrypy.resources.BotEmojis)" href="../../resources/bot_emojis/#scurrypy.resources.bot_emojis.BotEmojis">BotEmojis</a></code>
+              <code><span title="BotEmojis">BotEmojis</span></code>
           –
           <div class="doc-md-description">
-            <p>the BotEmojis resource</p>
+            <p>the BotEmoji resource</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.client.Client.guild_emoji" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">guild_emoji</span></code>
+
+<a href="#scurrypy.client.Client.guild_emoji" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates an interactable emoji resource.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>guild_id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>guild ID of target emojis</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              GuildEmoji
+
+  
+      dataclass
+   (scurrypy.resources.GuildEmoji)" href="../../resources/guild_emoji/#scurrypy.resources.guild_emoji.GuildEmoji">GuildEmoji</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the GuildEmoji resource</p>
           </div>
         </li>
     </ul>

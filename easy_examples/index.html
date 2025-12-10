@@ -465,6 +465,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuring-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Caches
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pagination" class="md-nav__link">
     <span class="md-ellipsis">
       Pagination
@@ -997,7 +1006,7 @@
   
   
   <span class="md-ellipsis">
-    Bot Emojis
+    Bot Emoji
     
   </span>
   
@@ -1044,6 +1053,29 @@
   
   <span class="md-ellipsis">
     Guild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/guild_emoji/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guild Emoji
     
   </span>
   
@@ -1334,6 +1366,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events/role/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1535,6 +1590,29 @@
   
   <span class="md-ellipsis">
     InteractionAddon
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addons/caches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cache Addons
     
   </span>
   
@@ -1992,6 +2070,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuring-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuring Caches
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pagination" class="md-nav__link">
     <span class="md-ellipsis">
       Pagination
@@ -2064,7 +2151,7 @@ See <a href="../migrations/">Migrations</a> for details on how this differs from
 <span class="n">client</span> <span class="o">=</span> <span class="n">EasyBot</span><span class="p">(</span>
     <span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">,</span> 
     <span class="n">application_id</span><span class="o">=</span><span class="n">APP_ID</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;!&quot;</span><span class="p">,</span> 
-    <span class="n">intents</span><span class="o">=</span><span class="n">scurrypy</span><span class="o">.</span><span class="n">set_intents</span><span class="p">(</span><span class="n">message_content</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">intents</span><span class="o">=</span><span class="n">scurrypy</span><span class="o">.</span><span class="n">Intents</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">message_content</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="p">)</span>
 
 <span class="nd">@client</span><span class="o">.</span><span class="n">prefix</span><span class="p">(</span><span class="s2">&quot;ping&quot;</span><span class="p">)</span>
@@ -2462,6 +2549,26 @@ See <a href="../migrations/">Migrations</a> for details on how this differs from
 <p>Option B is generally preferred for its proactive check.
 You get a more specific message, AND you don't hit Discord's API, AND no parsing error codes!</p>
 </div>
+<h2 id="configuring-caches">Configuring Caches<a class="headerlink" href="#configuring-caches" title="Permanent link">&para;</a></h2>
+<hr />
+<p>Demonstrates caching bot emojis to be used in an interaction response.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">scurrypy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy.addons.easy_bot</span><span class="w"> </span><span class="kn">import</span> <span class="n">EasyBot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy.addons.component_builder</span><span class="w"> </span><span class="kn">import</span> <span class="n">ComponentBuilder</span> <span class="k">as</span> <span class="n">C</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">EasyBot</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">,</span> <span class="n">application_id</span><span class="o">=</span><span class="n">APP_ID</span><span class="p">,</span> <span class="n">bot_emojis</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># configure cache</span>
+
+<span class="nd">@client</span><span class="o">.</span><span class="n">slash_command</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="s2">&quot;Say hello&quot;</span><span class="p">,</span> <span class="n">guild_ids</span><span class="o">=</span><span class="n">GUILD_ID</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">EasyBot</span><span class="p">,</span> <span class="n">interaction</span><span class="p">:</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">Interaction</span><span class="p">):</span>
+    <span class="n">emoji</span> <span class="o">=</span> <span class="n">bot</span><span class="o">.</span><span class="n">get_bot_emoji</span><span class="p">(</span><span class="s1">&#39;my_emoji&#39;</span><span class="p">)</span> <span class="c1"># now grab the emoji!</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">emoji</span><span class="p">:</span>  <span class="c1"># NOTE: emoji CAN be None</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Emoji not found!&quot;</span><span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">interaction</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">emoji</span><span class="o">.</span><span class="n">mention</span><span class="si">}</span><span class="s2"> Pong with emoji!&quot;</span><span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
 <h2 id="pagination">Pagination<a class="headerlink" href="#pagination" title="Permanent link">&para;</a></h2>
 <hr />
 <p>Demonstrates page navigation on an embed.</p>
