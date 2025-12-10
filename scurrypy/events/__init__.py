@@ -20,7 +20,9 @@ from .guild_events import (
     GuildDeleteEvent,
 
     GuildMemberAddEvent,
-    GuildMemberRemoveEvent
+    GuildMemberUpdateEvent,
+    GuildMemberRemoveEvent,
+    GuildEmojisUpdateEvent
 )
 
 # from .hello_event import HelloEvent
@@ -51,15 +53,22 @@ from .reaction_events import (
 
 from .ready_event import ReadyEvent
 
+from .role_events import (
+    RoleCreateEvent,
+    RoleUpdateEvent,
+    RoleDeleteEvent
+)
+
 from .base_event import Event
 
 __all__ = [
     "GuildChannelCreateEvent", "GuildChannelUpdateEvent", "GuildChannelDeleteEvent", "ChannelPinsUpdateEvent",
     "GuildCreateEvent", "GuildUpdateEvent", "GuildDeleteEvent",
-    "GuildMemberAddEvent", "GuildMemberRemoveEvent",
+    "GuildMemberAddEvent", "GuildMemberRemoveEvent", "GuildMemberUpdateEvent", "GuildEmojisUpdateEvent",
     "InteractionEvent",
     "MessageCreateEvent", "MessageUpdateEvent", "MessageDeleteEvent",
     "ReactionType", "ReactionAddEvent", "ReactionRemoveEvent", "ReactionRemoveEmojiEvent", "ReactionRemoveAllEvent",
     "ReadyEvent", 
+    "RoleCreateEvent", "RoleUpdateEvent", "RoleDeleteEvent",
     "Event"
 ]

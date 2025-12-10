@@ -4,6 +4,7 @@ from ..core.model import DataModel
 from typing import Optional
 
 from .emoji import EmojiModel
+from .role import RoleModel
 
 @dataclass
 class ReadyGuildModel(DataModel):
@@ -14,6 +15,11 @@ class ReadyGuildModel(DataModel):
 
     unavailable: bool
     """If the guild is offline."""
+
+@dataclass
+class UnavailableGuild(DataModel):
+    id: int
+    unavailable: bool
 
 @dataclass
 class GuildModel(DataModel):
@@ -42,6 +48,9 @@ class GuildModel(DataModel):
 
     emojis: list[EmojiModel]
     """List of emojis registered in the guild."""
+
+    roles: list[RoleModel]
+    """Roles in the guild."""
 
     mfa_level: int
     """Required MFA level of the guild."""

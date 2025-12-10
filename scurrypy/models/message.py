@@ -10,7 +10,7 @@ class MessageModel(DataModel):
     """A Discord message."""
 
     id: int
-    """ID of the message"""
+    """ID of the message."""
 
     channel_id: int
     """Channel ID of the message."""

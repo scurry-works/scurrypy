@@ -1,8 +1,20 @@
 from ..client import Client
 from ..core.intents import Intents
 from ..core.logger import Logger
+from ..core.error import DiscordError
 
 from ..parts.command import CommandOption
+
+from typing import TypedDict, Unpack
+
+class CacheConfig(TypedDict, total=False):
+    """Types of objects to cache."""
+    roles: bool
+    channels: bool
+    bot_emojis: bool
+    guild_emojis: bool
+
+from .cache import *
 
 class EasyBot(Client):
     """Prepackaged interaction, prefix, and event convenience for most of your needs!"""
@@ -13,18 +25,18 @@ class EasyBot(Client):
         intents = Intents.DEFAULT, 
         prefix = None, 
         sync_commands = True, 
-        load_bot_emojis = False, 
-        debug_mode = False
+        debug_mode = False,
+        **cache_config: Unpack[CacheConfig]
     ):
         """
         Args:
             token (str): the bot's token
             application_id (int): the bot's user ID
             intents (int, optional): gateway intents. Defaults to `Intents.DEFAULT`.
-            prefix (str, optional): prefix if using prefix commands.
+            prefix (str, optional): prefix if using prefix commands
             sync_commands (bool, optional): Whether commands should be synced with changes. Defaults to `True`.
-            load_bot_emojis (bool, optional): Whether bot emojis should be loaded on startup. Defaults to `True`.
             debug_mode (bool, optional): Whether error trace should be printed. Defaults to `False`.
+            **cache_config (Unpack[CacheConfig], optional): what objects should be cached
         """
 
         # THEN init client
@@ -36,8 +48,13 @@ class EasyBot(Client):
         )
 
         # init addons
+        self.channel_cache = GuildChannelCacheAddon(self) if cache_config.get('channels') else None
+        self.role_cache = RoleCacheAddon(self) if cache_config.get('roles') else None
+        self.bot_emoji_cache = BotEmojisCacheAddon(self) if cache_config.get('bot_emojis') else None
+        self.guild_emoji_cache = GuildEmojiCacheAddon(self) if cache_config.get('guild_emojis') else None
+
         from scurrypy.addons.prefix import PrefixAddon
-        self.prefixes = PrefixAddon(self, prefix)
+        self.prefixes = PrefixAddon(self, prefix) if prefix else None
 
         from scurrypy.addons.interaction import InteractionAddon
         self.commands = InteractionAddon(self, sync_commands)
@@ -45,33 +62,76 @@ class EasyBot(Client):
         from scurrypy.addons.events import EventsAddon
         self.bot_events = EventsAddon(self)
 
-        self.emojis = self.bot_emojis()
-
         self._startup_hooks = []
         self._shutdown_hooks = []
 
         self.add_startup_hook(self.run_startup_hooks)
         self.add_shutdown_hook(self.run_shutdown_hooks)
-
-        if load_bot_emojis:
-            self.add_startup_hook(self.load_emojis)
-
-    async def load_emojis(self):
-        """Loads bot emojis on startup if `load_bot_emojis` is toggled."""
-        await self.emojis.fetch_all()
-
-    def get_emoji(self, name: str):
-        """Get an emoji from bot emoji cache.
+        
+    async def get_channel(self, channel_id: int):
+        """Fetch a guild channel. If not found, request and store it.
 
         Args:
-            name (str): emoji name
+            channel_id (int): ID of channel
 
         Returns:
-            (str): formatted emoji (if it exists)
+            (ChannelModel | None): hydrated channel object or None if fetch failed
         """
-        emoji = self.emojis.get_emoji(name)
+        channel = self.channel_cache.get_channel(channel_id)
+        if channel:
+            return channel
 
-        return emoji.mention if emoji else None
+        try:
+            channel = await self.channel(channel_id).fetch()
+        except DiscordError:
+            return None
+
+        self.channel_cache.put(channel)
+        return channel
+    
+    async def get_role(self, guild_id: int, role_id: int):
+        """Fetch a guild role. If not found, request and store it.
+
+        Args:
+            guild_id (int): guild ID of role
+            role_id (int): role ID of guild
+
+        Returns:
+            (RoleModel | None): hydrated role object or None if fetch failed
+        """
+        role = self.role_cache.get_role(role_id)
+        if role:
+            return role
+        
+        try:
+            role = await self.guild(guild_id).fetch_guild_role(role_id)
+        except DiscordError:
+            return None
+        
+        self.role_cache.put(guild_id, role)
+        return role
+    
+    def get_guild_emoji(self, emoji_id: int):
+        """Get a guild emoji by ID.
+
+        Args:
+            emoji_id (int): emoji ID
+
+        Returns:
+            (EmojiModel | None): the queried emoji object if in cache else None
+        """
+        return self.guild_emoji_cache.get_emoji(emoji_id)
+    
+    def get_bot_emoji(self, emoji_name: str):
+        """Get a bot emoji by ID.
+
+        Args:
+            emoji_name (str): name of emoji
+
+        Returns:
+            (EmojiModel | None): the queried emoji object if in cache else None
+        """
+        return self.bot_emoji_cache.get_emoji(emoji_name)
 
     async def run_startup_hooks(self):
         """Wrapper for running user defined start hooks."""
@@ -101,6 +161,9 @@ class EasyBot(Client):
                 !!! warning "Important"
                     Prefix commands are CASE-INSENSITIVE.
         """
+        if not self.prefixes:
+            raise AttributeError("Prefixes Addon is not set. Consider setting a prefix.")
+
         return self.prefixes.register(name)
     
     def event(self, event_name: str):
@@ -154,8 +217,6 @@ class EasyBot(Client):
 
         Args:
             custom_id (str): custom ID of button
-                !!! warning "Important"
-                    Must match the `custom_id` set where the component was created.
         """
         return self.commands.button(custom_id)
     
@@ -164,8 +225,6 @@ class EasyBot(Client):
 
         Args:
             custom_id (str): custom ID of select menu
-                !!! warning "Important"
-                    Must match the `custom_id` set where the component was created.
         """
         return self.commands.select(custom_id)
     
@@ -174,7 +233,5 @@ class EasyBot(Client):
 
         Args:
             custom_id (str): custom ID of modal
-                !!! warning "Important"
-                    Must match the `custom_id` set where the component was created.
         """
         return self.commands.modal(custom_id)

@@ -1,7 +1,7 @@
 # scurrypy/resources
 
 from .application import Application
-from .bot_emojis import BotEmojis
+from .bot_emoji import BotEmoji
 
 from .channel import (
     # MessagesFetchParams,
@@ -9,6 +9,7 @@ from .channel import (
     # ThreadFromMessageParams,
     Channel
 )
+from .guild_emoji import GuildEmoji
 
 from .guild import (
     # FetchGuildMembersParams,
@@ -27,9 +28,10 @@ from .user import (
 
 __all__ = [
     "Application",
-    "BotEmojis",
+    "BotEmoji",
     "Channel",
     "Guild",
+    "GuildEmoji",
     "Interaction",
     "Message",
     "User"

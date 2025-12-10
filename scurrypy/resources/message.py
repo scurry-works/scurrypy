@@ -41,6 +41,8 @@ class Message(BaseResource):
         """
         if isinstance(message, str):
             message = MessagePart(content=message)
+        elif not message:
+            raise ValueError("Missing message.")
 
         data = await self._http.request(
             "POST",
@@ -64,6 +66,8 @@ class Message(BaseResource):
         """
         if isinstance(message, str):
             message = MessagePart(content=message)
+        elif not message:
+            raise ValueError("Missing message.")
 
         data = await self._http.request(
             "PATCH", 
@@ -103,6 +107,8 @@ class Message(BaseResource):
         """
         if isinstance(emoji, str):
             emoji = EmojiModel(emoji)
+        elif not emoji:
+            raise ValueError("Missing emoji.")
 
         await self._http.request(
             "PUT",
@@ -116,6 +122,8 @@ class Message(BaseResource):
         """
         if isinstance(emoji, str):
             emoji = EmojiModel(emoji)
+        elif not emoji:
+            raise ValueError("Missing emoji.")
 
         await self._http.request(
             "DELETE",
@@ -133,6 +141,8 @@ class Message(BaseResource):
         """
         if isinstance(emoji, str):
             emoji = EmojiModel(emoji)
+        elif not emoji:
+            raise ValueError("Missing emoji.")
 
         await self._http.request(
             "DELETE",

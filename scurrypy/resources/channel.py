@@ -57,7 +57,6 @@ class Channel(BaseResource):
         """
         data = await self._http.request("GET", f"/channels/{self.id}")
 
-        # Hydrate a new Channel object with HTTP client    
         return ChannelModel.from_dict(data)
     
     async def fetch_messages(self, **kwargs: Unpack[MessagesFetchParams]):
@@ -75,7 +74,6 @@ class Channel(BaseResource):
         Returns:
             (list[MessageModel]): queried messages
         """
-        # Set default limit if user didn't supply one
         params = {"limit": 50, **kwargs}
 
         data = await self._http.request('GET', f'/channels/{self.id}/messages', params=params)

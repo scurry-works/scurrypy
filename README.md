@@ -27,6 +27,7 @@ It is a true Discord API wrapper built on predictable, modern Python principles.
 * Easy to extend and build frameworks on top
 * Lightweight core (<1000 lines)
 * Command, and event handling
+* Configurable caching by object type
 * Unix shell-style wildcards for component routing
 * Declarative style using decorators
 * Supports both legacy and new features

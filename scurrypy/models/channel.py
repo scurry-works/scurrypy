@@ -23,7 +23,7 @@ class ChannelModel(DataModel):
     id: int
     """ID of the channel."""
 
-    type: Optional[int]
+    type: int
     """Type of channel."""
 
     guild_id: Optional[int]

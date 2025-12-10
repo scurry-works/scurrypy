@@ -98,9 +98,10 @@ nav:
   - Resources:
     - Overview: resources/index.md
     - Application: resources/application.md
-    - Bot Emojis: resources/bot_emojis.md
+    - Bot Emoji: resources/bot_emojis.md
     - Channel: resources/channel.md
     - Guild: resources/guild.md
+    - Guild Emoji: resources/guild_emoji.md
     - Interaction: resources/interaction.md
     - Message: resources/message.md
     - User: resources/user.md
@@ -112,6 +113,7 @@ nav:
     - Guild: events/guild.md
     - Reactions: events/reaction.md
     - Ready: events/ready.md
+    - Roles: events/role.md
   - Addons:
     - Overview: addons/index.md
     - Addon: addons/addon.md
@@ -120,6 +122,7 @@ nav:
     - EventsAddon: addons/events.md
     - PrefixAddon: addons/prefix.md
     - InteractionAddon: addons/interaction.md
+    - Cache Addons: addons/caches.md
     - ComponentBuilder: addons/component_builder.md
     - EmbedBuilder: addons/embed_builder.md
   - Internals:

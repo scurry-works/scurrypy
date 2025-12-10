@@ -1,6 +1,7 @@
 from .addon import Addon
 from ..core.error import DiscordError
 from ..client import Client
+from ..core.intents import Intents
 from ..events.message_events import MessageCreateEvent
 
 class PrefixAddon(Addon):
@@ -12,6 +13,9 @@ class PrefixAddon(Addon):
             client (Client): the Client object
             prefix (str): message prefix for commands
         """
+        if not Intents.has(client.intents, Intents.MESSAGE_CONTENT):
+            raise ValueError("Missing Intent.MESSAGE_CONTENT for scanning messages.")
+        
         self.bot = client
 
         self.logger = client.logger
@@ -48,7 +52,6 @@ class PrefixAddon(Addon):
             event (MessageCreateEvent): message create event object
         """
         if not event.content:
-            self.logger.log_warn("No message content.")
             return
         
         # ignore bot responding to itself

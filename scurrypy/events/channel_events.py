@@ -4,46 +4,17 @@ from .base_event import Event
 
 from typing import Optional
 
-@dataclass
-class GuildChannelEvent(Event, DataModel):
-    """Base guild channel event."""
+from ..models.channel import ChannelModel
 
-    id: int
-    """ID of the guild channel."""
-
-    type: int
-    """Type of channel."""
-
-    guild_id: Optional[int]
-    """Guild ID of the channel."""
-
-    position: Optional[int]
-    """Position of the channel within a category."""
-
-    name: Optional[str]
-    """Name of the channel."""
-
-    topic: Optional[str]
-    """Topic of the channel."""
-
-    nsfw: Optional[bool]
-    """If this channel is flagged NSFW."""
-
-    last_message_id: Optional[int]
-    """ID of the last message sent in the channel."""
-
-    parent_id: Optional[int]
-    """Category ID of the channel."""
-
-class GuildChannelCreateEvent(GuildChannelEvent):
+class GuildChannelCreateEvent(Event, ChannelModel):
     """Received when a guild channel has been created."""
     pass
 
-class GuildChannelUpdateEvent(GuildChannelEvent):
+class GuildChannelUpdateEvent(Event, ChannelModel):
     """Received when a guild channel has been updated."""
     pass
 
-class GuildChannelDeleteEvent(GuildChannelEvent):
+class GuildChannelDeleteEvent(Event, ChannelModel):
     """Received when a guild channel has been deleted."""
     pass
 

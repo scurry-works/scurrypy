@@ -14,6 +14,9 @@ class EmbedBuilder(Addon):
         Returns:
             (EmbedAuthor): the EmbedAuthor object
         """
+        if not user:
+            raise ValueError("Missing user.")
+        
         return EmbedAuthor(
             name=user.username,
             icon_url=f"https://cdn.discordapp.com/avatars/{user.id}/{user.avatar}.png"

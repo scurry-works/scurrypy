@@ -25,7 +25,9 @@ EVENTS = {
     'GUILD_UPDATE': GuildDeleteEvent,
     'GUILD_DELETE': GuildDeleteEvent,
     'GUILD_MEMBER_ADD': GuildMemberAddEvent,
+    'GUILD_MEMBER_UPDATE': GuildMemberUpdateEvent,
     'GUILD_MEMBER_REMOVE': GuildMemberRemoveEvent,
+    'GUILD_EMOJIS_UPDATE': GuildEmojisUpdateEvent,
 
     # interaction events
     'INTERACTION_CREATE': InteractionEvent,
@@ -39,7 +41,11 @@ EVENTS = {
     'MESSAGE_REACTION_ADD': ReactionAddEvent,
     'MESSAGE_REACTION_REMOVE': ReactionRemoveEvent,
     'MESSAGE_REACTION_REMOVE_ALL': ReactionRemoveAllEvent,
-    'MESSAGE_REACTION_REMOVE_EMOJI': ReactionRemoveEmojiEvent
+    'MESSAGE_REACTION_REMOVE_EMOJI': ReactionRemoveEmojiEvent,
+
+    'ROLE_CREATE': RoleCreateEvent,
+    'ROLE_UPDATE': RoleUpdateEvent,
+    'ROLE_DELETE': RoleDeleteEvent
 }
 
 class BaseClient(Protocol):
@@ -112,15 +118,28 @@ class BaseClient(Protocol):
 
         return Application(self._http, None, application_id)
     
-    def bot_emojis(self):
-        """Creates an interactable bot emojis resource.
+    def bot_emoji(self):
+        """Creates an interactable bot emoji resource.
 
         Returns:
-            (BotEmojis): the BotEmojis resource
+            (BotEmojis): the BotEmoji resource
         """
-        from ..resources.bot_emojis import BotEmojis
+        from ..resources.bot_emoji import BotEmoji
 
-        return BotEmojis(self._http, self.application_id)
+        return BotEmoji(self._http, None, self.application_id)
+    
+    def guild_emoji(self, guild_id: int):
+        """Creates an interactable emoji resource.
+
+        Args:
+            guild_id (int): guild ID of target emojis
+
+        Returns:
+            (GuildEmoji): the GuildEmoji resource
+        """
+        from ..resources.guild_emoji import GuildEmoji
+
+        return GuildEmoji(self._http, None, guild_id)
 
     def guild(self, guild_id: int, *, context = None):
         """Creates an interactable guild resource.
