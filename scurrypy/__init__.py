@@ -13,4 +13,3 @@ from .parts import *
 from .resources import *
 from .models import *
 from .core import *
-from .addons import *

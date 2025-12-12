@@ -6,6 +6,7 @@ from .http import HTTPClient
 from .gateway import GatewayClient
 from .logger import LoggerLike
 from .error import DiscordError
+from .addon import Addon
 from ..parts.command import SlashCommand, UserCommand, MessageCommand
 
 from ..events import *
@@ -85,6 +86,13 @@ class BaseClient(Protocol):
             event (str): name of the event to listen
             handler (callable): listener function
         """
+        params_len = len(inspect.signature(handler).parameters)
+
+        if params_len != 1:
+            raise TypeError(
+                f"Event listener '{handler.__name__}' must accept exactly one parameter (event)."
+            )
+    
         self.events.setdefault(event, []).append(handler)
 
     def add_startup_hook(self, handler):
@@ -94,6 +102,13 @@ class BaseClient(Protocol):
         Args:
             handler (callable): startup function
         """
+        params_len = len(inspect.signature(handler).parameters)
+
+        if params_len != 0:
+            raise TypeError(
+                f"Startup hook '{handler.__name__}' must accept no parameters."
+            )
+        
         self.startup_hooks.append(handler)
 
     def add_shutdown_hook(self, handler):
@@ -103,6 +118,13 @@ class BaseClient(Protocol):
         Args:
             handler (callable): shutdown function
         """
+        params_len = len(inspect.signature(handler).parameters)
+
+        if params_len != 0:
+            raise TypeError(
+                f"Shutdown hook '{handler.__name__}' must accept no parameters."
+            )
+
         self.shutdown_hooks.append(handler)
 
     def application(self, application_id: int):
@@ -214,17 +236,11 @@ class BaseClient(Protocol):
         return User(self._http, context, user_id)
 
     async def listen_shard(self, shard: GatewayClient):
-        """Listen to websocket queue for events. Only OP code 0 passes!
-
-        Args:
-            shard (GatewayClient): the shard or gateway to listen on
-        """
         while True:
             try:
                 dispatch_type, event_data = await shard.event_queue.get()
-                
-                event_model = EVENTS.get(dispatch_type)
 
+                event_model = EVENTS.get(dispatch_type)
                 if not event_model:
                     self.logger.log_warn(f"Event {dispatch_type} is not implemented.")
                     continue
@@ -233,13 +249,21 @@ class BaseClient(Protocol):
                 obj.name = dispatch_type
                 obj.raw = event_data
 
-                for handler in self.events.get(dispatch_type, []):
-                    result = handler(obj)
-                    if inspect.isawaitable(result):
-                        await result
+                handlers = self.events.get(dispatch_type, [])
+                for handler in handlers:
+                    try:
+                        result = handler(obj)
+                        if inspect.isawaitable(result):
+                            await result
+                    except DiscordError as e:
+                        self.logger.log_error(
+                            f"Error in handler '{handler.__name__}' for event '{dispatch_type}': {e}"
+                        )
+                        continue
 
-            except (DiscordError, Exception) as e:
-                self.logger.log_error(e)
+            except Exception as e:
+                # catastrophic errors (network, shard death, unexpected OP code)
+                self.logger.log_error(f"Dispatcher error: {e}")
                 continue
 
     async def register_guild_commands(self, commands: list[SlashCommand | UserCommand | MessageCommand], guild_id: int):

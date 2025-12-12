@@ -77,12 +77,13 @@ watch:
 
 nav:
   - Home: index.md
-  - Getting Started: easy_examples.md
-  - Raw ScurryPy: raw_scurrypy.md
+  - Getting Started: getting_started.md
+  - Examples: examples.md
   - Migrations: migrations.md
   - Footnotes: doc_notes.md
   - API Reference:
     - Overview: api/index.md
+    - Addon: api/addon.md
     - Client: api/client.md
     - Intents: api/intents.md
     - Permissions: api/permissions.md
@@ -114,17 +115,6 @@ nav:
     - Reactions: events/reaction.md
     - Ready: events/ready.md
     - Roles: events/role.md
-  - Addons:
-    - Overview: addons/index.md
-    - Addon: addons/addon.md
-    - AddonManager: addons/addon_manager.md
-    - EasyBot: addons/easy_bot.md
-    - EventsAddon: addons/events.md
-    - PrefixAddon: addons/prefix.md
-    - InteractionAddon: addons/interaction.md
-    - Cache Addons: addons/caches.md
-    - ComponentBuilder: addons/component_builder.md
-    - EmbedBuilder: addons/embed_builder.md
   - Internals:
     - Overview: internals/index.md
     - Base Models: internals/model.md

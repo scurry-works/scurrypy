@@ -7,8 +7,6 @@ from .core.gateway import GatewayClient
 from .core.logger import Logger, LoggerLike
 from .core.http import HTTPClient
 
-from .addons.addon_manager import AddonManager
-
 class Client(BaseClient):
     """Main entry point for Discord bots.
         Ties together the moving parts: gateway, HTTP and event dispatching.
@@ -41,9 +39,6 @@ class Client(BaseClient):
         self._http = HTTPClient(self.logger)
 
         self.shards: list[GatewayClient] = []
-
-        self.addons = AddonManager(self)
-        # addons MUST register to bot events for the client to find the dispatch!
 
         self.events = {}
         self.startup_hooks = []
