@@ -1,6 +1,7 @@
 ## <center> ScurryPy </center>
 
 [![PyPI version](https://badge.fury.io/py/scurrypy.svg)](https://badge.fury.io/py/scurrypy)
+![Discord](https://img.shields.io/discord/905167903224123473?style=plastic&logo=discord&logoColor=ffffff&label=Join%20the%20Discussion!&labelColor=5539cc&color=202024)
 
 ScurryPy is a lightweight, modern Discord API framework powering all kinds of squirrel-related shenanigans, from tiny bots to full custom frameworks.
 
