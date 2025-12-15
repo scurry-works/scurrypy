@@ -19,7 +19,7 @@ ScurryPy is a minimal, transparent, and modern wrapper around Discord's REST and
 
 If you want to understand your bot rather than fight it, you're in the right place.
 
-## Framework Features
+## Features
 
 The following are baked into ScurryPy:
 
@@ -35,8 +35,8 @@ ScurryPy exposes clean primitives. What you build on top is entirely up to you, 
 
 ## ScurryKit
 
-Looking for a higher-level experience similar to discord.py, hikari, or nextcord?
-Check out [ScurryKit](https://github.com/scurry-works/scurry-kit), a batteries-included framework built on top of ScurryPy.
+Looking to create the higher-level experience similar to discord.py, hikari, or nextcord?
+Check out [ScurryKit](https://github.com/scurry-works/scurry-kit), a batteries-included framework built on with ScurryPy.
 
 ## Installation
 
