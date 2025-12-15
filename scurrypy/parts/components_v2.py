@@ -104,7 +104,7 @@ class SeparatorTypes:
 class Separator(DataModel, ContainerChild):
     """Represents the Separator component."""
 
-    divider: bool = True
+    divider: Optional[bool] = True
     """Whether a visual divider should be displayed in the component. Defaults to True."""
 
     spacing: Optional[int] = SeparatorTypes.SMALL_PADDING
@@ -149,7 +149,7 @@ class Label(DataModel):
 class FileUpload(DataModel, ContainerChild):
     """Represents the file upload component."""
 
-    component: LabelChild = None
+    custom_id: str = None
     """ID for the file upload."""
 
     min_values: Optional[int] = 1
