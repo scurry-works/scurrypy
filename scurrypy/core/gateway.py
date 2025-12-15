@@ -95,12 +95,15 @@ class GatewayClient:
     
     async def heartbeat(self):
         """Heartbeat task to keep connection alive."""
+        import random
+        jitter = random.uniform(0.5, 1.0)
+
         while self.ws:
-            await asyncio.sleep(self.heartbeat_interval)
+            await asyncio.sleep(self.heartbeat_interval * jitter)
             await self.send({"op": 1, "d": self.seq})
             self.logger.log_info(f"SHARD ID {self.shard_id} Heartbeat sent")
 
-    async def identify(self, token, intents):
+    async def identify(self, token: str, intents: int):
         """Send an IDENTIFY payload to handshake for bot."""
 
         await self.send({
