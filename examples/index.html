@@ -1653,25 +1653,40 @@ They are intended to illustrate how the core API is designed to be used before i
 <h2 id="minimal-addon">Minimal Addon<a class="headerlink" href="#minimal-addon" title="Permanent link">&para;</a></h2>
 <hr />
 <p>Demonstrates addon setup. Feel free to use this as a reference!</p>
+<div class="admonition warning">
+<p class="admonition-title">ScurryPy's Contract</p>
+<p>ScurryPy validates handler signatures at registration time, catching errors before your bot runs. 
+Each registration method expects specific parameters:</p>
+<ul>
+<li><code>client.add_event_listener</code> → <code>def handler(self, event)</code> (sync or async)</li>
+<li><code>client.add_startup_hook</code> → <code>def handler(self)</code> (sync or async)</li>
+<li><code>client.add_shutdown_hook</code> → <code>def handler(self)</code> (sync or async)</li>
+</ul>
+<p>If signatures don't match, ScurryPy raises an error immediately. 
+This prevents bugs from reaching production!</p>
+</div>
 <div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MyAddon</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Your custom addon.&quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">scurrypy</span><span class="o">.</span><span class="n">Client</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bot</span> <span class="o">=</span> <span class="n">client</span>
 
-        <span class="c1"># some handlers</span>
+        <span class="c1"># register handlers - validated immediately!</span>
         <span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">my_opening_handler</span><span class="p">)</span>
-        <span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">my_event_listener</span><span class="p">)</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="s1">&#39;DISCORD_EVENT&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">my_event_listener</span><span class="p">)</span>
         <span class="n">client</span><span class="o">.</span><span class="n">add_shutdown_hook</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">my_closing_handler</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">my_opening_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># handlers can be sync or async</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">my_opening_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># can be sync or async</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom startup hooks.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Starting up!&quot;</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">my_event_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Handle your event here!&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got event: </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">my_closing_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Custom shutdown hooks.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Shutting down!&quot;</span><span class="p">)</span>
 </code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">About Addons</p>
