@@ -74,12 +74,12 @@ plugins:
 
 watch:
   - scurrypy
+  - docs
 
 nav:
   - Home: index.md
   - Getting Started: getting_started.md
   - Examples: examples.md
-  - Migrations: migrations.md
   - Footnotes: doc_notes.md
   - API Reference:
     - Overview: api/index.md

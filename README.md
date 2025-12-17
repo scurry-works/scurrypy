@@ -1,21 +1,23 @@
-## <center> ScurryPy </center>
+## ScurryPy
 
 [![PyPI version](https://badge.fury.io/py/scurrypy.svg)](https://badge.fury.io/py/scurrypy)
 [![Discord](https://img.shields.io/discord/905167903224123473?style=plastic&logo=discord&logoColor=ffffff&color=5865F2)](https://discord.gg/D4SdHxcujM)
 
-ScurryPy is a lightweight, modern Discord API wrapper powering all kinds of squirrel-related shenanigans, from tiny bots to full custom frameworks.
+ScurryPy is a fully extensible foundation for Discord bots and frameworks. 
+Build anything from a simple bot to a complete custom framework, with the architecture entirely up to you.
+
+> **Tip**: *Think of ScurryPy like a sandbox for Discord’s API: a reliable foundation where you control everything you build.*
 
 ## Philosophy
 
-ScurryPy is built on a one idea:
+ScurryPy is built on one idea:
 ✨*clarity over magic* ✨
 
 * Every operation is explicit
 * No hidden behavior or black boxes
 * Components do *one* job and do it predictably
 
-ScurryPy is not discord.py, hikari, disnake, or any existing framework.
-ScurryPy is a minimal, transparent, and modern wrapper around Discord's REST and Gateway API, built completely from scratch.
+This philosophy ensures that you can extend, compose, and control every part of your bot without hidden surprises.
 
 If you want to understand your bot rather than fight it, you're in the right place.
 
@@ -23,20 +25,13 @@ If you want to understand your bot rather than fight it, you're in the right pla
 
 The following are baked into ScurryPy:
 
-* Lightweight core (<1000 lines)
-* Proper rate limit handling
-* Automatic session + gateway reconnection logic
+* Lightweight core
+* Rate limit handling
+* Automatic session & gateway management
 * Automatic sharding
 * Predictable event models and resource classes
 
-Addons and user code never need to reimplement these.
-
-ScurryPy exposes clean primitives. What you build on top is entirely up to you, from bots to full frameworks.
-
-## ScurryKit
-
-Looking to create the higher-level experience similar to discord.py, hikari, or nextcord?
-Check out [ScurryKit](https://github.com/scurry-works/scurry-kit), a batteries-included framework built on with ScurryPy.
+Your focus is building what you want.
 
 ## Installation
 
