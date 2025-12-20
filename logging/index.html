@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://furmissile.github.io/scurrypy/getting_started/">
+        <link rel="canonical" href="https://furmissile.github.io/scurrypy/logging/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../addons/">
       
       
-        <link rel="next" href="../examples/">
+        <link rel="next" href="../doc_notes/">
       
       
       <link rel="icon" href="../assets/wizard.svg">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Getting Started - ScurryPy</title>
+        <title>Logging - ScurryPy</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started" class="md-skip">
+        <a href="#logging" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Getting Started
+              Logging
             
           </span>
         </div>
@@ -281,30 +281,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Getting Started
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../getting_started/" class="md-nav__link">
         
   
   
@@ -315,60 +295,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting Started
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setting-up" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setting up
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next Steps...
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -421,10 +347,19 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../logging/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -435,6 +370,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1552,50 +1488,8 @@
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#getting-started" class="md-nav__link">
-    <span class="md-ellipsis">
-      Getting Started
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setting-up" class="md-nav__link">
-    <span class="md-ellipsis">
-      Setting up
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next Steps...
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1614,39 +1508,34 @@
   
 
 
-  <h1>Getting Started</h1>
-
-<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<h1 id="logging">Logging<a class="headerlink" href="#logging" title="Permanent link">&para;</a></h1>
 <hr />
-<p>Welcome to the getting started section! This page will help you install ScurryPy, set up your environment, and get ready to build your first bot.</p>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<hr />
-<p>If you haven't already, you can install ScurryPy with pip:</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>scurrypy
-</code></pre></div>
-<p>That's all you need. No extra dependencies.</p>
-<h2 id="setting-up">Setting up<a class="headerlink" href="#setting-up" title="Permanent link">&para;</a></h2>
-<hr />
-<p>In your main bot file, it’s recommended to load your environment variables and prepare your constants:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># --- Environment setup ---</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="n">load_dotenv</span><span class="p">()</span>
-
-<span class="c1"># Replace with your bot token, application ID, and guild ID (optional, for guild commands)</span>
-<span class="n">TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;BOT_TOKEN&quot;</span><span class="p">)</span>
-<span class="n">APP_ID</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">GUILD_ID</span> <span class="o">=</span> <span class="mi">0</span>
-</code></pre></div>
-<p>You’re now ready to start using ScurryPy!</p>
-<h2 id="next-steps">Next Steps...<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<hr />
+<p>Scurrypy uses Python’s standard <code>logging</code> module.</p>
+<p><strong>Scurrypy does not configure logging by default.</strong>
+If you do not configure logging in your application, Scurrypy log messages will be discarded.</p>
+<p>All loggers use the <code>scurrypy</code> namespace. Currently, logs are emitted from:</p>
 <ul>
-<li><a href="../examples/">Examples</a> - examples covering events, routing, commands, and more</li>
-<li><a href="../api/">API</a> - detailed class and method documentation</li>
-<li><a href="../events/">Events</a> - all event objects and structures</li>
-<li><a href="../resources/">Resources</a> - request helpers for interacting with Discord’s REST API</li>
+<li><code>scurrypy.core.http</code></li>
+<li><code>scurrypy.core.gateway</code></li>
+<li><code>scurrypy.client</code></li>
 </ul>
+<p>The following snippet can be used to enable logging with colored output:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rich.logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">RichHandler</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;[</span><span class="si">%X</span><span class="s2">]&quot;</span><span class="p">,</span>
+    <span class="n">handlers</span><span class="o">=</span><span class="p">[</span><span class="n">RichHandler</span><span class="p">(</span><span class="n">show_path</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rich_tracebacks</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span>
+<span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">scurrypy</span>
+
+<span class="c1"># normal library usage</span>
+</code></pre></div>
 
 
 

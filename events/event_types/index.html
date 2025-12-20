@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://furmissile.github.io/scurrypy/events/message/">
+        <link rel="canonical" href="https://furmissile.github.io/scurrypy/events/event_types/">
       
       
-        <link rel="prev" href="../interaction/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../channel/">
+        <link rel="next" href="../interaction/">
       
       
       <link rel="icon" href="../../assets/wizard.svg">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Message - ScurryPy</title>
+        <title>Event Types - ScurryPy</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#message-events" class="md-skip">
+        <a href="#event-types" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Message
+              Event Types
             
           </span>
         </div>
@@ -1088,10 +1088,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../event_types/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Event Types
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1102,6 +1124,248 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;EventTypes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" EventTypes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.READY" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;READY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.CHANNEL_CREATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;CHANNEL_CREATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.CHANNEL_UPDATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;CHANNEL_UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.CHANNEL_DELETE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;CHANNEL_DELETE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.CHANNEL_PINS_UPDATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;CHANNEL_PINS_UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_CREATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_CREATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_UPDATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_DELETE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_DELETE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_MEMBER_ADD" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_MEMBER_ADD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_MEMBER_UPDATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_MEMBER_UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_MEMBER_REMOVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_MEMBER_REMOVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_EMOJIS_UPDATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_EMOJIS_UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.INTERACTION_CREATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;INTERACTION_CREATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_CREATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_CREATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_UPDATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_DELETE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_DELETE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_ADD" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_REACTION_ADD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_REACTION_REMOVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE_ALL" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_REACTION_REMOVE_ALL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE_EMOJI" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_REACTION_REMOVE_EMOJI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.ROLE_CREATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ROLE_CREATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.ROLE_UPDATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ROLE_UPDATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.events.event_types.EventTypes.ROLE_DELETE" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ROLE_DELETE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1134,32 +1398,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Message
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../message/" class="md-nav__link">
         
   
   
@@ -1170,341 +1412,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;MessageCreateEvent
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" MessageCreateEvent">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.guild_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;guild_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.member" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;member
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.channel_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;channel_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.author" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;author
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.content" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;content
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.pinned" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;pinned
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.type" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;type
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.webhook_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;webhook_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.name" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;name
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.raw" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.to_dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_dict
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;MessageUpdateEvent
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" MessageUpdateEvent">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.guild_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;guild_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.member" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;member
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.channel_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;channel_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.author" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;author
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.content" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;content
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.pinned" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;pinned
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.type" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;type
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.webhook_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;webhook_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.name" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;name
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.raw" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.to_dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_dict
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;MessageDeleteEvent
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" MessageDeleteEvent">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.channel_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;channel_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.guild_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;guild_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.name" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;name
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.raw" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.to_dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_dict
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1847,310 +1754,217 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;MessageCreateEvent
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;EventTypes
     </span>
   </a>
   
-    <nav class="md-nav" aria-label=" MessageCreateEvent">
+    <nav class="md-nav" aria-label=" EventTypes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.guild_id" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.READY" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;guild_id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;READY
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.member" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.CHANNEL_CREATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;member
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;CHANNEL_CREATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.id" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.CHANNEL_UPDATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;CHANNEL_UPDATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.channel_id" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.CHANNEL_DELETE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;channel_id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;CHANNEL_DELETE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.author" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.CHANNEL_PINS_UPDATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;author
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;CHANNEL_PINS_UPDATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.content" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_CREATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;content
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_CREATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.pinned" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_UPDATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;pinned
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_UPDATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.type" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_DELETE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;type
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_DELETE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.webhook_id" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_MEMBER_ADD" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;webhook_id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_MEMBER_ADD
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.name" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_MEMBER_UPDATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;name
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_MEMBER_UPDATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.raw" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_MEMBER_REMOVE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_MEMBER_REMOVE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageCreateEvent.to_dict" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.GUILD_EMOJIS_UPDATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_dict
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;MessageUpdateEvent
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" MessageUpdateEvent">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.guild_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;guild_id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;GUILD_EMOJIS_UPDATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.member" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.INTERACTION_CREATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;member
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;INTERACTION_CREATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.id" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_CREATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_CREATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.channel_id" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_UPDATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;channel_id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_UPDATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.author" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_DELETE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;author
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_DELETE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.content" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_ADD" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;content
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_REACTION_ADD
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.pinned" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;pinned
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_REACTION_REMOVE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.type" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE_ALL" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;type
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_REACTION_REMOVE_ALL
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.webhook_id" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE_EMOJI" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;webhook_id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;MESSAGE_REACTION_REMOVE_EMOJI
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.name" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.ROLE_CREATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;name
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ROLE_CREATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.raw" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.ROLE_UPDATE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ROLE_UPDATE
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageUpdateEvent.to_dict" class="md-nav__link">
+  <a href="#scurrypy.events.event_types.EventTypes.ROLE_DELETE" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_dict
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;MessageDeleteEvent
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" MessageDeleteEvent">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.channel_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;channel_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.guild_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;guild_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.name" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;name
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.raw" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;raw
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.events.message_events.MessageDeleteEvent.to_dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_dict
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;ROLE_DELETE
     </span>
   </a>
   
@@ -2180,10 +1994,10 @@
   
 
 
-<h1 id="message-events">Message Events<a class="headerlink" href="#message-events" title="Permanent link">&para;</a></h1>
+<h1 id="event-types">Event Types<a class="headerlink" href="#event-types" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The following classes come from the <code>scurrypy.events.message_events</code> module.</p>
+<p>The following classes come from the <code>scurrypy.events.event_types</code> module.</p>
 </div>
 <hr />
 
@@ -2192,30 +2006,17 @@
 
 
 
-<h2 id="scurrypy.events.message_events.MessageCreateEvent" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>              <code class="highlight language-python"><span class="n">MessageCreateEvent</span></code>
+<h2 id="scurrypy.events.event_types.EventTypes" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <code>EventTypes</code>
 
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
-  </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#scurrypy.events.event_types.EventTypes" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
     <div class="doc doc-contents first">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="            Event (scurrypy.events.base_event.Event)" href="../../internals/model/#scurrypy.events.base_event.Event">Event</a></code>, <code><a class="autorefs autorefs-internal" title="              MessageModel
-
-  
-      dataclass
-   (scurrypy.models.message.MessageModel)" href="../../api/models/#scurrypy.models.message.MessageModel">MessageModel</a></code></p>
 
 
-        <p>Received when a message is created. (This event IS the MessageModel with extra fields)</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code>member</code> may be missing on <code>MESSAGE_CREATE</code> and <code>MESSAGE_UPDATE</code>. Use <code>author</code> when you need the user.</p>
-</div>
+        <p>List of pre-defined event types.</p>
 
 
 
@@ -2239,19 +2040,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.guild_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">guild_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.READY" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">READY</span> <span class="o">=</span> <span class="s1">&#39;READY&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.guild_id" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.READY" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Guild ID of the updated message (if in a guild channel).</p>
 
     </div>
 
@@ -2261,23 +2061,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.member" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">member</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GuildMemberModel</span><span class="p">]</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.CHANNEL_CREATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">CHANNEL_CREATE</span> <span class="o">=</span> <span class="s1">&#39;CHANNEL_CREATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.member" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.CHANNEL_CREATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Partial Member object of the author of the message. See <a class="autorefs autorefs-internal" title="              GuildMemberModel
-
-  
-      dataclass
-  " href="../../api/models/#scurrypy.models.guild_member.GuildMemberModel"><code>GuildMemberModel</code></a>.</p>
 
     </div>
 
@@ -2287,19 +2082,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="nb">int</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.CHANNEL_UPDATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">CHANNEL_UPDATE</span> <span class="o">=</span> <span class="s1">&#39;CHANNEL_UPDATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.id" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.CHANNEL_UPDATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>ID of the message.</p>
 
     </div>
 
@@ -2309,19 +2103,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.channel_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.CHANNEL_DELETE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">CHANNEL_DELETE</span> <span class="o">=</span> <span class="s1">&#39;CHANNEL_DELETE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.channel_id" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.CHANNEL_DELETE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Channel ID of the message.</p>
 
     </div>
 
@@ -2331,19 +2124,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.author" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">author</span><span class="p">:</span> <span class="n">UserModel</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.CHANNEL_PINS_UPDATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">CHANNEL_PINS_UPDATE</span> <span class="o">=</span> <span class="s1">&#39;CHANNEL_PINS_UPDATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.author" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.CHANNEL_PINS_UPDATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>User data of author of the message.</p>
 
     </div>
 
@@ -2353,19 +2145,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.content" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">content</span><span class="p">:</span> <span class="nb">str</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.GUILD_CREATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">GUILD_CREATE</span> <span class="o">=</span> <span class="s1">&#39;GUILD_CREATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.content" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.GUILD_CREATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Content of the message.</p>
 
     </div>
 
@@ -2375,19 +2166,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.pinned" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">pinned</span><span class="p">:</span> <span class="nb">bool</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.GUILD_UPDATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">GUILD_UPDATE</span> <span class="o">=</span> <span class="s1">&#39;GUILD_UPDATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.pinned" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.GUILD_UPDATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>If the message is pinned.</p>
 
     </div>
 
@@ -2397,19 +2187,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.type" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="nb">int</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.GUILD_DELETE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">GUILD_DELETE</span> <span class="o">=</span> <span class="s1">&#39;GUILD_DELETE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.type" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.GUILD_DELETE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Type of message.</p>
 
     </div>
 
@@ -2419,19 +2208,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.webhook_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">webhook_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.GUILD_MEMBER_ADD" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">GUILD_MEMBER_ADD</span> <span class="o">=</span> <span class="s1">&#39;GUILD_MEMBER_ADD&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.webhook_id" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.GUILD_MEMBER_ADD" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>ID of the webhook if the message is a webhook.</p>
 
     </div>
 
@@ -2441,19 +2229,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.GUILD_MEMBER_UPDATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">GUILD_MEMBER_UPDATE</span> <span class="o">=</span> <span class="s1">&#39;GUILD_MEMBER_UPDATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.name" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.GUILD_MEMBER_UPDATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Dispatch name of event.</p>
 
     </div>
 
@@ -2463,126 +2250,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.raw" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">raw</span><span class="p">:</span> <span class="nb">dict</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.GUILD_MEMBER_REMOVE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">GUILD_MEMBER_REMOVE</span> <span class="o">=</span> <span class="s1">&#39;GUILD_MEMBER_REMOVE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageCreateEvent.raw" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.GUILD_MEMBER_REMOVE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Event's raw JSON payload. NOT A DATACLASS.</p>
-
-    </div>
-
-</div>
-
-
-
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.events.message_events.MessageCreateEvent.to_dict" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">to_dict</span></code>
-
-<a href="#scurrypy.events.message_events.MessageCreateEvent.to_dict" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Recursively turns the dataclass into a dictionary and drops empty fields.</p>
-
-
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><span title="dict">dict</span></code>
-          –
-          <div class="doc-md-description">
-            <p>serialized dataclasss</p>
-          </div>
-        </li>
-    </ul>
-
-
-    </div>
-
-</div>
-
-
-
-  </div>
-
-    </div>
-
-</div><hr />
-
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="scurrypy.events.message_events.MessageUpdateEvent" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>              <code class="highlight language-python"><span class="n">MessageUpdateEvent</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
-  </span>
-
-<a href="#scurrypy.events.message_events.MessageUpdateEvent" class="headerlink" title="Permanent link">&para;</a></h2>
-
-
-    <div class="doc doc-contents first">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="            Event (scurrypy.events.base_event.Event)" href="../../internals/model/#scurrypy.events.base_event.Event">Event</a></code>, <code><a class="autorefs autorefs-internal" title="              MessageModel
-
-  
-      dataclass
-   (scurrypy.models.message.MessageModel)" href="../../api/models/#scurrypy.models.message.MessageModel">MessageModel</a></code></p>
-
-
-        <p>Received when a message is updated. (This event IS the MessageModel with extra fields)</p>
-
-
-
-
-
-
-
-
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.guild_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">guild_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.guild_id" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Guild ID of the updated message (if in a guild channel).</p>
 
     </div>
 
@@ -2592,23 +2271,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.member" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">member</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GuildMemberModel</span><span class="p">]</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.GUILD_EMOJIS_UPDATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">GUILD_EMOJIS_UPDATE</span> <span class="o">=</span> <span class="s1">&#39;GUILD_EMOJIS_UPDATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.member" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.GUILD_EMOJIS_UPDATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Partial Member object of the author of the message. See <a class="autorefs autorefs-internal" title="              GuildMemberModel
-
-  
-      dataclass
-  " href="../../api/models/#scurrypy.models.guild_member.GuildMemberModel"><code>GuildMemberModel</code></a>.</p>
 
     </div>
 
@@ -2618,19 +2292,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="nb">int</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.INTERACTION_CREATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">INTERACTION_CREATE</span> <span class="o">=</span> <span class="s1">&#39;INTERACTION_CREATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.id" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.INTERACTION_CREATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>ID of the message.</p>
 
     </div>
 
@@ -2640,19 +2313,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.channel_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.MESSAGE_CREATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">MESSAGE_CREATE</span> <span class="o">=</span> <span class="s1">&#39;MESSAGE_CREATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.channel_id" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.MESSAGE_CREATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Channel ID of the message.</p>
 
     </div>
 
@@ -2662,19 +2334,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.author" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">author</span><span class="p">:</span> <span class="n">UserModel</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.MESSAGE_UPDATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">MESSAGE_UPDATE</span> <span class="o">=</span> <span class="s1">&#39;MESSAGE_UPDATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.author" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.MESSAGE_UPDATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>User data of author of the message.</p>
 
     </div>
 
@@ -2684,19 +2355,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.content" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">content</span><span class="p">:</span> <span class="nb">str</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.MESSAGE_DELETE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">MESSAGE_DELETE</span> <span class="o">=</span> <span class="s1">&#39;MESSAGE_DELETE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.content" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.MESSAGE_DELETE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Content of the message.</p>
 
     </div>
 
@@ -2706,19 +2376,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.pinned" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">pinned</span><span class="p">:</span> <span class="nb">bool</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_ADD" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">MESSAGE_REACTION_ADD</span> <span class="o">=</span> <span class="s1">&#39;MESSAGE_REACTION_ADD&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.pinned" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_ADD" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>If the message is pinned.</p>
 
     </div>
 
@@ -2728,19 +2397,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.type" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="nb">int</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">MESSAGE_REACTION_REMOVE</span> <span class="o">=</span> <span class="s1">&#39;MESSAGE_REACTION_REMOVE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.type" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Type of message.</p>
 
     </div>
 
@@ -2750,19 +2418,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.webhook_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">webhook_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE_ALL" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">MESSAGE_REACTION_REMOVE_ALL</span> <span class="o">=</span> <span class="s1">&#39;MESSAGE_REACTION_REMOVE_ALL&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.webhook_id" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE_ALL" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>ID of the webhook if the message is a webhook.</p>
 
     </div>
 
@@ -2772,19 +2439,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE_EMOJI" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">MESSAGE_REACTION_REMOVE_EMOJI</span> <span class="o">=</span> <span class="s1">&#39;MESSAGE_REACTION_REMOVE_EMOJI&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.name" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.MESSAGE_REACTION_REMOVE_EMOJI" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Dispatch name of event.</p>
 
     </div>
 
@@ -2794,126 +2460,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.raw" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">raw</span><span class="p">:</span> <span class="nb">dict</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.ROLE_CREATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">ROLE_CREATE</span> <span class="o">=</span> <span class="s1">&#39;ROLE_CREATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.raw" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.ROLE_CREATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Event's raw JSON payload. NOT A DATACLASS.</p>
-
-    </div>
-
-</div>
-
-
-
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.events.message_events.MessageUpdateEvent.to_dict" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">to_dict</span></code>
-
-<a href="#scurrypy.events.message_events.MessageUpdateEvent.to_dict" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Recursively turns the dataclass into a dictionary and drops empty fields.</p>
-
-
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><span title="dict">dict</span></code>
-          –
-          <div class="doc-md-description">
-            <p>serialized dataclasss</p>
-          </div>
-        </li>
-    </ul>
-
-
-    </div>
-
-</div>
-
-
-
-  </div>
-
-    </div>
-
-</div><hr />
-
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="scurrypy.events.message_events.MessageDeleteEvent" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>              <code class="highlight language-python"><span class="n">MessageDeleteEvent</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
-  </span>
-
-<a href="#scurrypy.events.message_events.MessageDeleteEvent" class="headerlink" title="Permanent link">&para;</a></h2>
-
-
-    <div class="doc doc-contents first">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="            Event (scurrypy.events.base_event.Event)" href="../../internals/model/#scurrypy.events.base_event.Event">Event</a></code>, <code><a class="autorefs autorefs-internal" title="              DataModel
-
-  
-      dataclass
-   (scurrypy.core.model.DataModel)" href="../../internals/model/#scurrypy.core.model.DataModel">DataModel</a></code></p>
-
-
-        <p>Received when a message is deleted.</p>
-
-
-
-
-
-
-
-
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.events.message_events.MessageDeleteEvent.id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="nb">int</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.events.message_events.MessageDeleteEvent.id" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>ID of the deleted message.</p>
 
     </div>
 
@@ -2923,19 +2481,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageDeleteEvent.channel_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">channel_id</span><span class="p">:</span> <span class="nb">int</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.ROLE_UPDATE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">ROLE_UPDATE</span> <span class="o">=</span> <span class="s1">&#39;ROLE_UPDATE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageDeleteEvent.channel_id" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.ROLE_UPDATE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Channel ID of the deleted message.</p>
 
     </div>
 
@@ -2945,63 +2502,18 @@
 
 
 
-<h3 id="scurrypy.events.message_events.MessageDeleteEvent.guild_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">guild_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
+<h3 id="scurrypy.events.event_types.EventTypes.ROLE_DELETE" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">ROLE_DELETE</span> <span class="o">=</span> <span class="s1">&#39;ROLE_DELETE&#39;</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.events.message_events.MessageDeleteEvent.guild_id" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.events.event_types.EventTypes.ROLE_DELETE" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
-
-        <p>Guild ID of the deleted message (if in a guild channel).</p>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.events.message_events.MessageDeleteEvent.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.events.message_events.MessageDeleteEvent.name" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Dispatch name of event.</p>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h3 id="scurrypy.events.message_events.MessageDeleteEvent.raw" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">raw</span><span class="p">:</span> <span class="nb">dict</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.events.message_events.MessageDeleteEvent.raw" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Event's raw JSON payload. NOT A DATACLASS.</p>
 
     </div>
 
@@ -3009,36 +2521,6 @@
 
 
 
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.events.message_events.MessageDeleteEvent.to_dict" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">to_dict</span></code>
-
-<a href="#scurrypy.events.message_events.MessageDeleteEvent.to_dict" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Recursively turns the dataclass into a dictionary and drops empty fields.</p>
-
-
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><span title="dict">dict</span></code>
-          –
-          <div class="doc-md-description">
-            <p>serialized dataclasss</p>
-          </div>
-        </li>
-    </ul>
-
-
-    </div>
-
-</div>
 
 
 
