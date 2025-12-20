@@ -25,7 +25,10 @@ from typing import Any
 from dataclasses import dataclass
 
 from .error import DiscordError
-from .logger import LoggerLike
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 @dataclass
 class RequestItem:
@@ -47,9 +50,8 @@ class HTTPClient:
     BASE = "https://discord.com/api/v10"
     MAX_RETRIES = 3
 
-    def __init__(self, logger: LoggerLike):
+    def __init__(self):
         self.session = None
-        self.logger = logger
 
         # PRE-REQUEST
         self.queues: dict[str, asyncio.Queue] = {}  # maps EP -> Q
@@ -70,16 +72,16 @@ class HTTPClient:
 
         if not self.session:
             self.session = aiohttp.ClientSession(headers={"Authorization": f"Bot {token}"})
-            self.logger.log_info("HTTP session started.")
+            logger.info("HTTP session started.")
         else:
-            self.logger.log_warn("HTTP session already initialized.")
+            logger.warning("HTTP session already initialized.")
 
     async def close(self):
         """Gracefully stop all workers and close the HTTP session."""
 
         if self.session: # just the session that needs to close!
             await self.session.close()
-            self.logger.log_info("Session closed.")
+            logger.info("Session closed.")
 
     async def request(
         self,
@@ -132,7 +134,7 @@ class HTTPClient:
         try:
             return await future
         except DiscordError as e:
-            self.logger.log_error(e)
+            logger.error(e)
             return None
 
     async def _worker(self, endpoint: str):
@@ -168,19 +170,19 @@ class HTTPClient:
             endpoint (str): endpoint to sleep
             bucket (Bucket): endpoint's bucket info
         """
-        self.logger.log_warn(f"Bucket {endpoint} rate limit is active. Sleeping for {bucket.reset_after}s...")
+        logger.warning(f"Bucket {endpoint} rate limit is active. Sleeping for {bucket.reset_after}s...")
         await asyncio.sleep(bucket.reset_after)
         bucket.sleep_task = None
-        self.logger.log_high_priority(f"Bucket {endpoint} reset after {bucket.reset_after}s")
+        logger.info(f"Bucket {endpoint} reset after {bucket.reset_after}s")
 
     async def _check_global_rate_limit(self):
         """Checks if the global rate limit is after now (active)."""
         now = asyncio.get_event_loop().time()
         if self.global_reset > now:
             async with self.global_lock:
-                self.logger.log_warn(f"Global reset is active. Sleeping for {self.global_reset - now}s...")
+                logger.warning(f"Global reset is active. Sleeping for {self.global_reset - now}s...")
                 await asyncio.sleep(self.global_reset - now)
-                self.logger.log_high_priority(f"Global has reset after {self.global_reset - now}s...")
+                logger.info(f"Global has reset after {self.global_reset - now}s...")
 
     async def _parse_response(self, resp: aiohttp.ClientResponse):
         """Parse the request's response for response details.

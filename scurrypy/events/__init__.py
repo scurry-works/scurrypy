@@ -61,6 +61,8 @@ from .role_events import (
 
 from .base_event import Event
 
+from .event_types import EventTypes
+
 __all__ = [
     "GuildChannelCreateEvent", "GuildChannelUpdateEvent", "GuildChannelDeleteEvent", "ChannelPinsUpdateEvent",
     "GuildCreateEvent", "GuildUpdateEvent", "GuildDeleteEvent",
@@ -70,5 +72,5 @@ __all__ = [
     "ReactionType", "ReactionAddEvent", "ReactionRemoveEvent", "ReactionRemoveEmojiEvent", "ReactionRemoveAllEvent",
     "ReadyEvent", 
     "RoleCreateEvent", "RoleUpdateEvent", "RoleDeleteEvent",
-    "Event"
+    "Event", "EventTypes"
 ]
