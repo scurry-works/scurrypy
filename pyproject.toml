@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scurrypy"
-version = "0.9.3"
+version = "0.9.0"
 
 description = "Dataclass-driven Discord API Wrapper in Python"
 readme = "README.md"
