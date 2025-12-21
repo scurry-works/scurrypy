@@ -151,7 +151,6 @@ class GatewayClient:
                 case 0:  # DISPATCH
                     self.seq = data.get("s") or self.seq
                     dispatcher_type = data.get("t")
-                    logger.info(f"SHARD ID {self.shard_id} DISPATCH -> {dispatcher_type}")
 
                     if dispatcher_type == "READY":
                         self.session_id = data["d"].get("session_id")

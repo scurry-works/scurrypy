@@ -2,6 +2,14 @@
 
 This changelog documents all notable and breaking changes to ScurryPy.
 
+## [0.10.0] - 2025-12
+
+### Changes
+
+Logging has been improved for finer grained control.
+
+* Events not registered by the user are now `DEBUG` messages.
+
 ## [0.9.0] - 2025-12
 
 ### Breaking Changes

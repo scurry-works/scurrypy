@@ -268,6 +268,11 @@ class Client:
             try:
                 dispatch_type, event_data = await shard.event_queue.get()
 
+                if dispatch_type not in self.events.keys():
+                    logger.debug(f"SHARD ID {shard.shard_id} DISPATCH -> {dispatch_type}")
+                else:
+                    logger.info(f"SHARD ID {shard.shard_id} DISPATCH -> {dispatch_type}")
+
                 event_model = EVENTS.get(dispatch_type)
                 if not event_model:
                     logger.warning(f"Event {dispatch_type} is not implemented.")
@@ -304,7 +309,7 @@ class Client:
         for batch_start in range(0, total_shards, batch_size):
             batch_end = min(batch_start + batch_size, total_shards)
 
-            logger.info(f"Starting shards {batch_start}-{batch_end} of {total_shards}")
+            logger.debug(f"Starting shards {batch_start}-{batch_end} of {total_shards}")
 
             for shard_id in range(batch_start, batch_end):
                 shard = GatewayClient(gateway.url, shard_id, total_shards)
@@ -374,8 +379,6 @@ class Client:
 
         try:
             asyncio.run(self.start())
-        except KeyboardInterrupt:
-            logger.info("Shutdown requested via KeyboardInterrupt.")
         except Exception as e:
             logger.error(f"{type(e).__name__} {e}")
         finally:

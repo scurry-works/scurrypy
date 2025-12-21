@@ -38,6 +38,8 @@ markdown_extensions:
   - admonition
   - attr_list
   - tables
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: true
   - pymdownx.superfences
