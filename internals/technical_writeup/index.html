@@ -1729,15 +1729,14 @@
 <p><em>Figure 3: Bot Client Mental Map</em></p>
 </div>
 <div class="reading-paragraph">
-<p>The Bot Client is intentionally not a god object. It is really just an orchestrator - it uses the HTTP and Gateway clients you've already seen. There are parts that were left out of the map such as the decorators to register commands and resource fetching helpers so the user doesn’t have to touch the HTTP Client directly. But let’s be honest, connection logic is the meat of the Bot Client. And that’s all. Let’s go through the mental map step by step:</p>
+<p>The Bot Client is intentionally not a god object. It is really just an orchestrator - it uses the HTTP and Gateway clients you've already seen. Let’s go through the mental map step by step:</p>
 </div>
 <div class="reading-list">
 <ol>
 <li>Start the HTTP Client. No strings attached.</li>
-<li>Run setup hooks. This is an array of callable functions that the user can set using the “setup_hook” decorators. These hooks run once for the entire life cycle of the bot. Need to start a database? This is where you do it!</li>
-<li>Sync slash commands (guild and global). This is just toggled with a setting in the Bot Client’s constructor for convenience.</li>
+<li>Run setup hooks. This is an array of callable functions that the user can set using <code>add_startup_hook</code>. These hooks run once for the entire life cycle of the bot. Need to start a database? This is where you do it!</li>
 <li>Fetch the gateway info. This is where important start up info is located such as the total number of recommended shards, how many shards can be started concurrently, and the recommended gateway connect URL.</li>
-<li>Then based on the gateway info, as shards start up, fire a task to listen to <em>each</em> shard.This is a task <em>per shard</em> and each shard has its own event queue so the listener doesn’t need to know anything about what shard it is, just direct the event accordingly. Listening and starting occur concurrently. So as shards are starting up, the shards already started can start taking in events as soon as they’re ready. The “sleep 5 seconds” is waiting per batch to not spam Discord’s gateway.</li>
+<li>Then based on the gateway info, as shards start up, fire a task to listen to <em>each</em> shard. This is a task <em>per shard</em> and each shard has its own event queue so the listener doesn’t need to know anything about what shard it is, just direct the event accordingly. Listening and starting occur concurrently. So as shards are starting up, the shards already started can start taking in events as soon as they’re ready. The “sleep 5 seconds” is waiting per batch to not spam Discord’s gateway.</li>
 </ol>
 </div>
 <p>Done.</p>
