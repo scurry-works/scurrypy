@@ -2,6 +2,14 @@
 
 This changelog documents all notable and breaking changes to ScurryPy.
 
+## [0.10.1] - 2025-12
+
+### Changes
+
+Logging has been improved for finer grained control.
+
+* Gateway heartbeat logs are now emitted at `DEBUG` level.
+
 ## [0.10.0] - 2025-12
 
 ### Changes
