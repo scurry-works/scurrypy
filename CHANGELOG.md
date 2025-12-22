@@ -2,6 +2,18 @@
 
 This changelog documents all notable and breaking changes to ScurryPy.
 
+## [0.11.0] - 2025-12
+
+### Breaking Changes
+
+User was patched to be more bot specific. Some endpoints are not accessible to bots.
+
+* `User.fetch_guilds` endpoint is no longer a method
+
+### Changes
+
+* Bug fix: `User.fetch_guild_member` endpoint corrected
+
 ## [0.10.1] - 2025-12
 
 ### Changes
