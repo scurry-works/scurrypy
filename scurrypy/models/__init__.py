@@ -1,6 +1,7 @@
 # scurrypy/models
 
 from .application import ApplicationFlags, ApplicationModel
+from .attachment import AttachmentModel
 from .channel import ChannelModel, PinnedMessageModel
 from .emoji import EmojiModel
 from .guild_member import GuildMemberModel
@@ -20,6 +21,7 @@ from .user import UserModel
 
 __all__ = [
     "ApplicationFlags", "ApplicationModel",
+    "AttachmentModel",
     "ChannelModel", "PinnedMessageModel",
     "EmojiModel",
     "GuildMemberModel",

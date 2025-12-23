@@ -28,6 +28,7 @@ from .guild_events import (
 # from .hello_event import HelloEvent
 
 from .interaction_events import (
+    # ResolvedData,
     # ApplicationCommandOptionData,
     # ApplicationCommandData,
     # MessageComponentData,

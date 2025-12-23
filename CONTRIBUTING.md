@@ -30,6 +30,7 @@ ScurryPy prioritizes **clarity over magic**. When contributing:
 **Not Accepting:**
 * Auto-caching (architectural decision)
 * Voice support (out of scope for now)
+* Subcommands (lots of overhead for not enough gain)
 
 > **Important Note**: Throughout this document, Discord's payloads are called objects and ScurryPy's models are called data classes.
 

@@ -6,9 +6,38 @@ from typing import Optional
 
 from ..models.interaction import InteractionModel
 
-from ..parts.components import ComponentTypes
+from ..models.user import UserModel
+from ..models.guild_member import GuildMemberModel
+from ..models.role import RoleModel
+from ..models.channel import ChannelModel
+from ..models.message import MessageModel
+from ..models.attachment import AttachmentModel
 
-class InteractionCallback: ...
+@dataclass
+class ResolvedData(DataModel):
+    """Represents the resolved data object."""
+
+    users: Optional[dict[int, UserModel]]
+    """Map of user snowflakes to user objects."""
+
+    members: Optional[dict[int, GuildMemberModel]]
+    """Map of member snowflakes to partial guild member objects.
+
+    !!! note "Missing Fields"
+        `user`, `deaf`, and `mute`.
+    """
+
+    roles: Optional[dict[int, RoleModel]]
+    """Map of role snowflakes to role objects."""
+
+    channels: Optional[dict[int, ChannelModel]]
+    """Map of channel snowflakes to partial channel objects."""
+
+    messages: Optional[dict[int, MessageModel]]
+    """Map of message snowflakes to partial message objects."""
+
+    attachments: Optional[dict[int, AttachmentModel]]
+    """Map of attachment snowflakes to attachment objects."""
 
 # ----- Command Interaction -----
 
@@ -22,8 +51,16 @@ class ApplicationCommandOptionData(DataModel):
     type: int
     """Type of command option. See [`CommandOptionTypes`][scurrypy.parts.command.CommandOptionTypes]."""
 
-    value: str | int | float | bool
-    """Input value for option."""
+    value: str
+    """
+    Raw value from Discord as a string.
+    
+    Convert based on option type:
+        - INTEGER/USER/CHANNEL/ROLE/ATTACHMENT: int(value)
+        - NUMBER: float(value)  
+        - BOOLEAN: value.lower() == 'true'
+        - STRING: value (no conversion needed)
+    """
 
     focused: bool
     """Whether this option is the currently focused option for autocomplete."""
@@ -46,6 +83,9 @@ class ApplicationCommandData(DataModel):
 
     target_id: Optional[int]
     """ID of the user or message from which the command was invoked (message/user commands only)."""
+
+    resolved: Optional[ResolvedData]
+    """Converted users + roles + channels + attachments."""
 
     options: Optional[list[ApplicationCommandOptionData]] = field(default_factory=list)
     """Options of the command (slash command only)."""
@@ -87,6 +127,9 @@ class MessageComponentData(DataModel):
 
     component_type: int
     """Type of component."""
+
+    resolved: Optional[ResolvedData]
+    """Resolved entities from selected options."""
 
     values: Optional[list[str]] = field(default_factory=list)
     """Select values (if any)."""
@@ -141,6 +184,8 @@ class ModalData(DataModel):
         Returns:
             (str | list[str]): component values (if string select) or value (if text input)
         """
+        from ..parts.components import ComponentTypes
+        
         for component in self.components:
             if custom_id != component.component.custom_id:
                 continue

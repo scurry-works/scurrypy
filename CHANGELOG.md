@@ -2,19 +2,32 @@
 
 This changelog documents all notable and breaking changes to ScurryPy.
 
-## [0.11.0] - 2025-12
+## [0.12.0] - 2025-12
+
+### Changed
+
+* Added: `resolved` field to interaction data for efficient access to resolved objects
+    * No API calls needed for USER/ROLE/CHANNEL command options
+    * Attachment options now fully supported
+
+* Clarified `ApplicationCommandOptionData.value` type annotation and added conversion guidance
+
+* Bug fix: Boolean conversion in DataModel (string "false" now correctly converts to False)
+
+## [0.11.0]
 
 ### Breaking Changes
 
 User was patched to be more bot specific. Some endpoints are not accessible to bots.
 
 * `User.fetch_guilds` endpoint is no longer a method
+    * this is a user endpoint and ScurryPy does not support User tokens
 
 ### Changes
 
 * Bug fix: `User.fetch_guild_member` endpoint corrected
 
-## [0.10.1] - 2025-12
+## [0.10.1]
 
 ### Changes
 
@@ -22,7 +35,7 @@ Logging has been improved for finer grained control.
 
 * Gateway heartbeat logs are now emitted at `DEBUG` level.
 
-## [0.10.0] - 2025-12
+## [0.10.0]
 
 ### Changes
 
@@ -30,7 +43,7 @@ Logging has been improved for finer grained control.
 
 * Events not registered by the user are now `DEBUG` messages.
 
-## [0.9.0] - 2025-12
+## [0.9.0]
 
 ### Breaking Changes
 
@@ -70,8 +83,7 @@ The handling of `application_id` has been refactored and is now passed explicitl
         client.add_event_listener(EventTypes.MESSAGE_CREATE, on_message_create)
         ```
 
-
-## [0.8.8.2] - 2025-12
+## [0.8.8.2]
 
 ### Changed
 * Corrected `FileUpload`: `component: LabelChild` is supposed to be `custom_id: str`.
