@@ -41,6 +41,46 @@ Install ScurryPy with pip:
 pip install scurrypy
 ```
 
+## Quick Start
+
+```python
+# --- Core library imports ---
+from scurrypy import Client, ReadyEvent
+
+# --- Setup bot ---
+client = Client(token=TOKEN)
+
+async def on_ready(event: ReadyEvent):
+    print("Bot is online!")
+
+client.add_event_listener("READY", on_ready)
+
+# --- Run the bot ---
+client.run()
+```
+
+## What You Can Build
+
+ScurryPy's clean architecture supports:
+- Custom command frameworks
+- Multi-bot orchestration systems
+- Discord API explorers and tools
+- Bots with complex state management
+- Your own discord.py alternative
+
+Check out [ScurryKit](https://github.com/scurry-works/scurry-kit) - 
+a batteries-included framework built entirely on ScurryPy.
+
+## Dependencies
+
+ScurryPy has exactly 3 required dependencies:
+- aiohttp (HTTP client)
+- websockets (Gateway connection)  
+- aiofiles (Async file operations)
+
+That's it. No bloat, no surprises, no supply-chain concerns.
+These dependencies are automatically installed with ScurryPy's pip package.
+
 ## Like What You See?
 
 Explore the full [documentation](https://scurry-works.github.io/scurrypy) for more examples, guides, and API reference.
