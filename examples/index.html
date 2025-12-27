@@ -392,6 +392,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#stateful-bot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stateful Bot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#more-examples" class="md-nav__link">
     <span class="md-ellipsis">
       More Examples...
@@ -1611,6 +1620,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#stateful-bot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stateful Bot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#more-examples" class="md-nav__link">
     <span class="md-ellipsis">
       More Examples...
@@ -1889,6 +1907,118 @@
 <span class="nd">@components</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="s2">&quot;demo_btn&quot;</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_button</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">component</span><span class="p">:</span> <span class="n">Interaction</span><span class="p">):</span>
     <span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;You pressed the button!&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- Run the bot ---</span>
+<span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="stateful-bot">Stateful Bot<a class="headerlink" href="#stateful-bot" title="Permanent link">&para;</a></h2>
+<hr />
+<p>Demonstrates grouping state and behavior using a class-based addon.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Scurrypy</label><label for="__tabbed_5_2">ScurryKit (recommended)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># --- Core library imports ---</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">EventTypes</span><span class="p">,</span> <span class="n">SlashCommand</span><span class="p">,</span> <span class="n">InteractionEvent</span><span class="p">,</span> <span class="n">InteractionTypes</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="c1"># --- Setup bot and addons ---</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StatefulBot</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">Client</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span> <span class="o">=</span> <span class="n">client</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dict_lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+
+        <span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">register_commands</span><span class="p">)</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">INTERACTION_CREATE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">register_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Register slash commands on startup (before READY).&quot;&quot;&quot;</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">register_guild_commands</span><span class="p">(</span>
+            <span class="n">APP_ID</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;points&#39;</span><span class="p">,</span> <span class="s1">&#39;Check your points&#39;</span><span class="p">),</span>
+                <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;addpoints&#39;</span><span class="p">,</span> <span class="s1">&#39;Give points&#39;</span><span class="p">)</span>
+            <span class="p">],</span>
+            <span class="n">GUILD_ID</span>
+        <span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get points for the invoking user.&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
+
+        <span class="n">pts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You have </span><span class="si">{</span><span class="n">pts</span><span class="si">}</span><span class="s2"> points!&quot;</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">addpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add points for the invoking user.&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
+
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict_lock</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Point added!&quot;</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Main entry point for commands.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">APPLICATION_COMMAND</span><span class="p">:</span>
+            <span class="k">return</span> <span class="c1"># ignore non-command interactions</span>
+
+        <span class="k">match</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+            <span class="k">case</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+            <span class="k">case</span> <span class="s1">&#39;addpoints&#39;</span><span class="p">:</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">addpoints</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No command named &#39;</span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;!&quot;</span><span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">)</span>
+
+<span class="n">StatefulBot</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+
+<span class="c1"># --- Run the bot ---</span>
+<span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># --- Core library imports ---</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">Interaction</span><span class="p">,</span> <span class="n">InteractionEvent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scurry_kit</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommandsAddon</span><span class="p">,</span> <span class="n">setup_default_logger</span>
+
+<span class="c1"># --- Logger ---</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">setup_default_logger</span><span class="p">()</span>
+
+<span class="c1"># --- Setup bot and addons ---</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">)</span>
+<span class="n">commands</span> <span class="o">=</span> <span class="n">CommandsAddon</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">APP_ID</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="n">user_points</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">dict_lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+
+<span class="nd">@commands</span><span class="o">.</span><span class="n">slash_command</span><span class="p">(</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s2">&quot;Check your points&quot;</span><span class="p">,</span> <span class="n">guild_ids</span><span class="o">=</span><span class="n">GUILD_ID</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">points</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">interaction</span><span class="p">:</span> <span class="n">Interaction</span><span class="p">):</span>
+    <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span> <span class="o">=</span> <span class="n">interaction</span><span class="o">.</span><span class="n">context</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
+
+    <span class="n">pts</span> <span class="o">=</span> <span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">interaction</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You have </span><span class="si">{</span><span class="n">pts</span><span class="si">}</span><span class="s2"> points!&quot;</span><span class="p">)</span>
+
+<span class="nd">@commands</span><span class="o">.</span><span class="n">slash_command</span><span class="p">(</span><span class="s2">&quot;addpoints&quot;</span><span class="p">,</span> <span class="s2">&quot;Give points&quot;</span><span class="p">,</span> <span class="n">guild_ids</span><span class="o">=</span><span class="n">GUILD_ID</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">addpoints</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">interaction</span><span class="p">:</span> <span class="n">Interaction</span><span class="p">):</span>
+    <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span> <span class="o">=</span> <span class="n">interaction</span><span class="o">.</span><span class="n">context</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
+
+    <span class="c1"># lock for async</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">dict_lock</span><span class="p">:</span>
+        <span class="n">user_points</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">await</span> <span class="n">interaction</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Point added!&quot;</span><span class="p">)</span>
 
 <span class="c1"># --- Run the bot ---</span>
 <span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
