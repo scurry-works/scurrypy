@@ -40,6 +40,9 @@ markdown_extensions:
   - tables
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
   - toc:
       permalink: true
   - pymdownx.superfences
@@ -85,6 +88,7 @@ nav:
   - Examples: examples.md
   - Addons: addons.md
   - Logging: logging.md
+  - Migrations: migrating.md
   - Footnotes: doc_notes.md
   - API Reference:
     - Overview: api/index.md

@@ -84,3 +84,6 @@ These dependencies are automatically installed with ScurryPy's pip package.
 ## Like What You See?
 
 Explore the full [documentation](https://scurry-works.github.io/scurrypy) for more examples, guides, and API reference.
+
+**Switching from discord.py?** 
+Check out the [Migration Guide](migrating.md) to see the difference.
