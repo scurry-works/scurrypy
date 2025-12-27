@@ -69,7 +69,7 @@ For MODELS ONLY:
 * Models are NOT responsible for HTTP requests. Resources do this!
 
 ## Adding Resources
-Resources are just like model, but with added functionality. All resources inherit the [`BaseResource`]((https://scurry-works.github.io/scurrypy/internals/model/#scurrypy.resources.base_resource.BaseResource)) class.
+Resources are just like model, but with added functionality. All resources inherit the [`BaseResource`](https://scurry-works.github.io/scurrypy/internals/model/#scurrypy.resources.base_resource.BaseResource) class.
 
 Please refer to the following example for how the resource is expected to be laid out:
 ```python
@@ -104,7 +104,7 @@ Some fetches have JSON query strings attached. In this case you define them as f
             # the logic...
     ```
 
-[`BaseClient`](https://scurry-works.github.io/scurrypy/internals/base_client) provides a thin layer for requesting resources. If you implement a new resource, please also add it to the client as follows:
+[`Client`](https://scurry-works.github.io/scurrypy/api/client/#scurrypy.client.Client) provides a thin layer for requesting resources. If you implement a new resource, please also add it to the client as follows:
 
     ```python
     def your_resource(self, some_id: int, etc, *, context = None):
