@@ -89,6 +89,7 @@ nav:
   - Addons: addons.md
   - Logging: logging.md
   - Migrations: migrating.md
+  - FAQ: faq.md
   - Footnotes: doc_notes.md
   - API Reference:
     - Overview: api/index.md
