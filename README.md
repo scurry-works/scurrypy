@@ -6,6 +6,7 @@
 [![Discord](https://img.shields.io/discord/905167903224123473?style=plastic&logo=discord&logoColor=ffffff&color=5865F2)](https://discord.gg/D4SdHxcujM)
 
 ✨ **Clarity over magic**: a sandbox for Discord's API where you control everything ✨
+
 ScurryPy is a fully extensible foundation for building bots, frameworks, and tools. You design the architecture.
 
 </div>
