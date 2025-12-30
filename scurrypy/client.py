@@ -5,7 +5,6 @@ from .core.intents import Intents
 from .core.http import HTTPClient
 from .core.gateway import GatewayClient
 from .core.error import DiscordError
-from .parts.command import SlashCommand, UserCommand, MessageCommand
 
 from .events.gateway_events import GatewayEvent
 
@@ -155,7 +154,7 @@ class Client:
 
         Args:
             guild_id (int): ID of target guild
-            context (Any, optional): optional associated data 
+            context (Any, optional): associated data 
 
         Returns:
             (Guild): the Guild resource
@@ -169,14 +168,30 @@ class Client:
 
         Args:
             channel_id (int): ID of target channel
-            context (Any, optional): optional associated data
+            context (Any, optional): associated data
 
         Returns:
             (Channel): the Channel resource
         """
-        from .resources.channel import Channel
+        from .resources.channel import Channel\
 
         return Channel(self._http, context, channel_id)
+    
+    def command(self, application_id: int, guild_id: int = None, command_id: int = None, *, context = None):
+        """Creates an interactable command resource.
+
+        Args:
+            application_id (int): bot's user ID
+            guild_id (int, optional): ID of guild if command is in guild scope
+            command_id (int, optional): ID of command
+            context (Any, optional): associated data
+
+        Returns:
+            (Command): the Command resource
+        """
+        from .resources.commands import Command
+
+        return Command(self._http, context, application_id, command_id, guild_id)
 
     def message(self, channel_id: int, message_id: int, *, context = None):
         """Creates an interactable message resource.
@@ -184,7 +199,7 @@ class Client:
         Args:
             message_id (int): ID of target message
             channel_id (int): channel ID of target message
-            context (Any, optional): optional associated data
+            context (Any, optional): associated data
 
         Returns:
             (Message): the Message resource
@@ -199,7 +214,7 @@ class Client:
         Args:
             id (int): ID of the interaction
             token (str): interaction token
-            context (Any, optional): optional associated data
+            context (Any, optional): associated data
 
         Returns:
             (Interaction): the Interaction resource
@@ -213,7 +228,7 @@ class Client:
 
         Args:
             user_id (int): ID of target user
-            context (Any, optional): optional associated data
+            context (Any, optional): associated data
 
         Returns:
             (User): the User resource
@@ -221,39 +236,6 @@ class Client:
         from .resources.user import User
 
         return User(self._http, context, user_id)
-    
-    async def register_guild_commands(self, application_id: int, commands: list[SlashCommand | UserCommand | MessageCommand], guild_id: int):
-        """Registers commands at the guild level.
-
-        Args:
-            application_id (int): bot's user ID
-            commands (list[SlashCommand  |  UserCommand  |  MessageCommand]): commands to register
-            guild_id (int): ID of guild in which to register command
-        """
-        if not isinstance(commands, list):
-            commands = [commands]
-
-        await self._http.request(
-            'PUT', 
-            f"applications/{application_id}/guilds/{guild_id}/commands", 
-            data=[command.to_dict() for command in commands]
-        )
-    
-    async def register_global_commands(self, application_id: int, commands: list[SlashCommand | UserCommand | MessageCommand]):
-        """Registers a command at the global/bot level. (ALL GUILDS)
-
-        Args:
-            application_id (int): bot's user ID
-            commands (list[SlashCommand  |  UserCommand  |  MessageCommand]): commands to register
-        """
-        if not isinstance(commands, list):
-            commands = [commands]
-
-        await self._http.request(
-            'PUT', 
-            f"applications/{application_id}/commands", 
-            data=[command.to_dict() for command in commands]
-        )
 
     async def listen_shard(self, shard: GatewayClient):
         """Consume a GatewayClient's event queue.

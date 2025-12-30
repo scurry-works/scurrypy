@@ -10,7 +10,7 @@ class DiscordError(Exception):
         """
         self.data = data
         self.status = status
-        self.reason = data.get('message', 'Unknown Error')
+        self.reason = data.get('message', data)
         self.code = data.get('code', 'Unknown Code')
 
         self.error_data = data.get('errors', {})

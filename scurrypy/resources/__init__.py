@@ -9,6 +9,7 @@ from .channel import (
     # ThreadFromMessageParams,
     Channel
 )
+from .commands import Command
 from .guild_emoji import GuildEmoji
 
 from .guild import (
@@ -30,6 +31,7 @@ __all__ = [
     "Application",
     "BotEmoji",
     "Channel",
+    "Command",
     "Guild",
     "GuildEmoji",
     "Interaction",

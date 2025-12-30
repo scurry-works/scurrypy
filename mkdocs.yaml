@@ -12,6 +12,9 @@ theme: # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#
     - navigation.sections
     - header.repo
     - content.tabs.link
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
   icon:
     repo: fontawesome/brands/github
   palette:
@@ -84,52 +87,54 @@ watch:
 
 nav:
   - Home: index.md
-  - Getting Started: getting_started.md
-  - Examples: examples.md
-  - Addons: addons.md
-  - Logging: logging.md
-  - Migrations: migrating.md
   - FAQ: faq.md
   - Footnotes: doc_notes.md
+  - Getting Started:
+    - Start Here!: getting_started/start_here.md
+    - Examples: getting_started/examples.md
+    - Addons: getting_started/addons.md
+    - Logging: getting_started/logging.md
+    - Migrations: getting_started/migrating.md
   - API Reference:
     - Overview: api/index.md
     - Addon: api/addon.md
-    - Client: api/client.md
-    - Intents: api/intents.md
-    - Permissions: api/permissions.md
-    - Commands: api/commands.md
-    - UI Components: api/ui_components.md
-    - Components: api/components.md
-    - Component Types: api/component_types.md
     - Channel: api/channel.md
+    - Client: api/client.md
+    - Commands: api/commands.md
+    - Component Types: api/component_types.md
+    - Components: api/components.md
+    - Embed (Legacy): api/embed.md
+    - Intents: api/intents.md
     - Message: api/message.md
     - Models: api/models.md
+    - Permissions: api/permissions.md
     - Role: api/role.md
-    - Embed (Legacy): api/embed.md
+    - UI Components: api/ui_components.md
+  - Events:
+    - Overview: events/index.md
+    - Channel: events/channel.md
+    - Event Types: events/event_types.md
+    - Guild: events/guild.md
+    - Interaction: events/interaction.md
+    - Message: events/message.md
+    - Reaction: events/reaction.md
+    - Ready: events/ready.md
+    - Role: events/role.md
   - Resources:
     - Overview: resources/index.md
     - Application: resources/application.md
     - Bot Emoji: resources/bot_emojis.md
     - Channel: resources/channel.md
-    - Guild: resources/guild.md
+    - Command: resources/command.md
     - Guild Emoji: resources/guild_emoji.md
+    - Guild: resources/guild.md
     - Interaction: resources/interaction.md
     - Message: resources/message.md
     - User: resources/user.md
-  - Events:
-    - Overview: events/index.md
-    - Event Types: events/event_types.md
-    - Interaction: events/interaction.md
-    - Message: events/message.md
-    - Channel: events/channel.md
-    - Guild: events/guild.md
-    - Reactions: events/reaction.md
-    - Ready: events/ready.md
-    - Roles: events/role.md
   - Internals:
     - Overview: internals/index.md
     - Base Models: internals/model.md
-    - HTTP: internals/http.md
-    - Gateway: internals/gateway.md
     - Discord Error: internals/error.md
+    - Gateway: internals/gateway.md
+    - HTTP: internals/http.md
     - Technical Writeup: internals/technical_writeup.md

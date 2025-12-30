@@ -2,7 +2,29 @@
 
 This changelog documents all notable and breaking changes to ScurryPy.
 
-## [0.12.0] - 2025-12
+## [0.13.0] - Dec 2025
+
+### Breaking Changes
+
+* `Client.register_guild_commands` and `Client.register_global_commands` have been removed in favor of the `Commands` resource.
+
+### Changed
+
+* New resource: `Commands`.
+    * Ex.
+        Old:
+        ```py
+        async def on_register_commands():
+            await client.register_guild_commands(APP_ID, commands, guild_ids=GUILD_ID)
+        ```
+
+        New:
+        ```py
+        async def on_register_commands():
+            await client.command(APP_ID, GUILD_ID).create_command(command)
+        ```
+
+## [0.12.0]
 
 ### Changed
 

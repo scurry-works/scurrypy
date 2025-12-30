@@ -201,7 +201,7 @@ class HTTPClient:
                 # No content
                 return None
 
-            case 200:
+            case 200 | 201:
                 # JSON body is guaranteed if successful
                 try:
                     return await resp.json()
@@ -243,6 +243,8 @@ class HTTPClient:
                 bucket.remaining = remaining
                 bucket.reset_after = reset_after
                 bucket.reset_on = reset_on
+
+            logger.debug(f"[{endpoint}] {resp.method} bucket={bucket_id} reset_on={bucket.reset_on} remaining={bucket.remaining} reset_after={bucket.reset_after:.2f}s")
 
             if bucket.remaining == 0 and not bucket.sleep_task:
                 bucket.sleep_task = asyncio.create_task(
