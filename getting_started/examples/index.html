@@ -8,16 +8,16 @@
       
       
       
-        <link rel="canonical" href="https://furmissile.github.io/scurrypy/examples/">
+        <link rel="canonical" href="https://furmissile.github.io/scurrypy/getting_started/examples/">
       
       
-        <link rel="prev" href="../getting_started/">
+        <link rel="prev" href="../start_here/">
       
       
         <link rel="next" href="../addons/">
       
       
-      <link rel="icon" href="../assets/wizard.svg">
+      <link rel="icon" href="../../assets/wizard.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
     
     
@@ -26,10 +26,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,15 +48,15 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../css/custom_color.css">
+      <link rel="stylesheet" href="../../css/custom_color.css">
     
-      <link rel="stylesheet" href="../css/header.css">
+      <link rel="stylesheet" href="../../css/header.css">
     
-      <link rel="stylesheet" href="../css/text_alignment.css">
+      <link rel="stylesheet" href="../../css/text_alignment.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -96,11 +96,11 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="ScurryPy" class="md-header__button md-logo" aria-label="ScurryPy" data-md-component="logo">
+    <a href="../.." title="ScurryPy" class="md-header__button md-logo" aria-label="ScurryPy" data-md-component="logo">
       
-  <img src="../assets/wizard.svg" alt="logo">
+  <img src="../../assets/wizard.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -210,13 +210,181 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../doc_notes/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Footnotes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../start_here/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../events/" class="md-tabs__link">
+          
+  
+  
+  Events
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../internals/" class="md-tabs__link">
+          
+  
+  
+  Internals
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -230,12 +398,14 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="ScurryPy" class="md-nav__button md-logo" aria-label="ScurryPy" data-md-component="logo">
+    <a href="../.." title="ScurryPy" class="md-nav__button md-logo" aria-label="ScurryPy" data-md-component="logo">
       
-  <img src="../assets/wizard.svg" alt="logo">
+  <img src="../../assets/wizard.svg" alt="logo">
 
     </a>
     ScurryPy
@@ -262,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -284,12 +454,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting_started/" class="md-nav__link">
+      <a href="../../faq/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Getting Started
+    FAQ
     
   </span>
   
@@ -301,6 +471,99 @@
     
       
       
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../doc_notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Footnotes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../start_here/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Start Here!
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
     
@@ -431,9 +694,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -453,9 +717,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -475,9 +740,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -489,414 +755,6 @@
   
   <span class="md-ellipsis">
     Migrations
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../faq/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    FAQ
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../doc_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Footnotes
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
-        
-          
-          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    API Reference
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            API Reference
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/addon/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Addon
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/client/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Client
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/intents/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Intents
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/permissions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Permissions
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/commands/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Commands
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/ui_components/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    UI Components
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/components/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Components
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/component_types/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Component Types
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/channel/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Channel
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/message/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Message
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/models/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Models
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/role/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Role
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/embed/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Embed (Legacy)
     
   </span>
   
@@ -925,24 +783,24 @@
     
     
       
-        
+      
         
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
-    Resources
+    API Reference
     
   </span>
   
@@ -950,10 +808,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            Resources
+            API Reference
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -964,7 +822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/" class="md-nav__link">
+      <a href="../../api/" class="md-nav__link">
         
   
   
@@ -987,12 +845,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/application/" class="md-nav__link">
+      <a href="../../api/addon/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Application
+    Addon
     
   </span>
   
@@ -1010,30 +868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/bot_emojis/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Bot Emoji
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../resources/channel/" class="md-nav__link">
+      <a href="../../api/channel/" class="md-nav__link">
         
   
   
@@ -1056,12 +891,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/guild/" class="md-nav__link">
+      <a href="../../api/client/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Guild
+    Client
     
   </span>
   
@@ -1079,12 +914,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/guild_emoji/" class="md-nav__link">
+      <a href="../../api/commands/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Guild Emoji
+    Commands
     
   </span>
   
@@ -1102,12 +937,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/interaction/" class="md-nav__link">
+      <a href="../../api/component_types/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Interaction
+    Component Types
     
   </span>
   
@@ -1125,7 +960,76 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/message/" class="md-nav__link">
+      <a href="../../api/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/embed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embed (Legacy)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/intents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Intents
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/message/" class="md-nav__link">
         
   
   
@@ -1148,7 +1052,613 @@
   
   
     <li class="md-nav__item">
-      <a href="../resources/user/" class="md-nav__link">
+      <a href="../../api/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/role/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Role
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/ui_components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UI Components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Events
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Events
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/channel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Channel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/event_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Event Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/guild/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/reaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/ready/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ready
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../events/role/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Role
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/application/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Application
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/bot_emojis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bot Emoji
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/channel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Channel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Command
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/guild_emoji/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guild Emoji
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/guild/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Guild
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/interaction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Interaction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/message/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Message
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/user/" class="md-nav__link">
         
   
   
@@ -1182,276 +1692,19 @@
     
     
       
-        
+      
         
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    Events
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11">
-            <span class="md-nav__icon md-icon"></span>
-            Events
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../events/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../events/event_types/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Event Types
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../events/interaction/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Interaction
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../events/message/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Message
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../events/channel/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Channel
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../events/guild/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Guild
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../events/reaction/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Reactions
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../events/ready/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Ready
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../events/role/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Roles
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
-        
-          
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -1464,8 +1717,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_12">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Internals
           </label>
@@ -1478,7 +1731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../internals/" class="md-nav__link">
+      <a href="../../internals/" class="md-nav__link">
         
   
   
@@ -1501,7 +1754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../internals/model/" class="md-nav__link">
+      <a href="../../internals/model/" class="md-nav__link">
         
   
   
@@ -1524,53 +1777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../internals/http/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    HTTP
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../internals/gateway/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Gateway
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../internals/error/" class="md-nav__link">
+      <a href="../../internals/error/" class="md-nav__link">
         
   
   
@@ -1593,7 +1800,53 @@
   
   
     <li class="md-nav__item">
-      <a href="../internals/technical_writeup/" class="md-nav__link">
+      <a href="../../internals/gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gateway
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../internals/http/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HTTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../internals/technical_writeup/" class="md-nav__link">
         
   
   
@@ -1839,9 +2092,7 @@
 <span class="normal"><a href="#__codelineno-3-16">16</a></span>
 <span class="normal"><a href="#__codelineno-3-17">17</a></span>
 <span class="normal"><a href="#__codelineno-3-18">18</a></span>
-<span class="normal"><a href="#__codelineno-3-19">19</a></span>
-<span class="normal"><a href="#__codelineno-3-20">20</a></span>
-<span class="normal"><a href="#__codelineno-3-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a> <span class="c1"># --- Core library imports ---</span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># --- Core library imports ---</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">Intents</span><span class="p">,</span> <span class="n">EventTypes</span><span class="p">,</span> <span class="n">MessageCreateEvent</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3"></a>
 <a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">,</span> <span class="n">intents</span><span class="o">=</span><span class="n">Intents</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">message_content</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
@@ -1849,19 +2100,17 @@
 <a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="c1"># --- Setup bot ---</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_ping</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">MessageCreateEvent</span><span class="p">):</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">event</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No message content!&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10"></a>        <span class="k">return</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11"></a>
-<a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">event</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;!ping&#39;</span><span class="p">):</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This message is not a command.&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14"></a>        <span class="k">return</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>        <span class="k">return</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">event</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;!ping&#39;</span><span class="p">):</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>        <span class="k">return</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">channel_id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Pong!&quot;</span><span class="p">)</span>
 <a id="__codelineno-3-15" name="__codelineno-3-15"></a>
-<a id="__codelineno-3-16" name="__codelineno-3-16"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">channel_id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;Pong!&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">MESSAGE_CREATE</span><span class="p">,</span> <span class="n">on_ping</span><span class="p">)</span>
 <a id="__codelineno-3-17" name="__codelineno-3-17"></a>
-<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">MESSAGE_CREATE</span><span class="p">,</span> <span class="n">on_ping</span><span class="p">)</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19"></a>
-<a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="c1"># --- Run the bot ---</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="c1"># --- Run the bot ---</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 </div>
 <div class="tabbed-block">
@@ -1929,9 +2178,7 @@
 <span class="normal"><a href="#__codelineno-5-19">19</a></span>
 <span class="normal"><a href="#__codelineno-5-20">20</a></span>
 <span class="normal"><a href="#__codelineno-5-21">21</a></span>
-<span class="normal"><a href="#__codelineno-5-22">22</a></span>
-<span class="normal"><a href="#__codelineno-5-23">23</a></span>
-<span class="normal"><a href="#__codelineno-5-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># --- Core library imports ---</span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># --- Core library imports ---</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">EventTypes</span><span class="p">,</span> <span class="n">InteractionEvent</span><span class="p">,</span> <span class="n">SlashCommand</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3"></a>
 <a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># --- Setup bot ---</span>
@@ -1944,17 +2191,15 @@
 <a id="__codelineno-5-11" name="__codelineno-5-11"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Hello!&quot;</span><span class="p">)</span>
 <a id="__codelineno-5-12" name="__codelineno-5-12"></a>
 <a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_commands</span><span class="p">():</span>
-<a id="__codelineno-5-14" name="__codelineno-5-14"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">register_guild_commands</span><span class="p">(</span>
-<a id="__codelineno-5-15" name="__codelineno-5-15"></a>        <span class="n">APP_ID</span><span class="p">,</span>
-<a id="__codelineno-5-16" name="__codelineno-5-16"></a>        <span class="p">[</span><span class="n">SlashCommand</span><span class="p">(</span><span class="s2">&quot;greet&quot;</span><span class="p">,</span> <span class="s2">&quot;Greet the bot!&quot;</span><span class="p">)],</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17"></a>        <span class="n">GUILD_ID</span><span class="p">,</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="p">)</span>
-<a id="__codelineno-5-19" name="__codelineno-5-19"></a>
-<a id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="n">create_commands</span><span class="p">)</span>
-<a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">INTERACTION_CREATE</span><span class="p">,</span> <span class="n">on_greet</span><span class="p">)</span>
-<a id="__codelineno-5-22" name="__codelineno-5-22"></a>
-<a id="__codelineno-5-23" name="__codelineno-5-23"></a><span class="c1"># --- Run the bot ---</span>
-<a id="__codelineno-5-24" name="__codelineno-5-24"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">APP_ID</span><span class="p">,</span> <span class="n">GUILD_ID</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>        <span class="n">SlashCommand</span><span class="p">(</span><span class="s2">&quot;greet&quot;</span><span class="p">,</span> <span class="s2">&quot;Greet the bot!&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>    <span class="p">)</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="n">create_commands</span><span class="p">)</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">INTERACTION_CREATE</span><span class="p">,</span> <span class="n">on_greet</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="c1"># --- Run the bot ---</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 </div>
 <div class="tabbed-block">
@@ -2048,10 +2293,7 @@
 <span class="normal"><a href="#__codelineno-7-40">40</a></span>
 <span class="normal"><a href="#__codelineno-7-41">41</a></span>
 <span class="normal"><a href="#__codelineno-7-42">42</a></span>
-<span class="normal"><a href="#__codelineno-7-43">43</a></span>
-<span class="normal"><a href="#__codelineno-7-44">44</a></span>
-<span class="normal"><a href="#__codelineno-7-45">45</a></span>
-<span class="normal"><a href="#__codelineno-7-46">46</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># --- Core library imports ---</span>
+<span class="normal"><a href="#__codelineno-7-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># --- Core library imports ---</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="n">Client</span><span class="p">,</span> 
 <a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="n">EventTypes</span><span class="p">,</span> <span class="n">InteractionEvent</span><span class="p">,</span> <span class="n">InteractionTypes</span><span class="p">,</span> 
@@ -2063,40 +2305,37 @@
 <a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">)</span>
 <a id="__codelineno-7-11" name="__codelineno-7-11"></a>
 <a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_commands</span><span class="p">():</span>
-<a id="__codelineno-7-13" name="__codelineno-7-13"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">register_guild_commands</span><span class="p">(</span>
-<a id="__codelineno-7-14" name="__codelineno-7-14"></a>        <span class="n">APP_ID</span><span class="p">,</span>
-<a id="__codelineno-7-15" name="__codelineno-7-15"></a>        <span class="p">[</span><span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;button_demo&#39;</span><span class="p">,</span> <span class="s1">&#39;A command with a button!&#39;</span><span class="p">)],</span>
-<a id="__codelineno-7-16" name="__codelineno-7-16"></a>        <span class="n">GUILD_ID</span>
-<a id="__codelineno-7-17" name="__codelineno-7-17"></a>    <span class="p">)</span>
-<a id="__codelineno-7-18" name="__codelineno-7-18"></a>
-<a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">handle_button</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
-<a id="__codelineno-7-20" name="__codelineno-7-20"></a>    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">APPLICATION_COMMAND</span><span class="p">:</span>
-<a id="__codelineno-7-21" name="__codelineno-7-21"></a>        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s1">&#39;button_demo&#39;</span><span class="p">:</span>
-<a id="__codelineno-7-22" name="__codelineno-7-22"></a>            <span class="k">return</span>
-<a id="__codelineno-7-23" name="__codelineno-7-23"></a>
-<a id="__codelineno-7-24" name="__codelineno-7-24"></a>        <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span>
-<a id="__codelineno-7-25" name="__codelineno-7-25"></a>            <span class="n">MessagePart</span><span class="p">(</span>
-<a id="__codelineno-7-26" name="__codelineno-7-26"></a>                <span class="n">content</span><span class="o">=</span><span class="s1">&#39;Press the button!&#39;</span><span class="p">,</span>
-<a id="__codelineno-7-27" name="__codelineno-7-27"></a>                <span class="n">components</span><span class="o">=</span><span class="p">[</span>
-<a id="__codelineno-7-28" name="__codelineno-7-28"></a>                    <span class="n">ActionRowPart</span><span class="p">([</span>
-<a id="__codelineno-7-29" name="__codelineno-7-29"></a>                        <span class="n">Button</span><span class="p">(</span><span class="n">ButtonStyles</span><span class="o">.</span><span class="n">PRIMARY</span><span class="p">,</span> <span class="s1">&#39;btn_demo&#39;</span><span class="p">,</span> <span class="s1">&#39;Press me!&#39;</span><span class="p">)</span>
-<a id="__codelineno-7-30" name="__codelineno-7-30"></a>                    <span class="p">])</span>
-<a id="__codelineno-7-31" name="__codelineno-7-31"></a>                <span class="p">]</span>
-<a id="__codelineno-7-32" name="__codelineno-7-32"></a>            <span class="p">)</span>
-<a id="__codelineno-7-33" name="__codelineno-7-33"></a>        <span class="p">)</span>
-<a id="__codelineno-7-34" name="__codelineno-7-34"></a>
-<a id="__codelineno-7-35" name="__codelineno-7-35"></a>    <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">MESSAGE_COMPONENT</span><span class="p">:</span>
-<a id="__codelineno-7-36" name="__codelineno-7-36"></a>        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">custom_id</span> <span class="o">!=</span> <span class="s1">&#39;btn_demo&#39;</span><span class="p">:</span>
-<a id="__codelineno-7-37" name="__codelineno-7-37"></a>            <span class="k">return</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">APP_ID</span><span class="p">,</span> <span class="n">GUILD_ID</span><span class="p">)</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a>        <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;button_demo&#39;</span><span class="p">,</span> <span class="s1">&#39;A command with a button!&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a>    <span class="p">)</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">handle_button</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a>    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">APPLICATION_COMMAND</span><span class="p">:</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a>        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s1">&#39;button_demo&#39;</span><span class="p">:</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a>            <span class="k">return</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a>        <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a>            <span class="n">MessagePart</span><span class="p">(</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a>                <span class="n">content</span><span class="o">=</span><span class="s1">&#39;Press the button!&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25"></a>                <span class="n">components</span><span class="o">=</span><span class="p">[</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26"></a>                    <span class="n">ActionRowPart</span><span class="p">([</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27"></a>                        <span class="n">Button</span><span class="p">(</span><span class="n">ButtonStyles</span><span class="o">.</span><span class="n">PRIMARY</span><span class="p">,</span> <span class="s1">&#39;btn_demo&#39;</span><span class="p">,</span> <span class="s1">&#39;Press me!&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28"></a>                    <span class="p">])</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29"></a>                <span class="p">]</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30"></a>            <span class="p">)</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31"></a>        <span class="p">)</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32"></a>
+<a id="__codelineno-7-33" name="__codelineno-7-33"></a>    <span class="k">elif</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">MESSAGE_COMPONENT</span><span class="p">:</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34"></a>        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">custom_id</span> <span class="o">!=</span> <span class="s1">&#39;btn_demo&#39;</span><span class="p">:</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35"></a>            <span class="k">return</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36"></a>
+<a id="__codelineno-7-37" name="__codelineno-7-37"></a>        <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&quot;You pressed the button!&quot;</span><span class="p">)</span>
 <a id="__codelineno-7-38" name="__codelineno-7-38"></a>
-<a id="__codelineno-7-39" name="__codelineno-7-39"></a>        <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;You pressed the button!&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-40" name="__codelineno-7-40"></a>
-<a id="__codelineno-7-41" name="__codelineno-7-41"></a><span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="n">create_commands</span><span class="p">)</span>
-<a id="__codelineno-7-42" name="__codelineno-7-42"></a>
-<a id="__codelineno-7-43" name="__codelineno-7-43"></a><span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">INTERACTION_CREATE</span><span class="p">,</span> <span class="n">handle_button</span><span class="p">)</span>
-<a id="__codelineno-7-44" name="__codelineno-7-44"></a>
-<a id="__codelineno-7-45" name="__codelineno-7-45"></a><span class="c1"># --- Run the bot ---</span>
-<a id="__codelineno-7-46" name="__codelineno-7-46"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a id="__codelineno-7-39" name="__codelineno-7-39"></a><span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="n">create_commands</span><span class="p">)</span>
+<a id="__codelineno-7-40" name="__codelineno-7-40"></a><span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">INTERACTION_CREATE</span><span class="p">,</span> <span class="n">handle_button</span><span class="p">)</span>
+<a id="__codelineno-7-41" name="__codelineno-7-41"></a>
+<a id="__codelineno-7-42" name="__codelineno-7-42"></a><span class="c1"># --- Run the bot ---</span>
+<a id="__codelineno-7-43" name="__codelineno-7-43"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 </div>
 <div class="tabbed-block">
@@ -2133,7 +2372,7 @@
 <span class="normal"><a href="#__codelineno-8-31">31</a></span>
 <span class="normal"><a href="#__codelineno-8-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1"># --- Core library imports ---</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">Interaction</span><span class="p">,</span> <span class="n">MessagePart</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurry_kit</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommandsAddon</span><span class="p">,</span> <span class="n">ComponentAddon</span><span class="p">,</span> <span class="n">ActionRowBuilder</span> <span class="k">as</span> <span class="n">A</span><span class="p">,</span> <span class="n">setup_default_logger</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurry_kit</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommandsAddon</span><span class="p">,</span> <span class="n">ComponentsAddon</span><span class="p">,</span> <span class="n">ActionRowBuilder</span> <span class="k">as</span> <span class="n">A</span><span class="p">,</span> <span class="n">setup_default_logger</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4"></a>
 <a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="c1"># --- Logger ---</span>
 <a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="n">logger</span> <span class="o">=</span> <span class="n">setup_default_logger</span><span class="p">()</span>
@@ -2141,7 +2380,7 @@
 <a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="c1"># --- Setup bot and addons ---</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">)</span>
 <a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="n">commands</span> <span class="o">=</span> <span class="n">CommandsAddon</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">APP_ID</span><span class="p">)</span>
-<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="n">components</span> <span class="o">=</span> <span class="n">ComponentAddon</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="n">components</span> <span class="o">=</span> <span class="n">ComponentsAddon</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
 <a id="__codelineno-8-12" name="__codelineno-8-12"></a>
 <a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="nd">@commands</span><span class="o">.</span><span class="n">slash_command</span><span class="p">(</span><span class="s2">&quot;button_demo&quot;</span><span class="p">,</span> <span class="s2">&quot;Show a button&quot;</span><span class="p">,</span> <span class="n">guild_ids</span><span class="o">=</span><span class="n">GUILD_ID</span><span class="p">)</span>
 <a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">button_demo</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">interaction</span><span class="p">:</span> <span class="n">Interaction</span><span class="p">):</span>
@@ -2167,12 +2406,9 @@
 </div>
 </div>
 </div>
-<h2 id="stateful-bot">Stateful Bot<a class="headerlink" href="#stateful-bot" title="Permanent link">&para;</a></h2>
-<hr />
-<p>Demonstrates grouping state and behavior using a class-based addon.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Scurrypy</label><label for="__tabbed_5_2">ScurryKit (recommended)</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<div class="admonition tip">
+<p class="admonition-title">Need to Refresh Your Commands?</p>
+<p>Consider deleting your old commands before registering new ones:
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
@@ -2182,124 +2418,24 @@
 <span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
 <span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-9-10">10</a></span>
-<span class="normal"><a href="#__codelineno-9-11">11</a></span>
-<span class="normal"><a href="#__codelineno-9-12">12</a></span>
-<span class="normal"><a href="#__codelineno-9-13">13</a></span>
-<span class="normal"><a href="#__codelineno-9-14">14</a></span>
-<span class="normal"><a href="#__codelineno-9-15">15</a></span>
-<span class="normal"><a href="#__codelineno-9-16">16</a></span>
-<span class="normal"><a href="#__codelineno-9-17">17</a></span>
-<span class="normal"><a href="#__codelineno-9-18">18</a></span>
-<span class="normal"><a href="#__codelineno-9-19">19</a></span>
-<span class="normal"><a href="#__codelineno-9-20">20</a></span>
-<span class="normal"><a href="#__codelineno-9-21">21</a></span>
-<span class="normal"><a href="#__codelineno-9-22">22</a></span>
-<span class="normal"><a href="#__codelineno-9-23">23</a></span>
-<span class="normal"><a href="#__codelineno-9-24">24</a></span>
-<span class="normal"><a href="#__codelineno-9-25">25</a></span>
-<span class="normal"><a href="#__codelineno-9-26">26</a></span>
-<span class="normal"><a href="#__codelineno-9-27">27</a></span>
-<span class="normal"><a href="#__codelineno-9-28">28</a></span>
-<span class="normal"><a href="#__codelineno-9-29">29</a></span>
-<span class="normal"><a href="#__codelineno-9-30">30</a></span>
-<span class="normal"><a href="#__codelineno-9-31">31</a></span>
-<span class="normal"><a href="#__codelineno-9-32">32</a></span>
-<span class="normal"><a href="#__codelineno-9-33">33</a></span>
-<span class="normal"><a href="#__codelineno-9-34">34</a></span>
-<span class="normal"><a href="#__codelineno-9-35">35</a></span>
-<span class="normal"><a href="#__codelineno-9-36">36</a></span>
-<span class="normal"><a href="#__codelineno-9-37">37</a></span>
-<span class="normal"><a href="#__codelineno-9-38">38</a></span>
-<span class="normal"><a href="#__codelineno-9-39">39</a></span>
-<span class="normal"><a href="#__codelineno-9-40">40</a></span>
-<span class="normal"><a href="#__codelineno-9-41">41</a></span>
-<span class="normal"><a href="#__codelineno-9-42">42</a></span>
-<span class="normal"><a href="#__codelineno-9-43">43</a></span>
-<span class="normal"><a href="#__codelineno-9-44">44</a></span>
-<span class="normal"><a href="#__codelineno-9-45">45</a></span>
-<span class="normal"><a href="#__codelineno-9-46">46</a></span>
-<span class="normal"><a href="#__codelineno-9-47">47</a></span>
-<span class="normal"><a href="#__codelineno-9-48">48</a></span>
-<span class="normal"><a href="#__codelineno-9-49">49</a></span>
-<span class="normal"><a href="#__codelineno-9-50">50</a></span>
-<span class="normal"><a href="#__codelineno-9-51">51</a></span>
-<span class="normal"><a href="#__codelineno-9-52">52</a></span>
-<span class="normal"><a href="#__codelineno-9-53">53</a></span>
-<span class="normal"><a href="#__codelineno-9-54">54</a></span>
-<span class="normal"><a href="#__codelineno-9-55">55</a></span>
-<span class="normal"><a href="#__codelineno-9-56">56</a></span>
-<span class="normal"><a href="#__codelineno-9-57">57</a></span>
-<span class="normal"><a href="#__codelineno-9-58">58</a></span>
-<span class="normal"><a href="#__codelineno-9-59">59</a></span>
-<span class="normal"><a href="#__codelineno-9-60">60</a></span>
-<span class="normal"><a href="#__codelineno-9-61">61</a></span>
-<span class="normal"><a href="#__codelineno-9-62">62</a></span>
-<span class="normal"><a href="#__codelineno-9-63">63</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1"># --- Core library imports ---</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">EventTypes</span><span class="p">,</span> <span class="n">SlashCommand</span><span class="p">,</span> <span class="n">InteractionEvent</span><span class="p">,</span> <span class="n">InteractionTypes</span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">refresh_commands</span><span class="p">():</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>    <span class="n">commands</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">APP_ID</span><span class="p">,</span> <span class="n">GUILD_ID</span><span class="p">)</span><span class="o">.</span><span class="n">fetch_all</span><span class="p">()</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5"></a>
-<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="c1"># --- Setup bot and addons ---</span>
-<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">StatefulBot</span><span class="p">:</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">Client</span><span class="p">):</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span> <span class="o">=</span> <span class="n">client</span>
-<a id="__codelineno-9-10" name="__codelineno-9-10"></a>
-<a id="__codelineno-9-11" name="__codelineno-9-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-9-12" name="__codelineno-9-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dict_lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
-<a id="__codelineno-9-13" name="__codelineno-9-13"></a>
-<a id="__codelineno-9-14" name="__codelineno-9-14"></a>        <span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">register_commands</span><span class="p">)</span>
-<a id="__codelineno-9-15" name="__codelineno-9-15"></a>        <span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">INTERACTION_CREATE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">)</span>
-<a id="__codelineno-9-16" name="__codelineno-9-16"></a>
-<a id="__codelineno-9-17" name="__codelineno-9-17"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">register_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Register slash commands on startup (before READY).&quot;&quot;&quot;</span>
-<a id="__codelineno-9-19" name="__codelineno-9-19"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">register_guild_commands</span><span class="p">(</span>
-<a id="__codelineno-9-20" name="__codelineno-9-20"></a>            <span class="n">APP_ID</span><span class="p">,</span>
-<a id="__codelineno-9-21" name="__codelineno-9-21"></a>            <span class="p">[</span>
-<a id="__codelineno-9-22" name="__codelineno-9-22"></a>                <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;points&#39;</span><span class="p">,</span> <span class="s1">&#39;Check your points&#39;</span><span class="p">),</span>
-<a id="__codelineno-9-23" name="__codelineno-9-23"></a>                <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;addpoints&#39;</span><span class="p">,</span> <span class="s1">&#39;Give points&#39;</span><span class="p">)</span>
-<a id="__codelineno-9-24" name="__codelineno-9-24"></a>            <span class="p">],</span>
-<a id="__codelineno-9-25" name="__codelineno-9-25"></a>            <span class="n">GUILD_ID</span>
-<a id="__codelineno-9-26" name="__codelineno-9-26"></a>        <span class="p">)</span>
-<a id="__codelineno-9-27" name="__codelineno-9-27"></a>
-<a id="__codelineno-9-28" name="__codelineno-9-28"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
-<a id="__codelineno-9-29" name="__codelineno-9-29"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Get points for the invoking user.&quot;&quot;&quot;</span>
-<a id="__codelineno-9-30" name="__codelineno-9-30"></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
-<a id="__codelineno-9-31" name="__codelineno-9-31"></a>
-<a id="__codelineno-9-32" name="__codelineno-9-32"></a>        <span class="n">pts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-9-33" name="__codelineno-9-33"></a>
-<a id="__codelineno-9-34" name="__codelineno-9-34"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You have </span><span class="si">{</span><span class="n">pts</span><span class="si">}</span><span class="s2"> points!&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-35" name="__codelineno-9-35"></a>
-<a id="__codelineno-9-36" name="__codelineno-9-36"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">addpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
-<a id="__codelineno-9-37" name="__codelineno-9-37"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Add points for the invoking user.&quot;&quot;&quot;</span>
-<a id="__codelineno-9-38" name="__codelineno-9-38"></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
-<a id="__codelineno-9-39" name="__codelineno-9-39"></a>
-<a id="__codelineno-9-40" name="__codelineno-9-40"></a>        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict_lock</span><span class="p">:</span>
-<a id="__codelineno-9-41" name="__codelineno-9-41"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-<a id="__codelineno-9-42" name="__codelineno-9-42"></a>
-<a id="__codelineno-9-43" name="__codelineno-9-43"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Point added!&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-44" name="__codelineno-9-44"></a>
-<a id="__codelineno-9-45" name="__codelineno-9-45"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
-<a id="__codelineno-9-46" name="__codelineno-9-46"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Main entry point for commands.&quot;&quot;&quot;</span>
-<a id="__codelineno-9-47" name="__codelineno-9-47"></a>        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">APPLICATION_COMMAND</span><span class="p">:</span>
-<a id="__codelineno-9-48" name="__codelineno-9-48"></a>            <span class="k">return</span> <span class="c1"># ignore non-command interactions</span>
-<a id="__codelineno-9-49" name="__codelineno-9-49"></a>
-<a id="__codelineno-9-50" name="__codelineno-9-50"></a>        <span class="k">match</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
-<a id="__codelineno-9-51" name="__codelineno-9-51"></a>            <span class="k">case</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span>
-<a id="__codelineno-9-52" name="__codelineno-9-52"></a>                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
-<a id="__codelineno-9-53" name="__codelineno-9-53"></a>            <span class="k">case</span> <span class="s1">&#39;addpoints&#39;</span><span class="p">:</span>
-<a id="__codelineno-9-54" name="__codelineno-9-54"></a>                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">addpoints</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
-<a id="__codelineno-9-55" name="__codelineno-9-55"></a>            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
-<a id="__codelineno-9-56" name="__codelineno-9-56"></a>                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No command named &#39;</span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;!&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-57" name="__codelineno-9-57"></a>
-<a id="__codelineno-9-58" name="__codelineno-9-58"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">)</span>
-<a id="__codelineno-9-59" name="__codelineno-9-59"></a>
-<a id="__codelineno-9-60" name="__codelineno-9-60"></a><span class="n">StatefulBot</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-<a id="__codelineno-9-61" name="__codelineno-9-61"></a>
-<a id="__codelineno-9-62" name="__codelineno-9-62"></a><span class="c1"># --- Run the bot ---</span>
-<a id="__codelineno-9-63" name="__codelineno-9-63"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>    <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">commands</span><span class="p">:</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>        <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">APP_ID</span><span class="p">,</span> <span class="n">GUILD_ID</span><span class="p">,</span> <span class="n">cmd</span><span class="o">.</span><span class="n">id</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>    <span class="c1"># then create your new commands</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="n">refresh_commands</span><span class="p">)</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="o">...</span>
 </code></pre></div></td></tr></table></div>
+If you are using ScurryKit, this should be done for you.</p>
 </div>
+<h2 id="stateful-bot">Stateful Bot<a class="headerlink" href="#stateful-bot" title="Permanent link">&para;</a></h2>
+<hr />
+<p>Demonstrates grouping state and behavior using a class-based addon.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Scurrypy</label><label for="__tabbed_5_2">ScurryKit (recommended)</label></div>
+<div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
@@ -2336,49 +2472,101 @@
 <span class="normal"><a href="#__codelineno-10-33">33</a></span>
 <span class="normal"><a href="#__codelineno-10-34">34</a></span>
 <span class="normal"><a href="#__codelineno-10-35">35</a></span>
-<span class="normal"><a href="#__codelineno-10-36">36</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1"># --- Core library imports ---</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">Interaction</span><span class="p">,</span> <span class="n">InteractionEvent</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurry_kit</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommandsAddon</span><span class="p">,</span> <span class="n">setup_default_logger</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4"></a>
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="c1"># --- Logger ---</span>
-<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="n">logger</span> <span class="o">=</span> <span class="n">setup_default_logger</span><span class="p">()</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7"></a>
-<a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="c1"># --- Setup bot and addons ---</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">)</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="n">commands</span> <span class="o">=</span> <span class="n">CommandsAddon</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">APP_ID</span><span class="p">)</span>
-<a id="__codelineno-10-11" name="__codelineno-10-11"></a>
-<a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="n">user_points</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="n">dict_lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
-<a id="__codelineno-10-15" name="__codelineno-10-15"></a>
-<a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="nd">@commands</span><span class="o">.</span><span class="n">slash_command</span><span class="p">(</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s2">&quot;Check your points&quot;</span><span class="p">,</span> <span class="n">guild_ids</span><span class="o">=</span><span class="n">GUILD_ID</span><span class="p">)</span>
-<a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">points</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">interaction</span><span class="p">:</span> <span class="n">Interaction</span><span class="p">):</span>
-<a id="__codelineno-10-18" name="__codelineno-10-18"></a>    <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span> <span class="o">=</span> <span class="n">interaction</span><span class="o">.</span><span class="n">context</span>
-<a id="__codelineno-10-19" name="__codelineno-10-19"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
-<a id="__codelineno-10-20" name="__codelineno-10-20"></a>
-<a id="__codelineno-10-21" name="__codelineno-10-21"></a>    <span class="n">pts</span> <span class="o">=</span> <span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-10-22" name="__codelineno-10-22"></a>    <span class="k">await</span> <span class="n">interaction</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You have </span><span class="si">{</span><span class="n">pts</span><span class="si">}</span><span class="s2"> points!&quot;</span><span class="p">)</span>
-<a id="__codelineno-10-23" name="__codelineno-10-23"></a>
-<a id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="nd">@commands</span><span class="o">.</span><span class="n">slash_command</span><span class="p">(</span><span class="s2">&quot;addpoints&quot;</span><span class="p">,</span> <span class="s2">&quot;Give points&quot;</span><span class="p">,</span> <span class="n">guild_ids</span><span class="o">=</span><span class="n">GUILD_ID</span><span class="p">)</span>
-<a id="__codelineno-10-25" name="__codelineno-10-25"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">addpoints</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">interaction</span><span class="p">:</span> <span class="n">Interaction</span><span class="p">):</span>
-<a id="__codelineno-10-26" name="__codelineno-10-26"></a>    <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span> <span class="o">=</span> <span class="n">interaction</span><span class="o">.</span><span class="n">context</span>
-<a id="__codelineno-10-27" name="__codelineno-10-27"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
+<span class="normal"><a href="#__codelineno-10-36">36</a></span>
+<span class="normal"><a href="#__codelineno-10-37">37</a></span>
+<span class="normal"><a href="#__codelineno-10-38">38</a></span>
+<span class="normal"><a href="#__codelineno-10-39">39</a></span>
+<span class="normal"><a href="#__codelineno-10-40">40</a></span>
+<span class="normal"><a href="#__codelineno-10-41">41</a></span>
+<span class="normal"><a href="#__codelineno-10-42">42</a></span>
+<span class="normal"><a href="#__codelineno-10-43">43</a></span>
+<span class="normal"><a href="#__codelineno-10-44">44</a></span>
+<span class="normal"><a href="#__codelineno-10-45">45</a></span>
+<span class="normal"><a href="#__codelineno-10-46">46</a></span>
+<span class="normal"><a href="#__codelineno-10-47">47</a></span>
+<span class="normal"><a href="#__codelineno-10-48">48</a></span>
+<span class="normal"><a href="#__codelineno-10-49">49</a></span>
+<span class="normal"><a href="#__codelineno-10-50">50</a></span>
+<span class="normal"><a href="#__codelineno-10-51">51</a></span>
+<span class="normal"><a href="#__codelineno-10-52">52</a></span>
+<span class="normal"><a href="#__codelineno-10-53">53</a></span>
+<span class="normal"><a href="#__codelineno-10-54">54</a></span>
+<span class="normal"><a href="#__codelineno-10-55">55</a></span>
+<span class="normal"><a href="#__codelineno-10-56">56</a></span>
+<span class="normal"><a href="#__codelineno-10-57">57</a></span>
+<span class="normal"><a href="#__codelineno-10-58">58</a></span>
+<span class="normal"><a href="#__codelineno-10-59">59</a></span>
+<span class="normal"><a href="#__codelineno-10-60">60</a></span>
+<span class="normal"><a href="#__codelineno-10-61">61</a></span>
+<span class="normal"><a href="#__codelineno-10-62">62</a></span>
+<span class="normal"><a href="#__codelineno-10-63">63</a></span>
+<span class="normal"><a href="#__codelineno-10-64">64</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1"># --- Core library imports ---</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">EventTypes</span><span class="p">,</span> <span class="n">SlashCommand</span><span class="p">,</span> <span class="n">InteractionEvent</span><span class="p">,</span> <span class="n">InteractionTypes</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="c1"># --- Setup bot and addons ---</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">StatefulBot</span><span class="p">:</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">Client</span><span class="p">):</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span> <span class="o">=</span> <span class="n">client</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dict_lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14"></a>        <span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">register_commands</span><span class="p">)</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15"></a>        <span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">INTERACTION_CREATE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dispatch</span><span class="p">)</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">register_commands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Register slash commands on startup (before READY).&quot;&quot;&quot;</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19"></a>
+<a id="__codelineno-10-20" name="__codelineno-10-20"></a>        <span class="n">bot_commands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">APP_ID</span><span class="p">,</span> <span class="n">GUILD_ID</span><span class="p">)</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21"></a>        <span class="n">commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22"></a>            <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;points&#39;</span><span class="p">,</span> <span class="s1">&#39;Check your points&#39;</span><span class="p">),</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23"></a>            <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;addpoints&#39;</span><span class="p">,</span> <span class="s1">&#39;Give points&#39;</span><span class="p">)</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24"></a>        <span class="p">]</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25"></a>
+<a id="__codelineno-10-26" name="__codelineno-10-26"></a>        <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">commands</span><span class="p">:</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27"></a>            <span class="k">await</span> <span class="n">bot_commands</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
 <a id="__codelineno-10-28" name="__codelineno-10-28"></a>
-<a id="__codelineno-10-29" name="__codelineno-10-29"></a>    <span class="c1"># lock for async</span>
-<a id="__codelineno-10-30" name="__codelineno-10-30"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">dict_lock</span><span class="p">:</span>
-<a id="__codelineno-10-31" name="__codelineno-10-31"></a>        <span class="n">user_points</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-10-29" name="__codelineno-10-29"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
+<a id="__codelineno-10-30" name="__codelineno-10-30"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Get points for the invoking user.&quot;&quot;&quot;</span>
+<a id="__codelineno-10-31" name="__codelineno-10-31"></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
 <a id="__codelineno-10-32" name="__codelineno-10-32"></a>
-<a id="__codelineno-10-33" name="__codelineno-10-33"></a>    <span class="k">await</span> <span class="n">interaction</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Point added!&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-33" name="__codelineno-10-33"></a>        <span class="n">pts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <a id="__codelineno-10-34" name="__codelineno-10-34"></a>
-<a id="__codelineno-10-35" name="__codelineno-10-35"></a><span class="c1"># --- Run the bot ---</span>
-<a id="__codelineno-10-36" name="__codelineno-10-36"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a id="__codelineno-10-35" name="__codelineno-10-35"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You have </span><span class="si">{</span><span class="n">pts</span><span class="si">}</span><span class="s2"> points!&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-36" name="__codelineno-10-36"></a>
+<a id="__codelineno-10-37" name="__codelineno-10-37"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">addpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
+<a id="__codelineno-10-38" name="__codelineno-10-38"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Add points for the invoking user.&quot;&quot;&quot;</span>
+<a id="__codelineno-10-39" name="__codelineno-10-39"></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
+<a id="__codelineno-10-40" name="__codelineno-10-40"></a>
+<a id="__codelineno-10-41" name="__codelineno-10-41"></a>        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict_lock</span><span class="p">:</span>
+<a id="__codelineno-10-42" name="__codelineno-10-42"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-10-43" name="__codelineno-10-43"></a>
+<a id="__codelineno-10-44" name="__codelineno-10-44"></a>        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Point added!&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-45" name="__codelineno-10-45"></a>
+<a id="__codelineno-10-46" name="__codelineno-10-46"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
+<a id="__codelineno-10-47" name="__codelineno-10-47"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Main entry point for commands.&quot;&quot;&quot;</span>
+<a id="__codelineno-10-48" name="__codelineno-10-48"></a>        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">APPLICATION_COMMAND</span><span class="p">:</span>
+<a id="__codelineno-10-49" name="__codelineno-10-49"></a>            <span class="k">return</span> <span class="c1"># ignore non-command interactions</span>
+<a id="__codelineno-10-50" name="__codelineno-10-50"></a>
+<a id="__codelineno-10-51" name="__codelineno-10-51"></a>        <span class="k">match</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+<a id="__codelineno-10-52" name="__codelineno-10-52"></a>            <span class="k">case</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span>
+<a id="__codelineno-10-53" name="__codelineno-10-53"></a>                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<a id="__codelineno-10-54" name="__codelineno-10-54"></a>            <span class="k">case</span> <span class="s1">&#39;addpoints&#39;</span><span class="p">:</span>
+<a id="__codelineno-10-55" name="__codelineno-10-55"></a>                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">addpoints</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<a id="__codelineno-10-56" name="__codelineno-10-56"></a>            <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+<a id="__codelineno-10-57" name="__codelineno-10-57"></a>                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">bot</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No command named &#39;</span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;!&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-58" name="__codelineno-10-58"></a>
+<a id="__codelineno-10-59" name="__codelineno-10-59"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">)</span>
+<a id="__codelineno-10-60" name="__codelineno-10-60"></a>
+<a id="__codelineno-10-61" name="__codelineno-10-61"></a><span class="n">StatefulBot</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+<a id="__codelineno-10-62" name="__codelineno-10-62"></a>
+<a id="__codelineno-10-63" name="__codelineno-10-63"></a><span class="c1"># --- Run the bot ---</span>
+<a id="__codelineno-10-64" name="__codelineno-10-64"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 </div>
-</div>
-</div>
-<h3 id="stateful-bot-an-alternative-pattern">Stateful Bot: An Alternative Pattern<a class="headerlink" href="#stateful-bot-an-alternative-pattern" title="Permanent link">&para;</a></h3>
-<hr />
-<p>Demonstrates the same stateful bot example, but with state separated from bot to show no one object owns state.</p>
+<div class="tabbed-block">
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
@@ -2414,100 +2602,178 @@
 <span class="normal"><a href="#__codelineno-11-33">33</a></span>
 <span class="normal"><a href="#__codelineno-11-34">34</a></span>
 <span class="normal"><a href="#__codelineno-11-35">35</a></span>
-<span class="normal"><a href="#__codelineno-11-36">36</a></span>
-<span class="normal"><a href="#__codelineno-11-37">37</a></span>
-<span class="normal"><a href="#__codelineno-11-38">38</a></span>
-<span class="normal"><a href="#__codelineno-11-39">39</a></span>
-<span class="normal"><a href="#__codelineno-11-40">40</a></span>
-<span class="normal"><a href="#__codelineno-11-41">41</a></span>
-<span class="normal"><a href="#__codelineno-11-42">42</a></span>
-<span class="normal"><a href="#__codelineno-11-43">43</a></span>
-<span class="normal"><a href="#__codelineno-11-44">44</a></span>
-<span class="normal"><a href="#__codelineno-11-45">45</a></span>
-<span class="normal"><a href="#__codelineno-11-46">46</a></span>
-<span class="normal"><a href="#__codelineno-11-47">47</a></span>
-<span class="normal"><a href="#__codelineno-11-48">48</a></span>
-<span class="normal"><a href="#__codelineno-11-49">49</a></span>
-<span class="normal"><a href="#__codelineno-11-50">50</a></span>
-<span class="normal"><a href="#__codelineno-11-51">51</a></span>
-<span class="normal"><a href="#__codelineno-11-52">52</a></span>
-<span class="normal"><a href="#__codelineno-11-53">53</a></span>
-<span class="normal"><a href="#__codelineno-11-54">54</a></span>
-<span class="normal"><a href="#__codelineno-11-55">55</a></span>
-<span class="normal"><a href="#__codelineno-11-56">56</a></span>
-<span class="normal"><a href="#__codelineno-11-57">57</a></span>
-<span class="normal"><a href="#__codelineno-11-58">58</a></span>
-<span class="normal"><a href="#__codelineno-11-59">59</a></span>
-<span class="normal"><a href="#__codelineno-11-60">60</a></span>
-<span class="normal"><a href="#__codelineno-11-61">61</a></span>
-<span class="normal"><a href="#__codelineno-11-62">62</a></span>
-<span class="normal"><a href="#__codelineno-11-63">63</a></span>
-<span class="normal"><a href="#__codelineno-11-64">64</a></span>
-<span class="normal"><a href="#__codelineno-11-65">65</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1"># --- Core library imports ---</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">EventTypes</span><span class="p">,</span> <span class="n">SlashCommand</span><span class="p">,</span> <span class="n">InteractionEvent</span><span class="p">,</span> <span class="n">InteractionTypes</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
-<a id="__codelineno-11-5" name="__codelineno-11-5"></a>
-<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="c1"># --- Setup bot state separate from event handlers ---</span>
-<a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">StatefulBot</span><span class="p">:</span>
-<a id="__codelineno-11-8" name="__codelineno-11-8"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">Client</span><span class="p">):</span>
-<a id="__codelineno-11-9" name="__codelineno-11-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span> <span class="o">=</span> <span class="n">client</span>
-<a id="__codelineno-11-10" name="__codelineno-11-10"></a>
-<a id="__codelineno-11-11" name="__codelineno-11-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-11-12" name="__codelineno-11-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dict_lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
-<a id="__codelineno-11-13" name="__codelineno-11-13"></a>
-<a id="__codelineno-11-14" name="__codelineno-11-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-<a id="__codelineno-11-15" name="__codelineno-11-15"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Get points for the invoking user.&quot;&quot;&quot;</span>
-<a id="__codelineno-11-16" name="__codelineno-11-16"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<a id="__codelineno-11-17" name="__codelineno-11-17"></a>
-<a id="__codelineno-11-18" name="__codelineno-11-18"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">addpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-<a id="__codelineno-11-19" name="__codelineno-11-19"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Add points for the invoking user.&quot;&quot;&quot;</span>
-<a id="__codelineno-11-20" name="__codelineno-11-20"></a>        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict_lock</span><span class="p">:</span>
-<a id="__codelineno-11-21" name="__codelineno-11-21"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-<a id="__codelineno-11-22" name="__codelineno-11-22"></a>
-<a id="__codelineno-11-23" name="__codelineno-11-23"></a><span class="c1"># --- Setup bot and addons ---</span>
-<a id="__codelineno-11-24" name="__codelineno-11-24"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">)</span>
-<a id="__codelineno-11-25" name="__codelineno-11-25"></a>
-<a id="__codelineno-11-26" name="__codelineno-11-26"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">register_commands</span><span class="p">():</span>
-<a id="__codelineno-11-27" name="__codelineno-11-27"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Register slash commands on startup (before READY).&quot;&quot;&quot;</span>
-<a id="__codelineno-11-28" name="__codelineno-11-28"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">register_guild_commands</span><span class="p">(</span>
-<a id="__codelineno-11-29" name="__codelineno-11-29"></a>        <span class="n">APP_ID</span><span class="p">,</span>
-<a id="__codelineno-11-30" name="__codelineno-11-30"></a>        <span class="p">[</span>
-<a id="__codelineno-11-31" name="__codelineno-11-31"></a>            <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;points&#39;</span><span class="p">,</span> <span class="s1">&#39;Check your points&#39;</span><span class="p">),</span>
-<a id="__codelineno-11-32" name="__codelineno-11-32"></a>            <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;addpoints&#39;</span><span class="p">,</span> <span class="s1">&#39;Give points&#39;</span><span class="p">)</span>
-<a id="__codelineno-11-33" name="__codelineno-11-33"></a>        <span class="p">],</span>
-<a id="__codelineno-11-34" name="__codelineno-11-34"></a>        <span class="n">GUILD_ID</span>
-<a id="__codelineno-11-35" name="__codelineno-11-35"></a>    <span class="p">)</span>
-<a id="__codelineno-11-36" name="__codelineno-11-36"></a>
-<a id="__codelineno-11-37" name="__codelineno-11-37"></a><span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="n">register_commands</span><span class="p">)</span>
-<a id="__codelineno-11-38" name="__codelineno-11-38"></a>
-<a id="__codelineno-11-39" name="__codelineno-11-39"></a><span class="n">bot_state</span> <span class="o">=</span> <span class="n">StatefulBot</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
-<a id="__codelineno-11-40" name="__codelineno-11-40"></a>
-<a id="__codelineno-11-41" name="__codelineno-11-41"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_points</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
-<a id="__codelineno-11-42" name="__codelineno-11-42"></a>    <span class="n">pts</span> <span class="o">=</span> <span class="n">bot_state</span><span class="o">.</span><span class="n">get_points</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-<a id="__codelineno-11-43" name="__codelineno-11-43"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You have </span><span class="si">{</span><span class="n">pts</span><span class="si">}</span><span class="s2"> points!&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-44" name="__codelineno-11-44"></a>
-<a id="__codelineno-11-45" name="__codelineno-11-45"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_add_points</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
-<a id="__codelineno-11-46" name="__codelineno-11-46"></a>    <span class="k">await</span> <span class="n">bot_state</span><span class="o">.</span><span class="n">addpoints</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-<a id="__codelineno-11-47" name="__codelineno-11-47"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Point added!&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-48" name="__codelineno-11-48"></a>
-<a id="__codelineno-11-49" name="__codelineno-11-49"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">dispatch</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
-<a id="__codelineno-11-50" name="__codelineno-11-50"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Main entry point for commands.&quot;&quot;&quot;</span>
-<a id="__codelineno-11-51" name="__codelineno-11-51"></a>    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">APPLICATION_COMMAND</span><span class="p">:</span>
-<a id="__codelineno-11-52" name="__codelineno-11-52"></a>        <span class="k">return</span> <span class="c1"># ignore non-command interactions</span>
-<a id="__codelineno-11-53" name="__codelineno-11-53"></a>
-<a id="__codelineno-11-54" name="__codelineno-11-54"></a>    <span class="k">match</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
-<a id="__codelineno-11-55" name="__codelineno-11-55"></a>        <span class="k">case</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span>
-<a id="__codelineno-11-56" name="__codelineno-11-56"></a>            <span class="k">await</span> <span class="n">on_points</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
-<a id="__codelineno-11-57" name="__codelineno-11-57"></a>        <span class="k">case</span> <span class="s1">&#39;addpoints&#39;</span><span class="p">:</span>
-<a id="__codelineno-11-58" name="__codelineno-11-58"></a>            <span class="k">await</span> <span class="n">on_add_points</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
-<a id="__codelineno-11-59" name="__codelineno-11-59"></a>        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
-<a id="__codelineno-11-60" name="__codelineno-11-60"></a>            <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No command named &#39;</span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;!&quot;</span><span class="p">)</span>
-<a id="__codelineno-11-61" name="__codelineno-11-61"></a>
-<a id="__codelineno-11-62" name="__codelineno-11-62"></a><span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">INTERACTION_CREATE</span><span class="p">,</span> <span class="n">dispatch</span><span class="p">)</span>
-<a id="__codelineno-11-63" name="__codelineno-11-63"></a>
-<a id="__codelineno-11-64" name="__codelineno-11-64"></a><span class="c1"># --- Run the bot ---</span>
-<a id="__codelineno-11-65" name="__codelineno-11-65"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="normal"><a href="#__codelineno-11-36">36</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1"># --- Core library imports ---</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">Interaction</span><span class="p">,</span> <span class="n">InteractionEvent</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurry_kit</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommandsAddon</span><span class="p">,</span> <span class="n">setup_default_logger</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="c1"># --- Logger ---</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="n">logger</span> <span class="o">=</span> <span class="n">setup_default_logger</span><span class="p">()</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="c1"># --- Setup bot and addons ---</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">)</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="n">commands</span> <span class="o">=</span> <span class="n">CommandsAddon</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">APP_ID</span><span class="p">)</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="n">user_points</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="n">dict_lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15"></a>
+<a id="__codelineno-11-16" name="__codelineno-11-16"></a><span class="nd">@commands</span><span class="o">.</span><span class="n">slash_command</span><span class="p">(</span><span class="s2">&quot;points&quot;</span><span class="p">,</span> <span class="s2">&quot;Check your points&quot;</span><span class="p">,</span> <span class="n">guild_ids</span><span class="o">=</span><span class="n">GUILD_ID</span><span class="p">)</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">points</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">interaction</span><span class="p">:</span> <span class="n">Interaction</span><span class="p">):</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18"></a>    <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span> <span class="o">=</span> <span class="n">interaction</span><span class="o">.</span><span class="n">context</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20"></a>
+<a id="__codelineno-11-21" name="__codelineno-11-21"></a>    <span class="n">pts</span> <span class="o">=</span> <span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22"></a>    <span class="k">await</span> <span class="n">interaction</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You have </span><span class="si">{</span><span class="n">pts</span><span class="si">}</span><span class="s2"> points!&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23"></a>
+<a id="__codelineno-11-24" name="__codelineno-11-24"></a><span class="nd">@commands</span><span class="o">.</span><span class="n">slash_command</span><span class="p">(</span><span class="s2">&quot;addpoints&quot;</span><span class="p">,</span> <span class="s2">&quot;Give points&quot;</span><span class="p">,</span> <span class="n">guild_ids</span><span class="o">=</span><span class="n">GUILD_ID</span><span class="p">)</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">addpoints</span><span class="p">(</span><span class="n">bot</span><span class="p">:</span> <span class="n">Client</span><span class="p">,</span> <span class="n">interaction</span><span class="p">:</span> <span class="n">Interaction</span><span class="p">):</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26"></a>    <span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span> <span class="o">=</span> <span class="n">interaction</span><span class="o">.</span><span class="n">context</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27"></a>    <span class="n">user</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28"></a>
+<a id="__codelineno-11-29" name="__codelineno-11-29"></a>    <span class="c1"># lock for async</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30"></a>    <span class="k">async</span> <span class="k">with</span> <span class="n">dict_lock</span><span class="p">:</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31"></a>        <span class="n">user_points</span><span class="p">[</span><span class="n">user</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-11-32" name="__codelineno-11-32"></a>
+<a id="__codelineno-11-33" name="__codelineno-11-33"></a>    <span class="k">await</span> <span class="n">interaction</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Point added!&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-34" name="__codelineno-11-34"></a>
+<a id="__codelineno-11-35" name="__codelineno-11-35"></a><span class="c1"># --- Run the bot ---</span>
+<a id="__codelineno-11-36" name="__codelineno-11-36"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<h3 id="stateful-bot-an-alternative-pattern">Stateful Bot: An Alternative Pattern<a class="headerlink" href="#stateful-bot-an-alternative-pattern" title="Permanent link">&para;</a></h3>
+<hr />
+<p>Demonstrates the same stateful bot example, but with state separated from bot to show no one object owns state.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span>
+<span class="normal"><a href="#__codelineno-12-19">19</a></span>
+<span class="normal"><a href="#__codelineno-12-20">20</a></span>
+<span class="normal"><a href="#__codelineno-12-21">21</a></span>
+<span class="normal"><a href="#__codelineno-12-22">22</a></span>
+<span class="normal"><a href="#__codelineno-12-23">23</a></span>
+<span class="normal"><a href="#__codelineno-12-24">24</a></span>
+<span class="normal"><a href="#__codelineno-12-25">25</a></span>
+<span class="normal"><a href="#__codelineno-12-26">26</a></span>
+<span class="normal"><a href="#__codelineno-12-27">27</a></span>
+<span class="normal"><a href="#__codelineno-12-28">28</a></span>
+<span class="normal"><a href="#__codelineno-12-29">29</a></span>
+<span class="normal"><a href="#__codelineno-12-30">30</a></span>
+<span class="normal"><a href="#__codelineno-12-31">31</a></span>
+<span class="normal"><a href="#__codelineno-12-32">32</a></span>
+<span class="normal"><a href="#__codelineno-12-33">33</a></span>
+<span class="normal"><a href="#__codelineno-12-34">34</a></span>
+<span class="normal"><a href="#__codelineno-12-35">35</a></span>
+<span class="normal"><a href="#__codelineno-12-36">36</a></span>
+<span class="normal"><a href="#__codelineno-12-37">37</a></span>
+<span class="normal"><a href="#__codelineno-12-38">38</a></span>
+<span class="normal"><a href="#__codelineno-12-39">39</a></span>
+<span class="normal"><a href="#__codelineno-12-40">40</a></span>
+<span class="normal"><a href="#__codelineno-12-41">41</a></span>
+<span class="normal"><a href="#__codelineno-12-42">42</a></span>
+<span class="normal"><a href="#__codelineno-12-43">43</a></span>
+<span class="normal"><a href="#__codelineno-12-44">44</a></span>
+<span class="normal"><a href="#__codelineno-12-45">45</a></span>
+<span class="normal"><a href="#__codelineno-12-46">46</a></span>
+<span class="normal"><a href="#__codelineno-12-47">47</a></span>
+<span class="normal"><a href="#__codelineno-12-48">48</a></span>
+<span class="normal"><a href="#__codelineno-12-49">49</a></span>
+<span class="normal"><a href="#__codelineno-12-50">50</a></span>
+<span class="normal"><a href="#__codelineno-12-51">51</a></span>
+<span class="normal"><a href="#__codelineno-12-52">52</a></span>
+<span class="normal"><a href="#__codelineno-12-53">53</a></span>
+<span class="normal"><a href="#__codelineno-12-54">54</a></span>
+<span class="normal"><a href="#__codelineno-12-55">55</a></span>
+<span class="normal"><a href="#__codelineno-12-56">56</a></span>
+<span class="normal"><a href="#__codelineno-12-57">57</a></span>
+<span class="normal"><a href="#__codelineno-12-58">58</a></span>
+<span class="normal"><a href="#__codelineno-12-59">59</a></span>
+<span class="normal"><a href="#__codelineno-12-60">60</a></span>
+<span class="normal"><a href="#__codelineno-12-61">61</a></span>
+<span class="normal"><a href="#__codelineno-12-62">62</a></span>
+<span class="normal"><a href="#__codelineno-12-63">63</a></span>
+<span class="normal"><a href="#__codelineno-12-64">64</a></span>
+<span class="normal"><a href="#__codelineno-12-65">65</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># --- Core library imports ---</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">scurrypy</span><span class="w"> </span><span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">EventTypes</span><span class="p">,</span> <span class="n">SlashCommand</span><span class="p">,</span> <span class="n">InteractionEvent</span><span class="p">,</span> <span class="n">InteractionTypes</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="c1"># --- Setup bot state separate from event handlers ---</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">StatefulBot</span><span class="p">:</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client</span><span class="p">:</span> <span class="n">Client</span><span class="p">):</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bot</span> <span class="o">=</span> <span class="n">client</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">dict_lock</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Get points for the invoking user.&quot;&quot;&quot;</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a>
+<a id="__codelineno-12-18" name="__codelineno-12-18"></a>    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">addpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Add points for the invoking user.&quot;&quot;&quot;</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20"></a>        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict_lock</span><span class="p">:</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_points</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user_id</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-12-22" name="__codelineno-12-22"></a>
+<a id="__codelineno-12-23" name="__codelineno-12-23"></a><span class="c1"># --- Setup bot and bot state ---</span>
+<a id="__codelineno-12-24" name="__codelineno-12-24"></a><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">TOKEN</span><span class="p">)</span>
+<a id="__codelineno-12-25" name="__codelineno-12-25"></a>
+<a id="__codelineno-12-26" name="__codelineno-12-26"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">register_commands</span><span class="p">():</span>
+<a id="__codelineno-12-27" name="__codelineno-12-27"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Register slash commands on startup (before READY).&quot;&quot;&quot;</span>
+<a id="__codelineno-12-28" name="__codelineno-12-28"></a>    <span class="n">bot_commands</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">APP_ID</span><span class="p">,</span> <span class="n">GUILD_ID</span><span class="p">)</span>
+<a id="__codelineno-12-29" name="__codelineno-12-29"></a>    <span class="n">commands</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-12-30" name="__codelineno-12-30"></a>        <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;points&#39;</span><span class="p">,</span> <span class="s1">&#39;Check your points&#39;</span><span class="p">),</span>
+<a id="__codelineno-12-31" name="__codelineno-12-31"></a>        <span class="n">SlashCommand</span><span class="p">(</span><span class="s1">&#39;addpoints&#39;</span><span class="p">,</span> <span class="s1">&#39;Give points&#39;</span><span class="p">)</span>
+<a id="__codelineno-12-32" name="__codelineno-12-32"></a>    <span class="p">]</span>
+<a id="__codelineno-12-33" name="__codelineno-12-33"></a>
+<a id="__codelineno-12-34" name="__codelineno-12-34"></a>    <span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">commands</span><span class="p">:</span>
+<a id="__codelineno-12-35" name="__codelineno-12-35"></a>        <span class="k">await</span> <span class="n">bot_commands</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+<a id="__codelineno-12-36" name="__codelineno-12-36"></a>
+<a id="__codelineno-12-37" name="__codelineno-12-37"></a><span class="n">client</span><span class="o">.</span><span class="n">add_startup_hook</span><span class="p">(</span><span class="n">register_commands</span><span class="p">)</span>
+<a id="__codelineno-12-38" name="__codelineno-12-38"></a>
+<a id="__codelineno-12-39" name="__codelineno-12-39"></a><span class="n">bot_state</span> <span class="o">=</span> <span class="n">StatefulBot</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+<a id="__codelineno-12-40" name="__codelineno-12-40"></a>
+<a id="__codelineno-12-41" name="__codelineno-12-41"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_points</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
+<a id="__codelineno-12-42" name="__codelineno-12-42"></a>    <span class="n">pts</span> <span class="o">=</span> <span class="n">bot_state</span><span class="o">.</span><span class="n">get_points</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<a id="__codelineno-12-43" name="__codelineno-12-43"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;You have </span><span class="si">{</span><span class="n">pts</span><span class="si">}</span><span class="s2"> points!&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-44" name="__codelineno-12-44"></a>
+<a id="__codelineno-12-45" name="__codelineno-12-45"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">on_add_points</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
+<a id="__codelineno-12-46" name="__codelineno-12-46"></a>    <span class="k">await</span> <span class="n">bot_state</span><span class="o">.</span><span class="n">addpoints</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">member</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<a id="__codelineno-12-47" name="__codelineno-12-47"></a>    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="s2">&quot;Point added!&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-48" name="__codelineno-12-48"></a>
+<a id="__codelineno-12-49" name="__codelineno-12-49"></a><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">dispatch</span><span class="p">(</span><span class="n">event</span><span class="p">:</span> <span class="n">InteractionEvent</span><span class="p">):</span>
+<a id="__codelineno-12-50" name="__codelineno-12-50"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Main entry point for commands.&quot;&quot;&quot;</span>
+<a id="__codelineno-12-51" name="__codelineno-12-51"></a>    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="n">InteractionTypes</span><span class="o">.</span><span class="n">APPLICATION_COMMAND</span><span class="p">:</span>
+<a id="__codelineno-12-52" name="__codelineno-12-52"></a>        <span class="k">return</span> <span class="c1"># ignore non-command interactions</span>
+<a id="__codelineno-12-53" name="__codelineno-12-53"></a>
+<a id="__codelineno-12-54" name="__codelineno-12-54"></a>    <span class="k">match</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+<a id="__codelineno-12-55" name="__codelineno-12-55"></a>        <span class="k">case</span> <span class="s1">&#39;points&#39;</span><span class="p">:</span>
+<a id="__codelineno-12-56" name="__codelineno-12-56"></a>            <span class="k">await</span> <span class="n">on_points</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<a id="__codelineno-12-57" name="__codelineno-12-57"></a>        <span class="k">case</span> <span class="s1">&#39;addpoints&#39;</span><span class="p">:</span>
+<a id="__codelineno-12-58" name="__codelineno-12-58"></a>            <span class="k">await</span> <span class="n">on_add_points</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<a id="__codelineno-12-59" name="__codelineno-12-59"></a>        <span class="k">case</span><span class="w"> </span><span class="k">_</span><span class="p">:</span>
+<a id="__codelineno-12-60" name="__codelineno-12-60"></a>            <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">interaction</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">token</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No command named &#39;</span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;!&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-61" name="__codelineno-12-61"></a>
+<a id="__codelineno-12-62" name="__codelineno-12-62"></a><span class="n">client</span><span class="o">.</span><span class="n">add_event_listener</span><span class="p">(</span><span class="n">EventTypes</span><span class="o">.</span><span class="n">INTERACTION_CREATE</span><span class="p">,</span> <span class="n">dispatch</span><span class="p">)</span>
+<a id="__codelineno-12-63" name="__codelineno-12-63"></a>
+<a id="__codelineno-12-64" name="__codelineno-12-64"></a><span class="c1"># --- Run the bot ---</span>
+<a id="__codelineno-12-65" name="__codelineno-12-65"></a><span class="n">client</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 <h2 id="more-examples">More Examples...<a class="headerlink" href="#more-examples" title="Permanent link">&para;</a></h2>
 <hr />
@@ -2536,6 +2802,12 @@ Check out using <a href="../addons/">Addons</a>.</p>
 
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -2569,10 +2841,10 @@ Check out using <a href="../addons/">Addons</a>.</p>
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.sections", "header.repo", "content.tabs.link"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.sections", "header.repo", "content.tabs.link", "navigation.top", "navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>
