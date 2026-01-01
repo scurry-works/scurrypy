@@ -80,7 +80,7 @@ These dependencies are automatically installed with ScurryPy's pip package.
 Explore the full [documentation](https://scurry-works.github.io/scurrypy) for more examples, guides, and API reference.
 
 **Switching from discord.py?** 
-Check out the [Migration Guide](https://scurry-works.github.io/scurrypy/migrating) to see the difference.
+Check out the [Migration Guide](https://scurry-works.github.io/scurrypy/getting_started/migrating) to see the difference.
 
 **Got some questions?**
 Check out the [FAQ](https://scurry-works.github.io/scurrypy/faq) page for commonly asked questions!
