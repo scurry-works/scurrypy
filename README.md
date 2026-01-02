@@ -5,6 +5,12 @@
 [![PyPI version](https://badge.fury.io/py/scurrypy.svg)](https://badge.fury.io/py/scurrypy)
 [![Discord](https://img.shields.io/discord/905167903224123473?style=plastic&logo=discord&logoColor=ffffff&color=5865F2)](https://discord.gg/D4SdHxcujM)
 
+<img
+src="assets/banner.png"
+width="450"
+alt="Fire-breathing squirrel"
+/>
+
 ✨ **Clarity over magic**: a sandbox for Discord's API where you control everything ✨
 
 ScurryPy is a fully extensible foundation for building bots, frameworks, and tools. You design the architecture.
