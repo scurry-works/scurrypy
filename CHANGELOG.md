@@ -2,6 +2,29 @@
 
 This changelog documents all notable and breaking changes to ScurryPy.
 
+## [0.14.0] - Jan 2026
+
+### Changed
+
+* New resource: `ImageData`, used for images like emojis, guild icons, banners, etc.
+
+* New endpoints:
+    * `BotEmoji.create`, `BotEmoji.modify`, `BotEmoji.delete`
+
+* Fixed various docstring formatting.
+
+* Fixed exponential reconnect for the gateway.
+    * Reconnect time now resets once `READY` is fired.
+
+* All fields in `parts/` are now set to None by default.
+    * This effectively makes all part fields deferrable for maximum flexibility.
+
+* `EmbedField.inline` now defaults to `False`.
+
+* Removed the unused event class `HelloEvent`.
+
+* Merged ComponentTypes + ComponentV2Types to ComponentTypes
+
 ## [0.13.0] - Dec 2025
 
 ### Breaking Changes

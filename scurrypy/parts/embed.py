@@ -7,7 +7,7 @@ from typing import Optional
 class EmbedAuthor(DataModel):
     """Embed author parameters."""
 
-    name: str
+    name: str = None
     """Name of the author."""
 
     url: Optional[str] = None
@@ -20,33 +20,34 @@ class EmbedAuthor(DataModel):
 class EmbedThumbnail(DataModel):
     """Embed thumbnail."""
 
-    url: str
+    url: str = None
     """Thumbnail content. http or attachment://<filename> scheme."""
 
 @dataclass
 class EmbedField(DataModel):
     """Embed field."""
 
-    name: str
+    name: str = None
     """Name of the field."""
 
-    value: str
+    value: str = None
     """Value of the field."""
 
-    inline: Optional[bool] = None
-    """Whether or not this field should display inline."""
+    inline: Optional[bool] = False
+    """Whether or not this field should display inline. Defaults to `False`."""
 
 @dataclass
 class EmbedImage(DataModel):
     """Embed image."""
 
-    url: str
+    url: str = None
     """Image content. http or attachment://<filename> scheme."""
 
 @dataclass
 class EmbedFooter(DataModel):
     """Embed footer."""
-    text: str
+
+    text: str = None
     """Footer text."""
 
     icon_url: Optional[str] = None

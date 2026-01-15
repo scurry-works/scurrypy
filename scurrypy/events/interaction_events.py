@@ -169,6 +169,9 @@ class ModalData(DataModel):
     custom_id: str
     """Unique ID associated with the modal."""
 
+    data: ResolvedData
+    """Resolved entities from modal data."""
+
     components: list[ModalComponent] = field(default_factory=list)
     """Components on the modal."""
 
@@ -197,7 +200,8 @@ class ModalData(DataModel):
                 ComponentTypes.USER_SELECT, 
                 ComponentTypes.ROLE_SELECT, 
                 ComponentTypes.MENTIONABLE_SELECT, 
-                ComponentTypes.CHANNEL_SELECT      # select menus (w. possibly many option selects!)
+                ComponentTypes.CHANNEL_SELECT,
+                ComponentTypes.FILE_UPLOAD      # select menus (w. possibly many option selects!)
             ]:
                 return component.component.values
             

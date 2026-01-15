@@ -88,6 +88,7 @@ watch:
 nav:
   - Home: index.md
   - FAQ: faq.md
+  - Roadmap: roadmap.md
   - Footnotes: doc_notes.md
   - Getting Started:
     - Start Here!: getting_started/start_here.md
@@ -104,6 +105,7 @@ nav:
     - Component Types: api/component_types.md
     - Components: api/components.md
     - Embed (Legacy): api/embed.md
+    - Image Data: api/image_data.md
     - Intents: api/intents.md
     - Message: api/message.md
     - Models: api/models.md

@@ -7,7 +7,7 @@ from .components_v2 import Label
 class ModalPart(DataModel):
     """Represents the Modal object."""
 
-    title: str
+    title: str = None
     """Title of the popup modal."""
 
     custom_id: str = None

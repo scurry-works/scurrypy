@@ -65,13 +65,13 @@ class CommandOption(DataModel):
     """Description of option."""
 
     required: bool = False
-    """Whether this option is required. Defaults to False."""
+    """Whether this option is required. Defaults to `False`."""
 
     choices: list[CommandOptionChoice] = field(default_factory=list)
     """Choices for the user to pick from, max 25. Only valid for STRING, INTEGER, NUMBER option types."""
 
     autocomplete: bool = False
-    """Whether autocomplete interactions are enabled for this option. Defaults to False."""
+    """Whether autocomplete interactions are enabled for this option. Defaults to `False`."""
 
 @dataclass
 class SlashCommand(DataModel):

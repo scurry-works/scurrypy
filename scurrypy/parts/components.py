@@ -5,16 +5,8 @@ from typing import Literal, Optional
 
 from .component_types import *
 from ..models import EmojiModel
+from .component_types import ComponentTypes
 
-class ComponentTypes:
-    ACTION_ROW = 1
-    BUTTON = 2
-    STRING_SELECT = 3
-    TEXT_INPUT = 4
-    USER_SELECT = 5
-    ROLE_SELECT = 6
-    MENTIONABLE_SELECT = 7
-    CHANNEL_SELECT = 8
 
 @dataclass
 class ActionRowPart(DataModel, ContainerChild):
@@ -57,14 +49,14 @@ class Button(DataModel, ActionRowChild, SectionAccessoryChild):
     label: Optional[str] = None
     """Text that appears on the button."""
 
-    emoji: EmojiModel = None
-    """Emoji icon as emoji string or EmojiModel if custom."""
+    emoji: Optional[EmojiModel] = None
+    """Emoji icon for the button."""
 
     url: Optional[str] = None
     """URL for link-style buttons."""
 
     disabled: Optional[bool] = False
-    """Whether the button is disabled. Defaults to False."""
+    """Whether the button is disabled. Defaults to `False`."""
 
     link: Optional[str] = None
     """Hyperlink for button. For `LINK` style only."""
@@ -74,7 +66,7 @@ class Button(DataModel, ActionRowChild, SectionAccessoryChild):
 
 @dataclass
 class SelectOption(DataModel):
-    """Represents the Select Option component"""
+    """Represents the Select Option component."""
 
     label: str = None
     """User-facing name of the option."""
@@ -111,10 +103,10 @@ class StringSelect(DataModel, ActionRowChild, LabelChild):
     """Maximum number of items that can be chosen."""
 
     required: Optional[bool] = False
-    """Whether the string select is required to answer in a modal. Defaults to False."""
+    """Whether the string select is required to answer in a modal. Defaults to `False`."""
 
     disabled: Optional[bool] = False # does not work on Modals!
-    """Whether select menu is disabled in a message. Defaults to False."""
+    """Whether select menu is disabled in a message. Defaults to `False`."""
 
     type: int = field(init=False, default=ComponentTypes.STRING_SELECT)
     """Component type. Always `ComponentTypes.STRING_SELECT` for this class. See [`ComponentTypes`][scurrypy.parts.components.ComponentTypes]."""
@@ -189,10 +181,10 @@ class SelectMenu(DataModel):
     """Maximum number of items that can be chosen. Defaults to 1."""
 
     required: Optional[bool] = False
-    """Whether the select is required to answer in a modal. Defaults to False."""
+    """Whether the select is required to answer in a modal. Defaults to `False`."""
 
     disabled: Optional[bool] = False
-    """Whether select menu is disabled in a message. Defaults to False."""
+    """Whether select menu is disabled in a message. Defaults to `False`."""
 
 
 @dataclass

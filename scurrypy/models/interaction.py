@@ -7,6 +7,7 @@ from typing import Optional
 from .channel import ChannelModel
 from .guild import GuildModel
 from .guild_member import GuildMemberModel
+from .message import MessageModel
 
 class InteractionDataTypes:
     """Interaction data types constants."""
@@ -122,6 +123,9 @@ class InteractionModel(DataModel):
 
     member: GuildMemberModel # guild member invoking the interaction
     """Guild member invoking the interaction."""
+
+    message: Optional[MessageModel]
+    """Message associated with interaction (components or modals)."""
 
     locale: str
     """Invoking user's locale."""

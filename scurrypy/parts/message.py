@@ -50,10 +50,10 @@ class MessageReferenceTypes:
 class MessageReference(DataModel):
     """Represents the Message Reference object."""
 
-    message_id: int
+    message_id: int = None
     """ID of the originating message."""
 
-    channel_id: int
+    channel_id: int = None
     """
         Channel ID of the originating message.
         !!! note
@@ -70,10 +70,10 @@ class Attachment(DataModel):
     id: int = field(init=False, default=None)
     """ID of the attachment (internally set)."""
 
-    path: str
+    path: str = None
     """Relative path to the file."""
 
-    description: str
+    description: str = None
     """Description of the file."""
 
     def to_dict(self):

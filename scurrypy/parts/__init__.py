@@ -24,7 +24,6 @@ from .component_types import (
 )
 
 from .components_v2 import (
-    ComponentV2Types,
     SectionPart,
     TextDisplay,
     Thumbnail,
@@ -64,6 +63,8 @@ from .embed import (
     EmbedPart
 )
 
+from .image_data import ImageData
+
 from .message import (
     MessageFlags,
     # MessageFlagParams,
@@ -80,11 +81,12 @@ __all__ = [
     "ChannelTypes", "GuildChannel",
     "CommandTypes", "CommandOption", "CommandOptionChoice", "CommandOptionTypes", "SlashCommand", "UserCommand", "MessageCommand",
     "ContainerChild", "ActionRowChild", "LabelChild", "SectionAccessoryChild", "SectionChild",
-    "ComponentV2Types", "SectionPart", "TextDisplay", "Thumbnail", "MediaGalleryItem", "MediaGallery",
+    "SectionPart", "TextDisplay", "Thumbnail", "MediaGalleryItem", "MediaGallery",
     "File", "SeparatorTypes", "Separator", "ContainerPart", "Label", "FileUpload",
     "ComponentTypes", "ActionRowPart", "ButtonStyles", "Button", "SelectOption", "StringSelect",
     "TextInputStyles", "TextInput", "DefaultValue", "UserSelect", "RoleSelect", "MentionableSelect",
     "ChannelSelect",
     "EmbedAuthor", "EmbedThumbnail", "EmbedField", "EmbedImage", "EmbedFooter", "EmbedPart",
+    "ImageData",
     "MessageFlags", "MessageReferenceTypes", "MessageReference", "Attachment", "MessagePart", "Role", "RoleColors", "ModalPart"
 ]

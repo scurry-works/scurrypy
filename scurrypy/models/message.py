@@ -29,3 +29,6 @@ class MessageModel(DataModel):
 
     webhook_id: Optional[int]
     """ID of the webhook if the message is a webhook."""
+
+    timestamp: Optional[str]
+    """Timestamp of when the message was sent."""

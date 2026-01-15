@@ -5,17 +5,6 @@ from typing import Optional
 
 from .component_types import *
 
-class ComponentV2Types:
-    SECTION = 9
-    TEXT_DISPLAY = 10
-    THUMBNAIL = 11
-    MEDIA_GALLERY = 12
-    FILE = 13
-    SEPARATOR = 14
-    CONTAINER = 17
-    LABEL = 18
-    FILE_UPLOAD = 19
-
 @dataclass
 class SectionPart(DataModel, ContainerChild):
     """Represents the Section component."""
@@ -26,8 +15,8 @@ class SectionPart(DataModel, ContainerChild):
     components: list[SectionChild] = field(default_factory=list)
     """Component(s) representing the content of the section that is contextually associated to the accessory."""
 
-    type: int = field(init=False, default=ComponentV2Types.SECTION)
-    """Component type. Always `ComponentV2Types.SECTION` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
+    type: int = field(init=False, default=ComponentTypes.SECTION)
+    """Component type. Always `ComponentTypes.SECTION` for this class. See [`ComponentTypes`][scurrypy.parts.component_types.ComponentTypes]."""
 
 @dataclass
 class TextDisplay(DataModel, ContainerChild, SectionChild):
@@ -36,8 +25,8 @@ class TextDisplay(DataModel, ContainerChild, SectionChild):
     content: str = None
     """Text that will be displayed similar to a message."""
 
-    type: int = field(init=False, default=ComponentV2Types.TEXT_DISPLAY)
-    """Component type. Always `ComponentV2Types.TEXT_DISPLAY` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
+    type: int = field(init=False, default=ComponentTypes.TEXT_DISPLAY)
+    """Component type. Always `ComponentTypes.TEXT_DISPLAY` for this class. See [`ComponentTypes`][scurrypy.parts.component_types.ComponentTypes]."""
 
 @dataclass
 class Thumbnail(DataModel, SectionAccessoryChild):
@@ -50,10 +39,10 @@ class Thumbnail(DataModel, SectionAccessoryChild):
     """Description for the media."""
 
     spoiler: Optional[bool] = False
-    """Whether the thumbnail should be a spoiler (or blurred out)."""
+    """Whether the thumbnail should be a spoiler (or blurred out). Defaults to `False`."""
 
-    type: int = field(init=False, default=ComponentV2Types.THUMBNAIL)
-    """Component type. Always `ComponentV2Types.THUMBNAIL` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
+    type: int = field(init=False, default=ComponentTypes.THUMBNAIL)
+    """Component type. Always `ComponentTypes.THUMBNAIL` for this class. See [`ComponentTypes`][scurrypy.parts.component_types.ComponentTypes]."""
 
 @dataclass
 class MediaGalleryItem(DataModel):
@@ -66,7 +55,7 @@ class MediaGalleryItem(DataModel):
     """Alt text for the media."""
 
     spoiler: Optional[bool] = False
-    """Whether the thumbnail should be a spoiler (or blurred out)."""
+    """Whether the thumbnail should be a spoiler (or blurred out). Defaults to `False`."""
 
 @dataclass
 class MediaGallery(DataModel, ContainerChild):
@@ -75,8 +64,8 @@ class MediaGallery(DataModel, ContainerChild):
     items: list[MediaGalleryItem] = field(default_factory=list)
     """1 to 10 nedia gallery items. See [`MediaGalleryItem`][scurrypy.parts.components_v2.MediaGalleryItem]."""
 
-    type: int = field(init=False, default=ComponentV2Types.MEDIA_GALLERY)
-    """Component type. Always `ComponentV2Types.MEDIA_GALLERY` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
+    type: int = field(init=False, default=ComponentTypes.MEDIA_GALLERY)
+    """Component type. Always `ComponentTypes.MEDIA_GALLERY` for this class. See [`ComponentTypes`][scurrypy.parts.component_types.ComponentTypes]."""
 
 @dataclass
 class File(DataModel, ContainerChild):
@@ -86,10 +75,10 @@ class File(DataModel, ContainerChild):
     """File name. ONLY supports attachment://<filename> scheme."""
 
     spoiler: Optional[bool] = False
-    """Whether the thumbnail should be a spoiler (or blurred out)."""
+    """Whether the thumbnail should be a spoiler (or blurred out). Defaults to `False`."""
 
-    type: int = field(init=False, default=ComponentV2Types.FILE)
-    """Component type. Always `ComponentV2Types.File` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
+    type: int = field(init=False, default=ComponentTypes.FILE)
+    """Component type. Always `ComponentTypes.FILE` for this class. See [`ComponentTypes`][scurrypy.parts.component_types.ComponentTypes]."""
 
 class SeparatorTypes:
     """Represents separator types constants."""
@@ -110,8 +99,8 @@ class Separator(DataModel, ContainerChild):
     spacing: Optional[int] = SeparatorTypes.SMALL_PADDING
     """Size of separator padding. Defaults to `SMALL_PADDING`. See [`SeparatorTypes`][scurrypy.parts.components_v2.SeparatorTypes]."""
 
-    type: int = field(init=False, default=ComponentV2Types.SEPARATOR)
-    """Component type. Always `ComponentV2Types.SEPARATOR` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
+    type: int = field(init=False, default=ComponentTypes.SEPARATOR)
+    """Component type. Always `ComponentTypes.SEPARATOR` for this class. See [`ComponentTypes`][scurrypy.parts.component_types.ComponentTypes]."""
 
 @dataclass
 class ContainerPart(DataModel):
@@ -124,10 +113,10 @@ class ContainerPart(DataModel):
     """Color for the accent as an integer."""
 
     spoiler: Optional[bool] = False
-    """If the container should be blurred out. Defaults to False."""
+    """If the container should be blurred out. Defaults to `False`."""
 
-    type: int = field(init=False, default=ComponentV2Types.CONTAINER)
-    """Component type. Always `ComponentV2Types.CONTAINER` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
+    type: int = field(init=False, default=ComponentTypes.CONTAINER)
+    """Component type. Always `ComponentTypes.CONTAINER` for this class. See [`ComponentTypes`][scurrypy.parts.component_types.ComponentTypes]."""
 
 @dataclass
 class Label(DataModel):
@@ -142,8 +131,8 @@ class Label(DataModel):
     description: Optional[str] = None
     """An optional description text for the label."""
 
-    type: int = field(init=False, default=ComponentV2Types.LABEL)
-    """Component type. Always `ComponentV2Types.LABEL` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
+    type: int = field(init=False, default=ComponentTypes.LABEL)
+    """Component type. Always `ComponentTypes.LABEL` for this class. See [`ComponentTypes`][scurrypy.parts.component_types.ComponentTypes]."""
 
 @dataclass
 class FileUpload(DataModel, ContainerChild):
@@ -159,7 +148,7 @@ class FileUpload(DataModel, ContainerChild):
     """Maximum number of items that can be uploaded."""
 
     required: Optional[bool] = True
-    """Whether files are required to be uploaded."""
+    """Whether files are required to be uploaded. Defaults to `True`."""
 
-    type: int = field(init=False, default=ComponentV2Types.FILE_UPLOAD)
-    """Component type. Always `ComponentV2Types.FILE_UPLOAD` for this class. See [`ComponentV2Types`][scurrypy.parts.components_v2.ComponentV2Types]."""
+    type: int = field(init=False, default=ComponentTypes.FILE_UPLOAD)
+    """Component type. Always `ComponentTypes.FILE_UPLOAD` for this class. See [`ComponentTypes`][scurrypy.parts.component_types.ComponentTypes]."""
