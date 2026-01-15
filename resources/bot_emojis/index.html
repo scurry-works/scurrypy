@@ -931,6 +931,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../api/image_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Image Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../api/intents/" class="md-nav__link">
         
   
@@ -1522,6 +1545,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#scurrypy.resources.bot_emoji.BotEmoji.create" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;create
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.resources.bot_emoji.BotEmoji.modify" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;modify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.resources.bot_emoji.BotEmoji.delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;delete
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1964,6 +2014,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#scurrypy.resources.bot_emoji.BotEmoji.create" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;create
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.resources.bot_emoji.BotEmoji.modify" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;modify
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.resources.bot_emoji.BotEmoji.delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;delete
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2166,6 +2243,167 @@
           –
           <div class="doc-md-description">
             <p>queried bot emojis</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.resources.bot_emoji.BotEmoji.create" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">create</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#scurrypy.resources.bot_emoji.BotEmoji.create" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Add an emoji to the bot emoji repository.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>emoji_name</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>name of the emoji</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>image</code></b>
+              (<code><a class="autorefs autorefs-internal" title="              ImageData
+
+  
+      dataclass
+   (scurrypy.parts.image_data.ImageData)" href="../../api/image_data/#scurrypy.parts.image_data.ImageData">ImageData</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>image data of the emoji</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              EmojiModel
+
+  
+      dataclass
+   (scurrypy.models.emoji.EmojiModel)" href="../../api/models/#scurrypy.models.emoji.EmojiModel">EmojiModel</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the new Emoji object</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.resources.bot_emoji.BotEmoji.modify" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">modify</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#scurrypy.resources.bot_emoji.BotEmoji.modify" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Modify an emoji in the bot repository.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>name</code> is the only field that can be edited, so no object is passed.</p>
+</div>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>emoji_id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>ID of the emoji to modify</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>new_name</code></b>
+              (<code><span title="str">str</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>new name for the emoji</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              EmojiModel
+
+  
+      dataclass
+   (scurrypy.models.emoji.EmojiModel)" href="../../api/models/#scurrypy.models.emoji.EmojiModel">EmojiModel</a></code>
+          –
+          <div class="doc-md-description">
+            <p>the updated emoji</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scurrypy.resources.bot_emoji.BotEmoji.delete" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">delete</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+<a href="#scurrypy.resources.bot_emoji.BotEmoji.delete" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Deletes an emoji from the bot repository.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>emoji_id</code></b>
+              (<code><span title="int">int</span></code>)
+          –
+          <div class="doc-md-description">
+            <p>ID of the emoji to remove</p>
           </div>
         </li>
     </ul>

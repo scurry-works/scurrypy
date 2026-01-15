@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://furmissile.github.io/scurrypy/resources/guild_emoji/">
+        <link rel="canonical" href="https://furmissile.github.io/scurrypy/api/image_data/">
       
       
-        <link rel="prev" href="../command/">
+        <link rel="prev" href="../embed/">
       
       
-        <link rel="next" href="../guild/">
+        <link rel="next" href="../intents/">
       
       
       <link rel="icon" href="../../assets/wizard.svg">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Guild Emoji - ScurryPy</title>
+        <title>Image Data - ScurryPy</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#guild-emojis-resource" class="md-skip">
+        <a href="#image-data-api" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +117,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Guild Emoji
+              Image Data
             
           </span>
         </div>
@@ -316,11 +316,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../api/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -356,13 +358,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../resources/" class="md-tabs__link">
           
   
   
@@ -701,26 +701,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -733,7 +738,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             API Reference
@@ -747,7 +752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -770,7 +775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/addon/" class="md-nav__link">
+      <a href="../addon/" class="md-nav__link">
         
   
   
@@ -793,7 +798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/channel/" class="md-nav__link">
+      <a href="../channel/" class="md-nav__link">
         
   
   
@@ -816,7 +821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/client/" class="md-nav__link">
+      <a href="../client/" class="md-nav__link">
         
   
   
@@ -839,7 +844,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/commands/" class="md-nav__link">
+      <a href="../commands/" class="md-nav__link">
         
   
   
@@ -862,7 +867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/component_types/" class="md-nav__link">
+      <a href="../component_types/" class="md-nav__link">
         
   
   
@@ -885,7 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/components/" class="md-nav__link">
+      <a href="../components/" class="md-nav__link">
         
   
   
@@ -908,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/embed/" class="md-nav__link">
+      <a href="../embed/" class="md-nav__link">
         
   
   
@@ -928,10 +933,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../api/image_data/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Image Data
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -942,6 +969,68 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scurrypy.parts.image_data.ImageData" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ImageData
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" ImageData">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.parts.image_data.ImageData.path" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.parts.image_data.ImageData.uri" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;uri
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.parts.image_data.ImageData.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_dict
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -954,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/intents/" class="md-nav__link">
+      <a href="../intents/" class="md-nav__link">
         
   
   
@@ -977,7 +1066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/message/" class="md-nav__link">
+      <a href="../message/" class="md-nav__link">
         
   
   
@@ -1000,7 +1089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/models/" class="md-nav__link">
+      <a href="../models/" class="md-nav__link">
         
   
   
@@ -1023,7 +1112,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/permissions/" class="md-nav__link">
+      <a href="../permissions/" class="md-nav__link">
         
   
   
@@ -1046,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/role/" class="md-nav__link">
+      <a href="../role/" class="md-nav__link">
         
   
   
@@ -1069,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/ui_components/" class="md-nav__link">
+      <a href="../ui_components/" class="md-nav__link">
         
   
   
@@ -1353,31 +1442,26 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
             
   
   
@@ -1390,7 +1474,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             Resources
@@ -1404,7 +1488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../resources/" class="md-nav__link">
         
   
   
@@ -1427,7 +1511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../application/" class="md-nav__link">
+      <a href="../../resources/application/" class="md-nav__link">
         
   
   
@@ -1450,7 +1534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bot_emojis/" class="md-nav__link">
+      <a href="../../resources/bot_emojis/" class="md-nav__link">
         
   
   
@@ -1473,7 +1557,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../channel/" class="md-nav__link">
+      <a href="../../resources/channel/" class="md-nav__link">
         
   
   
@@ -1496,7 +1580,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../../resources/command/" class="md-nav__link">
         
   
   
@@ -1516,32 +1600,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Guild Emoji
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../resources/guild_emoji/" class="md-nav__link">
         
   
   
@@ -1552,77 +1614,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#scurrypy.resources.guild_emoji.GuildEmoji" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;GuildEmoji
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label=" GuildEmoji">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.resources.guild_emoji.GuildEmoji.guild_id" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;guild_id
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.resources.guild_emoji.GuildEmoji.context" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;context
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.resources.guild_emoji.GuildEmoji.fetch" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.resources.guild_emoji.GuildEmoji.fetch_all" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_all
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1635,7 +1626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../guild/" class="md-nav__link">
+      <a href="../../resources/guild/" class="md-nav__link">
         
   
   
@@ -1658,7 +1649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interaction/" class="md-nav__link">
+      <a href="../../resources/interaction/" class="md-nav__link">
         
   
   
@@ -1681,7 +1672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../message/" class="md-nav__link">
+      <a href="../../resources/message/" class="md-nav__link">
         
   
   
@@ -1704,7 +1695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../user/" class="md-nav__link">
+      <a href="../../resources/user/" class="md-nav__link">
         
   
   
@@ -1942,46 +1933,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#scurrypy.resources.guild_emoji.GuildEmoji" class="md-nav__link">
+  <a href="#scurrypy.parts.image_data.ImageData" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;GuildEmoji
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ImageData
     </span>
   </a>
   
-    <nav class="md-nav" aria-label=" GuildEmoji">
+    <nav class="md-nav" aria-label=" ImageData">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#scurrypy.resources.guild_emoji.GuildEmoji.guild_id" class="md-nav__link">
+  <a href="#scurrypy.parts.image_data.ImageData.path" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;guild_id
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;path
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.resources.guild_emoji.GuildEmoji.context" class="md-nav__link">
+  <a href="#scurrypy.parts.image_data.ImageData.uri" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;context
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;uri
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.resources.guild_emoji.GuildEmoji.fetch" class="md-nav__link">
+  <a href="#scurrypy.parts.image_data.ImageData.to_dict" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#scurrypy.resources.guild_emoji.GuildEmoji.fetch_all" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;fetch_all
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;to_dict
     </span>
   </a>
   
@@ -2011,10 +1993,10 @@
   
 
 
-<h1 id="guild-emojis-resource">Guild Emojis Resource<a class="headerlink" href="#guild-emojis-resource" title="Permanent link">&para;</a></h1>
+<h1 id="image-data-api">Image Data API<a class="headerlink" href="#image-data-api" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The following classes come from the <code>scurrypy.resources.guild_emoji</code> module.</p>
+<p>The following classes come from the <code>scurrypy.parts.image_data</code> module.</p>
 </div>
 <hr />
 
@@ -2023,26 +2005,26 @@
 
 
 
-<h2 id="scurrypy.resources.guild_emoji.GuildEmoji" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>              <code class="highlight language-python"><span class="n">GuildEmoji</span></code>
+<h2 id="scurrypy.parts.image_data.ImageData" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>              <code class="highlight language-python"><span class="n">ImageData</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
   </span>
 
-<a href="#scurrypy.resources.guild_emoji.GuildEmoji" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#scurrypy.parts.image_data.ImageData" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
     <div class="doc doc-contents first">
             <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="              BaseResource
+              Bases: <code><a class="autorefs autorefs-internal" title="              DataModel
 
   
       dataclass
-   (scurrypy.resources.base_resource.BaseResource)" href="../../internals/model/#scurrypy.resources.base_resource.BaseResource">BaseResource</a></code></p>
+   (scurrypy.core.model.DataModel)" href="../../internals/model/#scurrypy.core.model.DataModel">DataModel</a></code></p>
 
 
-        <p>Represents a Discord Guild Emoji.</p>
+        <p>Represents Discord's data URI scheme for images.</p>
 
 
 
@@ -2066,19 +2048,20 @@
 
 
 
-<h3 id="scurrypy.resources.guild_emoji.GuildEmoji.guild_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">guild_id</span><span class="p">:</span> <span class="nb">int</span></code>
+<h3 id="scurrypy.parts.image_data.ImageData.path" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#scurrypy.resources.guild_emoji.GuildEmoji.guild_id" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.parts.image_data.ImageData.path" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Guild ID of the emojis.</p>
+        <p>Path to image.</p>
 
     </div>
 
@@ -2088,19 +2071,43 @@
 
 
 
-<h3 id="scurrypy.resources.guild_emoji.GuildEmoji.context" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">context</span><span class="p">:</span> <span class="n">Any</span></code>
+<h3 id="scurrypy.parts.image_data.ImageData.uri" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">uri</span></code>
 
   <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
 
-<a href="#scurrypy.resources.guild_emoji.GuildEmoji.context" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.parts.image_data.ImageData.uri" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Associated user data.</p>
+        <p>Creates the Base64 data URI scheme.</p>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="ValueError">ValueError</span></code>
+            –
+          <div class="doc-md-description">
+            <p>Unknown file type</p>
+          </div>
+        </li>
+    </ul>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><span title="str">str</span></code>
+          –
+          <div class="doc-md-description">
+            <p>the formatted data URI scheme</p>
+          </div>
+        </li>
+    </ul>
 
     </div>
 
@@ -2112,83 +2119,24 @@
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scurrypy.resources.guild_emoji.GuildEmoji.fetch" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">fetch</span></code>
+<h3 id="scurrypy.parts.image_data.ImageData.to_dict" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">to_dict</span></code>
 
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.resources.guild_emoji.GuildEmoji.fetch" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#scurrypy.parts.image_data.ImageData.to_dict" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
 
-        <p>Fetch an emoji from a guild.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-            <b><code>emoji_id</code></b>
-              (<code><span title="int">int</span></code>)
-          –
-          <div class="doc-md-description">
-            <p>emoji ID</p>
-          </div>
-        </li>
-    </ul>
+        <p>Recursively turns the dataclass into a dictionary and drops empty fields.</p>
 
 
 <p><span class="doc-section-title">Returns:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-internal" title="              EmojiModel
-
-  
-      dataclass
-   (scurrypy.models.emoji.EmojiModel)" href="../../api/models/#scurrypy.models.emoji.EmojiModel">EmojiModel</a></code>
+              <code><span title="dict">dict</span></code>
           –
           <div class="doc-md-description">
-            <p>the Emoji object</p>
-          </div>
-        </li>
-    </ul>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
-<h3 id="scurrypy.resources.guild_emoji.GuildEmoji.fetch_all" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">fetch_all</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-async"><code>async</code></small>
-  </span>
-
-<a href="#scurrypy.resources.guild_emoji.GuildEmoji.fetch_all" class="headerlink" title="Permanent link">&para;</a></h3>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Fetch all emojis from a guild.</p>
-
-
-<p><span class="doc-section-title">Returns:</span></p>
-    <ul>
-        <li class="doc-section-item field-body">
-              <code><span title="list">list</span>[<a class="autorefs autorefs-internal" title="              EmojiModel
-
-  
-      dataclass
-   (scurrypy.models.emoji.EmojiModel)" href="../../api/models/#scurrypy.models.emoji.EmojiModel">EmojiModel</a>]</code>
-          –
-          <div class="doc-md-description">
-            <p>queried guild emojis</p>
+            <p>serialized dataclasss</p>
           </div>
         </li>
     </ul>
