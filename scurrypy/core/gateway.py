@@ -33,11 +33,11 @@ class GatewayClient:
 
     async def wait_reconnect(self):
         """Sleep for exponentially increasing time between reconnects."""
-
-        self.backoff = min(self.backoff * 2, 60)
         
         logger.warning(f"SHARD ID {self.shard_id}: Disconnected, reconnecting in {self.backoff}s...")
         await asyncio.sleep(self.backoff)
+
+        self.backoff = min(self.backoff * 2, 60)
 
     async def start(self, token: str, intents: int):
         """Start this websocket's connection.
@@ -50,7 +50,7 @@ class GatewayClient:
             try:
                 await self.connect_ws()
 
-                if self.allow_resume and self.session_id:
+                if self.allow_resume and self.session_id and self.seq is not None:
                     logger.debug(f"SHARD ID {self.shard_id}: Attempting to resume...")
                     await self.resume(token)
                 else:
@@ -61,18 +61,19 @@ class GatewayClient:
 
             except websockets.exceptions.ConnectionClosedOK:
                 logger.info(f"SHARD ID {self.shard_id}: Connection closed properly.")
+
                 break
 
             except (ConnectionError, websockets.exceptions.ConnectionClosedError) as e:
                 logger.error(f"SHARD ID {self.shard_id}: {e}")
-                await self.close_ws()
 
+                await self.close_ws()
                 await self.wait_reconnect()
 
             except Exception:
                 logger.exception(f"SHARD ID {self.shard_id}: Unexpected error")
-                await self.close_ws()
                 
+                await self.close_ws()
                 await self.wait_reconnect()
 
     async def connect_ws(self):
@@ -87,7 +88,6 @@ class GatewayClient:
 
         # extra info from recv'd HELLO
         self.heartbeat_interval = hello["d"]["heartbeat_interval"] / 1000
-        self.seq = hello.get('s')
 
         # start heartbeat in background
         self.heartbeat_task = asyncio.create_task(self.heartbeat())
@@ -162,7 +162,7 @@ class GatewayClient:
             'd': {
                 'token': f"Bot {token}",
                 'session_id': self.session_id,
-                'seq': self.seq or 0
+                'seq': self.seq
             }
         })
         logger.info(f"SHARD ID {self.shard_id}: Resume Sent.")
@@ -180,15 +180,18 @@ class GatewayClient:
 
             match op_code:
                 case 0:  # DISPATCH
-                    self.seq = data.get("s") or self.seq
+                    if data.get('s') is not None:
+                        self.seq = data['s']
+
                     event_data = data.get('d')
                     dispatcher_type = data.get("t")
 
                     if dispatcher_type == "READY":
                         self.session_id = event_data.get("session_id")
                         self.base_url = event_data.get("resume_gateway_url", self.base_url)
-
-                        # this is a stable connection so reset backoff
+                        self.backoff = MIN_BACKOFF
+                        
+                    elif dispatcher_type == "RESUMED":
                         self.backoff = MIN_BACKOFF
 
                     await self.event_queue.put((dispatcher_type, event_data))
@@ -196,9 +199,10 @@ class GatewayClient:
                 case 7:  # RECONNECT
                     self.allow_resume = True
                     logger.debug(f"SHARD ID {self.shard_id}: Reconnect requested by server.")
+
                     raise ConnectionError("Reconnect requested by server.")
 
-                case 9:
+                case 9: # INVALID_SESSION
                     resumable = bool(data.get("d"))
                     self.allow_resume = resumable
 
@@ -224,6 +228,7 @@ class GatewayClient:
                     await self.heartbeat_task
                 except asyncio.CancelledError:
                     pass
+                self.heartbeat_task = None
             await self.ws.close()
 
         self.ws = None
