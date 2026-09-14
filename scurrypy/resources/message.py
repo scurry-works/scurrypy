@@ -11,6 +11,7 @@ from ..enums.message import MessageFlags
 from ..enums.emoji import ReactionType
 
 from ..api.messages.message import MessageModel
+from ..api.messages.attachment import AttachmentPart
 
 from ..api.emoji import EmojiModel
 from ..api.user import UserModel
@@ -25,6 +26,12 @@ class _EditMessageMixin:
         payload: JSON,
         suppress_embeds: bool | None
     ) -> None:
+        """Suppress embeds in the new message.
+
+        Args:
+            payload (JSON): partially serialized payload
+            suppress_embeds (bool | None): whether to suppress embeds
+        """
         if suppress_embeds is not None:
             flags = payload.get("flags", 0)
 
@@ -39,10 +46,18 @@ class _EditMessageMixin:
         self,
         payload: JSON
     ) -> list[str]:
+        """Index new files and prepare a list to be passed to HTTPClient.
+
+        Args:
+            payload (JSON): partially serialized payload
+
+        Returns:
+            list[str]: list of file paths for `files` request param.
+        """
         if "attachments" not in payload:
             return []
 
-        attachments = payload["attachments"]
+        attachments: list[AttachmentPart] = payload["attachments"]
 
         assert isinstance(attachments, list)
 
@@ -54,7 +69,7 @@ class _EditMessageMixin:
             for attachment in attachments
         ]
 
-        return [attachment.path for attachment in attachments]
+        return [attachment.path for attachment in attachments if attachment.path is not None]
 
 @dataclass
 class Message(BaseResource, _EditMessageMixin):
@@ -96,9 +111,9 @@ class Message(BaseResource, _EditMessageMixin):
             (MessageModel): updated message
         """
         
+        files = self._prepare_attachments(dict(options))
         opts = serialize(dict(options))
         self._apply_suppress_embeds(opts, suppress_embeds)
-        files = self._prepare_attachments(opts)
 
         data = await self.http.request(
             "PATCH",

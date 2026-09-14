@@ -2,7 +2,11 @@
 
 This changelog documents all notable and breaking changes to the ScurryPy PyPi package.
 
-# [2.3] - 21 Feb 2026
+## [2.3.0.1] - 14 Sep 2026
+
+* Bug Patch: corrected attachment editing
+
+## [2.3] - 21 Feb 2026
 
 * Sanitized field types
     * ScurryPy now passes mypy --strict

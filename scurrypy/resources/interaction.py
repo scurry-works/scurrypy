@@ -91,9 +91,9 @@ class Interaction(BaseResource, _EditMessageMixin):
             options (EditMessageParams): fields to edit
             suppress_embeds (optional, bool): whether the response's embeds should be removed
         """
+        files = self._prepare_attachments(dict(options))
         opts = serialize(dict(options))
         self._apply_suppress_embeds(opts, suppress_embeds)
-        files = self._prepare_attachments(opts)
 
         content = {
             "type": InteractionCallbackType.UPDATE_MESSAGE,

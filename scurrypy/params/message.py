@@ -8,7 +8,7 @@ from ..api.messages.embed import Embed
 from ..api.messages.message import MessageReferencePart
 
 class EditMessageParams(TypedDict, total=False):
-    """Parameters for editing a message"""
+    """Parameters for editing a message."""
 
     content: str
     """Message text content."""
