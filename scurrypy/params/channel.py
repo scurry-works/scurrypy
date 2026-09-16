@@ -1,4 +1,4 @@
-from typing import TypedDict, Optional, Literal
+from typing import TypedDict, Literal
 
 from ..enums.channel import ChannelType, ChannelFlags, SortOrderType, ForumLayoutType
 
@@ -11,47 +11,47 @@ class EditGuildChannelParams(TypedDict, total=False):
     name: str
     """Name of the channel."""
 
-    type: Optional[ChannelType]
+    type: ChannelType
     """Type of channel.
     
     !!! important
         Only conversion between text and announcement is supported in guilds with `NEWS` feature.
     """
 
-    position: Optional[int]
+    position: int
     """Sorting position of the channel (channels with the same position are sorted by id)."""
 
-    topic: Optional[str]
+    topic: str
     """Topic of the channel."""
 
-    nsfw: Optional[bool]
+    nsfw: bool
     """If the channel is flagged NSFW."""
 
-    rate_limit_per_user: Optional[int]
+    rate_limit_per_user: int
     """Seconds user must wait between sending messages in the channel."""
 
-    parent_id: Optional[int]
+    parent_id: int
     """Category ID of the channel."""
 
-    default_auto_archive_duration: Optional[int]
+    default_auto_archive_duration: int
     """Default duration in minutes threads will be hidden after period of inactivity."""
 
-    flags: Optional[ChannelFlags]
+    flags: ChannelFlags
     """Channel flags."""
 
-    default_reaction_emoji: Optional[DefaultReactionPart]
+    default_reaction_emoji: DefaultReactionPart
     """Emoji to show in the add reaction button in a `GUILD_FORUM` post."""
 
-    available_tags: Optional[list[TagPart]]
+    available_tags: list[TagPart]
     """Set of tags that can be applied to a `GUILD_FORUM` post."""
 
-    default_sort_order: Optional[SortOrderType]
+    default_sort_order: SortOrderType
     """Default forum sort order."""
 
-    default_forum_layout: Optional[ForumLayoutType]
+    default_forum_layout: ForumLayoutType
     """Default forum layout view."""
 
-    default_thread_rate_limit_per_user: Optional[int]
+    default_thread_rate_limit_per_user: int
     """Rate limit per user set on newly created threads.
     
     !!! note
@@ -61,13 +61,13 @@ class EditGuildChannelParams(TypedDict, total=False):
 class EditThreadChannelParams(TypedDict, total=False):
     """Parameters for editing a thread channel."""
 
-    name: Optional[str]
+    name: str
     """Name of the channel."""
 
-    archived: Optional[bool]
+    archived: bool
     """Whether the thread is archived."""
 
-    auto_archive_duration: Optional[Literal[60, 1440, 4320, 10080]]
+    auto_archive_duration: Literal[60, 1440, 4320, 10080]
     """Duration in minutes threads will be hidden after period of inactivity."""
 
     locked: bool
@@ -77,14 +77,14 @@ class EditThreadChannelParams(TypedDict, total=False):
         Only users with `MANAGE_THREADS` can unarchive the thread.
     """
 
-    invitable: Optional[bool]
+    invitable: bool
     """Whether non-moderators can add other non-moderators to the thread (private threads only)."""
 
-    rate_limit_per_user: Optional[int]
+    rate_limit_per_user: int
     """Seconds user must wait between sending messages in the channel."""
 
-    flags: Optional[ChannelFlags]
+    flags: ChannelFlags
     """Channel flags."""
 
-    applied_tags: Optional[list[int]]
+    applied_tags: list[int]
     """Set of tags applied to a `GUILD_FORUM` post."""

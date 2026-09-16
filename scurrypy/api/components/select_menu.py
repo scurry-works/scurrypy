@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 
 from ...core.model import DataModel
 from ...core.snowflake import Snowflake
+from ...core.types import RequiredPartField, OptionalPartField
 
 from ...bases.components import (
     ActionRowChild, 
@@ -17,19 +18,19 @@ from ..emoji import EmojiModel
 class SelectOption(DataModel):
     """Represents the Select Option component."""
 
-    label: str | None = None
+    label: RequiredPartField[str] = None
     """User-facing name of the option."""
 
-    value: str | None = None
+    value: RequiredPartField[str] = None
     """Developer-defined value of the option."""
 
-    description: str | None = None
+    description: OptionalPartField[str] = None
     """Additional description of the option."""
 
-    emoji: EmojiModel | None = None
+    emoji: OptionalPartField[EmojiModel] = None
     """Partial emoji object."""
 
-    default: bool | None = None
+    default: OptionalPartField[bool] = None
     """Whether this option is selected by default. Discord defaults to `False`."""
 
 @dataclass
@@ -39,26 +40,30 @@ class StringSelect(Component, ActionRowChild, LabelChild):
     A String Select allows users to select one or more provided options.
     """
 
-    custom_id: str | None = None
+    custom_id: RequiredPartField[str] = None
     """ID for the select menu."""
 
-    options: list[SelectOption] | None = None
+    options: RequiredPartField[list[SelectOption]] = None
     """Specified choices in a select menu."""
 
-    placeholder: str | None = None
+    placeholder: OptionalPartField[str] = None
     """Placeholder text if nothing is selected or default."""
 
-    min_values: int | None = None
+    min_values: OptionalPartField[int] = None
     """Minimum number of items that must be chosen. Discord defaults to `1`."""
 
-    max_values: int | None = None
+    max_values: OptionalPartField[int] = None
     """Maximum number of items that can be chosen. Discord defaults to `1`."""
 
-    required: bool | None = None
+    required: OptionalPartField[bool] = None
     """Whether the string select is required to answer in a modal. Discord defaults to `True`."""
 
-    disabled: bool | None = None # does not work on Modals!
-    """Whether select menu is disabled in a message. Discord defaults to `False`."""
+    disabled: OptionalPartField[bool] = None
+    """Whether select menu is disabled in a message. Discord defaults to `False`.
+    
+    !!! warning
+        Does not work on Modals!
+    """
 
     type: ComponentType = field(init=False, default=ComponentType.STRING_SELECT)
     """Component type. Always `ComponentType.STRING_SELECT` for this class."""
@@ -68,38 +73,38 @@ class StringSelect(Component, ActionRowChild, LabelChild):
 class DefaultValue(DataModel):
     """Represents the Default Value for Select components."""
 
-    id: Snowflake | None = None
+    id:RequiredPartField [Snowflake] = None
     """ID of role, user, or channel."""
 
-    type: DefaultValueType | None = None
+    type: RequiredPartField[DefaultValueType] = None
     """Type of value that `id` represents."""
 
 @dataclass
 class SelectMenuMixin:
     """Represents common fields for Discord's select menus."""
 
-    custom_id: str | None = None
+    custom_id: RequiredPartField[str] = None
     """ID for the select menu."""
 
-    placeholder: str | None = None
+    placeholder: OptionalPartField[str] = None
     """Placeholder text if nothing is selected."""
 
-    default_values: list[DefaultValue] | None = None
+    default_values: OptionalPartField[list[DefaultValue]] = None
     """
         List of default values for auto-populated select menu components.
         Number of default values must be in the range of `min_values` to `max_values`.
     """
 
-    min_values: int | None = None
+    min_values: OptionalPartField[int] = None
     """Minimum number of items that must be chosen. Discord defaults to `1`."""
 
-    max_values: int | None = None
+    max_values: OptionalPartField[int] = None
     """Maximum number of items that can be chosen. Discord defaults to `1`."""
 
-    required: bool | None = None
+    required: OptionalPartField[bool] = None
     """Whether the select is required to answer in a modal. Discord defaults to `True`."""
 
-    disabled: bool | None = None
+    disabled: OptionalPartField[bool] = None
     """Whether select menu is disabled in a message. Discord defaults to `False`."""
 
 @dataclass

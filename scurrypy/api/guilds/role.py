@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from ...core.model import DataModel
 from ...core.snowflake import Snowflake
+from ...core.types import PresentModelField, PresentNullableModelField, OmittableModelField, OmittableNullableModelField, RequiredNullablePartField, OptionalPartField, RequiredPartField
 
 from ...enums.permissions import Permissions
 from ..image_data import ImageDataPart
@@ -10,86 +11,86 @@ from ..image_data import ImageDataPart
 class GuildRoleColorModel(DataModel):
     """Represents role color data."""
 
-    primary_color: int
+    primary_color: PresentModelField[int]
     """Primary color of the role."""
 
-    secondary_color: int
+    secondary_color: PresentNullableModelField[int]
     """Secondary color of the role. Creates a gradient."""
 
-    tertiary_color: int
+    tertiary_color: PresentNullableModelField[int]
     """Tertiary color of the role. Creates a holographic style."""
 
 @dataclass
 class GuildRoleModel(DataModel):
     """Represents a Discord role."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the role."""
 
-    name: str
+    name: PresentModelField[str]
     """Name of the role."""
 
-    colors: GuildRoleColorModel
+    colors: PresentModelField[GuildRoleColorModel]
     """Colors of the role."""
 
-    hoist: bool
+    hoist: PresentModelField[bool]
     """If the role is pinned in user listing."""
 
-    position: int
+    position: PresentModelField[int]
     """Position of the role."""
 
-    permissions: Permissions
+    permissions: PresentModelField[Permissions]
     """Permission bit set. [INT_LIMIT]"""
 
-    managed: bool
+    managed: PresentModelField[bool]
     """If the role is managed by an integration."""
 
-    mentionable: bool
+    mentionable: PresentModelField[bool]
     """If the role is mentionable."""
 
-    flags: int
+    flags: PresentModelField[int]
     """Role flags combined as a bitfield."""
 
-    icon: str | None
+    icon: OmittableModelField[str]
     """Icon hash of the role."""
 
-    unicode_emoji: str | None
+    unicode_emoji: OmittableNullableModelField[str]
     """Unicode emoji of the role."""
 
 @dataclass
 class GuildRoleColorsPart(DataModel):
     """Parameters for setting role colors."""
 
-    primary_color: int | None = None
+    primary_color: RequiredPartField[int] = None
     """Primary color of the role."""
 
-    secondary_color: int | None = None
+    secondary_color: RequiredNullablePartField[int] = None
     """Secondary color of the role. Creates a gradient."""
 
-    tertiary_color: int | None = None
+    tertiary_color: RequiredNullablePartField[int] = None
     """Tertiary color of the role. Creates a holographic style."""
 
 @dataclass
 class GuildRolePart(DataModel):
     """Parameters for creating a role."""
 
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of the role. Discord defaults to \"user role\"."""
 
-    colors: GuildRoleColorsPart | None = None
+    colors: RequiredPartField[GuildRoleColorsPart] = None
     """Colors of the role. Discord defaults to primary color set to `0`."""
 
-    icon: ImageDataPart | None = None
+    icon: RequiredNullablePartField[ImageDataPart] = None
     """Icon of the role (if guild has `ROLE_ICONS` feature)."""
 
-    permissions: Permissions | None = None
+    permissions: RequiredPartField[Permissions] = None
     """Permission bit set. [`INT_LIMIT`]"""
 
-    hoist: bool | None = None
+    hoist: RequiredPartField[bool] = None
     """If the role is pinned in the user listing. Discord defaults to `False`."""
 
-    mentionable: bool | None = None
+    mentionable: RequiredPartField[bool] = None
     """If the role is mentionable. Discord defaults to `False`."""
 
-    unicode_emoji: str | None = None
+    unicode_emoji: RequiredNullablePartField[str] = None
     """Unicode emoji of the role."""

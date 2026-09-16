@@ -2,93 +2,84 @@ from dataclasses import dataclass
 
 from ...core.model import DataModel
 from ...core.snowflake import Snowflake
+from ...core.types import PresentModelField, PresentNullableModelField, OmittableModelField
 
 from ..emoji import EmojiModel
 from .role import GuildRoleModel
 
 @dataclass
-class ReadyGuildModel(DataModel):
-    """Guild info from Ready event."""
-    
-    id: Snowflake
-    """ID of the associated guild."""
-
-    unavailable: bool
-    """If the guild is offline."""
-
-@dataclass
 class UnavailableGuildModel(DataModel):
     """Guild info during an outage or before bot bootup."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the associated guild."""
 
-    unavailable: bool
+    unavailable: PresentModelField[bool]
     """If the guild is offline."""
 
 @dataclass
 class GuildModel(DataModel):
     """Represents a Discord guild."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the guild."""
     
-    name: str
+    name: PresentModelField[str]
     """Name of the guild."""
 
-    icon: str
+    icon: PresentNullableModelField[str]
     """Image hash of the guild's icon."""
 
-    splash: str
+    splash: PresentNullableModelField[str]
     """Image hash of the guild's splash."""
 
-    owner: bool | None
+    owner: OmittableModelField[bool]
     """If the member is the owner."""
 
-    owner_id: Snowflake
+    owner_id: PresentModelField[Snowflake]
     """ID of the owner of the guild."""
 
-    emojis: list[EmojiModel]
-    """List of emojis registered in the guild."""
-
-    roles: list[GuildRoleModel]
+    roles: PresentModelField[list[GuildRoleModel]]
     """Roles in the guild."""
 
-    mfa_level: int
+    emojis: PresentModelField[list[EmojiModel]]
+    """List of emojis registered in the guild."""
+
+    mfa_level: PresentModelField[int]
     """Required MFA level of the guild."""
 
-    application_id: Snowflake
+    application_id: PresentNullableModelField[Snowflake]
     """ID of the application if the guild is created by a bot."""
 
-    system_channel_id: Snowflake
+    system_channel_id: PresentNullableModelField[Snowflake]
     """Channel ID where system messages go (e.g., welcome messages, boost events)."""
 
-    system_channel_flags: int
+    system_channel_flags: PresentModelField[int]
     """System channel flags."""
 
-    rules_channel_id: Snowflake
+    rules_channel_id: PresentNullableModelField[Snowflake]
     """Channel ID where rules are posted."""
 
-    max_members: int | None
+    max_members: OmittableModelField[int]
     """Maximum member capacity for the guild."""
 
-    description: str
+    description: PresentNullableModelField[str]
     """Description of the guild."""
 
-    banner: str
+    banner: PresentNullableModelField[str]
     """Image hash of the guild's banner."""
 
-    preferred_locale: str
+    preferred_locale: PresentModelField[str]
     """Preferred locale of the guild."""
 
-    public_updates_channel_id: Snowflake
+    public_updates_channel_id: PresentNullableModelField[Snowflake]
     """Channel ID of announcement or public updates."""
 
-    approximate_member_count: int
+    approximate_member_count: OmittableModelField[int]
     """Approximate number of members in the guild."""
 
-    nsfw_level: int
+    nsfw_level: PresentModelField[int]
     """NSFW level of the guild."""
 
-    safety_alerts_channel_id: Snowflake
+    safety_alerts_channel_id: PresentNullableModelField[Snowflake]
     """Channel ID for safety alerts."""

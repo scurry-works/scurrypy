@@ -4,7 +4,7 @@ from ...bases.components import Component
 
 from ...core.model import DataModel
 from ...core.snowflake import Snowflake
-from ...core.types import Serialized
+from ...core.types import Serialized, PresentModelField, OmittableModelField, OptionalPartField
 
 from ...enums.message import MessageType, MessageFlags, MessageReferenceType
 
@@ -23,107 +23,110 @@ from typing import Self
 class MessageModel(DataModel):
     """Represents a Discord message."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the message."""
 
-    channel_id: Snowflake
+    channel_id: PresentModelField[Snowflake]
     """Channel ID of the message."""
 
-    author: UserModel
+    author: PresentModelField[UserModel]
     """User data of author of the message."""
     
-    content: str
+    content: PresentModelField[str]
     """Content of the message."""
 
-    pinned: bool
-    """If the message is pinned."""
-
-    type: MessageType
-    """Type of message."""
-
-    flags: MessageFlags
-    """Message flags."""
-
-    attachments: list[AttachmentModel]
-    """Attached files."""
-
-    embeds: list[Embed]
-    """Embedded content."""
-
-    thread: ChannelModel | None
-    """Thread created from the message."""
-
-    reactions: list[ReactionModel]
-    """Reactions to the message."""
-
-    webhook_id: Snowflake | None
-    """ID of the webhook if the message is a webhook."""
-
-    timestamp: str | None
+    timestamp: PresentModelField[str]
     """Timestamp of when the message was sent."""
 
-    edited_timestamp: str | None
+    edited_timestamp: PresentModelField[str]
     """Timestamp of when the message was last edited."""
 
-    mention_everyone: bool
+    mention_everyone: PresentModelField[bool]
     """Whether the message mentions everyone."""
 
-    mentions: list[UserModel]
+    mentions: PresentModelField[list[UserModel]]
     """List of mentioned users in the message."""
 
-    mention_roles: list[GuildRoleModel]
+    mention_roles: PresentModelField[list[GuildRoleModel]]
     """List of mentioned roles in the message."""
 
-    components: list[Component]
+    mention_channels: OmittableModelField[list[ChannelModel]]
+    """List of mentioned channels in the message"""
+
+    attachments: PresentModelField[list[AttachmentModel]]
+    """Attached files."""
+
+    webhook_id: OmittableModelField[Snowflake]
+    """ID of the webhook if the message is a webhook."""
+
+    embeds: PresentModelField[list[Embed]]
+    """Embedded content."""
+
+    reactions: OmittableModelField[list[ReactionModel]]
+    """Reactions to the message."""
+
+    pinned: PresentModelField[bool]
+    """If the message is pinned."""
+
+    type: PresentModelField[MessageType]
+    """Type of message."""
+
+    flags: OmittableModelField[MessageFlags]
+    """Message flags."""
+
+    thread: OmittableModelField[ChannelModel]
+    """Thread created from the message."""
+
+    components: OmittableModelField[list[Component]]
     """Components contained in the message."""
 
 @dataclass
 class PinnedMessageModel(DataModel):
     """Represents a pinned message."""
 
-    message: MessageModel
+    message: PresentModelField[MessageModel]
     """Message resource of the pinned message."""
 
-    pinned_at: str | None
+    pinned_at: PresentModelField[str]
     """ISO8601 timestamp of when the message was pinned."""
 
 @dataclass
 class MessageReferencePart(DataModel):
     """Represents the Message Reference object."""
 
-    message_id: Snowflake | None = None
+    message_id: OptionalPartField[Snowflake] = None
     """ID of the originating message."""
 
-    channel_id: Snowflake | None = None
+    channel_id: OptionalPartField[Snowflake] = None
     """
         Channel ID of the originating message.
         !!! note
             Optional for default type, but REQUIRED for forwards.
     """
 
-    type: MessageReferenceType | None = None
+    type: OptionalPartField[MessageReferenceType] = None
     """Type of reference. Discord defaults to `MessageReferenceTypes.DEFAULT`."""
 
 @dataclass
 class MessagePart(DataModel):
     """Represents a Discord Message."""
 
-    content: str | None = None
+    content: OptionalPartField[str] = None
     """Message text content."""
 
-    flags: MessageFlags | None = None
+    flags: OptionalPartField[MessageFlags] = None
     """Message flags. Discord defaults to `MessageFlags.NO_FLAGS`."""
 
-    components: list[ActionRow | Container] | None = None
+    components: OptionalPartField[list[ActionRow | Container]] = None
     """Components to be attached to this message."""
 
-    attachments: list[AttachmentPart] | None = None
+    attachments: OptionalPartField[list[AttachmentPart]] = None
     """Attachments to be attached to this message."""
 
-    embeds: list[Embed] | None = None
+    embeds: OptionalPartField[list[Embed]] = None
     """Embeds to be attached to this message."""
 
-    message_reference: MessageReferencePart | None = None
+    message_reference: OptionalPartField[MessageReferencePart] = None
     """Message reference if reply."""
 
     def _prepare(self) -> Self:

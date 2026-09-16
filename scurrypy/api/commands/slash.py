@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 
 from ...core.model import DataModel
-from ...core.types import JSON
+from ...core.types import JSON, RequiredPartField, OptionalPartField, OmittableNullableModelField
 
 from ...enums.command import CommandOptionType, CommandType
 
@@ -9,48 +9,48 @@ from ...enums.command import CommandOptionType, CommandType
 class CommandOptionChoicePart(DataModel):
     """Choice for a command option."""
 
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of the choice."""
 
-    value: str | int | float | None = None
+    value: RequiredPartField[str | int | float] = None
     """Value for the user to select (same as option type)."""
 
-    name_localizations: JSON | None = None
+    name_localizations: OmittableNullableModelField[JSON] = None
     """Dictionary with keys in available locales."""
 
 @dataclass
 class CommandOptionPart(DataModel):
     """Option for a slash command."""
 
-    type: CommandOptionType | None = None
+    type: RequiredPartField[CommandOptionType] = None
     """Type of option."""
 
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of option."""
 
-    description: str | None = None
+    description: RequiredPartField[str] = None
     """Description of option."""
 
-    required: bool | None = None
+    required: OptionalPartField[bool] = None
     """Whether this option is required. Discord defaults to `False`."""
 
-    choices: list[CommandOptionChoicePart] | None = None
+    choices: OptionalPartField[list[CommandOptionChoicePart]] = None
     """Choices for the user to pick from, max 25. Only valid for STRING, INTEGER, NUMBER option types."""
 
-    autocomplete: bool | None = None
+    autocomplete: OptionalPartField[bool] = None
     """Whether autocomplete interactions are enabled for this option. Discord defaults to `False`."""
 
 @dataclass
 class SlashCommandPart(DataModel):
     """Represents the slash command object."""
 
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of the command."""
 
-    description: str | None = None
+    description: OptionalPartField[str] = None
     """Description of the command."""
 
-    options: list[CommandOptionPart] | None = None
+    options: OptionalPartField[list[CommandOptionPart]] = None
     """Parameters or options for the command."""
 
     type: CommandType = field(init=False, default=CommandType.CHAT_INPUT)

@@ -23,3 +23,7 @@ class ApplicationFlags(DiscordFlags):
 
     GATEWAY_MESSAGE_CONTENT_LIMITED = 1 << 19
     """Intent to receive message content."""
+
+class ApplicationNewFlags(DiscordFlags):
+    """New Application Flags beyond 1 << 30."""
+    names = ()

@@ -1,4 +1,4 @@
-from typing import get_args, get_origin, Union
+from typing import get_args, get_origin, Union, TypeAliasType, Any
 from types import UnionType
 
 from .exceptions import DataModelTypeError
@@ -42,14 +42,14 @@ def convert(t: object, v: object) -> object:
     """
     o = get_origin(t)
 
-    if o in (Union, UnionType): # optional[T] or similar
+    if o in (Union, UnionType) or type(o) is TypeAliasType: # optional[T] or similar
         non_none = [a for a in get_args(t) if a is not type(None)]
 
         if len(non_none) > 1:
             raise DataModelTypeError(f"Expected deterministic type; got {non_none}.")
         
         return convert(non_none[0], v)
-    
+
     if v is None: # missing field
         return None
     
@@ -86,3 +86,17 @@ def convert(t: object, v: object) -> object:
         return t(v)
 
     return v
+
+from ..core.types import OptionalNullablePartField
+from dataclasses import Field
+
+def is_nullable_field(field: Field[Any]) -> bool:
+    """Determines whether the specified field is of type OptionalNullablePartField.
+
+    Args:
+        field (Field): dataclass field
+
+    Returns:
+        bool: whether field is optional and nullable
+    """
+    return get_origin(field.type) is OptionalNullablePartField

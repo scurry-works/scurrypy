@@ -3,6 +3,7 @@ from urllib.parse import quote
 
 from ..core.model import DataModel
 from ..core.snowflake import Snowflake
+from ..core.types import PresentModelField, OmittableModelField, RequiredPartField
 
 from .image_data import ImageDataPart
 
@@ -10,13 +11,13 @@ from .image_data import ImageDataPart
 class EmojiModel(DataModel):
     """Represents a Discord emoji."""
     
-    name: str
+    name: PresentModelField[str]
     """Name of emoji."""
 
-    id: Snowflake | None = None
+    id: OmittableModelField[Snowflake] = None
     """ID of the emoji (if custom)."""
 
-    animated: bool = False
+    animated: OmittableModelField[bool] = False
     """If the emoji is animated. Defaults to `False`."""
 
     @property
@@ -65,21 +66,21 @@ class EmojiModel(DataModel):
 class ApplicationEmojiPart(DataModel):
     """Represents fields for creating a bot emoji."""
     
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of the emoji."""
     
-    image: ImageDataPart | None = None
+    image: RequiredPartField[ImageDataPart] = None
     """Image data for the icon of the emoji."""
 
 @dataclass
 class GuildEmojiPart(DataModel):
     """Represents fields for creating a guild emoji."""
     
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of the emoji."""
     
-    image: ImageDataPart | None = None
+    image: RequiredPartField[ImageDataPart] = None
     """Image data for the icon of the emoji."""
     
-    roles: list[Snowflake] | None = None
+    roles: RequiredPartField[list[Snowflake]] = None
     """Roles able to use the emoji."""

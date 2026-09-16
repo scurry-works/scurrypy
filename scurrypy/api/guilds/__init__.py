@@ -6,7 +6,6 @@ from .ban import (
     BulkGuildBanPart
 )
 from .guild import (
-    ReadyGuildModel, 
     UnavailableGuildModel, 
     GuildModel
 )
@@ -37,7 +36,6 @@ __all__ = [
     "BulkGuildBanModel", 
     "BulkGuildBanPart",
 
-    "ReadyGuildModel", 
     "UnavailableGuildModel", 
     "GuildModel",
 

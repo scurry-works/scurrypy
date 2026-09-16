@@ -2,6 +2,21 @@
 
 This changelog documents all notable and breaking changes to the ScurryPy PyPi package.
 
+## [2.3.1] - ???
+
+ScurryPy now requires Python 3.12+
+
+* Added new channel flags
+* Added `file_types` to the `FileUpload` component and file filtering support to `ApplicationCommandOptionModel`
+* Added `AttachmentFlags`
+* Changed `AttachmentModel.flags` from `int` to `AttachmentFlags`
+* Updated Params annotations. This change is reflected in CONTRIBUTING.
+    * Some editing params are optional, while others are optional and nullable.
+    * Optional params use `total=False` on the Param Object.
+    * Nullable params additionally use `type | None`.
+* Added explicit field semantics to Part and Model fields.
+* Added `UnfurledMediaPart`
+
 ## [2.3.0.1] - 14 Sep 2026
 
 * Bug Patch: corrected attachment editing

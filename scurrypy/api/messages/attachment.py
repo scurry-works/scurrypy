@@ -3,66 +3,79 @@ from dataclasses import dataclass, field
 from ...core.model import DataModel
 from ...core.snowflake import Snowflake
 from ...core.exceptions import MissingField
-from ...core.types import Serialized
+from ...core.types import Serialized, PresentModelField, OmittableModelField, OmittableNullableModelField, RequiredPartField, OptionalPartField
+
+from ...enums.attachment import AttachmentFlags
 
 @dataclass
 class AttachmentModel(DataModel):
     """Represents an attachment object."""
 
-    id: Snowflake
-    """Attachment ID."""
+    id: PresentModelField[Snowflake]
+    """Attachment ID.
+    
+    For new uploads, this value is assigned internally to the
+    attachment's index in the upload list.
+    """
 
-    filename: str
+    filename: PresentModelField[str]
     """Name of the file."""
 
-    title: str | None
+    title: OmittableModelField[str]
     """Title of the file."""
 
-    description: str | None
+    description: OmittableModelField[str]
     """Description of the file."""
 
-    content_type: str | None
+    content_type: OmittableModelField[str]
     """Media type of the file."""
 
-    size: int
+    size: PresentModelField[int]
     """Size of file (in bytes)."""
 
-    url: str
+    url: PresentModelField[str]
     """Source URL of the file."""
 
-    proxy_url: str
+    proxy_url:PresentModelField [str]
     """A proxied URL of the file."""
 
-    height: int | None
+    height: OmittableNullableModelField[int]
     """Height of file (if image)."""
 
-    width: int | None
+    width: OmittableNullableModelField[int]
     """Width of file (if image)."""
 
-    ephemeral: bool | None
+    ephemeral: OmittableModelField[bool]
     """Whether this file is ephemeral."""
 
-    flags: int | None
+    flags: OmittableModelField[AttachmentFlags]
     """Attachment flags as a combined bitfield."""
 
 @dataclass
 class AttachmentPart(DataModel):
     """Represents an attachment."""
 
-    path: str | None = None
+    path: RequiredPartField[str] = None
     """Relative path to the file."""
 
-    description: str | None = None
+    description: OptionalPartField[str] = None
     """Description of the file."""
 
-    id: int | None = field(init=False, default=None)
-    """ID of the attachment (internally set)."""
+    is_spoiler: OptionalPartField[bool] = None
+    """Whether this attachment should be blurred."""
+
+    id: RequiredPartField[int] = None
+    """ID of the attachment.
+
+    For editing attachments, this should be the Discord attachment ID.
+    For new attachments, the ID is internally set.
+    """
 
     def to_dict(self) -> Serialized:
         """Serialize this attachment.
 
         Raises:
-            (MissingField): _description_
+            (MissingField): missing path
 
         Returns:
             (Serialized): serialized attachment
@@ -73,5 +86,6 @@ class AttachmentPart(DataModel):
         return {
             'id': self.id,
             'filename': self.path.split('/')[-1],
-            'description': self.description
+            'description': self.description,
+            'is_spoiler': self.is_spoiler
         }

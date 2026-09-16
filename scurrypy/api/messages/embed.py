@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from ...core.model import DataModel
 from ...core.exceptions import DataModelTypeError
-from ...core.types import Serialized
+from ...core.types import Serialized, RequiredPartField, OptionalPartField
 
 from ..user import UserModel
 
@@ -12,81 +12,81 @@ from datetime import datetime, timezone
 class EmbedAuthor(DataModel):
     """Represents fields for creating an embed author."""
 
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of the author."""
 
-    url: str | None = None
+    url: OptionalPartField[str] = None
     """URL of the author. http or attachment://<filename> scheme."""
 
-    icon_url: str | None = None
+    icon_url: OptionalPartField[str] = None
     """URL of author's icon. http or attachment://<filename> scheme."""
 
 @dataclass
 class EmbedThumbnail(DataModel):
     """Represents fields for creating an embed thumbnail."""
 
-    url: str | None = None
+    url: RequiredPartField[str] = None
     """Thumbnail content. http or attachment://<filename> scheme."""
 
 @dataclass
 class EmbedField(DataModel):
     """Represents fields for creating an embed field."""
 
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of the field."""
 
-    value: str | None = None
+    value: RequiredPartField[str] = None
     """Value of the field."""
 
-    inline: bool | None = False
+    inline: OptionalPartField[bool] = False
     """Whether or not this field should display inline. Defaults to `False`."""
 
 @dataclass
 class EmbedImage(DataModel):
     """Represents fields for creating an embed image."""
 
-    url: str | None = None
+    url: RequiredPartField[str] = None
     """Image content. http or attachment://<filename> scheme."""
 
 @dataclass
 class EmbedFooter(DataModel):
     """Represents fields for creating an embed footer."""
 
-    text: str | None = None
+    text: RequiredPartField[str] = None
     """Footer text."""
 
-    icon_url: str | None = None
+    icon_url: OptionalPartField[str] = None
     """URL of the footer icon. http or attachment://<filename> scheme."""
 
 @dataclass
 class Embed(DataModel):
     """Represents fields for creating an embed."""
 
-    title: str | None = None
+    title: OptionalPartField[str] = None
     """This embed's title."""
 
-    description: str | None = None
+    description: OptionalPartField[str] = None
     """This embed's description."""
 
-    timestamp: str | None = None
+    timestamp: OptionalPartField[str] = None
     """Timestamp of when the embed was sent."""
 
-    color: int | None = None
+    color: OptionalPartField[int] = None
     """Embed's accent color."""
 
-    author: EmbedAuthor | None = None
+    author: OptionalPartField[EmbedAuthor] = None
     """Embed's author."""
 
-    thumbnail: EmbedThumbnail | None = None
+    thumbnail: OptionalPartField[EmbedThumbnail] = None
     """Embed's thumbnail attachment."""
 
-    image: EmbedImage | None = None
+    image: OptionalPartField[EmbedImage] = None
     """Embed's image attachment."""
 
-    fields: list[EmbedField] | None = None
+    fields: OptionalPartField[list[EmbedField]] = None
     """List of embed's fields."""
 
-    footer: EmbedFooter | None = None
+    footer: OptionalPartField[EmbedFooter] = None
     """Embed's footer."""
 
     def set_user_author(self, user: UserModel) -> None:

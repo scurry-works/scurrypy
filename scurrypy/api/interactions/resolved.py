@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from ...core.model import DataModel
 from ...core.snowflake import Snowflake
+from ...core.types import OmittableModelField
 
 from ..guilds.role import GuildRoleModel
 from ..channels.channel import ChannelModel
@@ -14,24 +15,24 @@ from ..user import UserModel, GuildMemberModel
 class ResolvedDataModel(DataModel):
     """Represents the resolved data object."""
 
-    users: dict[Snowflake, UserModel] | None
+    users: OmittableModelField[dict[Snowflake, UserModel]]
     """Map of user snowflakes to user objects."""
 
-    members: dict[Snowflake, GuildMemberModel] | None
+    members: OmittableModelField[dict[Snowflake, GuildMemberModel]]
     """Map of member snowflakes to partial guild member objects.
 
     !!! note "Missing Fields"
         `user`, `deaf`, and `mute`.
     """
 
-    roles: dict[Snowflake, GuildRoleModel] | None
+    roles: OmittableModelField[dict[Snowflake, GuildRoleModel]]
     """Map of role snowflakes to role objects."""
 
-    channels: dict[Snowflake, ChannelModel] | None
+    channels: OmittableModelField[dict[Snowflake, ChannelModel]]
     """Map of channel snowflakes to partial channel objects."""
 
-    messages: dict[Snowflake, MessageModel] | None
+    messages: OmittableModelField[dict[Snowflake, MessageModel]]
     """Map of message snowflakes to partial message objects."""
 
-    attachments: dict[Snowflake, AttachmentModel] | None
+    attachments: OmittableModelField[dict[Snowflake, AttachmentModel]]
     """Map of attachment snowflakes to attachment objects."""

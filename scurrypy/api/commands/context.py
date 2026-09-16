@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 
 from ...core.model import DataModel
+from ...core.types import RequiredPartField
 
 from ...enums.command import CommandType
 
@@ -8,7 +9,7 @@ from ...enums.command import CommandType
 class UserCommandPart(DataModel):
     """Represents the user command object."""
 
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of the command."""
 
     type: CommandType = field(init=False, default=CommandType.USER)
@@ -18,7 +19,7 @@ class UserCommandPart(DataModel):
 class MessageCommandPart(DataModel):
     """Represents the message command object."""
     
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of the command."""
 
     type: CommandType = field(init=False, default=CommandType.MESSAGE)

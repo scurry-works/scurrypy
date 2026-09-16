@@ -62,7 +62,8 @@ class _EditMessageMixin:
         assert isinstance(attachments, list)
 
         for idx, attachment in enumerate(attachments):
-            attachment.id = idx
+            if attachment.id is None: # only set new attachments
+                attachment.id = idx
 
         payload["attachments"] = [
             attachment.to_dict()

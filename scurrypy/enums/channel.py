@@ -36,6 +36,28 @@ class ChannelFlags(DiscordFlags):
     REQUIRE_TAG = 1 << 4
     """Whether a tag is required when creating a thread in a `GUILD_FORUM` channel."""
 
+    HIDE_MEDIA_DOWNLOAD_OPTIONS = 1 << 15
+    """hides the embedded media download options. 
+    
+    !!! warning
+        Only for media channels.
+    """
+
+    CHANNEL_OBFUSCATED = 1 << 17
+    """Channel's metadata has been obfuscated because the current user cannot view it.
+    
+    !!! warning
+        Only ever set for channels received over the gateway, not HTTP.
+    """
+
+    IS_SPOILER_CHANNEL = 1 << 21
+    """Channel in which users must opt in to view its contents.
+    
+    !!! warning
+        Cannot be set for `GUILD_STAGE` channels.
+        Can only be set if `nsfw` is `False`.
+    """
+
 class SortOrderType(DiscordTypes):
     """Represents sort order types for `GUILD_FORUM` channels."""
 

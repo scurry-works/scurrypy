@@ -22,15 +22,13 @@ from scurrypy.events import InteractionEvent
 from .ctx import CommandContext, ApplicationCommandContext, AutocompleteApplicationCommandContext
 
 from collections.abc import Callable, Awaitable
-from typing import TypeAlias, TypeVar, Any
+from typing import Any
 
-C = TypeVar("C", bound=CommandContext)
+type _AddonHandler[C: CommandContext] = Callable[[C], Awaitable[None]]
 
-_AddonHandler: TypeAlias = Callable[[C], Awaitable[None]]
+AddonHandler = _AddonHandler[Any]
 
-AddonHandler: TypeAlias = _AddonHandler[Any]
-
-AddonDecorator: TypeAlias = Callable[[AddonHandler], AddonHandler]
+type AddonDecorator = Callable[[AddonHandler], AddonHandler]
 
 def _check_func_params(func: AddonHandler) -> None:
     """Inspect a user-defined function callback for command interactions.
@@ -304,7 +302,7 @@ class CommandsAddon(Addon):
         elif isinstance(data, AutocompleteApplicationCommandDataModel):
             # Extract option being autocompleted
 
-            focused = next((opt for opt in data.options if opt.focused), None)
+            focused = next((opt for opt in data.options or [] if opt.focused), None)
 
             if not focused:
                 logger.error("No focused option found for autocomplete!")

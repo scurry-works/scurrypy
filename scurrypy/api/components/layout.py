@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 
 from ...core.model import DataModel
+from ...core.types import RequiredPartField, OptionalPartField, OptionalNullablePartField
 
 from ...bases.components import (
     ContainerChild, 
@@ -14,11 +15,13 @@ from ...enums.components import (
     SeparatorType
 )
 
+from .unfurled_media import UnfurledMediaPart
+
 @dataclass
 class ActionRow(Component):
     """Represents a container of interactable components."""
 
-    components: list[Component] | None = None
+    components: RequiredPartField[list[Component]] = None
     """Up to 5 interactive button components or a single select component."""
 
     type: ComponentType = field(init=False, default=ComponentType.ACTION_ROW)
@@ -31,13 +34,13 @@ class Section(Component, ContainerChild):
     A Section contextually associates content with an accessory component.
     """
 
-    accessory: Component | None = None
+    accessory: RequiredPartField[Component] = None
     """A component that is contextually associated to the content of the section.
     
     Supports [`SectionAccessoryChild`][scurrypy.bases.components.SectionAccessoryChild] components.
     """
 
-    components: list[Component] | None = None
+    components: RequiredPartField[list[Component]] = None
     """Component(s) representing the content of the section that is contextually associated to the accessory.
     
     Supports [`SectionChild`][scurrypy.bases.components.SectionChild] components.
@@ -54,7 +57,7 @@ class TextDisplay(Component, ContainerChild, SectionChild):
     A Text Display adds markdown formatted text, including mentions (users, roles, etc) and emojis.
     """
 
-    content: str | None = None
+    content: RequiredPartField[str] = None
     """Text that will be displayed similar to a message."""
 
     type: ComponentType = field(init=False, default=ComponentType.TEXT_DISPLAY)
@@ -67,13 +70,13 @@ class Thumbnail(Component, SectionAccessoryChild):
     A Thumbnail displays visual media in a small form-factor.
     """
     
-    media: str | None = None
-    """Media of the thumbnail. http or attachment://<filename> scheme."""
+    media: RequiredPartField[UnfurledMediaPart] = None
+    """Media of the thumbnail. URL or attachment scheme."""
 
-    description: str | None = None
+    description: OptionalNullablePartField[str] = None
     """Description for the media."""
 
-    spoiler: bool | None = None
+    spoiler: OptionalPartField[bool] = None
     """Whether the thumbnail should be a spoiler (or blurred out). Discord defaults to `False`."""
 
     type: ComponentType = field(init=False, default=ComponentType.THUMBNAIL)
@@ -83,13 +86,13 @@ class Thumbnail(Component, SectionAccessoryChild):
 class MediaGalleryItem(DataModel):
     """Represents the Media Gallery Item component."""
 
-    media: str | None = None
-    """Image data. http or attachment://<filename> scheme."""
+    media: RequiredPartField[UnfurledMediaPart] = None
+    """Image data. URL or attachment scheme."""
 
-    description: str | None = None
+    description: OptionalNullablePartField[str] = None
     """Alt text for the media."""
 
-    spoiler: bool | None = None
+    spoiler: OptionalPartField[bool] = None
     """Whether the thumbnail should be a spoiler (or blurred out). Discord defaults to `False`."""
 
 @dataclass
@@ -99,7 +102,7 @@ class MediaGallery(Component, ContainerChild):
     A Media Gallery displays 1-10 media attachments in an organized gallery format.
     """
 
-    items: list[MediaGalleryItem] | None = None
+    items: RequiredPartField[list[MediaGalleryItem]] = None
     """1 to 10 nedia gallery items."""
 
     type: ComponentType = field(init=False, default=ComponentType.MEDIA_GALLERY)
@@ -112,10 +115,10 @@ class File(Component, ContainerChild):
     A File displays an uploaded file as an attachment to the message and reference it in the component.
     """
 
-    file: str | None = None
+    file: RequiredPartField[str] = None
     """File name. ONLY supports attachment://<filename> scheme."""
 
-    spoiler: bool | None = None
+    spoiler: OptionalPartField[bool] = None
     """Whether the thumbnail should be a spoiler (or blurred out). Discord defaults to `False`."""
 
     type: ComponentType = field(init=False, default=ComponentType.FILE)
@@ -128,10 +131,10 @@ class Separator(Component, ContainerChild):
     A Separator adds vertical padding and visual division between other components.
     """
 
-    divider: bool | None = None
+    divider: OptionalPartField[bool] = None
     """Whether a visual divider should be displayed in the component. Discord defaults to `True`."""
 
-    spacing: SeparatorType | None = None
+    spacing: OptionalPartField[SeparatorType] = None
     """Size of separator padding. Discord defaults to `SeparatorType.SMALL_PADDING`."""
 
     type: ComponentType = field(init=False, default=ComponentType.SEPARATOR)
@@ -144,16 +147,16 @@ class Container(Component):
     A Container visually encapsulates a collection of components.
     """
 
-    components: list[Component] | None = None
+    components: RequiredPartField[list[Component]] = None
     """Child components that are encapsulated within the Container. 
     
     Supports [`ContainerChild`][scurrypy.bases.components.ContainerChild] components.
     """
 
-    accent_color: int | None = None
+    accent_color: OptionalPartField[int] = None
     """Color for the accent as an integer."""
 
-    spoiler: bool | None = None
+    spoiler: OptionalPartField[bool] = None
     """If the container should be blurred out. Discord defaults to `False`."""
 
     type: ComponentType = field(init=False, default=ComponentType.CONTAINER)
@@ -166,16 +169,16 @@ class Label(Component):
     Labels wrap modal components with text as a label and optional description.
     """
 
-    label: str | None = None
+    label: RequiredPartField[str] = None
     """Label text."""
 
-    component: Component | None = None
+    component: RequiredPartField[Component] = None
     """A component within the label. 
     
     Supports [`LabelChild`][scurrypy.bases.components.LabelChild] components.
     """
 
-    description: str | None = None
+    description: OptionalPartField[str] = None
     """An optional description text for the label."""
 
     type: ComponentType = field(init=False, default=ComponentType.LABEL)

@@ -1,9 +1,10 @@
 from dataclasses import dataclass, field
+from typing import Self
 
 from ...core.model import DataModel
 from ...core.snowflake import Snowflake
 from ...core.exceptions import OptionNotFound
-from ...core.types import HTTPResponse
+from ...core.types import HTTPResponse, PresentModelField, OmittableModelField
 
 from ...bases.interaction import InteractionData
 
@@ -20,72 +21,70 @@ from ..user import GuildMemberModel
 
 from .resolved import ResolvedDataModel
 
-from typing import Any, Self
-
 @dataclass
 class InteractionCallbackDataModel(DataModel):
     """Represents the interaction callback object."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the interaction."""
 
-    type: InteractionCallbackType
+    type: PresentModelField[InteractionCallbackType]
     """Type of interaction."""
 
-    activity_instance_id: str
+    activity_instance_id: OmittableModelField[str]
     """Instance ID of activity if an activity was launched or joined."""
 
-    response_message_id: Snowflake
+    response_message_id: OmittableModelField[Snowflake]
     """ID of the message created by the interaction."""
 
-    response_message_loading: bool
+    response_message_loading: OmittableModelField[bool]
     """If the interaction is in a loading state."""
 
-    response_message_ephemeral: bool
+    response_message_ephemeral: OmittableModelField[bool]
     """If the interaction is ephemeral."""
 
 @dataclass
 class InteractionCallbackModel(DataModel):
     """Represents the interaction callback response object."""
 
-    interaction: InteractionCallbackDataModel
+    interaction: PresentModelField[InteractionCallbackDataModel]
     """The interaction object associated with the interaction response."""
 
 @dataclass
 class InteractionModel(DataModel):
     """Represents the interaction model."""
 
-    type: InteractionType
+    type: PresentModelField[InteractionType]
     """Type of interaction."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of interaction."""
 
-    token: str
+    token: PresentModelField[str]
     """token of interaction."""
 
-    channel_id: Snowflake
-    """ID of the channel where the interaction was sent."""
-
-    application_id: Snowflake
+    application_id: PresentModelField[Snowflake]
     """ID of the application that owns the interaction."""
 
-    app_permissions: Permissions
+    app_permissions: PresentModelField[Permissions]
     """Bitwise set of permissions pertaining to the location of the interaction. [`INT_LIMIT`]"""
 
-    member: GuildMemberModel
+    member: OmittableModelField[GuildMemberModel]
     """Guild member invoking the interaction."""
 
-    message: MessageModel | None
+    message: OmittableModelField[MessageModel]
     """Message associated with interaction (components or modals)."""
 
-    guild_id: Snowflake | None
+    guild_id: OmittableModelField[Snowflake]
     """ID of guild the interaction was invoked (if invoked in a guild)."""
 
-    guild: GuildModel | None
+    guild: OmittableModelField[GuildModel]
     """Partial guild object of the guild the interaction was invoked (if invoked in a guild)."""
 
-    channel: ChannelModel | None
+    channel_id: OmittableModelField[Snowflake]
+    """ID of the channel where the interaction was sent."""
+
+    channel: OmittableModelField[ChannelModel]
     """Partial channel object the interaction was invoked."""
 
 # ----- Command Interaction -----
@@ -94,13 +93,13 @@ class InteractionModel(DataModel):
 class ApplicationCommandOptionDataModel(DataModel):
     """Represents the response options from a slash command."""
     
-    name: str
+    name: PresentModelField[str]
     """Name of the command option."""
 
-    type: CommandOptionType
+    type: PresentModelField[CommandOptionType]
     """Type of command option."""
 
-    value: str
+    value: PresentModelField[str]
     """
     Raw value from Discord as a string.
     
@@ -112,32 +111,32 @@ class ApplicationCommandOptionDataModel(DataModel):
     otherwise the value is expected to be str
     """
 
-    focused: bool
+    focused: OmittableModelField[bool]
     """Whether this option is the currently focused option for autocomplete."""
 
 @dataclass
 class CommandDataModel(InteractionData):
     """Represents common command interaction data fields."""
     
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the command."""
 
-    name: str
+    name: PresentModelField[str]
     """Name of the command."""
     
-    type: CommandType
+    type: PresentModelField[CommandType]
     """Type of command (e.g., message, user, slash)."""
 
-    guild_id: Snowflake | None
+    guild_id: OmittableModelField[Snowflake]
     """ID of guild from which the command was invoked."""
 
-    target_id: Snowflake  | None
+    target_id: OmittableModelField[Snowflake]
     """ID of the user or message from which the command was invoked (message/user commands only)."""
 
-    resolved: ResolvedDataModel | None
+    resolved: OmittableModelField[ResolvedDataModel]
     """Converted users + roles + channels + attachments."""
 
-    options: list[ApplicationCommandOptionDataModel] = field(default_factory=list)
+    options: OmittableModelField[list[ApplicationCommandOptionDataModel]] = field(default_factory=list)
     """Options of the command (slash command only)."""
 
     def get_focused_value(self) -> str:
@@ -162,6 +161,9 @@ class CommandDataModel(InteractionData):
         Returns:
             (int | float | bool | str | None): converted input data of specified option
         """
+        if not self.options:
+            return None
+        
         for option in self.options:
             if option.name != option_name:
                 continue
@@ -202,16 +204,16 @@ class AutocompleteApplicationCommandDataModel(CommandDataModel):
 class MessageComponentDataModel(InteractionData):
     """Represents the select response from a select component."""
 
-    custom_id: str
+    custom_id: PresentModelField[str]
     """Unique ID associated with the component."""
 
-    component_type: ComponentType
+    component_type: PresentModelField[ComponentType]
     """Type of component."""
 
-    resolved: ResolvedDataModel | None
+    resolved: OmittableModelField[ResolvedDataModel]
     """Resolved entities from selected options."""
 
-    values: list[str] | None
+    values: OmittableModelField[list[str]]
     """Select values (if any)."""
 
 # ----- Modal Interaction -----
@@ -220,17 +222,20 @@ class MessageComponentDataModel(InteractionData):
 class ModalComponentDataModel(DataModel):
     """Represents the modal field response from a modal."""
 
-    type: ComponentType
+    type: PresentModelField[ComponentType]
     """Type of component."""
     
-    custom_id: str
+    custom_id: PresentModelField[str]
     """Unique ID associated with the component."""
+
+    resolved: OmittableModelField[ResolvedDataModel]
+    """Resolved entities from selected options."""
 
 @dataclass
 class ModalComponentInputDataModel(ModalComponentDataModel):
     """Represents modal component variants with the value field."""
 
-    value: str
+    value: OmittableModelField[str]
     """Text input value.
     
     Convert based on option type:
@@ -243,14 +248,14 @@ class ModalComponentInputDataModel(ModalComponentDataModel):
 class ModalComponentSelectDataModel(ModalComponentDataModel):
     """Represents modal component variants with the values field."""
     
-    values: list[str]
+    values: OmittableModelField[list[str]]
     """String select values."""
 
 @dataclass
 class ModalComponentModel(DataModel):
     """Represents the modal component response from a modal."""
 
-    component: ModalComponentDataModel = field(init=False)
+    component: PresentModelField[ModalComponentDataModel] = field(init=False)
     """Data associated with the component."""
 
     @classmethod
@@ -282,16 +287,16 @@ class ModalComponentModel(DataModel):
 class ModalDataModel(InteractionData):
     """Represents the modal response from a modal."""
     
-    custom_id: str
+    custom_id: PresentModelField[str]
     """Unique ID associated with the modal."""
 
-    resolved: ResolvedDataModel | None
-    """Resolved entities from modal data."""
-
-    components: list[ModalComponentModel]
+    components: PresentModelField[list[ModalComponentModel]]
     """Components on the modal."""
 
-    def get_modal_data(self, custom_id: str) -> bool | str | list[str]:
+    resolved: OmittableModelField[ResolvedDataModel]
+    """Resolved entities from modal data."""
+
+    def get_modal_data(self, custom_id: str) -> bool | str | list[str] | None:
         """Fetch a modal field's data by its custom ID
 
         Args:
@@ -309,7 +314,7 @@ class ModalDataModel(InteractionData):
                 continue
 
             if isinstance(component.component, ModalComponentInputDataModel):
-                if component.component.type == ComponentType.CHECKBOX:
+                if component.component.type == ComponentType.CHECKBOX and component.component.value:
                     return component.component.value.lower() == 'true'
                 return component.component.value
         

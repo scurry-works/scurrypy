@@ -1,15 +1,13 @@
 from dataclasses import dataclass, fields
 
-from .serialization import convert, serialize
+from .serialization import convert, serialize, is_nullable_field
 
-from typing import TypeVar, Self
-
-T = TypeVar("T", bound="DataModel")
+from typing import Self
 
 from .types import Serialized, HTTPResponse
 
 @dataclass
-class DataModel:    
+class DataModel:
     """DataModel is a base class for Discord JSONs that provides 
         hydration from raw dicts, and optional field defaults.
     """
@@ -48,7 +46,7 @@ class DataModel:
             if f.name.startswith('_'):
                 continue
             val = getattr(self, f.name)
-            # only include real values
-            if val is not None:
+            # only include real or nullable values
+            if val is not None or is_nullable_field(f):
                 result[f.name] = serialize(val)
         return result

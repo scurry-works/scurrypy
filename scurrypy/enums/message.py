@@ -7,7 +7,11 @@ class MessageReferenceType(DiscordTypes):
     """Standard reference used by replies."""
 
     FORWARD = 1
-    """Reference used to point to a message at a point in time."""
+    """Reference used to point to a message at a point in time.
+    
+    !!! warning
+        Applications must be able to read the message content in order to forward it.
+    """
 
 class MessageFlags(DiscordFlags):
     """Flags that can be applied to a message."""
@@ -31,7 +35,7 @@ class MessageFlags(DiscordFlags):
     """This message includes Discord's V2 Components."""
 
 class MessageType(DiscordTypes):
-    """Tyoes if messages."""
+    """Tyoes of messages."""
 
     DEFAULT = 0
     CHANNEL_PINNED_MESSAGE = 4

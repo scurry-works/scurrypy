@@ -1,33 +1,33 @@
-from typing import TypedDict, Optional
+from typing import TypedDict
 
 from ..api.commands.slash import CommandOptionPart
 
 class EditGlobalCommandParams(TypedDict, total=False):
     """Parameters for editing a global command."""
 
-    name: Optional[str]
+    name: str
     """Name of the command."""
 
-    description: Optional[str]
+    description: str
     """Description for the command."""
 
-    options: Optional[list[CommandOptionPart]]
+    options: list[CommandOptionPart]
     """Options with the command."""
 
-    nsfw: Optional[bool]
+    nsfw: bool
     """Whether this command is age restricted."""
 
 class EditGuildCommandParams(TypedDict, total=False):
     """Parameters for editing a guild command."""
 
-    name: Optional[str]
+    name: str
     """Name of the command."""
 
-    description: Optional[str]
+    description: str
     """Description for the command."""
 
-    options: Optional[list[CommandOptionPart]]
+    options: list[CommandOptionPart]
     """Options with the command."""
 
-    nsfw: Optional[bool]
+    nsfw: bool
     """Whether this command is age restricted."""

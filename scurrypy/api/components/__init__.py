@@ -41,6 +41,8 @@ from .select_menu import (
 
 from .factory import MessageComponentFactory
 
+from .unfurled_media import UnfurledMediaPart
+
 __all__ = [
     "MessageComponentFactory",
     
@@ -75,5 +77,7 @@ __all__ = [
     "UserSelect", 
     "RoleSelect", 
     "MentionableSelect", 
-    "ChannelSelect"
+    "ChannelSelect",
+
+    "UnfurledMediaPart"
 ]

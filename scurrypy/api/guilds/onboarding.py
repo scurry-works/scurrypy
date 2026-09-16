@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from ...core.model import DataModel
 from ...core.snowflake import Snowflake
+from ...core.types import PresentModelField, OmittableModelField, PresentNullableModelField, RequiredPartField, OptionalPartField, RequiredNullablePartField
 
 from ...enums.guild import OnboardingMode, PromptType
 
@@ -11,117 +12,123 @@ from ..emoji import EmojiModel
 class OnboardingPromptOptionModel(DataModel):
     """Represents a guild's prompt option for onboarding."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the prompt option."""
 
-    channel_ids: list[Snowflake]
+    channel_ids: PresentModelField[list[Snowflake]]
     """Channel IDs a member is added to when selected."""
 
-    role_ids: list[Snowflake]
+    role_ids: PresentModelField[list[Snowflake]]
     """Role IDs a member is given when selected."""
 
-    emoji: EmojiModel | None
+    emoji: OmittableModelField[EmojiModel]
     """Emoji for the option."""
 
-    emoji_id: Snowflake | None
+    emoji_id: OmittableModelField[Snowflake]
     """ID for the emoji of the option."""
 
-    emoji_name: str | None
+    emoji_name: OmittableModelField[str]
     """Name for the emoji of the option."""
 
-    emoji_animated: bool | None
+    emoji_animated: OmittableModelField[bool]
     """Whether the emoji of the option is animated."""
 
-    title: str
+    title: PresentModelField[str]
     """Title of the option."""
 
-    description: str
+    description: PresentNullableModelField[str]
     """Description of the option."""
 
 @dataclass
 class OnboardingPromptModel(DataModel):
     """Represents a guild's prompt for onboarding."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the prompt."""
 
-    type: PromptType
+    type: PresentModelField[PromptType]
     """Type of prompt."""
 
-    options: list[OnboardingPromptOptionModel]
+    options: PresentModelField[list[OnboardingPromptOptionModel]]
     """Options available with the prompt."""
 
-    title: str
+    title: PresentModelField[str]
     """Title of the prompt."""
 
-    single_select: bool
+    single_select: PresentModelField[bool]
     """Whether users are limited to selecting one option."""
 
-    required: bool
+    required: PresentModelField[bool]
     """Whether the prompt is required for completing the onboarding process."""
 
-    in_onboarding: bool
+    in_onboarding: PresentModelField[bool]
     """Whether the prompt is present in the onboarding flow."""
 
 @dataclass
 class GuildOnboadingModel(DataModel):
     """Represents a guild's onboarding flow."""
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild for onboarding."""
 
-    prompts: list[OnboardingPromptModel]
+    prompts: PresentModelField[list[OnboardingPromptModel]]
     """Prompts shown during onboarding."""
 
-    default_channel_ids: list[Snowflake]
+    default_channel_ids: PresentModelField[list[Snowflake]]
     """Channel IDs members are opted into by default."""
 
-    enabled: bool
+    enabled: PresentModelField[bool]
     """Whether onboarding is enabled for the guild."""
 
-    mode: OnboardingMode
+    mode: PresentModelField[OnboardingMode]
     """Current mode of onboarding."""
 
 @dataclass
 class OnboardingPromptOptionPart(DataModel):
     """Represents fields for creating an onboarding prompt option."""
 
-    channel_ids: list[Snowflake] | None = None
-    """	IDs for channels a member is added to when the option is selected."""
+    id: RequiredPartField[Snowflake] = None
+    """ID of the prompt option."""
 
-    role_ids: list[Snowflake] | None = None
+    channel_ids: RequiredPartField[list[Snowflake]] = None
+    """IDs for channels a member is added to when the option is selected."""
+
+    role_ids: RequiredPartField[list[Snowflake]] = None
     """IDs for roles assigned to a member when the option is selected."""
 
-    wmoji_id: Snowflake | None = None
-    """	Emoji ID of the option."""
+    emoji_id: OptionalPartField[Snowflake] = None
+    """Emoji ID of the option."""
 
-    emoji_name: str | None = None
+    emoji_name: OptionalPartField[str] = None
     """Emoji name of the option."""
 
-    emoji_animated: bool | None = None
+    emoji_animated: OptionalPartField[bool] = None
     """Whether the emoji is animated."""
 
-    title: str | None = None
+    title: RequiredPartField[str] = None
     """Title of the option."""
 
-    description: str | None = None
+    description: RequiredNullablePartField[str] = None
     """Description of the option."""
 
 @dataclass
 class OnboardingPromptPart(DataModel):
     """Represents fields for creating an onboarding prompt."""
 
-    type: PromptType | None = None
+    id: RequiredPartField[Snowflake] = None
+    """ID of the prompt"""
+
+    type: RequiredPartField[PromptType] = None
     """Type of prompt."""
 
-    options: list[OnboardingPromptOptionPart] | None = None
+    options: RequiredPartField[list[OnboardingPromptOptionPart]] = None
     """Options available with the prompt."""
 
-    title: str | None = None
+    title: RequiredPartField[str] = None
     """Title of the prompt."""
 
-    single_select: bool | None = None
+    single_select: RequiredPartField[bool] = None
     """Whether the users are limited to selecting one option."""
 
-    required: bool | None = None
+    required: RequiredPartField[bool] = None
     """Whether the prompt is required to complete the onboarding flow."""

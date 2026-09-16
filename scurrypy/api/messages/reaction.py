@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from ...core.model import DataModel
+from ...core.types import PresentModelField
 
 from ..emoji import EmojiModel
 
@@ -8,29 +9,29 @@ from ..emoji import EmojiModel
 class ReactionCountDetailsModel(DataModel):
     """Represents details for the reaction."""
 
-    burst: int
+    burst: PresentModelField[int]
     """Count of super reactions."""
 
-    normal: int
+    normal: PresentModelField[int]
     """Count of normal reactions."""
 
 @dataclass
 class ReactionModel(DataModel):
     """Represents a reaction made."""
 
-    count: int
+    count: PresentModelField[int]
     """Total number of times this reaction was made."""
 
-    count_details: ReactionCountDetailsModel
+    count_details: PresentModelField[ReactionCountDetailsModel]
 
-    me: bool
+    me: PresentModelField[bool]
     """Whether the bot has reacted with this emoji."""
 
-    me_burst: bool
+    me_burst: PresentModelField[bool]
     """Whether the bot has reacted with a super emoji."""
 
-    emoji: EmojiModel
+    emoji: PresentModelField[EmojiModel]
     """Emoji info."""
 
-    burst_colors: list[str]
+    burst_colors: PresentModelField[list[str]]
     """List of hext colors for the super reaction."""

@@ -2,13 +2,13 @@ from dataclasses import dataclass, field
 
 from ..core.model import DataModel
 from ..core.exceptions import InvalidFile, MissingField
-from ..core.types import Serialized
+from ..core.types import Serialized, RequiredPartField
 
 @dataclass
 class ImageDataPart(DataModel):
     """Represents Discord's data URI scheme for images."""
     
-    path: str | None = None
+    path: RequiredPartField[str] = None
     """Path to image."""
 
     def to_dict(self) -> Serialized:
@@ -38,7 +38,7 @@ class ImageDataPart(DataModel):
 class ImageAssetPart(DataModel):
     """Represents fields for creating an image asset."""
 
-    filename: str | None = None
+    filename: RequiredPartField[str] = None
     """Name of the file."""
 
     content_type: str = field(init=False)

@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from ...core.model import DataModel
 from ...core.snowflake import Snowflake
+from ...core.types import PresentModelField, OmittableModelField, PresentNullableModelField, RequiredPartField
 
 from ...enums.guild import StickerType, StickerFormatType
 
@@ -11,90 +12,90 @@ from ..user import UserModel
 class StickerModel(DataModel):
     """Represents the sticker object."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the sticker."""
 
-    pack_id: Snowflake | None
+    pack_id: OmittableModelField[Snowflake]
     """ID of the pack the sticker is from (if standard)."""
 
-    name: str
+    name: PresentModelField[str]
     """Name of the sticker."""
 
-    description: str
+    description: PresentNullableModelField[str]
     """Description of the sticker."""
 
-    tags: str
+    tags: PresentModelField[str]
     """Autocomplete/suggestion tags for the sticker."""
 
-    type: StickerType
+    type: PresentModelField[StickerType]
     """Type of sticker."""
 
-    format_type: StickerFormatType
+    format_type: PresentModelField[StickerFormatType]
     """Type of sticker format."""
 
-    available: bool | None
+    available: OmittableModelField[bool]
     """Whether this guild sticker can be used.
     
     !!! note
         May be `False` due to loss of Server Boosts
     """
 
-    guild_id: Snowflake | None
+    guild_id: OmittableModelField[Snowflake]
     """ID of the guild that owns this sticker."""
     
-    user: UserModel | None
+    user: OmittableModelField[UserModel]
     """The user that uploaded the guild sticker."""
 
-    sort_type: int | None
+    sort_type: OmittableModelField[int]
     """The standard sticker's sort order within its pack."""
 
 @dataclass
 class StickerItemModel(DataModel):
     """Represents a minimal sticker item."""
     
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the sticker."""
 
-    name: str
+    name: PresentModelField[str]
     """Name of the sticker."""
 
-    format_type: StickerFormatType
+    format_type: PresentModelField[StickerFormatType]
     """Type of sticker format."""
 
 @dataclass
 class StickerPackModel(DataModel):
     """Represents a pack of standard stickers."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the sticker pack."""
 
-    stickers: list[StickerModel]
+    stickers: PresentModelField[list[StickerModel]]
     """The stickers in the pack."""
 
-    name: str
+    name: PresentModelField[str]
     """Name of the sticker pack."""
 
-    sku_id: Snowflake
+    sku_id: PresentModelField[Snowflake]
     """ID of the pack's SKU."""
 
-    cover_sticker_id: Snowflake | None
+    cover_sticker_id: OmittableModelField[Snowflake]
     """ID of a sticker in the pack which is shown as the pack's icon."""
 
-    description: str
+    description: PresentModelField[str]
     """Description of the sticker pack."""
 
-    banner_asset_id: Snowflake | None
+    banner_asset_id: OmittableModelField[Snowflake]
     """ID of the sticker pack's banner image."""
 
 @dataclass
 class StickerPart(DataModel):
     """Represents fields for creating a sticker."""
 
-    name: str | None = None
+    name: RequiredPartField[str] = None
     """Name of the sticker."""
 
-    description: str | None = None
+    description: RequiredPartField[str] = None
     """Description of the sticker."""
 
-    tags: str | None = None
+    tags: RequiredPartField[str] = None
     """Autocomplete/suggestion tags for the sticker."""

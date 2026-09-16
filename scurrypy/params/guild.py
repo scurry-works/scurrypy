@@ -1,4 +1,4 @@
-from typing import TypedDict, Optional
+from typing import TypedDict
 
 from ..enums.guild import OnboardingMode
 
@@ -57,25 +57,25 @@ class EditGuildParams(TypedDict, total=False):
 class EditGuildRoleParams(TypedDict, total=False):
     """Represents fields for editing a guild role."""
 
-    name: Optional[str]
+    name: str | None
     """Name of the role."""
 
-    colors: Optional[GuildRoleColorsPart]
+    colors: GuildRoleColorsPart | None
     """Colors of the role."""
 
-    hoist: Optional[bool]
+    hoist: bool | None
     """Whether the role is displayed separately on the sidebar."""
 
-    icon: Optional[ImageDataPart]
+    icon: ImageDataPart | None
     """Icon of the role (if guild has `ROLE_ICONS` feature)."""
 
-    permissions: int
+    permissions: int | None
     """Permission bit set. [`INT_LIMIT`]"""
 
-    unicode_emoji: Optional[str]
+    unicode_emoji: str | None
     """Unicode emoji of the role (if guilde has `ROLE_ICONS` feature)."""
 
-    mentionable: Optional[bool]
+    mentionable: bool | None
     """Whether the role should be mentionable."""
 
 class EditGuildWelcomeScreenParams(TypedDict, total=False):

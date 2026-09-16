@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from ..core.model import DataModel
 from ..core.snowflake import Snowflake
+from ..core.types import PresentModelField, PresentNullableModelField, OmittableModelField, OmittableNullableModelField
 
 from ..enums.permissions import Permissions
 
@@ -9,53 +10,53 @@ from ..enums.permissions import Permissions
 class UserModel(DataModel):
     """Represents the User object."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the user."""
 
-    username: str
+    username: PresentModelField[str]
     """Username of the user."""
 
-    discriminator: str
+    discriminator: PresentModelField[str]
     """Discriminator of the user (#XXXX)"""
 
-    global_name: str
+    global_name: PresentNullableModelField[str]
     """Global name of the user."""
 
-    avatar: str
+    avatar: PresentNullableModelField[str]
     """Image hash of the user's avatar."""
 
-    bot: bool | None
+    bot: OmittableModelField[bool]
     """If the user is a bot."""
 
-    banner: str | None
+    banner: OmittableNullableModelField[str]
     """Image hash of the user's banner."""
 
-    accent_color: int | None
+    accent_color: OmittableNullableModelField[int]
     """Color of user's banner represented as an integer."""
 
-    locale: str | None
+    locale: OmittableModelField[str]
     """Chosen language option of the user."""
 
 @dataclass
 class GuildMemberModel(DataModel):
     """Represents a guild member."""
 
-    roles: list[Snowflake]
-    """List of roles registered to the guild member."""
-
-    user: UserModel
+    user: OmittableModelField[UserModel]
     """User data associated with the guild member."""
 
-    nick: str
+    nick: OmittableNullableModelField[str]
     """Server nickname of the guild member."""
 
-    avatar: str
+    avatar: OmittableNullableModelField[str]
     """Server avatar hash of the guild mmeber."""
 
-    joined_at: str
+    roles: PresentModelField[list[Snowflake]]
+    """List of roles registered to the guild member."""
+
+    joined_at: PresentNullableModelField[str]
     """ISO8601 timestamp of when the guild member joined server."""
 
-    permissions: Permissions | None
+    permissions: OmittableModelField[Permissions]
     """Total permissions of the member in the channel, including overwrites, 
         returned when in the interaction object. [`INT_LIMIT`]
     """

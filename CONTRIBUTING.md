@@ -29,25 +29,42 @@ While ScurryPy itself may not offer these features by default, you are more than
 ### API (Parts and Models)
 
 ```python
+
+from ..core.types import RequiredPartField, OptionalPartField, RequiredNullablePartField, OptionalNullablePartField
+
 @dataclass
 class YourPart(DataModel):
     """Your model's description."""
 
-    field_1: type | None = None
+    field_1: RequiredPartField[type] = None
     """This is a field that must be filled out at some point."""
 
-    field_2: type | None = None
-    """This is an optional field. It can be omitted."""
+    field_2: OptionalPartField[type] = None
+    """This is an optional field and can be omitted."""
+
+    field_3: RequiredNullablePartField[type] = None
+    """This field must be filled out at some point. This field accepts None."""
+
+    field_4: OptionalNullablePartField[type] = None
+    """This is an optional field and can be omitted. This field accepts None."""
+
+from ..core.types import PresentModelField, OmittableModelField, PresentNullableModelField, OmittableNullableModelField
 
 @dataclass
 class YourModel(DataModel):
     """Your model's description."""
 
-    field_1: type
-    """This field will always be hydrated by Discord."""
+    field_1: PresentModelField[type]
+    """This field will always be present."""
 
-    field_2: type | None
-    """This field might be hydrated by Discord."""
+    field_2: OmittableModelField[type]
+    """This field might be omitted."""
+
+    field_3: PresentNullableModelField[type]
+    """This field will always be present, but can also be None."""
+
+    field_4: OmittableNullableModelField[type]
+    """This field might be omitted, but can also be None."""
 ```
 > [!NOTE]
 > Objects must be unique (no partial copies) with their fields replicating Discord's and be fully documented.
@@ -93,13 +110,17 @@ class MyParams(TypedDict, total=False):
     """Your params description."""
 
     field_1: type
-    """This field must be filled out."""
+    """This field can only be type."""
 
     field_2: type | None
-    """This field is optional and may be omitted."""
+    """This field can be type or set to None."""
 ```
 > [!NOTE]
 > If a DataModel is included, please use `scurrypy.core.serialization.serialize` before passing to `HTTPClient.request`.
+
+> [!NOTE]
+> By adding `total=False`, it is implied all fields are optional.
+> PLEASE be careful here. Some Params are all optional and some are all optional AND nullable!
 
 ## Questions?
 Open an issue or discussion!

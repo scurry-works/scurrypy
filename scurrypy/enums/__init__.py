@@ -1,6 +1,7 @@
 # scurrypy/enums
 
-from .application import ApplicationFlags
+from .application import ApplicationFlags, ApplicationNewFlags
+from .attachment import AttachmentFlags
 from .channel import (
     ChannelType,
     ChannelFlags,
@@ -52,6 +53,9 @@ from .user import GuildMemberFlags
 
 __all__ = [
     "ApplicationFlags",
+    "ApplicationNewFlags",
+
+    "AttachmentFlags",
 
     "ChannelType",
     "ChannelFlags",

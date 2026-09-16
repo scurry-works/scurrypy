@@ -2,8 +2,9 @@ from dataclasses import dataclass
 
 from ..core.model import DataModel
 from ..core.snowflake import Snowflake
+from ..core.types import PresentModelField, OmittableModelField, PresentNullableModelField
 
-from ..enums.application import ApplicationFlags
+from ..enums.application import ApplicationFlags, ApplicationNewFlags
 
 from .guilds.guild import GuildModel
 
@@ -13,47 +14,50 @@ from .user import UserModel
 class ApplicationModel(DataModel):
     """Represents a Discord application."""
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the application."""
 
-    name: str
+    name: PresentModelField[str]
     """Name of the application."""
 
-    icon: str | None
+    icon: PresentNullableModelField[str]
     """Icon hash of the application."""
 
-    description: str | None
+    description: PresentModelField[str]
     """Description of the application."""
 
-    bot_public: bool | None
+    bot_public: PresentModelField[bool]
     """If the application is public."""
 
-    bot_require_code_grant: bool | None
+    bot_require_code_grant: PresentModelField[bool]
     """If full OAuth2 code grant is required."""
 
-    bot: UserModel | None
+    bot: OmittableModelField[UserModel]
     """Partial bot user object of the application."""
 
-    terms_of_service_url: str | None
+    terms_of_service_url: OmittableModelField[str]
     """Terms of Service URL of the application"""
 
-    privacy_policy: str | None
+    privacy_policy: OmittableModelField[str]
     """Privacy Policy URL of the application."""
 
-    owner: UserModel | None
+    owner: OmittableModelField[UserModel]
     """Partial user object of the owner of the application."""
 
-    guild_id: Snowflake | None
+    guild_id: OmittableModelField[Snowflake]
     """Guild ID associated with the application."""
 
-    guild: GuildModel | None
+    guild: OmittableModelField[GuildModel]
     """Partial guild object of the associated guild."""
 
-    cover_image: str | None
+    cover_image: OmittableModelField[str]
     """Image hash of rich presence invite cover."""
 
-    flags: ApplicationFlags | None
+    flags: OmittableModelField[ApplicationFlags]
     """Public flags of the application."""
 
-    approximate_guild_count: int | None
+    flags_new: OmittableModelField[ApplicationNewFlags]
+    """Plublic flags of the application beyond bit 30."""
+
+    approximate_guild_count: OmittableModelField[int]
     """Approximate guild count of the guilds that installed the application."""

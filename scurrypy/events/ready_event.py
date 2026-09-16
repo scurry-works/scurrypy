@@ -6,7 +6,7 @@ from .base_event import Event
 
 from ..enums.events import EventType
 
-from ..api.guilds.guild import ReadyGuildModel
+from ..api.guilds.guild import UnavailableGuildModel
 
 from ..api.user import UserModel
 from ..api.application import ApplicationModel
@@ -23,7 +23,7 @@ class ReadyEvent(Event, DataModel):
     user: UserModel
     """Information about the user."""
 
-    guilds: list[ReadyGuildModel]
+    guilds: list[UnavailableGuildModel]
     """List of guilds bot is in."""
 
     session_id: str

@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 
 from ...core.model import DataModel
+from ...core.types import RequiredPartField, OptionalPartField
 
 from ...bases.components import (
     LabelChild,
@@ -19,25 +20,25 @@ class TextInput(Component, LabelChild):
     A Text Input allows users to enter free-form text.
     """
 
-    custom_id: str | None = None
+    custom_id: RequiredPartField[str] = None
     """ID for the input."""
 
-    style: TextInputStyle | None = None
+    style: RequiredPartField[TextInputStyle] = None
     """Text input style."""
 
-    min_length: int | None = None
+    min_length: OptionalPartField[int] = None
     """Minimum input length for a text input."""
 
-    max_length: int | None = None
+    max_length: OptionalPartField[int] = None
     """Maximum input length for a text input."""
 
-    required: bool | None = None
+    required: OptionalPartField[bool] = None
     """Whether this component is required to be filled. Discord defaults to `True`."""
 
-    value: str | None = None
+    value: OptionalPartField[str] = None
     """Pre-filled value for this component."""
 
-    placeholder: str | None = None
+    placeholder: OptionalPartField[str] = None
     """Custom placeholder text if the input is empty."""
 
     type: ComponentType = field(init=False, default=ComponentType.TEXT_INPUT)
@@ -51,17 +52,20 @@ class FileUpload(Component, LabelChild):
     File Upload allows users to upload files in modals.
     """
 
-    custom_id: str | None = None
+    custom_id: RequiredPartField[str] = None
     """ID for the file upload."""
 
-    min_values: int | None = None
+    min_values: OptionalPartField[int] = None
     """Minimum number of items that must be uploaded. Discord defaults to `1`."""
 
-    max_values: int | None = None
+    max_values: OptionalPartField[int] = None
     """Maximum number of items that can be uploaded. Discord defaults to `1`."""
 
-    required: bool | None = None
+    required: OptionalPartField[bool] = None
     """Whether files are required to be uploaded. Discord defaults to `True`."""
+
+    file_types: OptionalPartField[list[str]] = None
+    """File types in which to filter (e.g., `.pdf`, `.gif`, `.mp4`, etc.)."""
 
     type: ComponentType = field(init=False, default=ComponentType.FILE_UPLOAD)
     """Component type. Always `ComponentType.FILE_UPLOAD` for this class."""
@@ -70,16 +74,16 @@ class FileUpload(Component, LabelChild):
 class ListOption(DataModel):
     """Represents an option in a group or checkbox group component."""
 
-    value: str | None = None
+    value: RequiredPartField[str] = None
     """ID for the option."""
 
-    label: str | None = None
+    label: RequiredPartField[str] = None
     """User-facing label for the option."""
 
-    description: str | None = None
+    description: OptionalPartField[str] = None
     """Description for the option."""
 
-    default: bool | None = None
+    default: OptionalPartField[bool] = None
     """Whether to show this option as selected by default."""
 
 @dataclass
@@ -89,13 +93,13 @@ class RadioGroup(Component, LabelChild):
     A Radio Group is for selecting exactly one option from a defined list.
     """
 
-    custom_id: str | None = None
+    custom_id: RequiredPartField[str] = None
     """ID for the radio group."""
 
-    options: list[ListOption] | None = None
+    options: RequiredPartField[list[ListOption]] = None
     """List of options to show."""
 
-    required: bool | None = None
+    required: OptionalPartField[bool] = None
     """Whether a selection is required for submission. Discord defaults to `True`."""
 
     type: ComponentType = field(init=False, default=ComponentType.RADIO_GROUP)
@@ -108,19 +112,19 @@ class CheckboxGroup(Component, LabelChild):
     A Checkbox Group is for selecting one or many options via checkboxes.
     """
 
-    custom_id: str | None = None
+    custom_id: RequiredPartField[str] = None
     """ID for the checkbox group."""
 
-    options: list[ListOption] | None = None
+    options: RequiredPartField[list[ListOption]] = None
     """List of options to show."""
 
-    min_values: int | None = None
+    min_values: OptionalPartField[int] = None
     """Minimum number of items that must be chosen. Discord defaults to `1`."""
 
-    max_values: int | None = None
+    max_values: OptionalPartField[int] = None
     """Maximum number of items that must be chosen. Discord defaults to `1`."""
 
-    required: bool | None = None
+    required: OptionalPartField[bool] = None
     """Whether a selection is required for submission. Discord defaults to the number of options."""
 
     type: ComponentType = field(init=False, default=ComponentType.CHECKBOX_GROUP)
@@ -133,10 +137,10 @@ class Checkbox(Component, LabelChild):
     A Checkbox is for simple yes/no style questions.
     """
 
-    custom_id: str | None = None
+    custom_id: RequiredPartField[str] = None
     """ID for the option."""
 
-    default: bool | None = None
+    default: OptionalPartField[bool] = None
     """Whether to show this option as selected by default."""
 
     type: ComponentType = field(init=False, default=ComponentType.CHECKBOX)

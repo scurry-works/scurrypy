@@ -12,15 +12,13 @@ from scurrypy.events import InteractionEvent
 from .ctx import MessageComponentContext, ComponentModalContext, ComponentContext
 
 from collections.abc import Callable, Awaitable
-from typing import TypeAlias, TypeVar, Any
+from typing import Any
 
-C = TypeVar("C", bound=ComponentContext)
+type _AddonHandler[C: ComponentContext] = Callable[[C], Awaitable[None]]
 
-_AddonHandler: TypeAlias = Callable[[C], Awaitable[None]]
+AddonHandler = _AddonHandler[Any]
 
-AddonHandler: TypeAlias = _AddonHandler[Any]
-
-AddonDecorator: TypeAlias = Callable[[AddonHandler], AddonHandler]
+type AddonDecorator = Callable[[AddonHandler], AddonHandler]
 
 def _check_func_params(func: AddonHandler) -> None:
     """Inspect a user-defined function callback for component interactions.
