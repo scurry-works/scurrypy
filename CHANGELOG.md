@@ -2,7 +2,7 @@
 
 This changelog documents all notable and breaking changes to the ScurryPy PyPi package.
 
-## [2.3.1] - ???
+## [2.3.1] - 16 Sept 2026
 
 ScurryPy now requires Python 3.12+
 
