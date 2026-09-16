@@ -1486,6 +1486,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#scurrypy.enums.channel.ChannelFlags.HIDE_MEDIA_DOWNLOAD_OPTIONS" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;HIDE_MEDIA_DOWNLOAD_OPTIONS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.enums.channel.ChannelFlags.CHANNEL_OBFUSCATED" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;CHANNEL_OBFUSCATED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.enums.channel.ChannelFlags.IS_SPOILER_CHANNEL" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;IS_SPOILER_CHANNEL
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4259,6 +4286,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#scurrypy.enums.channel.ChannelFlags.HIDE_MEDIA_DOWNLOAD_OPTIONS" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;HIDE_MEDIA_DOWNLOAD_OPTIONS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.enums.channel.ChannelFlags.CHANNEL_OBFUSCATED" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;CHANNEL_OBFUSCATED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scurrypy.enums.channel.ChannelFlags.IS_SPOILER_CHANNEL" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;IS_SPOILER_CHANNEL
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4813,6 +4867,88 @@
     <div class="doc doc-contents ">
 
         <p>Whether a tag is required when creating a thread in a <code>GUILD_FORUM</code> channel.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="scurrypy.enums.channel.ChannelFlags.HIDE_MEDIA_DOWNLOAD_OPTIONS" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">HIDE_MEDIA_DOWNLOAD_OPTIONS</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">15</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.enums.channel.ChannelFlags.HIDE_MEDIA_DOWNLOAD_OPTIONS" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>hides the embedded media download options. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only for media channels.</p>
+</div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="scurrypy.enums.channel.ChannelFlags.CHANNEL_OBFUSCATED" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">CHANNEL_OBFUSCATED</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">17</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.enums.channel.ChannelFlags.CHANNEL_OBFUSCATED" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Channel's metadata has been obfuscated because the current user cannot view it.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only ever set for channels received over the gateway, not HTTP.</p>
+</div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="scurrypy.enums.channel.ChannelFlags.IS_SPOILER_CHANNEL" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">IS_SPOILER_CHANNEL</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">21</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.enums.channel.ChannelFlags.IS_SPOILER_CHANNEL" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Channel in which users must opt in to view its contents.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Cannot be set for <code>GUILD_STAGE</code> channels.
+Can only be set if <code>nsfw</code> is <code>False</code>.</p>
+</div>
 
     </div>
 

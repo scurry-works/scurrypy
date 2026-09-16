@@ -4347,7 +4347,7 @@
 
 
 <h4 id="scurrypy.api.emoji.EmojiModel.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4369,7 +4369,7 @@
 
 
 <h4 id="scurrypy.api.emoji.EmojiModel.id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="n">Snowflake</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="n">Snowflake</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -4392,7 +4392,7 @@
 
 
 <h4 id="scurrypy.api.emoji.EmojiModel.animated" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">animated</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">animated</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -4596,7 +4596,7 @@ Unicode emojis will return <code>None</code>.</p>
 
 
 <h4 id="scurrypy.api.emoji.ApplicationEmojiPart.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -4619,7 +4619,7 @@ Unicode emojis will return <code>None</code>.</p>
 
 
 <h4 id="scurrypy.api.emoji.ApplicationEmojiPart.image" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">image</span><span class="p">:</span> <span class="n">ImageDataPart</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">image</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="n">ImageDataPart</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -4732,7 +4732,7 @@ Unicode emojis will return <code>None</code>.</p>
 
 
 <h4 id="scurrypy.api.emoji.GuildEmojiPart.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -4755,7 +4755,7 @@ Unicode emojis will return <code>None</code>.</p>
 
 
 <h4 id="scurrypy.api.emoji.GuildEmojiPart.image" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">image</span><span class="p">:</span> <span class="n">ImageDataPart</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">image</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="n">ImageDataPart</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -4778,7 +4778,7 @@ Unicode emojis will return <code>None</code>.</p>
 
 
 <h4 id="scurrypy.api.emoji.GuildEmojiPart.roles" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Snowflake</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">roles</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Snowflake</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

@@ -4455,7 +4455,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteModel.type" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">InviteType</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="n">InviteType</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4477,7 +4477,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteModel.code" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">code</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">code</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4499,7 +4499,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteModel.guild" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">guild</span><span class="p">:</span> <span class="n">GuildModel</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">guild</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="n">GuildModel</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4521,7 +4521,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteModel.channel" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">channel</span><span class="p">:</span> <span class="n">ChannelModel</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">channel</span><span class="p">:</span> <span class="n">PresentNullableModelField</span><span class="p">[</span><span class="n">ChannelModel</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4543,7 +4543,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteModel.inviter" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">inviter</span><span class="p">:</span> <span class="n">UserModel</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">inviter</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="n">UserModel</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4565,7 +4565,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteModel.approximate_member_count" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">approximate_member_count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">approximate_member_count</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4587,7 +4587,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteModel.expires_at" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">expires_at</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">expires_at</span><span class="p">:</span> <span class="n">PresentNullableModelField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4609,7 +4609,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteModel.roles" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">GuildRoleModel</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">roles</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">GuildRoleModel</span><span class="p">]]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4730,7 +4730,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteWithMetadataModel.uses" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">uses</span><span class="p">:</span> <span class="nb">int</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">uses</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4752,7 +4752,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteWithMetadataModel.max_uses" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_uses</span><span class="p">:</span> <span class="nb">int</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_uses</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4774,7 +4774,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteWithMetadataModel.max_age" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_age</span><span class="p">:</span> <span class="nb">int</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_age</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4796,7 +4796,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteWithMetadataModel.temporary" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">temporary</span><span class="p">:</span> <span class="nb">bool</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">temporary</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4818,7 +4818,7 @@
 
 
 <h4 id="scurrypy.api.invite.InviteWithMetadataModel.created_at" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">created_at</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">created_at</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4930,7 +4930,7 @@
 
 
 <h4 id="scurrypy.api.invite.InvitePart.max_age" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_age</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -4955,7 +4955,7 @@ Discord defaults to <code>86400</code> (24 hours).</p>
 
 
 <h4 id="scurrypy.api.invite.InvitePart.max_uses" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_uses</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_uses</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -4980,7 +4980,7 @@ Discord defaults to <code>0</code>.</p>
 
 
 <h4 id="scurrypy.api.invite.InvitePart.temporary" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">temporary</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">temporary</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -5004,7 +5004,7 @@ Discord defaults to <code>False</code>.</p>
 
 
 <h4 id="scurrypy.api.invite.InvitePart.unique" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">unique</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">unique</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -5028,7 +5028,7 @@ Discord defaults to <code>False</code>.</p>
 
 
 <h4 id="scurrypy.api.invite.InvitePart.role_ids" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">role_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Snowflake</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">role_ids</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Snowflake</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>

@@ -1714,6 +1714,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#scurrypy.api.commands.application_command.ApplicationCommandOptionModel.file_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;file_types
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4577,6 +4586,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#scurrypy.api.commands.application_command.ApplicationCommandOptionModel.file_types" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;file_types
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5099,7 +5117,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionChoiceModel.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5121,7 +5139,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionChoiceModel.value" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">value</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">value</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5213,6 +5231,10 @@
 
 
         <p>Represents the application command option object.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Required options MUST be listed before optional options.</p>
+</div>
 
 
 
@@ -5237,7 +5259,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.type" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">CommandOptionType</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="n">CommandOptionType</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5259,7 +5281,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5281,7 +5303,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.descripton" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">descripton</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">descripton</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5303,7 +5325,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.required" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">required</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">required</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5325,7 +5347,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.choices" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">choices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ApplicationCommandOptionChoiceModel</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">choices</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">ApplicationCommandOptionChoiceModel</span><span class="p">]]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5347,7 +5369,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.channel_types" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">channel_types</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">channel_types</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5369,7 +5391,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.min_value" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">min_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">min_value</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5391,7 +5413,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.max_value" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_value</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5413,7 +5435,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.min_length" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">min_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">min_length</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5435,7 +5457,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.max_length" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">max_length</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5457,7 +5479,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.autocomplete" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">autocomplete</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">autocomplete</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5469,6 +5491,28 @@
     <div class="doc doc-contents ">
 
         <p>Whether autocomplete interactions are enabled for this option.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="scurrypy.api.commands.application_command.ApplicationCommandOptionModel.file_types" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">file_types</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#scurrypy.api.commands.application_command.ApplicationCommandOptionModel.file_types" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>File types in which to filter (e.g., <code>.pdf</code>, <code>.gif</code>, <code>.mp4</code>, etc.).</p>
 
     </div>
 
@@ -5569,7 +5613,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandModel.id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="n">Snowflake</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="n">Snowflake</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5591,7 +5635,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandModel.type" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">CommandType</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="n">CommandType</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5613,7 +5657,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandModel.application_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">application_id</span><span class="p">:</span> <span class="n">Snowflake</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">application_id</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="n">Snowflake</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5635,7 +5679,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandModel.guild_id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">guild_id</span><span class="p">:</span> <span class="n">Snowflake</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">guild_id</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="n">Snowflake</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5657,7 +5701,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandModel.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5679,7 +5723,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandModel.description" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">description</span><span class="p">:</span> <span class="nb">str</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">description</span><span class="p">:</span> <span class="n">PresentModelField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5705,7 +5749,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandModel.options" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">options</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ApplicationCommandOptionModel</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">options</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">ApplicationCommandOptionModel</span><span class="p">]]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5727,7 +5771,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandModel.default_member_permissions" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">default_member_permissions</span><span class="p">:</span> <span class="n">Permissions</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">default_member_permissions</span><span class="p">:</span> <span class="n">PresentNullableModelField</span><span class="p">[</span><span class="n">Permissions</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5749,7 +5793,7 @@
 
 
 <h4 id="scurrypy.api.commands.application_command.ApplicationCommandModel.nsfw" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">nsfw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">nsfw</span><span class="p">:</span> <span class="n">OmittableModelField</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5903,7 +5947,7 @@
 
 
 <h4 id="scurrypy.api.commands.context.UserCommandPart.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6039,7 +6083,7 @@
 
 
 <h4 id="scurrypy.api.commands.context.MessageCommandPart.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6217,7 +6261,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.CommandOptionChoicePart.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6240,7 +6284,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.CommandOptionChoicePart.value" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">value</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6263,7 +6307,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.CommandOptionChoicePart.name_localizations" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name_localizations</span><span class="p">:</span> <span class="n">JSON</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name_localizations</span><span class="p">:</span> <span class="n">OmittableNullableModelField</span><span class="p">[</span><span class="n">JSON</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6376,7 +6420,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.CommandOptionPart.type" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">CommandOptionType</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">type</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="n">CommandOptionType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6399,7 +6443,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.CommandOptionPart.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6422,7 +6466,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.CommandOptionPart.description" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">description</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6445,7 +6489,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.CommandOptionPart.required" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">required</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">required</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6468,7 +6512,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.CommandOptionPart.choices" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">choices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandOptionChoicePart</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">choices</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">CommandOptionChoicePart</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6491,7 +6535,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.CommandOptionPart.autocomplete" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">autocomplete</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">autocomplete</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6604,7 +6648,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.SlashCommandPart.name" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">name</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6627,7 +6671,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.SlashCommandPart.description" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">description</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -6650,7 +6694,7 @@
 
 
 <h4 id="scurrypy.api.commands.slash.SlashCommandPart.options" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">options</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">CommandOptionPart</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">options</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">CommandOptionPart</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
