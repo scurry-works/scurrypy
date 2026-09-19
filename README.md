@@ -15,7 +15,7 @@ alt="Fire-breathing squirrel"
 
 </div>
 
-> **Development Note:** While ScurryPy has not received an update in a while, it is still actively maintained!
+> **Development Note:** ScurryPy remains actively maintained, with ongoing updates and improvements.
 
 ## Features
 
