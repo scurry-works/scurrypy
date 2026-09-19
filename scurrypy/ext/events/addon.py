@@ -9,11 +9,8 @@ from scurrypy.core import DiscordError, InvalidCallbackSignature
 from scurrypy.events import Event
 
 from collections.abc import Callable, Awaitable
-from typing import Any
 
-type _AddonHandler[C: Event] = Callable[[Client, C], Awaitable[None]]
-
-AddonHandler = _AddonHandler[Any]
+type AddonHandler = Callable[[Client, Event], Awaitable[None]]
 
 type AddonDecorator = Callable[[AddonHandler], AddonHandler]
 

@@ -22,11 +22,8 @@ from scurrypy.events import InteractionEvent
 from .ctx import CommandContext, ApplicationCommandContext, AutocompleteApplicationCommandContext
 
 from collections.abc import Callable, Awaitable
-from typing import Any
 
-type _AddonHandler[C: CommandContext] = Callable[[C], Awaitable[None]]
-
-AddonHandler = _AddonHandler[Any]
+type AddonHandler = Callable[[CommandContext], Awaitable[None]]
 
 type AddonDecorator = Callable[[AddonHandler], AddonHandler]
 

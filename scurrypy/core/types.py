@@ -3,13 +3,13 @@ from typing import Any
 JSON = dict[str, Any]
 """JSON in key value pairs rather than a raw string."""
 
-Serialized = JSON | str | Any | None
+Serialized = JSON | str | None
 """Dataclass turned into a serialized dictionary.
 !!! note
     Can be partially or fully serialized depending on the structure.
 """
 
-HTTPResponse = JSON | str | Any | None
+HTTPResponse = JSON | str | None
 """Raw HTTP response from a request."""
 
 # Part Types

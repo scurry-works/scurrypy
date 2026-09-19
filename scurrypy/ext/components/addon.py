@@ -12,11 +12,8 @@ from scurrypy.events import InteractionEvent
 from .ctx import MessageComponentContext, ComponentModalContext, ComponentContext
 
 from collections.abc import Callable, Awaitable
-from typing import Any
 
-type _AddonHandler[C: ComponentContext] = Callable[[C], Awaitable[None]]
-
-AddonHandler = _AddonHandler[Any]
+type AddonHandler = Callable[[ComponentContext], Awaitable[None]]
 
 type AddonDecorator = Callable[[AddonHandler], AddonHandler]
 

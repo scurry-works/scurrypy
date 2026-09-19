@@ -15,7 +15,7 @@ MIN_BACKOFF = 5
 
 from dataclasses import dataclass
 import time
-from typing import Protocol, Any
+from typing import Protocol
 
 from .types import JSON
 
@@ -50,7 +50,7 @@ class GatewayClient(GatewayClientProtocol):
         self._ws_closed: bool = False
         self.backoff: int = MIN_BACKOFF
         self.metrics: GatewayMetrics = GatewayMetrics(0.0, 0.0)
-        self.heartbeat_task: asyncio.Task[Any] | None = None
+        self.heartbeat_task: asyncio.Task[None] | None = None # if Task is set, it returns None (GatewayClient.heartbeat)
         self.heartbeat_interval: int = 0
         self.event_queue: asyncio.Queue[tuple[str, JSON]] = asyncio.Queue()
 

@@ -11,11 +11,8 @@ from scurrypy.events import MessageCreateEvent
 from .ctx import PrefixCommandContext
 
 from collections.abc import Callable, Awaitable
-from typing import Any
 
-type _AddonHandler[C: PrefixCommandContext] = Callable[[C], Awaitable[None]]
-
-AddonHandler = _AddonHandler[Any]
+type AddonHandler = Callable[[PrefixCommandContext], Awaitable[None]]
 
 type AddonDecorator = Callable[[AddonHandler], AddonHandler]
 

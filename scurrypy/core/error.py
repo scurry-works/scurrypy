@@ -8,21 +8,24 @@ class DiscordError(Exception):
             Extracts reason, code, and walks the nested errors.
 
         Args:
-            data (JSON): Discord's error JSON
+            status (int): response status
+            data (HTTPResponse): Discord's error response, either structured JSON
+                or an unstructured response body.
         """
         self.data = data
         self.status = status
 
-        assert isinstance(data, dict)
-        self.reason = data.get('message', data)
-        self.code = data.get('code', 'Unknown Code')
-        self.error_data: HTTPResponse = data.get('errors', {})
+        errors = None
+        if isinstance(data, dict):
+            self.reason = data.get('message', data)
+            self.code = data.get('code', 'Unknown Code')
+            self.error_data: HTTPResponse = data.get('errors', {})
+            self.details = self.walk(self.error_data)
+            errors = [f"→ {path}: {reason}" for path, reason in self.details]
+        else:
+            self.reason = data
+            self.code = "Unknown Code"
 
-        self.details = self.walk(self.error_data)
-
-        self.is_fatal = status in (401, 403)
-
-        errors = [f"→ {path}: {reason}" for path, reason in self.details]
         self.full_message = f"{self.reason} ({self.code})"
         if errors:
             self.full_message += '\n' + '\n'.join(errors)

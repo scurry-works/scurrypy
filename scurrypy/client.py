@@ -29,16 +29,13 @@ import logging
 logger = logging.getLogger("scurrypy.client")
 logger.addHandler(logging.NullHandler())
 
+from typing import Any
 from collections.abc import Callable, Awaitable
-from typing import TypeAlias, TypeVar, Any
-from .events.base_event import Event
 
-E = TypeVar("E", bound=Event)
-
-CoreHandler: TypeAlias = Callable[[E], Awaitable[None]]
-
-MaybeAwaitable: TypeAlias = Awaitable[None] | None
-HookHandler: TypeAlias = Callable[[], MaybeAwaitable]
+# The event parameter is intentionally Any: the concrete event instance
+# is determined by EventType at dispatch time, not by the handler annotation.
+type CoreHandler = Callable[[Any], Awaitable[None]]
+type HookHandler = Callable[[], Awaitable[None] | None]
 
 class Client:
     """Main entry point for Discord bots.
@@ -57,7 +54,7 @@ class Client:
     shards: list[GatewayClientProtocol]
     """Shards as a list of gateways."""
 
-    events: dict[EventType, list[CoreHandler[Any]]]
+    events: dict[EventType, list[CoreHandler]]
     """Events for the client to listen to."""
 
     startup_hooks: list[HookHandler]
@@ -99,7 +96,7 @@ class Client:
         self.startup_hooks = []
         self.shutdown_hooks = []
 
-    def add_event_listener(self, event: EventType, handler: CoreHandler[Any]) -> None:
+    def add_event_listener(self, event: EventType, handler: CoreHandler) -> None:
         """Helper function to register listener functions.
 
         Args:
@@ -114,7 +111,7 @@ class Client:
 
         if len(params) != 1:
             raise InvalidCallbackSignature(f"{handler.__name__} must accept exactly 1 parameter (event: {EVENTS[event].__name__})")
-        
+
         self.events.setdefault(event, []).append(handler)
 
     def _check_hook_signature(self, handler: HookHandler) -> None:
@@ -326,7 +323,7 @@ class Client:
                 logger.exception(f"SHARD ID {shard.shard_id}: Dispatcher error")
                 continue
 
-    async def start_shards(self, gateway: GatewayEvent) -> list[asyncio.Task[Any]]:
+    async def start_shards(self, gateway: GatewayEvent) -> list[asyncio.Task[None]]:
         """Starts all shards batching by max_concurrency.
 
         Args:
@@ -374,7 +371,7 @@ class Client:
 
             await self.run_startup_hooks()
 
-            tasks = await asyncio.create_task(self.start_shards(gateway))
+            tasks = await self.start_shards(gateway)
 
             await asyncio.gather(*tasks)
             

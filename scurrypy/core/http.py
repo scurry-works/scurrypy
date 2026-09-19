@@ -10,7 +10,6 @@ from ..config import USER_AGENT
 from .error import DiscordError
 from .exceptions import NoSession
 
-from typing import Any
 from .types import HTTPResponse, JSON, Serialized
 
 import logging
@@ -22,7 +21,7 @@ logger.addHandler(logging.NullHandler())
 class RequestItem:
     method: str
     endpoint: str
-    data: Serialized
+    data: Serialized | list[Serialized]
     params: JSON | None
     files: list[str] | None
     assets: Serialized | None
@@ -33,7 +32,7 @@ class Bucket:
     remaining: int
     reset_after: float
     reset_on: float
-    sleep_task: asyncio.Task[Any] | None = None
+    sleep_task: asyncio.Task[None] | None = None # if Task is set, it returns None (HTTPClient._sleep_endpoint)
 
 from typing import Protocol, cast
 
@@ -46,7 +45,7 @@ class HTTPClientProtocol(Protocol):
         method: str,
         endpoint: str,
         *,
-        data: Serialized = None,
+        data: Serialized | list[Serialized] = None,
         params: JSON | None = None,
         files: list[str] | None = None,
         assets: Serialized = None
@@ -60,10 +59,11 @@ class HTTPClient(HTTPClientProtocol):
         self.session: aiohttp.ClientSession | None = None
 
         # PRE-REQUEST
-        self.queues: dict[str, asyncio.Queue[Any]] = {}  # maps EP -> Q
+        self.queues: dict[str, asyncio.Queue[RequestItem]] = {}  # maps EP -> Q
         self.queues_lock = asyncio.Lock() # locks queues dict for editing
 
-        self.workers: dict[str, asyncio.Task[Any]] = {}  # maps EP -> worker
+        self.workers: dict[str, asyncio.Task[None]] = {}  # maps EP -> worker
+        # if Task is set, it returns None (HTTPClient._worker)
 
         # POST-REQUEST
         self.buckets: dict[str, Bucket] = {}  # maps B -> Bucket
@@ -97,7 +97,7 @@ class HTTPClient(HTTPClientProtocol):
         method: str,
         endpoint: str,
         *,
-        data: Serialized = None,
+        data: Serialized | list[Serialized] = None,
         params: JSON | None = None,
         files: list[str] | None = None,
         assets: Serialized = None
@@ -107,7 +107,7 @@ class HTTPClient(HTTPClientProtocol):
         Args:
             method (str): HTTP method (e.g., POST, GET, DELETE, PATCH, etc.)
             endpoint (str): Discord endpoint (e.g., /channels/123/messages)
-            data (Serialized, optional): relevant data
+            data (Serialized | list[Serialized], optional): relevant data
             params (JSON | None, optional): relevant query params
             files (list[str] | None, optional): relevant files
             assets (Serialized, optional): relevant assets
@@ -126,7 +126,7 @@ class HTTPClient(HTTPClientProtocol):
             self.workers[endpoint] = asyncio.create_task(self._worker(endpoint))
 
         # set promise
-        future = asyncio.get_event_loop().create_future()
+        future: asyncio.Future[HTTPResponse] = asyncio.get_event_loop().create_future()
 
         def sanitize_query_params(params: JSON | None) -> JSON | None:
             """Sanitize a request's params for session.request
@@ -209,27 +209,25 @@ class HTTPClient(HTTPClientProtocol):
         Returns:
             (JSON | None): request info (if any)
         """
-        match resp.status:
-            case 204:
-                # No content
-                return None
 
-            case 200 | 201:
-                # JSON body is guaranteed if successful
-                try:
-                    data: HTTPResponse = await resp.json()
-                    return data
-                except aiohttp.ContentTypeError:
-                    data = await resp.text()
-                    return data
+        if resp.status == 204:
+            return None
 
-            case _:
-                # error handling
-                try:
-                    body: HTTPResponse = await resp.json()
-                except aiohttp.ContentTypeError:
-                    body = await resp.text()
-                raise DiscordError(resp.status, body)
+        if 200 <= resp.status < 300:
+            # JSON body is guaranteed if successful
+            try:
+                data: HTTPResponse = await resp.json()
+                return data
+            except aiohttp.ContentTypeError:
+                data = await resp.text()
+                return data
+
+        # error handling
+        try:
+            body: HTTPResponse = await resp.json()
+        except aiohttp.ContentTypeError:
+            body = await resp.text()
+        raise DiscordError(resp.status, body)
             
     async def _update_bucket_rate_limit(self, resp: aiohttp.ClientResponse, bucket_id: str, endpoint: str) -> None:
         """Update the bucket for this endpoint and sleep if necessary.

@@ -31,7 +31,7 @@ def convert(t: object, v: object) -> object:
     """Convert the given value to the given type.
 
     Args:
-        t (type[Any] | Any): type in which to convert value
+        t (object): type in which to convert value
         v (object): value to be converted
 
     Raises:
