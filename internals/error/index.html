@@ -3773,15 +3773,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.error.DiscordError.is_fatal" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;is_fatal
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#scurrypy.core.error.DiscordError.full_message" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;full_message
@@ -4018,15 +4009,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scurrypy.core.error.DiscordError.is_fatal" class="md-nav__link">
-    <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;is_fatal
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#scurrypy.core.error.DiscordError.full_message" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;full_message
@@ -4160,11 +4142,24 @@
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-            <b><code>data</code></b>
-              (<code><span title="JSON">JSON</span></code>)
+            <b><code>status</code></b>
+              (<code><span title="int">int</span></code>)
           –
           <div class="doc-md-description">
-            <p>Discord's error JSON</p>
+            <p>response status</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>data</code></b>
+              (<code><a class="autorefs autorefs-internal" title="            HTTPResponse = JSON | str | None
+
+  
+      module-attribute
+   (scurrypy.core.types.HTTPResponse)" href="../../api/primitives/types/#scurrypy.core.types.HTTPResponse">HTTPResponse</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>Discord's error response, either structured JSON
+or an unstructured response body.</p>
           </div>
         </li>
     </ul>
@@ -4311,26 +4306,6 @@
 
 
 
-<h4 id="scurrypy.core.error.DiscordError.is_fatal" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">is_fatal</span> <span class="o">=</span> <span class="n">status</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">401</span><span class="p">,</span> <span class="mi">403</span><span class="p">)</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#scurrypy.core.error.DiscordError.is_fatal" class="headerlink" title="Permanent link">&para;</a></h4>
-
-
-    <div class="doc doc-contents ">
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
 <h4 id="scurrypy.core.error.DiscordError.full_message" class="doc doc-heading">
 <code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">full_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">reason</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s1">)&#39;</span></code>
 
@@ -4368,7 +4343,7 @@
     <ul>
         <li class="doc-section-item field-body">
             <b><code>node</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            HTTPResponse = JSON | str | Any | None
+              (<code><a class="autorefs autorefs-internal" title="            HTTPResponse = JSON | str | None
 
   
       module-attribute

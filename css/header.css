@@ -4,3 +4,8 @@
     width: auto !important;
     image-rendering: pixelated; /* keeps pixel art sharp */
 }
+/* 
+* {
+    font-family: "SquirrelFont" !important;
+} 
+*/

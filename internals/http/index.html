@@ -4694,7 +4694,7 @@
 
 
 <h4 id="scurrypy.core.http.RequestItem.data" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">data</span><span class="p">:</span> <span class="n">Serialized</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">data</span><span class="p">:</span> <span class="n">Serialized</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">Serialized</span><span class="p">]</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -4901,7 +4901,7 @@
 
 
 <h4 id="scurrypy.core.http.Bucket.sleep_task" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">sleep_task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">sleep_task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -5186,7 +5186,7 @@
 
 
 <h4 id="scurrypy.core.http.HTTPClient.queues" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">queues</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Queue</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">queues</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Queue</span><span class="p">[</span><span class="n">RequestItem</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5226,7 +5226,7 @@
 
 
 <h4 id="scurrypy.core.http.HTTPClient.workers" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">workers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">workers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">[</span><span class="kc">None</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
@@ -5426,11 +5426,15 @@
         </li>
         <li class="doc-section-item field-body">
             <b><code>data</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            Serialized = JSON | str | Any | None
+              (<code><a class="autorefs autorefs-internal" title="            Serialized = JSON | str | None
 
   
       module-attribute
-   (scurrypy.core.types.Serialized)" href="../../api/primitives/types/#scurrypy.core.types.Serialized">Serialized</a></code>, default:
+   (scurrypy.core.types.Serialized)" href="../../api/primitives/types/#scurrypy.core.types.Serialized">Serialized</a> | <span title="list">list</span>[<a class="autorefs autorefs-internal" title="            Serialized = JSON | str | None
+
+  
+      module-attribute
+   (scurrypy.core.types.Serialized)" href="../../api/primitives/types/#scurrypy.core.types.Serialized">Serialized</a>]</code>, default:
                   <code>None</code>
 )
           –
@@ -5464,7 +5468,7 @@
         </li>
         <li class="doc-section-item field-body">
             <b><code>assets</code></b>
-              (<code><a class="autorefs autorefs-internal" title="            Serialized = JSON | str | Any | None
+              (<code><a class="autorefs autorefs-internal" title="            Serialized = JSON | str | None
 
   
       module-attribute
@@ -5494,7 +5498,7 @@
 <p><span class="doc-section-title">Returns:</span></p>
     <ul>
         <li class="doc-section-item field-body">
-              <code><a class="autorefs autorefs-internal" title="            HTTPResponse = JSON | str | Any | None
+              <code><a class="autorefs autorefs-internal" title="            HTTPResponse = JSON | str | None
 
   
       module-attribute
