@@ -1,0 +1,38 @@
+/* 1. Define your font */
+@font-face {
+  font-family: 'SquirrelFont';
+  src: url('SquirrelFont.ttf') format('ttf'); /* adjust path & extension */
+  font-display: swap;
+}
+
+/* 2. Override Material's font CSS variables when squirrel mode is enabled */
+body[data-font-mode="squirrel"] {
+  --md-text-font: 'SquirrelFont', sans-serif !important;
+  --md-code-font: 'SquirrelFont', monospace !important;
+  font-family: var(--md-text-font);
+}
+
+/* Optional: if you also want headings/code blocks explicitly targeted */
+body[data-font-mode="squirrel"] code,
+body[data-font-mode="squirrel"] pre,
+body[data-font-mode="squirrel"] kbd {
+  font-family: 'SquirrelFont', monospace !important;
+}
+
+/* 3. Style the header button */
+.md-header__squirrel-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 0.2rem;
+  border-radius: 100%;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.md-header__squirrel-toggle:hover {
+  transform: scale(1.15);
+  opacity: 0.85;
+}
