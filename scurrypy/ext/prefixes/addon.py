@@ -2,10 +2,17 @@ import logging
 
 logger = logging.getLogger('scurrypy')
 
-from scurrypy import Client, Intents
-from scurrypy.bases import Addon
+from scurrypy import Client, Addon, Intents
+
 from scurrypy.enums import EventType
-from scurrypy.core import DiscordError, Snowflake, InvalidCallbackSignature, MissingIntents
+
+from scurrypy.core import (
+    DiscordError, 
+    Snowflake, 
+    InvalidCallbackSignature, 
+    MissingIntents
+)
+
 from scurrypy.events import MessageCreateEvent
 
 from .ctx import PrefixCommandContext

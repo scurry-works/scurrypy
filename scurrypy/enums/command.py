@@ -15,29 +15,35 @@ class CommandType(DiscordTypes):
 class CommandOptionType(DiscordTypes):
     """Slash command option input types."""
 
+    SUB_COMMAND = 1
+    """Subcommand of a command."""
+
+    SUB_COMMAND_GROUP = 2
+    """Group of subcommands."""
+
     STRING = 3
-    """string (text)"""
+    """String or text."""
 
     INTEGER = 4
-    """integer (Any integer between -2^53+1 and 2^53-1)"""
+    """Integer between -2^53+1 and 2^53-1."""
 
     BOOLEAN = 5
-    """boolean (true/false)"""
+    """Boolean `True`/`False`."""
 
     USER = 6
-    """user pangination"""
+    """Pagination for users."""
 
     CHANNEL = 7
-    """channel pangination (category and channels)"""
+    """Pagination for channels and categories."""
 
     ROLE = 8
-    """role pangination"""
+    """Pagination for roles."""
 
     MENTIONABLE = 9
-    """any pangination (role and user)"""
+    """Pagination for users or roles."""
 
     NUMBER = 10
-    """number (Any double between -2^53 and 2^53)"""
+    """Number between -2^53 and 2^53."""
 
     ATTACHMENT = 11
     """File upload. See [`AttachmentPart`][scurrypy.api.messages.AttachmentPart]."""

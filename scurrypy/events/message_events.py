@@ -1,17 +1,16 @@
-from dataclasses import dataclass
-
-from ..core.model import DataModel
+from ..core.model import datamodel
 from ..core.snowflake import Snowflake
+from ..core.types import PresentModelField, OmittableModelField
 
 from .base_event import Event
 
 from ..enums.events import EventType
 
-from ..api.messages.message import MessageModel
+from ..api.messages import MessageModel
+from ..api.user import UserModel, GuildMemberModel
+from ..api.channels import ChannelType
 
-from ..api.user import GuildMemberModel
-
-@dataclass
+@datamodel
 class MessageCreateEvent(Event, MessageModel):
     """Received when a message is created.
     
@@ -21,50 +20,62 @@ class MessageCreateEvent(Event, MessageModel):
 
     dispatch_name = EventType.MESSAGE_CREATE
 
-    guild_id: Snowflake | None
+    guild_id: OmittableModelField[Snowflake]
     """Guild ID of the updated message (if in a guild channel)."""
 
-    member: GuildMemberModel | None
+    member: OmittableModelField[GuildMemberModel]
     """Partial Member object of the author of the message."""
 
-@dataclass
+    mentions: PresentModelField[list[UserModel]]
+    """Users specifically mentioned in the message."""
+
+    channel_type: OmittableModelField[ChannelType]
+    """Type of channel in which the message was sent."""
+
+@datamodel
 class MessageUpdateEvent(Event, MessageModel):
     """Received when a message is updated."""
 
     dispatch_name = EventType.MESSAGE_UPDATE
 
-    guild_id: Snowflake | None
+    guild_id: OmittableModelField[Snowflake]
     """Guild ID of the updated message (if in a guild channel)."""
 
-    member: GuildMemberModel | None
+    member: OmittableModelField[GuildMemberModel]
     """Partial Member object of the author of the message."""
 
-@dataclass
-class MessageDeleteEvent(Event, DataModel):
+    mentions: PresentModelField[list[UserModel]]
+    """Users specifically mentioned in the message."""
+
+    channel_type: OmittableModelField[ChannelType]
+    """Type of channel in which the message was sent."""
+
+@datamodel
+class MessageDeleteEvent(Event):
     """Received when a message is deleted."""
 
     dispatch_name = EventType.MESSAGE_DELETE
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the deleted message."""
 
-    channel_id: Snowflake
+    channel_id: PresentModelField[Snowflake]
     """Channel ID of the deleted message."""
 
-    guild_id: Snowflake | None
+    guild_id: OmittableModelField[Snowflake]
     """Guild ID of the deleted message (if in a guild channel)."""
 
-@dataclass
-class BulkMessageDeleteEvent(Event, DataModel):
+@datamodel
+class BulkMessageDeleteEvent(Event):
     """Received when bulk deleting messages."""
 
     dispatch_name = EventType.BULK_MESSAGE_DELETE
 
-    ids: list[Snowflake]
+    ids: PresentModelField[list[Snowflake]]
     """IDs of the messages that were deleted."""
 
-    channel_id: Snowflake
+    channel_id: PresentModelField[Snowflake]
     """ID of the channel."""
 
-    guild_id: Snowflake | None
+    guild_id: OmittableModelField[Snowflake]
     """ID of the guild."""

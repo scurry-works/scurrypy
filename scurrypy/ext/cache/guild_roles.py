@@ -1,9 +1,14 @@
-from scurrypy import Client
-from scurrypy.bases import Addon
+from scurrypy import Client, Addon
 from scurrypy.enums import EventType
 from scurrypy.core import Snowflake, DiscordError
 from scurrypy.api.guilds import GuildRoleModel
-from scurrypy.events import GuildCreateEvent, GuildDeleteEvent, RoleCreateEvent, RoleUpdateEvent, RoleDeleteEvent
+from scurrypy.events import (
+    GuildCreateEvent, 
+    GuildDeleteEvent, 
+    RoleCreateEvent, 
+    RoleUpdateEvent, 
+    RoleDeleteEvent
+)
 
 class GuildRoleCacheAddon(Addon):
     """Defines caching guild roles and lookup."""

@@ -2,8 +2,7 @@ import logging
 
 logger = logging.getLogger('scurrypy')
 
-from scurrypy import Client
-from scurrypy.bases import Addon
+from scurrypy import Client, Addon
 from scurrypy.enums import EventType
 from scurrypy.core import DiscordError, InvalidCallbackSignature, DataModelTypeError
 from scurrypy.api.interactions import MessageComponentDataModel, ModalDataModel

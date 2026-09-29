@@ -5,12 +5,18 @@ from .attachment import (
     AttachmentPart
 )
 from .embed import (
-    EmbedAuthor, 
-    EmbedThumbnail, 
-    EmbedField, 
-    EmbedImage, 
-    EmbedFooter, 
-    Embed
+    EmbedAuthorPart, 
+    EmbedAuthorModel, 
+    EmbedThumbnailPart, 
+    EmbedThumbnailModel, 
+    EmbedFieldPart, 
+    EmbedFieldModel, 
+    EmbedImagePart, 
+    EmbedImageModel, 
+    EmbedFooterPart, 
+    EmbedFooterModel, 
+    EmbedPart,
+    EmbedModel
 )
 
 from ...enums.message import MessageType, MessageFlags, MessageReferenceType
@@ -38,12 +44,18 @@ __all__ = [
     "AttachmentModel", 
     "AttachmentPart",
 
-    "EmbedAuthor", 
-    "EmbedThumbnail", 
-    "EmbedField", 
-    "EmbedImage", 
-    "EmbedFooter", 
-    "Embed",
+    "EmbedAuthorPart", 
+    "EmbedAuthorModel", 
+    "EmbedThumbnailPart", 
+    "EmbedThumbnailModel", 
+    "EmbedFieldPart", 
+    "EmbedFieldModel", 
+    "EmbedImagePart", 
+    "EmbedImageModel", 
+    "EmbedFooterPart", 
+    "EmbedFooterModel", 
+    "EmbedPart",
+    "EmbedModel",
 
     "MessageType", 
     "MessageFlags", 

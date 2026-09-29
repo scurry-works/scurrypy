@@ -1,46 +1,62 @@
 from dataclasses import dataclass
 from urllib.parse import quote
+from typing import Self
 
-from ..core.model import DataModel
+from ..core.model import DataModel, datamodel
 from ..core.snowflake import Snowflake
-from ..core.types import PresentModelField, OmittableModelField, RequiredPartField
+from ..core.types import (
+    PresentNullableModelField, 
+    OmittableModelField, 
+    RequiredPartField, 
+    ScurrypyStr, 
+    ScurrypyBool
+)
 
 from .image_data import ImageDataPart
 
-@dataclass
+@datamodel
 class EmojiModel(DataModel):
     """Represents a Discord emoji."""
     
-    name: PresentModelField[str]
+    name: PresentNullableModelField[ScurrypyStr] = None
     """Name of emoji."""
 
     id: OmittableModelField[Snowflake] = None
     """ID of the emoji (if custom)."""
 
-    animated: OmittableModelField[bool] = False
-    """If the emoji is animated. Defaults to `False`."""
+    animated: OmittableModelField[ScurrypyBool] = None
+    """If the emoji is animated."""
+
+    @classmethod
+    def from_name(cls, name: str) -> Self:
+        return cls(name=ScurrypyStr(name))
 
     @property
     def is_custom(self) -> bool:
         return self.id is not None
 
     @property
-    def mention(self) -> str:
+    def mention(self) -> str | None:
         """Mention this emoji in a message."""
-        if self.id is None: # standard emoji
+        if self.name is None:
+            return None
+        # unicode emoji
+        if self.id is None:
             return self.name
+        # animated emoji
         if self.animated:
             return f"<a:{self.name}:{self.id}>"
         
         return f"<:{self.name}:{self.id}>"
 
     @property
-    def api_code(self) -> str:
+    def api_code(self) -> str | None:
         """API code for this emoji (URL-safe)."""
+        if self.name is None:
+            return None
+        # unicode emoji
         if self.id is None:
-            # unicode emoji
             return quote(self.name)
-
         # custom emoji
         if self.animated:
             return quote(f"a:{self.name}:{self.id}")
@@ -55,7 +71,7 @@ class EmojiModel(DataModel):
             This only works for custom Discord emojis (those with an ID). 
             Unicode emojis will return `None`.
         """
-        if not self.id:
+        if self.id is None:
             return None
         
         ext = 'gif' if self.animated else 'png'

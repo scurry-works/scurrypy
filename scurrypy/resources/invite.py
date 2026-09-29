@@ -20,7 +20,7 @@ class Invite(BaseResource):
         Returns:
             (InviteModel): queried invite object
         """
-        data = await self.http.request(
+        data = await self.http.request_json(
             'GET', 
             f'/invites/{self.code}', 
             params={'with_counts': with_counts}
@@ -39,6 +39,6 @@ class Invite(BaseResource):
         Returns:
             (InviteModel): deleted invite object
         """
-        data = await self.http.request('DELETE', f'/invites/{self.code}')
+        data = await self.http.request_json('DELETE', f'/invites/{self.code}')
 
         return InviteModel.from_dict(data)

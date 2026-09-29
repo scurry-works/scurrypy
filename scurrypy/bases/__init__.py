@@ -1,9 +1,9 @@
 # scurrypy/bases
 
-from .addon import Addon
 from .channel import GuildChannelCreate
 from .components import (
     Component,
+    ContainerComponent,
     ActionRowChild,
     SectionChild,
     SectionAccessoryChild,
@@ -11,18 +11,20 @@ from .components import (
     LabelChild
 )
 from .interaction import InteractionData
+from .scurrypy_type import ScurrypyType
 
 __all__ = [
-    "Addon",
-
     "GuildChannelCreate",
 
     "Component",
+    "ContainerComponent",
     "ActionRowChild",
     "SectionChild",
     "SectionAccessoryChild",
     "ContainerChild",
     "LabelChild",
 
-    "InteractionData"
+    "InteractionData",
+
+    "ScurrypyType"
 ]

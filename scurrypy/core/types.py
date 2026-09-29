@@ -54,7 +54,7 @@ type OmittableModelField[T] = T | None
     Equivalent Discord notation is `name?, type`.
 """
 
-type PresentNullableModelField[T] = T
+type PresentNullableModelField[T] = T | None
 """Discord always includes this field in the payload.
     If this field is `None`, it will serialize as JSON `null`.
 
@@ -67,3 +67,88 @@ type OmittableNullableModelField[T] = T | None
 
     Equivalent Discord notation is `name?, ?type`.    
 """
+
+from ..bases.scurrypy_type import ScurrypyType
+
+class ScurrypyPrimitive(ScurrypyType):
+    """Represents a dataclass field containing an unconverted primitive value."""
+
+    @classmethod
+    def from_dict(cls, v: Any) -> Any:
+        """Returns the value without conversion.
+
+        Args:
+            v (Any): value
+
+        Returns:
+            (Any): value unchanged
+        """
+        return v
+
+class ScurrypyInt(ScurrypyType, int):
+    """Represents JSON value to dataclass field int conversion."""
+
+    @classmethod
+    def from_dict(cls, v: str | None) -> int | None:
+        """Converts value to an int.
+
+        Args:
+            v (str): JSON value
+
+        Returns:
+            (int): JSON value as an int
+        """
+        if v is None:
+            return None
+        return int(v)
+
+class ScurrypyFloat(ScurrypyType, float):
+    """Represents JSON value to dataclass field float conversion."""
+
+    @classmethod
+    def from_dict(cls, v: str | None) -> float | None:
+        """Converts value to a float.
+
+        Args:
+            v (str): JSON value
+
+        Returns:
+            (float): JSON value as a float
+        """
+        if v is None:
+            return None
+        return float(v)
+
+class ScurrypyStr(ScurrypyType, str):
+    """Represents JSON value to dataclass field str conversion."""
+
+    @classmethod
+    def from_dict(cls, v: str | None) -> str | None:
+        """Converts value to a str.
+
+        Args:
+            v (str): JSON value
+
+        Returns:
+            (str): JSON value as a str
+        """
+        if v is None:
+            return None
+        return str(v)
+
+class ScurrypyBool(ScurrypyType):
+    """Represents JSON value to dataclass field bool conversion."""
+
+    @classmethod
+    def from_dict(cls, v: str | None) -> bool | None:
+        """Converts value to a bool.
+
+        Args:
+            v (str): JSON value
+
+        Returns:
+            (bool | None): JSON value as a bool or None if no value was passed
+        """
+        if v is None:
+            return None
+        return v in (True, "True", "true")

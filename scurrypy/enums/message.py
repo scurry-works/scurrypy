@@ -38,19 +38,52 @@ class MessageType(DiscordTypes):
     """Tyoes of messages."""
 
     DEFAULT = 0
+    """This message is a default message."""
+
     CHANNEL_PINNED_MESSAGE = 4
+    """This message is pinned to its channel."""
+
     GUILD_BOOST = 8
+    """This message resulted from a guild boost."""
+
     GUILD_BOOST_TIER_1 = 9
+    """This message resulted from a guild boost Tier 1."""
+
     GUILD_BOOST_TIER_2 = 10
+    """This message resulted from a guild boost Tier 2."""
+
     GUILD_BOOST_TIER_3 = 11
+    """This message resulted from a guild boost Tier 3."""
+
     CHANNEL_FOLLOW_ADD = 12
+    """This message resulted from a guild following a channel."""
+
     GUILD_DISCOVERY_DISQUALIFIED = 14
+    """This message resulted from a guild losing Discovery."""
+
     GUILD_DISCOVERY_REQUALIFIED = 15
+    """This message resulted from a guild requalifying for Discovery."""
+
     GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING = 16
+    """This message resulted from a Discovery Grace Period initial warning."""
+
     GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING = 17
+    """This message resulted from a Discovery Grace Period final warning."""
+
     THREAD_CREATED = 18
+    """This message has a thread attached."""
+
     REPLY = 19
+    """This message has a reply attached."""
+
     CHAT_INPUT_COMMAND = 20
+    """This message resulted from a slash command."""
+
     THREAD_STARTER_MESSAGE = 21
+    """This message is a thread starter message."""
+
     GUILD_INVITE_REMINDER = 22
+    """This message resulted from a guild invite reminder."""
+
     CONTEXT_MENU_COMMAND = 23
+    """This message resulted from a context menu command."""

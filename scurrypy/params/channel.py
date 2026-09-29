@@ -1,9 +1,13 @@
 from typing import TypedDict, Literal
 
-from ..enums.channel import ChannelType, ChannelFlags, SortOrderType, ForumLayoutType
+from ..enums.channel import (
+    ChannelType, 
+    ChannelFlags, 
+    SortOrderType, 
+    ForumLayoutType
+)
 
-from ..api.channels.default_reaction import DefaultReactionPart
-from ..api.channels.tag import TagPart
+from ..api.channels import DefaultReactionPart, TagPart
 
 class EditGuildChannelParams(TypedDict, total=False):
     """Parameters for editing a guild channel."""
@@ -65,7 +69,11 @@ class EditThreadChannelParams(TypedDict, total=False):
     """Name of the channel."""
 
     archived: bool
-    """Whether the thread is archived."""
+    """Whether the thread is archived.
+    
+    !!! important "Permissions"
+        Only requires `SEND_MESSAGES`.
+    """
 
     auto_archive_duration: Literal[60, 1440, 4320, 10080]
     """Duration in minutes threads will be hidden after period of inactivity."""
@@ -73,7 +81,7 @@ class EditThreadChannelParams(TypedDict, total=False):
     locked: bool
     """Whether the thread is locked.
     
-    !!! note
+    !!! important "Permissions"
         Only users with `MANAGE_THREADS` can unarchive the thread.
     """
 

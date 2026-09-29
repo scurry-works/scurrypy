@@ -1,9 +1,14 @@
-from scurrypy import Client
-from scurrypy.bases import Addon
+from scurrypy import Client, Addon
 from scurrypy.enums import EventType
 from scurrypy.core import Snowflake, DiscordError, MissingField
 from scurrypy.api.channels import ChannelModel
-from scurrypy.events import GuildCreateEvent, GuildDeleteEvent, ChannelCreateEvent, ChannelUpdateEvent, ChannelDeleteEvent
+from scurrypy.events import (
+    GuildCreateEvent, 
+    GuildDeleteEvent, 
+    ChannelCreateEvent, 
+    ChannelUpdateEvent, 
+    ChannelDeleteEvent
+)
 
 class GuildChannelCacheAddon(Addon):
     """Defines caching channels and lookup."""

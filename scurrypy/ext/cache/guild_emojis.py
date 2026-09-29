@@ -1,5 +1,4 @@
-from scurrypy import Client, Intents
-from scurrypy.bases import Addon
+from scurrypy import Client, Addon, Intents
 from scurrypy.core import Snowflake, MissingIntents, MissingField
 from scurrypy.enums import EventType
 from scurrypy.api import EmojiModel

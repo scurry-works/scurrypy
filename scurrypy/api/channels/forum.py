@@ -1,7 +1,13 @@
 from dataclasses import dataclass, field
 
+from ...core.model import DataModel, datamodel
 from ...core.snowflake import Snowflake
-from ...core.types import OmittableModelField, OmittableNullableModelField, RequiredPartField, OptionalNullablePartField
+from ...core.types import (
+    OmittableModelField, 
+    OmittableNullableModelField, 
+    RequiredPartField, 
+    OptionalNullablePartField
+)
 
 from ...bases.channel import GuildChannelCreate
 
@@ -11,27 +17,27 @@ from .channel import ChannelModel
 from .default_reaction import DefaultReactionModel, DefaultReactionPart
 from .tag import TagModel, TagPart
 
-@dataclass
+@datamodel
 class GuildForumChannelModel(ChannelModel):
     """Represents the forum channel."""
 
-    available_tags: OmittableModelField[list[TagModel]] | None
+    available_tags: OmittableModelField[list[TagModel]]
     """Set of tags that can be applied to a `GUILD_FORUM` post."""
 
-    applied_tags: OmittableModelField[list[Snowflake]] | None
+    applied_tags: OmittableModelField[list[Snowflake]]
     """Set of tags applied to a `GUILD_FORUM` post."""
 
-    default_reaction_emoji: OmittableNullableModelField[DefaultReactionModel] | None
+    default_reaction_emoji: OmittableNullableModelField[DefaultReactionModel]
     """Emoji to show in the add reaction button in a `GUILD_FORUM` post."""
 
-    default_sort_order: OmittableNullableModelField[SortOrderType] | None
+    default_sort_order: OmittableNullableModelField[SortOrderType]
     """Default forum sort order."""
 
-    default_forum_layout: OmittableModelField[ForumLayoutType] | None
+    default_forum_layout: OmittableModelField[ForumLayoutType]
     """Default forum layout view. Discord defaults to `ForumLayoutTypes.NOT_SET`."""
 
 @dataclass
-class GuildForumChannelPart(GuildChannelCreate):
+class GuildForumChannelPart(DataModel, GuildChannelCreate):
     """Parameters for creating a guild forum channel."""
 
     name: RequiredPartField[str] = None

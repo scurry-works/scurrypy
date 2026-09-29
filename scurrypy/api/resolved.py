@@ -1,17 +1,15 @@
-from dataclasses import dataclass
+from ..core.model import DataModel, datamodel
+from ..core.snowflake import Snowflake
+from ..core.types import OmittableModelField
 
-from ...core.model import DataModel
-from ...core.snowflake import Snowflake
-from ...core.types import OmittableModelField
+from .guilds.role import GuildRoleModel
+from .channels.channel import ChannelModel
+from .messages.message import MessageModel
+from .messages.attachment import AttachmentModel
 
-from ..guilds.role import GuildRoleModel
-from ..channels.channel import ChannelModel
-from ..messages.message import MessageModel
-from ..messages.attachment import AttachmentModel
+from .user import UserModel, GuildMemberModel
 
-from ..user import UserModel, GuildMemberModel
-
-@dataclass
+@datamodel
 class ResolvedDataModel(DataModel):
     """Represents the resolved data object."""
 

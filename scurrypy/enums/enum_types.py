@@ -20,15 +20,17 @@ class DiscordFlags(IntFlag):
     """Base class for Discord's flags."""
 
     @classmethod
-    def from_dict(cls, v: str) -> Self:
+    def from_dict(cls, v: str | None) -> Self:
         """Deserialize this Discord flag.
 
         Args:
-            v (str): serialized Discord flag
+            v (str | None): serialized Discord flag
 
         Returns:
             (DiscordFlags): DiscordFlags object
         """
+        if not v:
+            return cls(0)
         return cls(int(v))
 
 class DiscordString(StrEnum):

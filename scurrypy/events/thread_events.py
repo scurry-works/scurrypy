@@ -1,26 +1,30 @@
-from dataclasses import dataclass
-
-from ..core.model import DataModel
+from ..core.model import datamodel
 from ..core.snowflake import Snowflake
+from ..core.types import (
+    PresentModelField, 
+    OmittableModelField, 
+    ScurrypyInt, 
+    ScurrypyBool
+)
 
 from .base_event import Event
 
 from ..enums.channel import ChannelType
 from ..enums.events import EventType
 
-from ..api.channels.channel import ChannelModel
-from ..api.channels.threads import ThreadMemberModel
+from ..api.channels import ChannelModel
+from ..api.channels import ThreadMemberModel
 
-@dataclass
+@datamodel
 class ThreadCreateEvent(Event, ChannelModel):
     """Received when a thread is created."""
 
     dispatch_name = EventType.THREAD_CREATE
 
-    newly_created: bool
+    newly_created: PresentModelField[ScurrypyBool]
     """Whether the thread has just been created."""
 
-@dataclass
+@datamodel
 class ThreadUpdateEvent(Event, ChannelModel):
     """Received when a thread is updated.
     
@@ -30,35 +34,35 @@ class ThreadUpdateEvent(Event, ChannelModel):
 
     dispatch_name = EventType.THREAD_UPDATE
 
-@dataclass
-class ThreadDeleteEvent(Event, DataModel):
+@datamodel
+class ThreadDeleteEvent(Event):
     """Received when a thread is deleted."""
 
     dispatch_name = EventType.THREAD_DELETE
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the thread."""
     
-    guild_id: Snowflake | None
+    guild_id: OmittableModelField[Snowflake]
     """Guild ID of the thread."""
     
-    parent_id: Snowflake
+    parent_id: OmittableModelField[Snowflake]
     """ID of the parent channel."""
     
-    type: ChannelType
+    type: PresentModelField[ChannelType]
     """Type of thread."""
 
-@dataclass
+@datamodel
 class ThreadMemberUpdateEvent(Event, ThreadMemberModel):
     """Received when a thread member for the bot is updated."""
 
     dispatch_name = EventType.THREAD_MEMBER_UPDATE
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild."""
 
-@dataclass
-class ThreadMembersUpdateEvent(Event, DataModel):
+@datamodel
+class ThreadMembersUpdateEvent(Event):
     """Received when someone is added or removed from a thread.
     
     !!! important
@@ -68,35 +72,35 @@ class ThreadMembersUpdateEvent(Event, DataModel):
 
     dispatch_name = EventType.THREAD_MEMBERS_UPDATE
 
-    id: Snowflake
+    id: PresentModelField[Snowflake]
     """ID of the thread."""
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild."""
 
-    member_count: int
+    member_count: PresentModelField[ScurrypyInt]
     """Approximate number of members in the thread (max `50`)."""
 
-    added_members: list[ThreadMemberModel] | None
+    added_members: OmittableModelField[list[ThreadMemberModel]]
     """Users who were added to the thread"""
 
-    removed_member_ids: list[Snowflake] | None
+    removed_member_ids: OmittableModelField[list[Snowflake]]
     """ID of the users who were removed from the thread."""
 
-@dataclass
-class ThreadListSyncEvent(Event, DataModel):
+@datamodel
+class ThreadListSyncEvent(Event):
     """Received when the bot gains access to a channel."""
 
     dispatch_name = EventType.THREAD_LIST_SYNC
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild."""
 
-    channel_ids: list[Snowflake] | None
+    channel_ids: OmittableModelField[list[Snowflake]]
     """Parent channel IDs of the threads being synced."""
 
-    threads: list[ChannelModel]
+    threads: PresentModelField[list[ChannelModel]]
     """Active threads in the given channel that the bot can access."""
 
-    members: list[ThreadMemberModel]
+    members: PresentModelField[list[ThreadMemberModel]]
     """Thread members from the synced threads that the bot an access."""

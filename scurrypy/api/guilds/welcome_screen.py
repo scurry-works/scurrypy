@@ -1,30 +1,36 @@
 from dataclasses import dataclass
 
-from ...core.model import DataModel
+from ...core.model import DataModel, datamodel
 from ...core.snowflake import Snowflake
-from ...core.types import PresentModelField, PresentNullableModelField, RequiredPartField, RequiredNullablePartField
+from ...core.types import (
+    PresentModelField, 
+    PresentNullableModelField, 
+    RequiredPartField, 
+    RequiredNullablePartField,
+    ScurrypyStr
+)
 
-@dataclass
+@datamodel
 class GuildWelcomeChannelModel(DataModel):
     """Represents channels shown on a welcome screen."""
 
     channel_id: PresentModelField[Snowflake]
     """ID of the channel."""
 
-    description: PresentModelField[str]
+    description: PresentModelField[ScurrypyStr]
     """Description for the channel."""
 
     emoji_id: PresentNullableModelField[Snowflake]
     """Emoji ID for the welcome screen (if custom)."""
 
-    emoji_name: PresentNullableModelField[str]
+    emoji_name: PresentNullableModelField[ScurrypyStr]
     """Emoji name for the welcome screen."""
 
-@dataclass
+@datamodel
 class GuildWelcomeScreenModel(DataModel):
     """Represents a guild's welcome screen."""
 
-    description: PresentNullableModelField[str]
+    description: PresentNullableModelField[ScurrypyStr]
     """Guild description displayed."""
 
     welcome_channels: PresentModelField[list[GuildWelcomeChannelModel]]

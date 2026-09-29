@@ -1,20 +1,19 @@
-from dataclasses import dataclass
-
+from ...core.model import datamodel
 from ...core.snowflake import Snowflake
-from ...core.types import OmittableModelField, OmittableNullableModelField
+from ...core.types import OmittableModelField, OmittableNullableModelField, ScurrypyStr
 
 from ..user import UserModel
 
 from .channel import ChannelModel
 
-@dataclass
+@datamodel
 class DMChannelModel(ChannelModel):
     """Represents a DM channel."""
 
     recipients: OmittableModelField[list[UserModel]]
     """Recipients of the DM."""
 
-    icon: OmittableNullableModelField[str]
+    icon: OmittableNullableModelField[ScurrypyStr]
     """Icon hash of the group DM."""
 
     owner_id: OmittableModelField[Snowflake]

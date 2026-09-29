@@ -1,37 +1,40 @@
-from dataclasses import dataclass
-
-from ...core.model import DataModel
-from ...core.types import PresentModelField
+from ...core.model import DataModel, datamodel
+from ...core.types import (
+    PresentModelField, 
+    ScurrypyStr, 
+    ScurrypyInt, 
+    ScurrypyBool
+)
 
 from ..emoji import EmojiModel
 
-@dataclass
+@datamodel
 class ReactionCountDetailsModel(DataModel):
     """Represents details for the reaction."""
 
-    burst: PresentModelField[int]
+    burst: PresentModelField[ScurrypyInt]
     """Count of super reactions."""
 
-    normal: PresentModelField[int]
+    normal: PresentModelField[ScurrypyInt]
     """Count of normal reactions."""
 
-@dataclass
+@datamodel
 class ReactionModel(DataModel):
     """Represents a reaction made."""
 
-    count: PresentModelField[int]
+    count: PresentModelField[ScurrypyInt]
     """Total number of times this reaction was made."""
 
     count_details: PresentModelField[ReactionCountDetailsModel]
 
-    me: PresentModelField[bool]
+    me: PresentModelField[ScurrypyBool]
     """Whether the bot has reacted with this emoji."""
 
-    me_burst: PresentModelField[bool]
+    me_burst: PresentModelField[ScurrypyBool]
     """Whether the bot has reacted with a super emoji."""
 
     emoji: PresentModelField[EmojiModel]
     """Emoji info."""
 
-    burst_colors: PresentModelField[list[str]]
+    burst_colors: PresentModelField[list[ScurrypyStr]]
     """List of hext colors for the super reaction."""

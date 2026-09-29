@@ -1,7 +1,12 @@
 from scurrypy import Client
 from scurrypy.core import MissingField
 from scurrypy.api.user import UserModel, GuildMemberModel
-from scurrypy.resources import Interaction, Message, Channel, Guild
+from scurrypy.resources import (
+    Interaction, 
+    Message, 
+    Channel, 
+    Guild
+)
 from scurrypy.events import InteractionEvent
 
 class InteractionContext(Interaction):

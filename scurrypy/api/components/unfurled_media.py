@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import Self
 
-from ...core.types import Serialized, RequiredPartField
 from ...core.model import DataModel
+from ...core.types import JSON, RequiredPartField
 
 @dataclass
 class UnfurledMediaPart(DataModel):
@@ -26,7 +26,7 @@ class UnfurledMediaPart(DataModel):
         """
         return cls(url=f"attachment://{filename}")
 
-    def to_dict(self) -> Serialized:
+    def to_dict(self) -> JSON:
         """Serialize this unfurled media.
 
         Returns:

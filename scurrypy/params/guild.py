@@ -2,9 +2,7 @@ from typing import TypedDict
 
 from ..enums.guild import OnboardingMode
 
-from ..api.guilds.welcome_screen import WelcomeScreenChannelPart
-from ..api.guilds.onboarding import OnboardingPromptPart
-from ..api.guilds.role import GuildRoleColorsPart
+from ..api.guilds import WelcomeScreenChannelPart, OnboardingPromptPart, GuildRoleColorsPart
 from ..api.image_data import ImageDataPart
 
 class EditGuildParams(TypedDict, total=False):

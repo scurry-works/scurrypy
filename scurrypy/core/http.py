@@ -27,6 +27,20 @@ class RequestItem:
     assets: Serialized | None
     future: asyncio.Future[HTTPResponse]
 
+    def __repr__(self) -> str:
+        repr = f"Request: {self.method} {self.endpoint}"
+
+        if self.data:
+            repr += f"\n   DATA: {self.data}"
+        if self.params:
+            repr += f"\n   Params: {self.params}"
+        if self.files:
+            repr += f"\n   Files: {self.files}"
+        if self.assets:
+            repr += f"\n   Assets: {self.assets}"
+
+        return repr
+
 @dataclass
 class Bucket:
     remaining: int
@@ -34,24 +48,7 @@ class Bucket:
     reset_on: float
     sleep_task: asyncio.Task[None] | None = None # if Task is set, it returns None (HTTPClient._sleep_endpoint)
 
-from typing import Protocol, cast
-
-class HTTPClientProtocol(Protocol):
-    """Internal contract for the HTTPClient used by the Client. Meant for testing."""
-    async def start(self, token: str) -> None: ...
-    async def close(self) -> None: ...
-    async def request(
-        self,
-        method: str,
-        endpoint: str,
-        *,
-        data: Serialized | list[Serialized] = None,
-        params: JSON | None = None,
-        files: list[str] | None = None,
-        assets: Serialized = None
-    ) -> HTTPResponse: ...
-
-class HTTPClient(HTTPClientProtocol):
+class HTTPClient:
     BASE = "https://discord.com/api/v10"
     MAX_RETRIES = 3
 
@@ -106,7 +103,7 @@ class HTTPClient(HTTPClientProtocol):
 
         Args:
             method (str): HTTP method (e.g., POST, GET, DELETE, PATCH, etc.)
-            endpoint (str): Discord endpoint (e.g., /channels/123/messages)
+            endpoint (str): Discord endpoint (e.g., /channels/123/messages -- leading forward slash not required)
             data (Serialized | list[Serialized], optional): relevant data
             params (JSON | None, optional): relevant query params
             files (list[str] | None, optional): relevant files
@@ -142,13 +139,71 @@ class HTTPClient(HTTPClientProtocol):
             return {k: ('true' if v is True else 'false' if v is False else v)
                 for k, v in params.items() if v is not None}
 
-        await queue.put(RequestItem(method, endpoint, data, sanitize_query_params(params), files, assets, future))
+        r = RequestItem(method, endpoint, data, sanitize_query_params(params), files, assets, future)
+
+        logger.debug(f"{r}")
+
+        await queue.put(r)
 
         # return promise
         try:
             return await future
         except DiscordError:
             raise # surface the error
+
+    async def request_json(
+        self,
+        method: str,
+        endpoint: str,
+        *,
+        data: Serialized | list[Serialized] = None,
+        params: JSON | None = None,
+        files: list[str] | None = None,
+        assets: Serialized = None
+    ) -> JSON:
+        """Queue a request for the given endpoint.
+
+        Args:
+            method (str): HTTP method (e.g., POST, GET, DELETE, PATCH, etc.)
+            endpoint (str): Discord endpoint (e.g., /channels/123/messages -- leading forward slash not required)
+            data (Serialized | list[Serialized], optional): relevant data
+            params (JSON | None, optional): relevant query params
+            files (list[str] | None, optional): relevant files
+            assets (Serialized, optional): relevant assets
+
+        Returns:
+            (JSON): result or promise of request promising JSON
+        """
+        data = await self.request(method, endpoint, data=data, params=params, files=files, assets=assets)
+        assert isinstance(data, dict)
+        return data
+
+    async def request_list(
+        self,
+        method: str,
+        endpoint: str,
+        *,
+        data: Serialized | list[Serialized] = None,
+        params: JSON | None = None,
+        files: list[str] | None = None,
+        assets: Serialized = None
+    ) -> list[JSON]:
+        """Queue a request for the given endpoint.
+
+        Args:
+            method (str): HTTP method (e.g., POST, GET, DELETE, PATCH, etc.)
+            endpoint (str): Discord endpoint (e.g., /channels/123/messages -- leading forward slash not required)
+            data (Serialized | list[Serialized], optional): relevant data
+            params (JSON | None, optional): relevant query params
+            files (list[str] | None, optional): relevant files
+            assets (Serialized, optional): relevant assets
+
+        Returns:
+            (list[JSON]): list result or promise of request promising list of JSON
+        """
+        data = await self.request(method, endpoint, data=data, params=params, files=files, assets=assets)
+        assert isinstance(data, list)
+        return data
 
     async def _worker(self, endpoint: str) -> None:
         """Background worker that processes requests for this endpoint.
@@ -217,9 +272,11 @@ class HTTPClient(HTTPClientProtocol):
             # JSON body is guaranteed if successful
             try:
                 data: HTTPResponse = await resp.json()
+                logger.debug(f"Response: {resp.status} \n{data}")
                 return data
             except aiohttp.ContentTypeError:
                 data = await resp.text()
+                logger.debug(f"Response: {resp.status} \n{data}")
                 return data
 
         # error handling

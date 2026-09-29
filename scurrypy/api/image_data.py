@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 
 from ..core.model import DataModel
 from ..core.exceptions import InvalidFile, MissingField
-from ..core.types import Serialized, RequiredPartField
+from ..core.types import JSON, RequiredPartField
 
 @dataclass
 class ImageDataPart(DataModel):
@@ -11,7 +11,7 @@ class ImageDataPart(DataModel):
     path: RequiredPartField[str] = None
     """Path to image."""
 
-    def to_dict(self) -> Serialized:
+    def to_dict(self) -> str:
         """Serialize this image data.
 
         Raises:
@@ -47,7 +47,7 @@ class ImageAssetPart(DataModel):
     data: bytes = field(init=False)
     """Binary data (internally set)."""
 
-    def to_dict(self) -> Serialized:
+    def to_dict(self) -> JSON:
         """Serialize this image asset.
 
         Raises:

@@ -2,6 +2,22 @@
 
 This changelog documents all notable and breaking changes to the ScurryPy PyPi package.
 
+## [2.4.0] - 29 Sept 2026
+
+* Removed the HTTP and Gateway Protocol classes and their respective tests
+* Replaced resource tests with serialization tests
+* Added custom event support
+* Added more thorough debug logging
+* Added shard ID support to `Client`
+* Moved `ResolvedDataModel` from `scurrypy.api.interactions` to `scurrypy.api`
+* Added explicit field semantics to event fields
+* Added documentation to previously undocumented enums
+* Added model field typing specifications (see `CONTRIBUTING`)
+* Optimized deserialization (JSON to dataclass)
+* Added subcommand support, including support in `ext.commands`
+* Added `Timestamp` and timestamp formatting utilities
+* Refactored `Embed` and its components into `Part`s and `Model`s
+
 ## [2.3.2] - 19 Sept 2026
 
 * Typing cleanup
@@ -15,11 +31,11 @@ ScurryPy now requires Python 3.12+
 * Added `file_types` to the `FileUpload` component and file filtering support to `ApplicationCommandOptionModel`
 * Added `AttachmentFlags`
 * Changed `AttachmentModel.flags` from `int` to `AttachmentFlags`
-* Updated Params annotations. This change is reflected in CONTRIBUTING.
-    * Some editing params are optional, while others are optional and nullable.
-    * Optional params use `total=False` on the Param Object.
-    * Nullable params additionally use `type | None`.
-* Added explicit field semantics to Part and Model fields.
+* Updated Params annotations. This change is reflected in CONTRIBUTING
+    * Some editing params are optional, while others are optional and nullable
+    * Optional params use `total=False` on the Param Object
+    * Nullable params additionally use `type | None`
+* Added explicit field semantics to Part and Model fields
 * Added `UnfurledMediaPart`
 
 ## [2.3.0.1] - 14 Sep 2026
@@ -56,9 +72,9 @@ ScurryPy now requires Python 3.12+
 
 ## [2.0] - 18 Feb 2026
 
-ScurryPy 2.0 refines core architecture following 1.0 stabilization. 
+ScurryPy 2.0 refines core architecture following 1.0 stabilization
 This release simplifies flag handling, restructures interaction models,
-and clarifies editing semantics for long-term API consistency.
+and clarifies editing semantics for long-term API consistency
 
 * Migrated flags and constants to `IntFlag` / `IntEnum`
 * Simplified intent and permission handling

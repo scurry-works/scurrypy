@@ -1,4 +1,8 @@
-from dataclasses import dataclass, field
+from dataclasses import  field
+from typing import Self
+
+from ..core.model import datamodel
+from ..core.types import JSON
 
 from .base_event import Event
 
@@ -7,21 +11,23 @@ from ..bases.interaction import InteractionData
 from ..enums.interaction import InteractionType
 from ..enums.events import EventType
 
-from ..api.interactions.interaction import InteractionModel, ApplicationCommandDataModel, MessageComponentDataModel, ModalDataModel
+from ..api.interactions import (
+    InteractionModel, 
+    ApplicationCommandDataModel, 
+    MessageComponentDataModel, 
+    ModalDataModel
+)
 
-from ..core.types import HTTPResponse
-from typing import Self
-
-@dataclass
+@datamodel
 class InteractionEvent(Event, InteractionModel):
 
     dispatch_name = EventType.INTERACTION_CREATE
 
     data: InteractionData = field(init=False)
-    """Interaction response data. Can be one of `InteractionData`[scurrypy.bases.InteractionData]'s variants."""
+    """Interaction response data. Can be one of [`InteractionData`][scurrypy.bases.InteractionData]'s variants."""
 
     @classmethod
-    def from_dict(cls, data: HTTPResponse) -> Self:
+    def from_dict(cls, data: JSON) -> Self:
         assert isinstance(data, dict)
 
         obj = super().from_dict(data) # InteractionModel's DataModel

@@ -6,8 +6,7 @@ from .base_resource import BaseResource
 from ..core.snowflake import Snowflake
 from ..core.serialization import serialize
 
-from ..api.channels.channel import ChannelModel
-
+from ..api.channels import ChannelModel
 from ..api.user import UserModel, GuildMemberModel
 
 from ..params.user import EditUserParams
@@ -25,7 +24,7 @@ class User(BaseResource):
         Returns:
             (UserModel): queried user
         """
-        data = await self.http.request('GET', f'/users/{user_id}')
+        data = await self.http.request_json('GET', f'/users/{user_id}')
 
         return UserModel.from_dict(data)
 
@@ -39,7 +38,7 @@ class User(BaseResource):
         Returns:
             (GuildMemberModel): queried guild member for the user
         """
-        data = await self.http.request('GET', f'/guilds/{guild_id}/members/{user_id}')
+        data = await self.http.request_json('GET', f'/guilds/{guild_id}/members/{user_id}')
 
         return GuildMemberModel.from_dict(data)
 
@@ -53,9 +52,9 @@ class User(BaseResource):
         Returns:
             (UserModel): edited user
         """
-        opts = serialize(dict(options))
+        opts = serialize(dict(options)) # nested objects in EditUserParams
 
-        data = await self.http.request('PATCH', '/users/@me', data=opts)
+        data = await self.http.request_json('PATCH', '/users/@me', data=opts)
 
         return UserModel.from_dict(data)
 
@@ -78,7 +77,7 @@ class User(BaseResource):
         Returns:
             (ChannelModel): created or existing DM channel
         """
-        data = await self.http.request(
+        data = await self.http.request_json(
             'POST', 
             '/users/@me/channels', 
             data={'recipient_id': user_id}

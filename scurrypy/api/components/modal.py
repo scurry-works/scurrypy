@@ -3,18 +3,12 @@ from dataclasses import dataclass, field
 from ...core.model import DataModel
 from ...core.types import RequiredPartField, OptionalPartField
 
-from ...bases.components import (
-    LabelChild,
-    Component
-)
+from ...bases.components import LabelChild, Component
 
-from ...enums.components import (
-    ComponentType,
-    TextInputStyle
-)
+from ...enums.components import ComponentType, TextInputStyle
 
 @dataclass
-class TextInput(Component, LabelChild):
+class TextInput(DataModel, Component, LabelChild):
     """Represents the Text Input component.
     
     A Text Input allows users to enter free-form text.
@@ -46,7 +40,7 @@ class TextInput(Component, LabelChild):
 
 
 @dataclass
-class FileUpload(Component, LabelChild):
+class FileUpload(DataModel, Component, LabelChild):
     """Represents the file upload component.
     
     File Upload allows users to upload files in modals.
@@ -87,7 +81,7 @@ class ListOption(DataModel):
     """Whether to show this option as selected by default."""
 
 @dataclass
-class RadioGroup(Component, LabelChild):
+class RadioGroup(DataModel, Component, LabelChild):
     """Represents the radio group component.
     
     A Radio Group is for selecting exactly one option from a defined list.
@@ -106,7 +100,7 @@ class RadioGroup(Component, LabelChild):
     """Component type. Always `ComponentType.RADIO_GROUP` for this class."""
 
 @dataclass
-class CheckboxGroup(Component, LabelChild):
+class CheckboxGroup(DataModel, Component, LabelChild):
     """Represents the checkbox group component.
     
     A Checkbox Group is for selecting one or many options via checkboxes.
@@ -131,7 +125,7 @@ class CheckboxGroup(Component, LabelChild):
     """Component type. Always `ComponentType.CHECKBOX_GROUP` for this class."""
 
 @dataclass
-class Checkbox(Component, LabelChild):
+class Checkbox(DataModel, Component, LabelChild):
     """Represents a checkbox component.
     
     A Checkbox is for simple yes/no style questions.

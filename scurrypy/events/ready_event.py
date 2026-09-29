@@ -1,39 +1,43 @@
-from dataclasses import dataclass
-
-from ..core.model import DataModel
+from ..core.model import datamodel
+from ..core.types import (
+    PresentModelField, 
+    OmittableModelField, 
+    ScurrypyStr, 
+    ScurrypyInt
+)
 
 from .base_event import Event
 
 from ..enums.events import EventType
 
-from ..api.guilds.guild import UnavailableGuildModel
+from ..api.guilds import UnavailableGuildModel
 
 from ..api.user import UserModel
 from ..api.application import ApplicationModel
 
-@dataclass
-class ReadyEvent(Event, DataModel):
+@datamodel
+class ReadyEvent(Event):
     """Received when bot goes online."""
 
     dispatch_name = EventType.READY
 
-    v: int
+    v: PresentModelField[ScurrypyInt]
     """API version number."""
 
-    user: UserModel
+    user: PresentModelField[UserModel]
     """Information about the user."""
 
-    guilds: list[UnavailableGuildModel]
+    guilds: PresentModelField[list[UnavailableGuildModel]]
     """List of guilds bot is in."""
 
-    session_id: str
+    session_id: PresentModelField[ScurrypyStr]
     """Used for resuming connections."""
 
-    resume_gateway_url: str
+    resume_gateway_url: PresentModelField[ScurrypyStr]
     """Gateway URL for resuming connections."""
 
-    shard: list[int]
+    shard: OmittableModelField[list[ScurrypyInt]]
     """Shard information associated with this session."""
 
-    application: ApplicationModel
+    application: PresentModelField[ApplicationModel]
     """Partial application object. Contains ID and flags."""

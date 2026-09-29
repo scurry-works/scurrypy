@@ -6,11 +6,15 @@ from .base_resource import BaseResource
 from ..core.snowflake import Snowflake
 from ..core.serialization import serialize
 
-from ..api.messages.message import MessageModel, PinnedMessageModel, MessagePart
-from ..api.channels.channel import ChannelModel
-from ..api.channels.followed import FollowedChannelModel
-from ..api.channels.threads import ThreadMemberModel, ArchivedThreadsModel, ThreadFromMessagePart, ThreadWithoutMessagePart
-
+from ..api.messages import MessageModel, PinnedMessageModel, MessagePart
+from ..api.channels import (
+    ChannelModel, 
+    FollowedChannelModel, 
+    ThreadMemberModel, 
+    ArchivedThreadsModel, 
+    ThreadFromMessagePart, 
+    ThreadWithoutMessagePart
+)
 from ..api.invite import InviteModel, InvitePart, InviteWithMetadataModel
 
 from ..params.channel import EditGuildChannelParams, EditThreadChannelParams
@@ -29,7 +33,7 @@ class Channel(BaseResource):
         Returns:
             (ChannelModel): queried channel
         """
-        data = await self.http.request("GET", f"/channels/{self.id}")
+        data = await self.http.request_json("GET", f"/channels/{self.id}")
 
         return ChannelModel.from_dict(data)
 
@@ -40,7 +44,7 @@ class Channel(BaseResource):
             (or [`ThreadDeleteEvent`][scurrypy.events.thread_events.ThreadDeleteEvent] if a thread).
 
         !!! important "Permissions"
-            Requires `MANAGE_CHANNELS` and `MANAGE_THREADS`
+            Requires `MANAGE_CHANNELS` if channel is a guild channel or `MANAGE_THREADS` if channel is a thread
         """
         await self.http.request("DELETE", f"/channels/{self.id}")
 
@@ -48,13 +52,16 @@ class Channel(BaseResource):
         """Follow announcement channel to send messages to a target channel.
         Fires [`WebhooksUpdateEvent`][scurrypy.events.channel_events.WebhooksUpdateEvent].
 
+        !!! important "Permissions"
+            Requires `MANAGE_WEBHOOKS` in the target channel
+
         Args:
             webhook_channel_id (Snowflake): ID of target channel
 
         Returns:
             (FollowedChannelModel): followed channel
         """
-        data = await self.http.request(
+        data = await self.http.request_json(
             'POST', 
             f'/channels/{self.id}/followers', 
             params={'webhook_channel_id': webhook_channel_id}
@@ -71,7 +78,7 @@ class Channel(BaseResource):
             If modifying a category, all child channels also fire [`ChannelUpdateEvent`][scurrypy.events.channel_events.ChannelUpdateEvent].
 
         !!! important "Permissions"
-            Requires `MANAGE_CHANNELS`
+            Requires `MANAGE_CHANNELS` for the guild
 
         Args:
             options (EditGuildChannelParams): channel fields to edit
@@ -79,9 +86,9 @@ class Channel(BaseResource):
         Returns:
             (ChannelModel): updated channel
         """
-        opts = serialize(dict(options))
+        opts = serialize(dict(options)) # nested objects in EditGuildChannelParams
 
-        data = await self.http.request('PATCH', f'/channels/{self.id}', data=opts)
+        data = await self.http.request_json('PATCH', f'/channels/{self.id}', data=opts)
 
         return ChannelModel.from_dict(data)
     
@@ -108,9 +115,8 @@ class Channel(BaseResource):
             "around": around
         }
 
-        data = await self.http.request('GET', f'/channels/{self.id}/messages', params=params)
+        data = await self.http.request_list('GET', f'/channels/{self.id}/messages', params=params)
 
-        assert isinstance(data, list)
         return [MessageModel.from_dict(msg) for msg in data]
 
     async def fetch_pins(self, limit: int = 50, before: str | None = None) -> list[PinnedMessageModel]:
@@ -119,16 +125,12 @@ class Channel(BaseResource):
         !!! important "Permissions"
             Requires `VIEW_CHANNEL` and `READ_MESSAGE_HISTORY`
             
-        !!! note
-            * Creates a `PUBLIC_THREAD` when called on a `GUILD_TEXT` channel
-            * Creates an `ANNOUNCEMENT_THREAD` when called on a `GUILD_ANNOUNCEMENT` channel
-        
         !!! warning
             Does not work on a `GUILD_FORUM` channel!
 
         Args:
-            before (str, optional): get pinned messages before this ISO8601 timestamp
             limit (int, optional): Max number of pinned messages to return. Range 1 - 50. Defaults to `50`.
+            before (str, optional): get pinned messages before this ISO8601 timestamp
         
         Returns:
             (list[PinnedMessageModel]): queried list of pinned messages
@@ -139,9 +141,8 @@ class Channel(BaseResource):
             "before": before
         }
 
-        data = await self.http.request('GET', f'/channels/{self.id}/pins', params=params)
+        data = await self.http.request_list('GET', f'/channels/{self.id}/pins', params=params)
 
-        assert isinstance(data, list)
         return [PinnedMessageModel.from_dict(item) for item in data]
 
     async def send(self, message: str | MessagePart) -> MessageModel:
@@ -149,7 +150,9 @@ class Channel(BaseResource):
         Fires [`MessageCreateEvent`][scurrypy.events.message_events.MessageCreateEvent].
 
         !!! important "Permissions"
-            Requires `SEND_MESSAGES`
+            Requires `SEND_MESSAGES` if in a guild channel.
+
+            Requires `READ_MESSAGE_HISTORY` of replying to another message.
 
         Args:
             message (str | MessagePart): content as a string or MessagePart
@@ -164,7 +167,7 @@ class Channel(BaseResource):
 
         files = [str(f.path) for f in msg.attachments] if msg.attachments else None
         
-        data = await self.http.request(
+        data = await self.http.request_json(
             "POST", 
             f"/channels/{self.id}/messages", 
             data=msg.to_dict(),
@@ -178,16 +181,16 @@ class Channel(BaseResource):
         Fires [`BulkMessageDeleteEvent`][scurrypy.events.message_events.BulkMessageDeleteEvent].
         
         !!! important "Permissions"
-            Requires `MANAGE_MESSAGES`.
+            Requires `MANAGE_MESSAGES`
 
         !!! important
-            Messages **older than 2 weeks** will fail to get deleted!
+            Messages **older than 2 weeks** will not get deleted!
 
         !!! note
             Only available for `GUILD_TEXT` channels.
 
         Args:
-            message_ids (list[Snowflake]): IDs of the messages to delete range(2, 100)
+            message_ids (list[Snowflake]): IDs of the messages to delete. Range 2 to 100 (inclusive).
         """
         await self.http.request(
             'POST', 
@@ -208,9 +211,8 @@ class Channel(BaseResource):
         Returns:
             list[InviteWithMetadataModel]: queried list of invites
         """
-        data = await self.http.request('GET', f'/channels/{self.id}/invites')
+        data = await self.http.request_list('GET', f'/channels/{self.id}/invites')
 
-        assert isinstance(data, list)
         return [InviteWithMetadataModel.from_dict(i) for i in data]
 
     async def create_invite(self, invite: InvitePart) -> InviteModel:
@@ -220,19 +222,22 @@ class Channel(BaseResource):
         !!! important "Permissions"
             Requires `CREATE_INSTANT_INVITE`
 
+        !!! note
+            Only usable for guild channels.
+
         Args:
             invite (InvitePart): invite to create
 
         Returns:
             (InviteModel): created invite object 
         """
-        data = await self.http.request('POST', f'/channels/{self.id}/invites', data=invite.to_dict())
+        data = await self.http.request_json('POST', f'/channels/{self.id}/invites', data=invite.to_dict())
 
         return InviteModel.from_dict(data)
 
     # --- THREAD CHANNELS ---
     async def fetch_thread_member(self, user_id: Snowflake, with_member: bool = False) -> ThreadMemberModel:
-        """Fetch a thread emmber of the specified user ID from this thread.
+        """Fetch a thread member of the specified user ID from this thread.
 
         Args:
             user_id (Snowflake): ID of the user to fetch
@@ -244,18 +249,23 @@ class Channel(BaseResource):
 
         params = { 'with_member': with_member }
 
-        data = await self.http.request('GET', f'/channels/{self.id}/thread-members/{user_id}', params=params)
+        data = await self.http.request_json('GET', f'/channels/{self.id}/thread-members/{user_id}', params=params)
 
         return ThreadMemberModel.from_dict(data)
     
-    async def fetch_thread_members(self, limit: int = 100, after: Snowflake | None = None, with_member: bool | None = False) -> list[ThreadMemberModel]:
+    async def fetch_thread_members(self, limit: int = 100, after: Snowflake | None = None, with_member: bool = False) -> list[ThreadMemberModel]:
         """Fetch all members of this thread.
 
         !!! warning
             Requires the `GUILD_MEMBERS` privileged intent to use!
 
+        !!! warning
+            Starting in API v11, paginated results will always be returned.
+
+            Enable paginated results before v11 by setting `with_member` to `True`.
+
         Args:
-            limit (int, optional): Max number of thread members to return. Range 0 - 100. Defaults to `100`.
+            limit (int, optional): Max number of thread members to return. Range 0 to 100 (inclusive). Defaults to `100`.
             after (Snowflake, optional): members after this user ID
             with_member (bool, optional): whether to include the member object. Defaults to `False`.
 
@@ -269,9 +279,8 @@ class Channel(BaseResource):
             'limit': limit
         }
 
-        data = await self.http.request('GET', f"/channels/{self.id}/thread-members", params=params)
+        data = await self.http.request_list('GET', f"/channels/{self.id}/thread-members", params=params)
 
-        assert isinstance(data, list)
         return [ThreadMemberModel.from_dict(n) for n in data]
 
     async def create_thread_from_message(self, message_id: Snowflake, thread: ThreadFromMessagePart) -> ChannelModel:
@@ -279,15 +288,20 @@ class Channel(BaseResource):
         Fires [`ThreadCreateEvent`][scurrypy.events.thread_events.ThreadCreateEvent] 
         and [`MessageUpdateEvent`][scurrypy.events.message_events.MessageUpdateEvent].
 
+        !!! note
+            Creates a `PUBLIC_THREAD` when created in a `GUILD_TEXT` channel.
+
+            Creates a `ANNOUNCEMENT_THREAD` when created in a `GUILD_ANNOUNCEMENT` channel
+
         Args:
             message_id (Snowflake): ID of the message to attach the thread
             thread (ThreadFromMessagePart): thread to attach
 
         Returns:
-            ChannelModel: new thread
+            (ChannelModel): new thread
         """
 
-        data = await self.http.request('POST', f"channels/{self.id}/messages/{message_id}/threads", data=thread.to_dict())
+        data = await self.http.request_json('POST', f"/channels/{self.id}/messages/{message_id}/threads", data=thread.to_dict())
 
         return ChannelModel.from_dict(data)
 
@@ -299,10 +313,10 @@ class Channel(BaseResource):
             thread (ThreadWithoutMessagePart): thread to create
 
         Returns:
-            ChannelModel: new thread
+            (ChannelModel): new thread
         """
 
-        data = await self.http.request('POST', f'/channels/{self.id}/threads', data=thread.to_dict())
+        data = await self.http.request_json('POST', f'/channels/{self.id}/threads', data=thread.to_dict())
 
         return ChannelModel.from_dict(data)
 
@@ -311,7 +325,7 @@ class Channel(BaseResource):
         Fires [`ChannelUpdateEvent`][scurrypy.events.channel_events.ChannelUpdateEvent].
 
         !!! important "Permissions"
-            Requires `MANAGE_CHANNELS`
+            Requires `MANAGE_THREADS`
 
         !!! important
             Requires `archived` be `False` or set to `False`.
@@ -325,7 +339,7 @@ class Channel(BaseResource):
 
         opts = dict(options)
 
-        data = await self.http.request('PATCH', f'/channels/{self.id}', data=opts)
+        data = await self.http.request_json('PATCH', f'/channels/{self.id}', data=opts)
 
         return ChannelModel.from_dict(data)
 
@@ -335,7 +349,7 @@ class Channel(BaseResource):
         and [`ThreadCreateEvent`][scurrypy.events.thread_events.ThreadCreateEvent].
 
         !!! important
-            Required the thread NOT be archived.
+            Requires the thread is NOT archived.
         """
         await self.http.request('PUT', f'/channels/{self.id}/thread-members/@me')
 
@@ -344,13 +358,16 @@ class Channel(BaseResource):
         Fires [`ThreadMembersUpdateEvent`][scurrypy.events.thread_events.ThreadMembersUpdateEvent].
 
         !!! important
-            Required the thread NOT be archived.
+            Requires the thread is NOT archived.
         """
         await self.http.request('DELETE', f'/channels/{self.id}/thread-members/@me')
 
     async def add_thread_member(self, user_id: Snowflake) -> None:
         """Add a user to this thread.
         Fires [`ThreadMembersUpdateEvent`][scurrypy.events.thread_events.ThreadMembersUpdateEvent].
+
+        !!! important
+            Requires the thread is NOT archived.
 
         Args:
             user_id (Snowflake): ID of the user to add
@@ -360,6 +377,12 @@ class Channel(BaseResource):
     async def remove_thread_member(self, user_id: Snowflake) -> None:
         """Remove a user to this thread.
         Fires [`ThreadMembersUpdateEvent`][scurrypy.events.thread_events.ThreadMembersUpdateEvent].
+
+        !!! important "Permissions"
+            Requires `MANAGE_THREADS` or thread creator if `PRIVATE_THREAD`
+
+        !!! important
+            Requires the thread is NOT archived.
 
         Args:
             user_id (Snowflake): ID of the user to remove
@@ -372,7 +395,7 @@ class Channel(BaseResource):
         !!! important "Permissions"
             Requires `READ_MESSAGE_HISTORY`
 
-        !!! note:
+        !!! note
             Returns `PUBLIC_THREAD` threads if this is a `GUILD_TEXT` channel.
             Returns `ANNOUNCEMENT_THREAD` if this is a `GUILD_ANNOUNCEMENT` channel.
 
@@ -381,12 +404,12 @@ class Channel(BaseResource):
 
         Args:
             before (str, optional): threads archived before this timestamp
-            limit (int, optional): max numer of threads to fetch
+            limit (int, optional): max number of threads to fetch
 
         Returns:
             (ArchivedThreadsModel): queried public archived threads
         """
-        data = await self.http.request(
+        data = await self.http.request_json(
             'GET', 
             f'/channels/{self.id}/threads/archived/public', 
             params={
@@ -413,7 +436,7 @@ class Channel(BaseResource):
         Returns:
             (ArchivedThreadsModel): queried private archived threads
         """
-        data = await self.http.request(
+        data = await self.http.request_json(
             'GET', 
             f'/channels/{self.id}/threads/archived/private', 
             params={
@@ -440,7 +463,7 @@ class Channel(BaseResource):
         Returns:
             (ArchivedThreadsModel): queried private archived threads
         """
-        data = await self.http.request(
+        data = await self.http.request_json(
             'GET', 
             f'/channels/{self.id}/users/@me/threads/archived/private', 
             params={

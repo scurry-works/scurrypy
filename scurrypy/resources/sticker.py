@@ -5,7 +5,7 @@ from .base_resource import BaseResource
 from ..core.snowflake import Snowflake
 from ..core.exceptions import MissingField
 
-from ..api.messages.sticker import StickerModel, StickerPackModel
+from ..api.messages import StickerModel, StickerPackModel
 
 @dataclass
 class Sticker(BaseResource):
@@ -20,7 +20,7 @@ class Sticker(BaseResource):
         Returns:
             (StickerModel): queried sticker
         """
-        data = await self.http.request('GET', f'/stickers/{sticker_id}')
+        data = await self.http.request_json('GET', f'/stickers/{sticker_id}')
 
         return StickerModel.from_dict(data)
 
@@ -33,7 +33,7 @@ class Sticker(BaseResource):
         Returns:
             (StickerPackModel): queried sticker pack
         """
-        data = await self.http.request('GET', f'/sticker-packs/{pack_id}')
+        data = await self.http.request_json('GET', f'/sticker-packs/{pack_id}')
 
         return StickerPackModel.from_dict(data)
 
@@ -46,7 +46,7 @@ class Sticker(BaseResource):
         Returns:
             list[StickerPackModel]: queried list of sticker packs.
         """
-        data = await self.http.request('GET', '/sticker-packs')
+        data = await self.http.request_json('GET', '/sticker-packs')
 
         assert isinstance(data, dict)
 

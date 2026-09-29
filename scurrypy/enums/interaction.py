@@ -15,6 +15,9 @@ class InteractionDataType(DiscordTypes):
 class InteractionType(DiscordTypes):
     """Interaction types constants."""
 
+    PING = 1
+    """Handshake for utilizing webhook-based interactions"""
+
     APPLICATION_COMMAND = 2
     """Slash command interaction."""
 

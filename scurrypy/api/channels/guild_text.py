@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 
+from ...core.model import DataModel
 from ...core.snowflake import Snowflake
 from ...core.types import RequiredPartField, OptionalNullablePartField
 
@@ -8,7 +9,7 @@ from ...bases.channel import GuildChannelCreate
 from ...enums.channel import ChannelType
 
 @dataclass
-class GuildTextChannelPart(GuildChannelCreate):
+class GuildTextChannelPart(DataModel, GuildChannelCreate):
     """Parameters for creating a guild text channel."""
 
     name: RequiredPartField[str] = None

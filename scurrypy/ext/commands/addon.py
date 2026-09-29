@@ -2,15 +2,23 @@ import logging
 
 logger = logging.getLogger('scurrypy')
 
-from scurrypy import Client
-from scurrypy.bases import Addon
+from scurrypy import Client, Addon
 from scurrypy.enums import EventType, InteractionDataType
-from scurrypy.core import DiscordError, Snowflake, InvalidCallbackSignature, DataModelTypeError
+from scurrypy.core import (
+    DiscordError, 
+    Snowflake, 
+    InvalidCallbackSignature, 
+    DataModelTypeError,
+    ScurrypyError
+)
 from scurrypy.api.commands import (
     SlashCommandPart, 
     UserCommandPart, 
     MessageCommandPart, 
-    CommandOptionPart
+    CommandOptionPart,
+    SlashCommandFamilyPart,
+    SubcommandGroupPart,
+    SubcommandPart
 )
 from scurrypy.api.interactions import (
     ApplicationCommandDataModel, 
@@ -26,6 +34,12 @@ from collections.abc import Callable, Awaitable
 type AddonHandler = Callable[[CommandContext], Awaitable[None]]
 
 type AddonDecorator = Callable[[AddonHandler], AddonHandler]
+
+type AnyCommand = SlashCommandPart | UserCommandPart | MessageCommandPart | SlashCommandFamilyPart
+
+class DuplicateCommand(ScurrypyError):
+    """Raised when two commands of the same name have been registered."""
+    pass
 
 def _check_func_params(func: AddonHandler) -> None:
     """Inspect a user-defined function callback for command interactions.
@@ -61,10 +75,10 @@ class CommandsAddon(Addon):
 
         self.sync_commands = sync_commands
 
-        self._global_commands: list[SlashCommandPart | MessageCommandPart | UserCommandPart] = []
-        """List of all Global commands."""
+        self._global_commands: list[AnyCommand] = []
+        """List of Global commands."""
 
-        self._guild_commands: dict[Snowflake, list[SlashCommandPart | MessageCommandPart | UserCommandPart]] = {}
+        self._guild_commands: dict[Snowflake, list[AnyCommand]] = {}
         """Guild commands mapped by guild ID."""
 
         self.slash_handlers: dict[str, AddonHandler] = {}
@@ -93,18 +107,24 @@ class CommandsAddon(Addon):
         description: str, 
         *, 
         handler: AddonHandler | None = None,
-        options: list[CommandOptionPart] | None = None, 
+        options: list[CommandOptionPart] | None = None,
         guild_ids: list[Snowflake] | None = None
     ) -> AddonDecorator | None:
         """Register and route a slash command.
 
         Args:
-            name (str): command name
+            name (str): command or command family name (if a subcommand family group)
             description (str): command description
             handler (AddonHandler, optional): callback for the command (if not a decorator)
             options (list[CommandOptionPart], optional): list of command options
             guild_ids (list[Snowflake], optional): list of guild IDs for guild commands or omit for global
+
+        Raises:
+            (DuplicateCommand): command with this name has already been registered
         """
+        if self.slash_handlers.get(name) is not None:
+            raise DuplicateCommand(f"Duplicate slash command name '{name}'")
+
         self._queue_command(SlashCommandPart(name, description, options), guild_ids)
 
         if handler is None:
@@ -119,6 +139,44 @@ class CommandsAddon(Addon):
         self.slash_handlers[name] = handler
         logger.info(f"Slash command '/{name}' registered.")
         return None
+
+    def subcommand_group(self, 
+        name: str, 
+        description: str, 
+        options: list[SubcommandGroupPart | SubcommandPart],
+        *, 
+        handler: AddonHandler | None = None,
+        guild_ids: list[Snowflake] | None = None
+    ) -> AddonDecorator | None:
+        """Register and route a slash command.
+
+        Args:
+            name (str): command or command family name (if a subcommand family group)
+            description (str): command description
+            options (list[SubcommandGroupPart | SubcommandPart], optional): list of subcommand options
+            handler (AddonHandler, optional): callback for the command (if not a decorator)
+            guild_ids (list[Snowflake], optional): list of guild IDs for guild commands or omit for global
+
+        Raises:
+            (DuplicateCommand): command with this name has already been registered
+        """
+        if self.slash_handlers.get(name) is not None:
+            raise DuplicateCommand(f"Duplicate subcommand group name '{name}'")
+        
+        self._queue_command(SlashCommandFamilyPart(name, description, options), guild_ids)
+
+        if handler is None:
+            def decorator(func: AddonHandler) -> AddonHandler:
+                _check_func_params(func)
+                self.slash_handlers[name] = func
+                logger.info(f"Subcommand group '/{name}' registered.")
+                return func
+            return decorator
+        
+        _check_func_params(handler)
+        self.slash_handlers[name] = handler
+        logger.info(f"Subcommand group '/{name}' registered.")
+        return None
     
     def user_command(self, 
         name: str, 
@@ -132,7 +190,13 @@ class CommandsAddon(Addon):
             name (str): command name
             handler (AddonHandler, optional): callback for the command (if not a decorator)
             guild_ids (list[Snowflake], optional): list of guild IDs for guild commands or omit for global
+
+        Raises:
+            (DuplicateCommand): command with this name has already been registered
         """
+        if self.user_handlers.get(name) is not None:
+            raise DuplicateCommand(f"Duplicate user command name '{name}'")
+        
         self._queue_command(UserCommandPart(name), guild_ids)
 
         if handler is None:
@@ -160,7 +224,13 @@ class CommandsAddon(Addon):
             name (str): command name
             handler (AddonHandler, optional): callback for the command (if not a decorator)
             guild_ids (list[Snowflake], optional): list of guild IDs for guild commands or omit for global
+
+        Raises:
+            (DuplicateCommand): command with this name has already been registered
         """
+        if self.message_handlers.get(name) is not None:
+            raise DuplicateCommand(f"Duplicate message command name '{name}'")
+        
         self._queue_command(MessageCommandPart(name), guild_ids)
 
         if handler is None:
@@ -188,9 +258,15 @@ class CommandsAddon(Addon):
             command_name (str): name of command to autocomplete
             option_name (str): name of option to autocomplete
             handler (AddonHandler, optional): callback for the command (if not a decorator)
+
+        Raises:
+            (DuplicateCommand): command with this name has already been registered
         """
         key = f"{command_name}:{option_name}"
 
+        if self.slash_handlers.get(key) is not None:
+            raise DuplicateCommand(f"Duplicate autocomplete command name '{key}'")
+        
         if handler is None:
             def decorator(func: AddonHandler) -> AddonHandler:
                 _check_func_params(func)
@@ -206,7 +282,6 @@ class CommandsAddon(Addon):
 
     async def _register_commands(self) -> None:
         """Register both guild and global commands to the client."""
-
         # global registry
         _global_commands = self.bot.global_command(self.application_id)
         global_commands = await _global_commands.fetch_all()
@@ -229,13 +304,13 @@ class CommandsAddon(Addon):
                 await _guild_commands.create(create_cmd)
     
     def _queue_command(self, 
-        command: SlashCommandPart | MessageCommandPart | UserCommandPart, 
+        command: AnyCommand, 
         guild_ids: list[Snowflake] | None = None
     ) -> None:
         """Queue a decorated command to be registered on startup.
 
         Args:
-            command (SlashCommandPart | MessageCommandPart | UserCommandPart): the command object
+            command (AnyCommand): the command object
             guild_ids (list[Snowflake], optional): list of guild IDs for guild commands or omit for global
         """
         if guild_ids:
@@ -305,8 +380,8 @@ class CommandsAddon(Addon):
                 logger.error("No focused option found for autocomplete!")
                 return
 
-            name = f"{event.data.name}:{focused.name}"
-            handler = self.autocomplete_handlers.get(name)
+            auto_complete_name = f"{event.data.name}:{focused.name}"
+            handler = self.autocomplete_handlers.get(auto_complete_name)
 
             ctx = AutocompleteApplicationCommandContext(self.bot, event)
 

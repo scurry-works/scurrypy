@@ -1,126 +1,115 @@
-from dataclasses import dataclass
-
-from ..core.model import DataModel
+from ..core.model import datamodel
 from ..core.snowflake import Snowflake
+from ..core.timestamp import Timestamp
+from ..core.types import (
+    PresentModelField, 
+    OmittableModelField, 
+    ScurrypyStr, 
+    ScurrypyInt, 
+    ScurrypyBool
+)
 
 from .base_event import Event
 
 from ..enums.events import EventType
 
-from ..api.channels.channel import ChannelModel
-from ..api.guilds.guild import UnavailableGuildModel, GuildModel
-from ..api.messages.sticker import StickerModel
-
+from ..api.channels import ChannelModel
+from ..api.guilds import UnavailableGuildModel, GuildModel
+from ..api.messages import StickerModel
 from ..api.emoji import EmojiModel
 from ..api.user import UserModel, GuildMemberModel
 
-@dataclass
+@datamodel
 class GuildCreateEvent(Event, GuildModel):
     """Received when the bot has joined a guild."""
 
     dispatch_name = EventType.GUILD_CREATE
     
-    joined_at: str
+    joined_at: PresentModelField[Timestamp]
     """ISO8601 timestamp of when app joined the guild."""
 
-    large: bool
+    large: PresentModelField[ScurrypyBool]
     """If the guild is considered large."""
 
-    member_count: int
+    member_count: PresentModelField[ScurrypyInt]
     """Total number of members in the guild."""
 
-    members: list[GuildMemberModel]
+    members: PresentModelField[list[GuildMemberModel]]
     """Users in the guild."""
 
-    channels: list[ChannelModel]
+    channels: PresentModelField[list[ChannelModel]]
     """Channels in the guild."""
 
-    threads: list[ChannelModel]
+    threads: PresentModelField[list[ChannelModel]]
     """All active threads in the guild that are viewable."""
 
-    unavailable: bool | None
+    unavailable: OmittableModelField[ScurrypyBool]
     """`True` if the guild is unavailable due to an outage."""
 
-@dataclass
-class GuildUpdateEvent(Event, DataModel):
+@datamodel
+class GuildUpdateEvent(Event, GuildModel):
     """Received when a guild has been edited."""
 
     dispatch_name = EventType.GUILD_UPDATE
 
-    id: Snowflake
-    """ID of the guild."""
-
-    name: str
-    """Name of the guild."""
-
-    icon: str
-    """Image hash of the guild's icon."""
-
-    description: str
-    """Description of the guild."""
-
-    banner: str
-    """Image hash of the guild's banner."""
-
-    joined_at: str
-    """ISO8601 timestamp of when app joined the guild."""
-
-    large: bool
-    """If the guild is considered large."""
-
-    member_count: int
-    """Total number of members in the guild."""
-
-@dataclass
+@datamodel
 class GuildDeleteEvent(Event, UnavailableGuildModel):
     """Received when the bot has left a guild or the guild was deleted."""
     
     dispatch_name = EventType.GUILD_DELETE
 
-@dataclass
-class GuildBanAddEvent(Event, DataModel):
-    """Received when a user is banned from a guild."""
+@datamodel
+class GuildBanAddEvent(Event):
+    """Received when a user is banned from a guild.
+
+    !!! important "Permissions"
+        Requires `BAN_MEMBERS` or `VIEW_AUDIT_LOG`
+    """
 
     dispatch_name = EventType.GUILD_BAN_ADD
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild in which the ban took place."""
 
-    user: UserModel
+    user: PresentModelField[UserModel]
     """The user who was banned."""
 
-@dataclass
-class GuildBanRemoveEvent(Event, DataModel):
-    """Received when a user is unbanned from a guild."""
+@datamodel
+class GuildBanRemoveEvent(Event):
+    """Received when a user is unbanned from a guild.
+
+    !!! important "Permissions"
+        Requires `BAN_MEMBERS` or `VIEW_AUDIT_LOG`
+    """
 
     dispatch_name = EventType.GUILD_BAN_REMOVE
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild in which the ban took place."""
 
-    user: UserModel
+    user: PresentModelField[UserModel]
     """The user who was banned."""
 
-@dataclass
-class GuildEmojisUpdateEvent(Event, DataModel):
+@datamodel
+class GuildEmojisUpdateEvent(Event):
     """Received when a guild updates their emojis."""
 
     dispatch_name = EventType.GUILD_EMOJIS_UPDATE
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild."""
 
-    emojis: list[EmojiModel]
+    emojis: PresentModelField[list[EmojiModel]]
     """Complete set of guild emojis with changes."""
 
-@dataclass
-class GuildStickersUpdateEvent(Event, DataModel):
+@datamodel
+class GuildStickersUpdateEvent(Event):
     """Received when a guild's stickers have been updated."""
 
     dispatch_name = EventType.GUILD_STICKERS_UPDATE
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild."""
 
-    stickers: list[StickerModel]
+    stickers: PresentModelField[list[StickerModel]]
     """List of the guild's stickers."""

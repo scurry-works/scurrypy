@@ -7,18 +7,16 @@ from ...bases.components import (
     ContainerChild, 
     SectionAccessoryChild,
     SectionChild,
-    Component
+    Component,
+    ContainerComponent
 )
 
-from ...enums.components import (
-    ComponentType,
-    SeparatorType
-)
+from ...enums.components import ComponentType, SeparatorType
 
 from .unfurled_media import UnfurledMediaPart
 
 @dataclass
-class ActionRow(Component):
+class ActionRow(DataModel, ContainerComponent, Component):
     """Represents a container of interactable components."""
 
     components: RequiredPartField[list[Component]] = None
@@ -28,7 +26,7 @@ class ActionRow(Component):
     """Component type."""
 
 @dataclass
-class Section(Component, ContainerChild):
+class Section(DataModel, Component, ContainerChild):
     """Represents the Section component.
     
     A Section contextually associates content with an accessory component.
@@ -51,7 +49,7 @@ class Section(Component, ContainerChild):
 
 
 @dataclass
-class TextDisplay(Component, ContainerChild, SectionChild):
+class TextDisplay(DataModel, Component, ContainerChild, SectionChild):
     """Represents the Text Display component.
     
     A Text Display adds markdown formatted text, including mentions (users, roles, etc) and emojis.
@@ -64,7 +62,7 @@ class TextDisplay(Component, ContainerChild, SectionChild):
     """Component type. Always `ComponentType.TEXT_DISPLAY` for this class."""
 
 @dataclass
-class Thumbnail(Component, SectionAccessoryChild):
+class Thumbnail(DataModel, Component, SectionAccessoryChild):
     """Represents the Thumbnail component.
     
     A Thumbnail displays visual media in a small form-factor.
@@ -96,7 +94,7 @@ class MediaGalleryItem(DataModel):
     """Whether the thumbnail should be a spoiler (or blurred out). Discord defaults to `False`."""
 
 @dataclass
-class MediaGallery(Component, ContainerChild):
+class MediaGallery(DataModel, Component, ContainerChild):
     """Represents the Media Gallery component.
     
     A Media Gallery displays 1-10 media attachments in an organized gallery format.
@@ -109,7 +107,7 @@ class MediaGallery(Component, ContainerChild):
     """Component type. Always `ComponentType.MEDIA_GALLERY` for this class."""
 
 @dataclass
-class File(Component, ContainerChild):
+class File(DataModel, Component, ContainerChild):
     """Represents the File component.
     
     A File displays an uploaded file as an attachment to the message and reference it in the component.
@@ -125,7 +123,7 @@ class File(Component, ContainerChild):
     """Component type. Always `ComponentType.FILE` for this class."""
 
 @dataclass
-class Separator(Component, ContainerChild):
+class Separator(DataModel, Component, ContainerChild):
     """Represents the Separator component.
     
     A Separator adds vertical padding and visual division between other components.
@@ -141,7 +139,7 @@ class Separator(Component, ContainerChild):
     """Component type. Always `ComponentType.SEPARATOR` for this class."""
 
 @dataclass
-class Container(Component):
+class Container(DataModel, ContainerComponent):
     """Represents a container of display and interactable components.
     
     A Container visually encapsulates a collection of components.
@@ -163,7 +161,7 @@ class Container(Component):
     """Component type. Always `ComponentType.CONTAINER` for this class."""
 
 @dataclass
-class Label(Component):
+class Label(DataModel, Component):
     """Represents the Discord Label component.
     
     Labels wrap modal components with text as a label and optional description.

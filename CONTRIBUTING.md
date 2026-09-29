@@ -8,18 +8,22 @@ It doesn’t enforce how users must build bots, only how the library itself stay
 
 ## What's Needed
 
-ScurryPy is in a stability-focused development phase: no feature expansion, only alignment with Discord API changes.
+ScurryPy is currently in a stability-focused development phase.
+Development is primarily limited to keeping ScurryPy aligned with changes to Discord's API.
+
+Contributions should therefore focus on:
+
+* Discord API additions or changes within ScurryPy's supported scope
+* Bug fixes
+* Documentation improvements
+* Typing and serialization improvements
+* Architectural consistency
 
 **Not Accepting:**
 
-* Auto-caching (opt-in only. See `scurrypy.ext.cache`)
-* Voice support and *Group* DM (out of scope)
-* Sub-commands and automodding (lots of overhead for not enough gain)
-* Auditing (includes many unsupported features)
-* Endpoints with non-`bot` auth scopes, are unstable/experimental, or related to voice.
-* Anything monetization based (e.g., entitlements and subscriptions)
+See [coverage](https://scurry-works.github.io/scurrypy/coverage/) for details on what ScurryPy is currently not accepting.
 
-While ScurryPy itself may not offer these features by default, you are more than welcome to extend ScurryPy to include these features.
+While ScurryPy itself may not offer these features by default, ScurryPy is capable of being extended to include these features.
 
 > [!TIP]
 > The following formats assume this [mindset](https://scurry-works.github.io/scurrypy/getting_started/mindset/).
@@ -28,8 +32,8 @@ While ScurryPy itself may not offer these features by default, you are more than
 
 ### API (Parts and Models)
 
+For parts:
 ```python
-
 from ..core.types import RequiredPartField, OptionalPartField, RequiredNullablePartField, OptionalNullablePartField
 
 @dataclass
@@ -47,27 +51,40 @@ class YourPart(DataModel):
 
     field_4: OptionalNullablePartField[type] = None
     """This is an optional field and can be omitted. This field accepts None."""
+```
 
+For models:
+```py
 from ..core.types import PresentModelField, OmittableModelField, PresentNullableModelField, OmittableNullableModelField
+from ..core.serialization import ScurrypyStr, ScurrypyInt, ScurrypyBool, ScurrypyFloat, ScurrypyPrimitive
 
 @dataclass
 class YourModel(DataModel):
     """Your model's description."""
 
-    field_1: PresentModelField[type]
+    field_1: PresentModelField[ScurrypyType]
     """This field will always be present."""
 
-    field_2: OmittableModelField[type]
+    field_2: OmittableModelField[ScurrypyType]
     """This field might be omitted."""
 
-    field_3: PresentNullableModelField[type]
+    field_3: PresentNullableModelField[ScurrypyType]
     """This field will always be present, but can also be None."""
 
-    field_4: OmittableNullableModelField[type]
+    field_4: OmittableNullableModelField[ScurrypyType]
     """This field might be omitted, but can also be None."""
 ```
+
+Model field types must ultimately be compatible with ScurrypyType. 
+Built-in primitive types include `ScurrypyStr`, `ScurrypyInt`, `ScurrypyBool`, `ScurrypyFloat`, and `ScurrypyPrimitive`.
+
+Lists are `list[ScurrypyType]`.
+
+Maps must be `dict[Snowflake, ScurrypyType]`.
+
 > [!NOTE]
-> Objects must be unique (no partial copies) with their fields replicating Discord's and be fully documented.
+> Objects must be unique (no partial structures) with their fields replicating Discord's and be fully documented.
+> For example, Discord frequently documents "partial emojis." `EmojiModel` is the single source of truth for all emoji structures.
 
 ### Resources
 

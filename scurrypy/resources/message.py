@@ -10,9 +10,7 @@ from ..core.types import JSON
 from ..enums.message import MessageFlags
 from ..enums.emoji import ReactionType
 
-from ..api.messages.message import MessageModel
-from ..api.messages.attachment import AttachmentPart
-
+from ..api.messages import MessageModel, AttachmentPart
 from ..api.emoji import EmojiModel
 from ..api.user import UserModel
 
@@ -85,10 +83,13 @@ class Message(BaseResource, _EditMessageMixin):
     async def fetch(self) -> MessageModel:
         """Fetches the message data based on the given channel ID and message ID.
 
+        !!! important "Permissions"
+            Requires `VIEW_CHANNEL` and `READ_MESSAGE_HISTORY`
+
         Returns:
             (MessageModel): queried message
         """
-        data = await self.http.request('GET', f"/channels/{self.channel_id}/messages/{self.id}")
+        data = await self.http.request_json('GET', f"/channels/{self.channel_id}/messages/{self.id}")
 
         return MessageModel.from_dict(data)
     
@@ -113,10 +114,10 @@ class Message(BaseResource, _EditMessageMixin):
         """
         
         files = self._prepare_attachments(dict(options))
-        opts = serialize(dict(options))
+        opts = serialize(dict(options)) # nested objects in EditMessageParams
         self._apply_suppress_embeds(opts, suppress_embeds)
 
-        data = await self.http.request(
+        data = await self.http.request_json(
             "PATCH",
             f"/channels/{self.channel_id}/messages/{self.id}",
             data=opts,
@@ -130,31 +131,41 @@ class Message(BaseResource, _EditMessageMixin):
         Fires [`MessageUpdateEvent`][scurrypy.events.message_events.MessageUpdateEvent].
 
         !!! important "Permissions"
-            * `SEND_MESSAGES` → required to publish your own messages
-            * `MANAGE_MESSAGES` → required to publish messages from others
+            Requires `SEND_MESSAGES` to publish your own messages
+
+            Requires `MANAGE_MESSAGES` to publish messages from others
 
         Returns:
             (MessageModel): published (crossposted) message
         """
-        data = await self.http.request('POST', f'/channels/{self.channel_id}/messages/{self.id}/crosspost')
+        data = await self.http.request_json('POST', f'/channels/{self.channel_id}/messages/{self.id}/crosspost')
 
         return MessageModel.from_dict(data)
 
     async def delete(self) -> None:
         """Deletes this message.
         Fires [`MessageDeleteEvent`][scurrypy.events.message_events.MessageDeleteEvent].
+
+        !!! important "Permissions"
+            Requires `MANAGE_MESSAGES`
         """
         await self.http.request("DELETE", f"/channels/{self.channel_id}/messages/{self.id}")
 
     async def pin(self) -> None:
         """Pin this message to its channel's pins.
         Fires [`ChannelPinsUpdateEvent`][scurrypy.events.channel_events.ChannelPinsUpdateEvent].
+
+        !!! important "Permissions"
+            Requires `PIN_MESSAGES`
         """
         await self.http.request('PUT', f'/channels/{self.channel_id}/messages/pins/{self.id}')
     
     async def unpin(self) -> None:
         """Unpin this message from its channel's pins.
         Fires [`ChannelPinsUpdateEvent`][scurrypy.events.channel_events.ChannelPinsUpdateEvent].
+
+        !!! important "Permissions"
+            Requires `PIN_MESSAGES`
         """
         await self.http.request('DELETE', f'/channels/{self.channel_id}/messages/pins/{self.id}')
 
@@ -176,18 +187,19 @@ class Message(BaseResource, _EditMessageMixin):
             list[UserModel]: list of users who reacted with this emoji
         """
         if isinstance(emoji, str):
-            emoji = EmojiModel(emoji)
+            emoji = EmojiModel.from_name(emoji)
 
-        data = await self.http.request(
+        params={
+            'type': type,
+            'after': after,
+            'limit': limit
+        }
+
+        data = await self.http.request_list(
             'GET',
             f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}",
-            params={
-                'type': type,
-                'after': after,
-                'limit': limit
-            }
+            params=params
         )
-        assert isinstance(data, list)
         return [UserModel.from_dict(user) for user in data]
 
     async def add_reaction(self, emoji: EmojiModel | str) -> None:
@@ -195,15 +207,17 @@ class Message(BaseResource, _EditMessageMixin):
         Fires [`MessageReactionAddEvent`][scurrypy.events.reaction_events.ReactionAddEvent].
 
         !!! important "Permissions"
-            Requires `READ_MESSAGE_HISTORY` and `ADD_REACTIONS`
+            Requires `READ_MESSAGE_HISTORY`.
+
+            Requires `ADD_REACTIONS` of no reactions with this emoji are present.
 
         Args:
             emoji (EmojiModel | str): the standard emoji (str) or custom emoji (EmojiModel)
         """
         if isinstance(emoji, str):
-            emoji = EmojiModel(emoji)
+            emoji = EmojiModel.from_name(emoji)
 
-        await self.http.request(
+        await self.http.request_json(
             "PUT",
             f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}/@me")
 
@@ -215,7 +229,7 @@ class Message(BaseResource, _EditMessageMixin):
             emoji (EmojiModel | str): the standard emoji (str) or custom emoji (EmojiModel)
         """
         if isinstance(emoji, str):
-            emoji = EmojiModel(emoji)
+            emoji = EmojiModel.from_name(emoji)
 
         await self.http.request(
             "DELETE",
@@ -233,7 +247,7 @@ class Message(BaseResource, _EditMessageMixin):
             user_id (Snowflake): user's ID
         """
         if isinstance(emoji, str):
-            emoji = EmojiModel(emoji)
+            emoji = EmojiModel.from_name(emoji)
 
         await self.http.request(
             "DELETE",
@@ -249,8 +263,8 @@ class Message(BaseResource, _EditMessageMixin):
             emoji (EmojiModel | str): the standard emoji (str) or custom emoji (EmojiModel)
         """
         if isinstance(emoji, str):
-            emoji = EmojiModel(emoji)
-        
+            emoji = EmojiModel.from_name(emoji)
+
         await self.http.request(
             "DELETE",
             f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}")

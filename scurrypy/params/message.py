@@ -3,9 +3,7 @@ from typing import TypedDict
 from ..enums.message import MessageFlags
 
 from ..api.components.layout import ActionRow, Container
-from ..api.messages.attachment import AttachmentPart
-from ..api.messages.embed import Embed
-from ..api.messages.message import MessageReferencePart
+from ..api.messages import AttachmentPart, EmbedPart, MessageReferencePart
 
 class EditMessageParams(TypedDict, total=False):
     """Parameters for editing a message."""
@@ -28,7 +26,7 @@ class EditMessageParams(TypedDict, total=False):
     attachments: list[AttachmentPart]
     """Attachments to be attached to this message."""
 
-    embeds: list[Embed]
+    embeds: list[EmbedPart]
     """Embeds to be attached to this message."""
 
     message_reference: MessageReferencePart

@@ -1,73 +1,76 @@
-# --- DESERIALIZE/SERIALIZE ---
-from scurrypy.api.messages import Embed
+from scurrypy.core.model import DataModel, datamodel
+from scurrypy.core.types import (
+    ScurrypyStr, 
+    ScurrypyInt, 
+    ScurrypyBool, 
+    ScurrypyFloat,
+    PresentModelField,
+    OmittableModelField
+)
 
-embed_data = {
-    'title': 'my embed',
-    'color': '1234567',
-    'fields': [
-        {
-            'name': 'demo field',
-            'value': 'demo value',
-            'inline': 'false'
-        },
-        {
-            'name': 'demo field',
-            'value': 'demo value',
-            'inline': 'true'
-        }
-    ]
-}
+@datamodel
+class MyInnerModel(DataModel):
+    inner_str: PresentModelField[ScurrypyStr]
+    inner_int: PresentModelField[ScurrypyInt]
 
-embed = Embed.from_dict(embed_data)
-assert embed.title == 'my embed'
-assert embed.color == 1234567
-assert embed.fields[0].name == 'demo field'
-assert embed.fields[0].value == 'demo value'
-assert embed.fields[0].inline == False
-assert embed.fields[1].inline == True
+@datamodel
+class MaybeInnerModel(DataModel):
+    maybe_str: OmittableModelField[ScurrypyStr]
+    maybe_int: OmittableModelField[ScurrypyInt]
 
-embed_dict = embed.to_dict()
-assert embed_dict['fields'][0]['inline'] == False
-assert embed_dict['fields'][1]['inline'] == True
+@datamodel
+class MyModel(DataModel):
+    my_str: PresentModelField[ScurrypyStr]
+    my_int: PresentModelField[ScurrypyInt]
+    my_bool: PresentModelField[ScurrypyBool]
+    my_float: PresentModelField[ScurrypyFloat]
+    my_list: PresentModelField[list[ScurrypyInt]]
+    my_struct: PresentModelField[MyInnerModel]
 
-# --- FLAGS ---
-from scurrypy.api.messages import MessagePart, MessageFlags
+    maybe_str: OmittableModelField[ScurrypyStr]
+    maybe_int: OmittableModelField[ScurrypyInt]
+    maybe_bool: OmittableModelField[ScurrypyBool]
+    maybe_float: OmittableModelField[ScurrypyFloat]
+    maybe_list: OmittableModelField[list[ScurrypyFloat]]
+    maybe_struct: OmittableModelField[MaybeInnerModel]
 
-msg_data = {
-    'content': 'my message',
-    'flags': '68'
-}
-
-msg = MessagePart.from_dict(msg_data)
-
-assert msg.content == 'my message'
-assert MessageFlags.EPHEMERAL in msg.flags
-
-# --- TYPING ---
-
-from scurrypy.core import DataModel
-from dataclasses import dataclass
-
-@dataclass
-class A(DataModel):
-    int_field: int
-    str_field: str
-    bool_field: bool
-    missing_field: int | None
-    maybe_field: int | None
-    # invalid_union: int | None | str # -- should throw exception
-
-a = A.from_dict({
-    'int_field': '123',
-    'str_field': 'string',
-    'bool_field': 'false',
-    # missing field
-    'maybe_field': '456',
-    'invalid_union': '789'
+my_model = MyModel.from_dict({
+    'my_str': 'my string',
+    'my_int': '123',
+    'my_bool': 'false',
+    'my_float': '0.15',
+    'my_list': ['987', '654', '321'],
+    'my_struct': {
+        'inner_str': 'my string 2',
+        'inner_int': '123456'
+    },
+    'maybe_struct': {}
 })
 
-assert a.int_field == 123
-assert a.str_field == 'string'
-assert a.bool_field == False
-assert a.missing_field is None
-assert a.maybe_field == 456
+assert my_model.my_str == 'my string'
+assert my_model.my_int == 123
+assert my_model.my_bool is False
+assert my_model.my_float == 0.15
+assert my_model.my_list == [987, 654, 321]
+assert my_model.my_struct is not None
+assert my_model.my_struct.inner_str == 'my string 2'
+assert my_model.my_struct.inner_int == 123456
+assert any([
+    my_model.maybe_str, 
+    my_model.maybe_int, 
+    my_model.maybe_bool, 
+    my_model.maybe_float
+]) is False
+assert my_model.maybe_list is None
+assert my_model.maybe_struct is not None
+
+serialized = my_model.to_dict()
+
+assert serialized["my_str"] == "my string"
+assert serialized["my_int"] == 123
+assert serialized["my_bool"] is False
+assert serialized["my_float"] == 0.15
+assert serialized["my_list"] == [987, 654, 321]
+
+assert "maybe_list" not in serialized
+assert serialized["maybe_struct"] == {}

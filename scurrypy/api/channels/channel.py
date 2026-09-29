@@ -1,13 +1,19 @@
-from dataclasses import dataclass
-
-from ...core.model import DataModel
+from ...core.model import DataModel, datamodel
 from ...core.snowflake import Snowflake
-from ...core.types import PresentModelField, OmittableModelField, OmittableNullableModelField
+from ...core.timestamp import Timestamp
+from ...core.types import (
+    PresentModelField, 
+    OmittableModelField, 
+    OmittableNullableModelField, 
+    ScurrypyStr, 
+    ScurrypyInt, 
+    ScurrypyBool
+)
 
 from ...enums.permissions import Permissions
 from ...enums.channel import ChannelFlags
 
-@dataclass
+@datamodel
 class ChannelModel(DataModel):
     """Represents common channel fields."""
 
@@ -17,28 +23,28 @@ class ChannelModel(DataModel):
     guild_id: OmittableModelField[Snowflake]
     """Guild ID of the channel."""
 
-    position: OmittableModelField[int]
+    position: OmittableModelField[ScurrypyInt]
     """Position of the channel."""
 
-    name: OmittableNullableModelField[str]
+    name: OmittableNullableModelField[ScurrypyStr]
     """Name of the channel."""
 
-    topic: OmittableNullableModelField[str]
+    topic: OmittableNullableModelField[ScurrypyStr]
     """Topic of the channel."""
 
-    nsfw: OmittableModelField[bool]
+    nsfw: OmittableModelField[ScurrypyBool]
     """If the channel is flagged NSFW."""
 
     last_message_id: OmittableNullableModelField[Snowflake]
     """ID of the last message sent in the channel."""
 
-    rate_limit_per_user: OmittableModelField[int]
+    rate_limit_per_user: OmittableModelField[ScurrypyInt]
     """Seconds user must wait between sending messages in the channel."""
 
     parent_id: OmittableNullableModelField[Snowflake]
     """Category ID of the channel."""
 
-    last_pin_timestamp: OmittableNullableModelField[str]
+    last_pin_timestamp: OmittableNullableModelField[Timestamp]
     """ISO8601 timestamp of the last pinned messsage in the channel."""
 
     permissions: OmittableModelField[Permissions]

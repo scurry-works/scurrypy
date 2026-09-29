@@ -1,46 +1,45 @@
-from dataclasses import dataclass
-
-from ..core.model import DataModel
+from ..core.model import datamodel
 from ..core.snowflake import Snowflake
+from ..core.types import PresentModelField
 
 from .base_event import Event
 
 from ..enums.events import EventType
 
-from ..api.guilds.role import GuildRoleModel
+from ..api.guilds import GuildRoleModel
 
-@dataclass
-class RoleCreateEvent(Event, DataModel):
+@datamodel
+class RoleCreateEvent(Event):
     """Received when a guild role is created."""
 
     dispatch_name = EventType.ROLE_CREATE
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """Guild ID of the role."""
 
-    role: GuildRoleModel
+    role: PresentModelField[GuildRoleModel]
     """The new role."""
 
-@dataclass
-class RoleUpdateEvent(Event, DataModel):
+@datamodel
+class RoleUpdateEvent(Event):
     """Received when a guild role is updated."""
 
     dispatch_name = EventType.ROLE_UPDATE
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """Guild ID of the role."""
 
-    role: GuildRoleModel
+    role: PresentModelField[GuildRoleModel]
     """The new role."""
 
-@dataclass
-class RoleDeleteEvent(Event, DataModel):
+@datamodel
+class RoleDeleteEvent(Event):
     """Received when a guild role is deleted."""
 
     dispatch_name = EventType.ROLE_DELETE
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """Guild ID of the role."""
 
-    role_id: Snowflake
+    role_id: PresentModelField[Snowflake]
     """Role ID of the role."""

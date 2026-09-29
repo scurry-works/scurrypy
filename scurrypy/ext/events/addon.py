@@ -2,8 +2,7 @@ import logging
 
 logger = logging.getLogger('scurrypy')
 
-from scurrypy import Client
-from scurrypy.bases import Addon
+from scurrypy import Client, Addon
 from scurrypy.enums import EventType
 from scurrypy.core import DiscordError, InvalidCallbackSignature
 from scurrypy.events import Event
@@ -35,7 +34,7 @@ class EventsAddon(Addon):
         """
         self.bot = client
 
-        self._events: dict[EventType, list[AddonHandler]] = {}
+        self._events: dict[EventType | str, list[AddonHandler]] = {}
         """Maps EVENT_NAME to handlers."""
 
         client.add_startup_hook(self.on_startup)
@@ -47,7 +46,7 @@ class EventsAddon(Addon):
         for dispatch_type in self._events.keys():
             self.bot.add_event_listener(dispatch_type, self.dispatch)
 
-    def listen(self, event_name: EventType, *, handler: AddonHandler | None = None) -> AddonDecorator | None:
+    def listen(self, event_name: EventType | str, *, handler: AddonHandler | None = None) -> AddonDecorator | None:
         """Register and route an event with params (bot, event).
 
         Raises:

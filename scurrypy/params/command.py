@@ -1,6 +1,6 @@
 from typing import TypedDict
 
-from ..api.commands.slash import CommandOptionPart
+from ..api.commands import CommandOptionPart
 
 class EditGlobalCommandParams(TypedDict, total=False):
     """Parameters for editing a global command."""

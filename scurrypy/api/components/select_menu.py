@@ -4,11 +4,7 @@ from ...core.model import DataModel
 from ...core.snowflake import Snowflake
 from ...core.types import RequiredPartField, OptionalPartField
 
-from ...bases.components import (
-    ActionRowChild, 
-    LabelChild,
-    Component
-)
+from ...bases.components import ActionRowChild, LabelChild, Component
 
 from ...enums.components import ComponentType, DefaultValueType
 
@@ -34,7 +30,7 @@ class SelectOption(DataModel):
     """Whether this option is selected by default. Discord defaults to `False`."""
 
 @dataclass
-class StringSelect(Component, ActionRowChild, LabelChild):
+class StringSelect(DataModel, Component, ActionRowChild, LabelChild):
     """Represents the String Select component.
     
     A String Select allows users to select one or more provided options.
@@ -80,7 +76,7 @@ class DefaultValue(DataModel):
     """Type of value that `id` represents."""
 
 @dataclass
-class SelectMenuMixin:
+class SelectMenuMixin(DataModel):
     """Represents common fields for Discord's select menus."""
 
     custom_id: RequiredPartField[str] = None

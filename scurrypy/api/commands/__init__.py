@@ -14,7 +14,10 @@ from .context import (
 from .slash import (
     CommandOptionChoicePart, 
     CommandOptionPart, 
-    SlashCommandPart
+    SlashCommandPart,
+    SubcommandGroupPart,
+    SubcommandPart,
+    SlashCommandFamilyPart
 )
 
 __all__ = [
@@ -30,5 +33,8 @@ __all__ = [
 
     "CommandOptionChoicePart", 
     "CommandOptionPart", 
-    "SlashCommandPart"
+    "SlashCommandPart",
+    "SubcommandGroupPart",
+    "SubcommandPart",
+    "SlashCommandFamilyPart"
 ]

@@ -42,6 +42,12 @@ class MissingIntents(ScurrypyError):
     """Raised when an intent is missing for the client."""
     pass
 
+
 class NoSession(ScurrypyError):
     """Raised when a session is not active."""
+    pass
+
+
+class EventNotFound(ScurrypyError):
+    """Raised when an event dispatch name has no corressponding event data model."""
     pass

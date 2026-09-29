@@ -1,6 +1,8 @@
 from .enum_types import DiscordFlags
 
 class AttachmentFlags(DiscordFlags):
+    """Flags associated with an attachment."""
+    
     IS_CLIP = 1 << 0
     """This attachment is a Clip from a stream."""
 

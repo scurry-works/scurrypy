@@ -1,10 +1,8 @@
-from dataclasses import dataclass
-
-from ...core.model import DataModel
+from ...core.model import DataModel, datamodel
 from ...core.snowflake import Snowflake
 from ...core.types import PresentModelField
 
-@dataclass
+@datamodel
 class FollowedChannelModel(DataModel):
     """Represents the followed channel object."""
 

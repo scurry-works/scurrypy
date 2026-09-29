@@ -1,34 +1,33 @@
-from dataclasses import dataclass
-
-from ..core.model import DataModel
+from ..core.model import datamodel
+from ..core.types import PresentModelField, ScurrypyStr, ScurrypyInt
 
 from .base_event import Event
 
-@dataclass
-class SessionStartLimit(Event, DataModel):
+@datamodel
+class SessionStartLimit(Event):
     """Represents the Session Start Limit object."""
 
-    total: int
+    total: PresentModelField[ScurrypyInt]
     """Total remaining shards."""
 
-    remaining: int
+    remaining: PresentModelField[ScurrypyInt]
     """Shards left to connect."""
 
-    reset_after: int
+    reset_after: PresentModelField[ScurrypyInt]
     """When `remaining` resets from now (in ms)."""
 
-    max_concurrency: int
+    max_concurrency: PresentModelField[ScurrypyInt]
     """How many shards can be started at once."""
 
-@dataclass
-class GatewayEvent(Event, DataModel):
+@datamodel
+class GatewayEvent(Event):
     """Represents the Gateway Event object."""
 
-    url: str 
+    url: PresentModelField[ScurrypyStr] 
     """Gateway URL to connect."""
 
-    shards: int
+    shards: PresentModelField[ScurrypyInt]
     """Recommended shard count for the aaplication."""
 
-    session_start_limit: SessionStartLimit
+    session_start_limit: PresentModelField[SessionStartLimit]
     """Session start info."""

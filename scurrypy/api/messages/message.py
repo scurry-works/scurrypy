@@ -1,25 +1,32 @@
 from dataclasses import dataclass
+from typing import Self
 
-from ...bases.components import Component
+from ...bases.components import ContainerComponent
 
-from ...core.model import DataModel
+from ...core.model import DataModel, datamodel
 from ...core.snowflake import Snowflake
-from ...core.types import Serialized, PresentModelField, OmittableModelField, OptionalPartField
+from ...core.timestamp import Timestamp
+from ...core.types import (
+    Serialized, 
+    PresentModelField, 
+    OmittableModelField, 
+    OptionalPartField,
+    ScurrypyStr, 
+    ScurrypyBool
+)
 
 from ...enums.message import MessageType, MessageFlags, MessageReferenceType
 
-from ..components.layout import Container, ActionRow
+from ..components.layout import Container
 from ..messages.attachment import AttachmentModel, AttachmentPart
-from ..messages.embed import Embed
+from ..messages.embed import EmbedModel, EmbedPart
 from ..messages.reaction import ReactionModel
 from ..channels.channel import ChannelModel
 from ..guilds.role import GuildRoleModel
 
 from ..user import UserModel
 
-from typing import Self
-
-@dataclass
+@datamodel
 class MessageModel(DataModel):
     """Represents a Discord message."""
 
@@ -32,16 +39,16 @@ class MessageModel(DataModel):
     author: PresentModelField[UserModel]
     """User data of author of the message."""
     
-    content: PresentModelField[str]
+    content: PresentModelField[ScurrypyStr]
     """Content of the message."""
 
-    timestamp: PresentModelField[str]
+    timestamp: PresentModelField[ScurrypyStr]
     """Timestamp of when the message was sent."""
 
-    edited_timestamp: PresentModelField[str]
+    edited_timestamp: PresentModelField[ScurrypyStr]
     """Timestamp of when the message was last edited."""
 
-    mention_everyone: PresentModelField[bool]
+    mention_everyone: PresentModelField[ScurrypyBool]
     """Whether the message mentions everyone."""
 
     mentions: PresentModelField[list[UserModel]]
@@ -59,13 +66,13 @@ class MessageModel(DataModel):
     webhook_id: OmittableModelField[Snowflake]
     """ID of the webhook if the message is a webhook."""
 
-    embeds: PresentModelField[list[Embed]]
+    embeds: PresentModelField[list[EmbedModel]]
     """Embedded content."""
 
     reactions: OmittableModelField[list[ReactionModel]]
     """Reactions to the message."""
 
-    pinned: PresentModelField[bool]
+    pinned: PresentModelField[ScurrypyBool]
     """If the message is pinned."""
 
     type: PresentModelField[MessageType]
@@ -77,17 +84,17 @@ class MessageModel(DataModel):
     thread: OmittableModelField[ChannelModel]
     """Thread created from the message."""
 
-    components: OmittableModelField[list[Component]]
+    components: OmittableModelField[list[ContainerComponent]]
     """Components contained in the message."""
 
-@dataclass
+@datamodel
 class PinnedMessageModel(DataModel):
     """Represents a pinned message."""
 
     message: PresentModelField[MessageModel]
     """Message resource of the pinned message."""
 
-    pinned_at: PresentModelField[str]
+    pinned_at: PresentModelField[Timestamp]
     """ISO8601 timestamp of when the message was pinned."""
 
 @dataclass
@@ -117,13 +124,13 @@ class MessagePart(DataModel):
     flags: OptionalPartField[MessageFlags] = None
     """Message flags. Discord defaults to `MessageFlags.NO_FLAGS`."""
 
-    components: OptionalPartField[list[ActionRow | Container]] = None
+    components: OptionalPartField[list[ContainerComponent]] = None
     """Components to be attached to this message."""
 
     attachments: OptionalPartField[list[AttachmentPart]] = None
     """Attachments to be attached to this message."""
 
-    embeds: OptionalPartField[list[Embed]] = None
+    embeds: OptionalPartField[list[EmbedPart]] = None
     """Embeds to be attached to this message."""
 
     message_reference: OptionalPartField[MessageReferencePart] = None

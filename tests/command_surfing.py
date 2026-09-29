@@ -1,3 +1,6 @@
+
+# --- Isolate ApplicationCommandContext ---
+from scurrypy.api.interactions import ApplicationCommandDataModel
 from typing import cast
 
 from scurrypy.enums import CommandOptionType
@@ -5,18 +8,11 @@ from scurrypy.core.exceptions import OptionNotFound
 from scurrypy.api.interactions import (
     ApplicationCommandDataModel, 
     ApplicationCommandOptionDataModel,
-    AutocompleteApplicationCommandDataModel, 
     ApplicationSubcommandGroupDataModel,
     ApplicationSubcommandDataModel
 )
 
-from ..interactions.ctx import InteractionContext
-
-class CommandContext(InteractionContext):
-    pass
-
 type CommandOptionValue = int | float | bool | str
-"""Possible types in which a command option value can be converted."""
 
 def convert_option_value(option: ApplicationCommandOptionDataModel) -> CommandOptionValue:
     """Converts the option's value based on the option's type.
@@ -44,7 +40,10 @@ def convert_option_value(option: ApplicationCommandOptionDataModel) -> CommandOp
     
     return option.value
 
-class ApplicationCommandContext(CommandContext):
+from dataclasses import dataclass
+
+@dataclass
+class ApplicationCommandContext:
     data: ApplicationCommandDataModel
 
     def get_option(self, option_name: str) -> CommandOptionValue | None:
@@ -88,19 +87,88 @@ class ApplicationCommandContext(CommandContext):
 
         raise OptionNotFound(f"Option name '{option_name}' not found")
 
-class AutocompleteApplicationCommandContext(CommandContext):
-    data: AutocompleteApplicationCommandDataModel
+# --- TEST 1: SUBCOMMAND ---
+data = {
+    'id': '123',
+    'name': 'user',
+    'type': '1',
+    'resolved': {},
+    "options": [
+        {
+            "type": '1',
+            "name": "set",
+            "options": [
+                {
+                    "type": '3',
+                    "name": "name",
+                    "value": "Squirrel"
+                }
+            ]
+        }
+    ]
+}
 
-    def get_focused_value(self) -> str | None:
-        """Get the next focused value in options.
+a = ApplicationCommandContext(ApplicationCommandDataModel.from_dict(data))
 
-        Returns:
-            (str | None): next focused value or None if no values are focused or no options are present
-        """
-        options = self.data.options
-        if not options:
-            return None
+assert a.get_option('name') == 'Squirrel'
 
-        opt = next((o for o in options if o.focused), None)
+# --- TEST 2: SUBCOMMAND GROUP ---
 
-        return opt.value if opt else None
+data_b = {
+    'id': '123',
+    'name': 'user',
+    'type': '1',
+    'resolved': {},
+    "options": [
+        {
+            "type": 2,
+            "name": "user",
+            "options": [
+                {
+                    "type": 1,
+                    "name": "set",
+                    "options": [
+                        {
+                            "type": 3,
+                            "name": "name",
+                            "value": "Squirrel"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+b = ApplicationCommandContext(ApplicationCommandDataModel.from_dict(data_b))
+
+assert b.get_option('name') == 'Squirrel'
+
+# --- TEST 3: SLASH COMMAND ---
+
+data_c = {
+    'id': '123',
+    'name': 'echo',
+    'type': '1',
+    'resolved': {},
+    'options': [
+        {
+            'type': '3',
+            'name': 'message',
+            'value': 'Hello!'
+        }
+    ]
+}
+
+c = ApplicationCommandContext(ApplicationCommandDataModel.from_dict(data_c))
+
+assert c.get_option('message') == 'Hello!'
+
+# --- TEST 3.B: OptionNotFound ---
+
+try:
+    c.get_option('nope')
+except OptionNotFound:
+    pass
+else:
+    raise AssertionError("Expected OptionNotFound")

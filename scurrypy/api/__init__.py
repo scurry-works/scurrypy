@@ -16,6 +16,7 @@ from .invite import (
     InviteWithMetadataModel, 
     InvitePart
 )
+from .resolved import ResolvedDataModel
 from .user import (
     UserModel, 
     GuildMemberModel
@@ -36,6 +37,8 @@ __all__ = [
     "InviteModel", 
     "InviteWithMetadataModel", 
     "InvitePart",
+
+    "ResolvedDataModel",
 
     "UserModel", 
     "GuildMemberModel"

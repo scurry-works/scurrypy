@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 
 from ...core.model import DataModel
-from ...core.types import JSON, RequiredPartField, OptionalPartField, OmittableNullableModelField
+from ...core.types import RequiredPartField, OptionalPartField
 
 from ...enums.command import CommandOptionType, CommandType
 
@@ -12,11 +12,8 @@ class CommandOptionChoicePart(DataModel):
     name: RequiredPartField[str] = None
     """Name of the choice."""
 
-    value: RequiredPartField[str | int | float] = None
+    value: RequiredPartField[str] = None
     """Value for the user to select (same as option type)."""
-
-    name_localizations: OmittableNullableModelField[JSON] = None
-    """Dictionary with keys in available locales."""
 
 @dataclass
 class CommandOptionPart(DataModel):
@@ -41,8 +38,53 @@ class CommandOptionPart(DataModel):
     """Whether autocomplete interactions are enabled for this option. Discord defaults to `False`."""
 
 @dataclass
+class SubcommandPart(DataModel):
+    """Represents the subcommand."""
+
+    name: RequiredPartField[str] = None
+    """Name of the subcommand."""
+
+    description: OptionalPartField[str] = None
+    """Description of the subcommand."""
+
+    options: OptionalPartField[list[CommandOptionPart]] = None
+    """Parameters or options for the subcommand."""
+
+    type: CommandOptionType = field(init=False, default=CommandOptionType.SUB_COMMAND)
+    """Command type. Always `CommandOptionType.SUB_COMMAND` for this class."""
+
+@dataclass
+class SubcommandGroupPart(DataModel):
+    """Represents a subcommand group."""
+
+    name: RequiredPartField[str] = None
+    """Name of the subcommand group."""
+    
+    description: OptionalPartField[str] = None
+    """Description of the subcommand group."""
+
+    options: RequiredPartField[list[SubcommandPart]] = None
+    """Subcommands for the subcommand group."""
+
+    type: CommandOptionType = field(init=False, default=CommandOptionType.SUB_COMMAND_GROUP)
+    """Command type. Always `CommandOptionType.SUB_COMMAND_GROUP` for this class."""
+
+@dataclass
+class SlashCommandFamilyPart(DataModel):
+    """Represents a slash command with subcommands."""
+
+    name: RequiredPartField[str] = None
+    """Name of the command."""
+
+    description: OptionalPartField[str] = None
+    """Description of the command."""
+
+    options: RequiredPartField[list[SubcommandGroupPart | SubcommandPart]] = None
+    """Subcommands or subcommand groups for the command."""
+
+@dataclass
 class SlashCommandPart(DataModel):
-    """Represents the slash command object."""
+    """Represents the slash command."""
 
     name: RequiredPartField[str] = None
     """Name of the command."""

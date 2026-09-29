@@ -1,21 +1,26 @@
-from dataclasses import dataclass
-
-from ..core.model import DataModel
+from ..core.model import datamodel
 from ..core.snowflake import Snowflake
+from ..core.timestamp import Timestamp
+from ..core.types import (
+    PresentModelField, 
+    OmittableModelField, 
+    OmittableNullableModelField, 
+    ScurrypyStr
+)
 
 from .base_event import Event
 
 from ..enums.events import EventType
 
-from ..api.channels.channel import ChannelModel
+from ..api.channels import ChannelModel
 
-@dataclass
+@datamodel
 class ChannelCreateEvent(Event, ChannelModel):
     """Received when a guild channel has been created."""
     
     dispatch_name = EventType.CHANNEL_CREATE
 
-@dataclass
+@datamodel
 class ChannelUpdateEvent(Event, ChannelModel):
     """Received when a guild channel has been updated.
 
@@ -25,35 +30,35 @@ class ChannelUpdateEvent(Event, ChannelModel):
 
     dispatch_name = EventType.CHANNEL_UPDATE
 
-@dataclass
+@datamodel
 class ChannelDeleteEvent(Event, ChannelModel):
     """Received when a guild channel has been deleted."""
 
     dispatch_name = EventType.CHANNEL_DELETE
 
-@dataclass
-class ChannelPinsUpdateEvent(Event, DataModel):
+@datamodel
+class ChannelPinsUpdateEvent(Event):
     """Pin update event."""
 
     dispatch_name = EventType.CHANNEL_PINS_UPDATE
     
-    channel_id: Snowflake
+    channel_id: PresentModelField[Snowflake]
     """ID of channel where the pins were updated."""
 
-    guild_id: Snowflake | None
+    guild_id: OmittableModelField[Snowflake]
     """ID of the guild where the pins were updated."""
 
-    last_pin_timestamp: str | None
+    last_pin_timestamp: OmittableNullableModelField[Timestamp]
     """ISO8601 formatted timestamp of the last pinned message in the channel."""
 
-@dataclass
-class WebhooksUpdateEvent(Event, DataModel):
+@datamodel
+class WebhooksUpdateEvent(Event):
     """Received when a guild's channel webhook is created, updated, or deleted."""
 
     dispatch_name = EventType.WEBHOOKS_UPDATE
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild."""
 
-    channel_id: Snowflake
+    channel_id: PresentModelField[Snowflake]
     """ID of the channel."""

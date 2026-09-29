@@ -6,9 +6,15 @@ from .base_resource import BaseResource
 from ..core.snowflake import Snowflake
 from ..core.serialization import serialize
 
-from ..api.commands.application_command import ApplicationCommandModel
-from ..api.commands.slash import SlashCommandPart
-from ..api.commands.context import UserCommandPart, MessageCommandPart
+from ..api.commands import (
+    ApplicationCommandModel, 
+    SlashCommandPart, 
+    UserCommandPart, 
+    MessageCommandPart,
+    SlashCommandFamilyPart,
+)
+
+type AnyCommand = SlashCommandPart | UserCommandPart | MessageCommandPart | SlashCommandFamilyPart
 
 from ..params.command import EditGlobalCommandParams, EditGuildCommandParams
 
@@ -28,7 +34,7 @@ class GlobalCommand(BaseResource):
         Returns:
             (ApplicationCommandModel): queried application command
         """
-        data = await self.http.request('GET', f"applications/{self.application_id}/commands/{command_id}")
+        data = await self.http.request_json('GET', f"/applications/{self.application_id}/commands/{command_id}")
 
         return ApplicationCommandModel.from_dict(data)
     
@@ -38,24 +44,23 @@ class GlobalCommand(BaseResource):
         Returns:
             (list[ApplicationCommandModel]): queried list of application commands
         """
-        data = await self.http.request('GET', f"applications/{self.application_id}/commands")
+        data = await self.http.request_list('GET', f"applications/{self.application_id}/commands")
 
-        assert isinstance(data, list)
         return [ApplicationCommandModel.from_dict(cmd) for cmd in data]
 
-    async def create(self, command: SlashCommandPart | UserCommandPart | MessageCommandPart) -> ApplicationCommandModel:
+    async def create(self, command: AnyCommand) -> ApplicationCommandModel:
         """Add a command to the client.
 
         !!! danger
             Creating a command with the same name as an existing command in the same scope will overwrite the old command.
 
         Args:
-            command (SlashCommandPart | UserCommandPart | MessageCommandPart): command to register
+            command (AnyCommand): command to register
 
         Returns:
             (ApplicationCommandModel): created command
         """
-        data = await self.http.request('POST', f"applications/{self.application_id}/commands", data=command.to_dict())
+        data = await self.http.request_json('POST', f"applications/{self.application_id}/commands", data=command.to_dict())
 
         return ApplicationCommandModel.from_dict(data)
 
@@ -69,9 +74,9 @@ class GlobalCommand(BaseResource):
         Returns:
             (ApplicationCommandModel): updated application command
         """
-        opts = serialize(dict(options))
+        opts = serialize(dict(options)) # nested objects in EditGlobalCommandParams
 
-        data = await self.http.request('PATCH', f"applications/{self.application_id}/commands/{command_id}", data=opts)
+        data = await self.http.request_json('PATCH', f"applications/{self.application_id}/commands/{command_id}", data=opts)
 
         return ApplicationCommandModel.from_dict(data)
 
@@ -83,7 +88,7 @@ class GlobalCommand(BaseResource):
         """
         await self.http.request('DELETE', f"applications/{self.application_id}/commands/{command_id}")
 
-    async def bulk_overwrite(self, commands: list[SlashCommandPart | UserCommandPart | MessageCommandPart]) -> list[ApplicationCommandModel]:
+    async def bulk_overwrite(self, commands: list[AnyCommand]) -> list[ApplicationCommandModel]:
         """Takes a list of application commands, overwriting existing commands list for this application. 
         
         !!! warning
@@ -93,19 +98,18 @@ class GlobalCommand(BaseResource):
             This will overwrite all types of application commands: slash commands, user commands, and message commands.
 
         Args:
-            commands (list[SlashCommandPart | UserCommandPart | MessageCommandPart]): commands to register
+            commands (list[AnyCommand]): commands to register
 
         Returns:
             (list[ApplicationCommandModel]): created application commands
         """
 
-        data = await self.http.request(
+        data = await self.http.request_list(
             'PUT', 
             f"applications/{self.application_id}/commands", 
             data=[cmd.to_dict() for cmd in commands]
         )
 
-        assert isinstance(data, list)
         return [ApplicationCommandModel.from_dict(cmd) for cmd in data]
 
 
@@ -128,7 +132,7 @@ class GuildCommand(BaseResource):
         Returns:
             (ApplicationCommandModel): queried application command
         """
-        data = await self.http.request('GET', f"applications/{self.application_id}/guilds/{self.guild_id}/commands/{command_id}")
+        data = await self.http.request_json('GET', f"applications/{self.application_id}/guilds/{self.guild_id}/commands/{command_id}")
 
         return ApplicationCommandModel.from_dict(data)
     
@@ -138,24 +142,23 @@ class GuildCommand(BaseResource):
         Returns:
             (list[ApplicationCommandModel]): queried list of application commands
         """
-        data = await self.http.request('GET', f"applications/{self.application_id}/guilds/{self.guild_id}/commands" )
+        data = await self.http.request_list('GET', f"applications/{self.application_id}/guilds/{self.guild_id}/commands" )
 
-        assert isinstance(data, list)
         return [ApplicationCommandModel.from_dict(cmd) for cmd in data]
 
-    async def create(self, command: SlashCommandPart | UserCommandPart | MessageCommandPart) -> ApplicationCommandModel:
+    async def create(self, command: AnyCommand) -> ApplicationCommandModel:
         """Add a command to the client.
 
         !!! danger
             Creating a command with the same name as an existing command in the same scope will overwrite the old command.
 
         Args:
-            command (SlashCommandPart | UserCommandPart | MessageCommandPart): command to register
+            command (AnyCommand): command to register
 
         Returns:
             (ApplicationCommandModel): created command
         """
-        data = await self.http.request('POST', f"applications/{self.application_id}/guilds/{self.guild_id}/commands", data=command.to_dict())
+        data = await self.http.request_json('POST', f"applications/{self.application_id}/guilds/{self.guild_id}/commands", data=command.to_dict())
 
         return ApplicationCommandModel.from_dict(data)
 
@@ -169,9 +172,9 @@ class GuildCommand(BaseResource):
         Returns:
             (ApplicationCommandModel): updated application command
         """
-        opts = serialize(dict(options))
+        opts = serialize(dict(options)) # nested objects in EditGuildCommandParams
         
-        data = await self.http.request(
+        data = await self.http.request_json(
             'PATCH', 
             f"applications/{self.application_id}/guilds/{self.guild_id}/commands/{command_id}", 
             data=opts
@@ -187,7 +190,7 @@ class GuildCommand(BaseResource):
         """
         await self.http.request('DELETE', f"applications/{self.application_id}/guilds/{self.guild_id}/commands/{command_id}")
 
-    async def bulk_overwrite(self, commands: list[SlashCommandPart | UserCommandPart | MessageCommandPart]) -> list[ApplicationCommandModel]:
+    async def bulk_overwrite(self, commands: list[AnyCommand]) -> list[ApplicationCommandModel]:
         """Takes a list of application commands, overwriting existing commands list for this guild. 
         
         !!! warning
@@ -197,16 +200,15 @@ class GuildCommand(BaseResource):
             This will overwrite all types of application commands: slash commands, user commands, and message commands.
 
         Args:
-            commands (list[SlashCommandPart | UserCommandPart | MessageCommandPart]): commands to register
+            commands (list[AnyCommand]): commands to register
 
         Returns:
             (list[ApplicationCommandModel]): created application commands
         """
-        data = await self.http.request(
+        data = await self.http.request_list(
             'PUT', 
             f"applications/{self.application_id}/guilds/{self.guild_id}/commands", 
             data=[cmd.to_dict() for cmd in commands]
         )
 
-        assert isinstance(data, list)
         return [ApplicationCommandModel.from_dict(cmd) for cmd in data]

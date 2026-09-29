@@ -1,7 +1,7 @@
-from dataclasses import dataclass
-
-from ..core.model import DataModel
+from ..core.model import datamodel
 from ..core.snowflake import Snowflake
+from ..core.timestamp import Timestamp
+from ..core.types import PresentModelField, PresentNullableModelField, ScurrypyStr
 
 from .base_event import Event
 
@@ -9,13 +9,13 @@ from ..enums.events import EventType
 
 from ..api.user import UserModel, GuildMemberModel
 
-@dataclass
+@datamodel
 class UserUpdateEvent(Event, UserModel):
     """Received when a user's settings are updated."""
     
     dispatch_name = EventType.USER_UPDATE
 
-@dataclass
+@datamodel
 class GuildMemberAddEvent(Event, GuildMemberModel):
     """Received when a member joins a guild the bot is in.
 
@@ -25,11 +25,11 @@ class GuildMemberAddEvent(Event, GuildMemberModel):
 
     dispatch_name = EventType.GUILD_MEMBER_ADD
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild."""
 
-@dataclass
-class GuildMemberUpdateEvent(Event, DataModel):
+@datamodel
+class GuildMemberUpdateEvent(Event):
     """Received when a guild member is updated.
     
     !!! warning
@@ -38,26 +38,26 @@ class GuildMemberUpdateEvent(Event, DataModel):
 
     dispatch_name = EventType.GUILD_MEMBER_UPDATE
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild."""
 
-    roles: list[Snowflake]
+    roles: PresentModelField[list[Snowflake]]
     """List of user's roles (their IDs)."""
 
-    user: UserModel
+    user: PresentModelField[UserModel]
     """The User object."""
 
-    avatar: str
+    avatar: PresentNullableModelField[ScurrypyStr]
     """Guild avatar hash."""
 
-    banner: str
+    banner: PresentNullableModelField[ScurrypyStr]
     """Guild banner hash."""
 
-    joined_at: str
+    joined_at: PresentNullableModelField[Timestamp]
     """When the user joined the guild"""
 
-@dataclass
-class GuildMemberRemoveEvent(Event, DataModel):
+@datamodel
+class GuildMemberRemoveEvent(Event):
     """Received when a member leaves or is kicked/banned from a guild the bot is in.
     
     !!! warning
@@ -66,8 +66,8 @@ class GuildMemberRemoveEvent(Event, DataModel):
 
     dispatch_name = EventType.GUILD_MEMBER_REMOVE
 
-    guild_id: Snowflake
+    guild_id: PresentModelField[Snowflake]
     """ID of the guild."""
 
-    user: UserModel
+    user: PresentModelField[UserModel]
     """User object of the user leaving the guild."""

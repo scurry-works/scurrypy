@@ -1,27 +1,30 @@
-from dataclasses import dataclass
-
-from ..core.model import DataModel
+from ..core.model import DataModel, datamodel
 from ..core.snowflake import Snowflake
-from ..core.types import PresentModelField, OmittableModelField
+from ..core.types import (
+    PresentModelField, 
+    OmittableModelField, 
+    ScurrypyStr, 
+    ScurrypyBool
+)
 
 from ..enums.integration import IntegrationType
 
 from .application import ApplicationModel
 
-@dataclass
+@datamodel
 class IntegrationModel(DataModel):
     """Represents a guild integration."""
 
     id: PresentModelField[Snowflake]
     """ID of the integration."""
 
-    name: PresentModelField[str]
+    name: PresentModelField[ScurrypyStr]
     """Name of the integration."""
 
     type: PresentModelField[IntegrationType]
     """Type of integration."""
 
-    enabled: PresentModelField[bool]
+    enabled: PresentModelField[ScurrypyBool]
     """If the integration is enabled."""
 
     application: OmittableModelField[ApplicationModel]

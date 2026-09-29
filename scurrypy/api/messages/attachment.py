@@ -1,13 +1,23 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
-from ...core.model import DataModel
+from ...core.model import DataModel, datamodel
 from ...core.snowflake import Snowflake
 from ...core.exceptions import MissingField
-from ...core.types import Serialized, PresentModelField, OmittableModelField, OmittableNullableModelField, RequiredPartField, OptionalPartField
+from ...core.types import (
+    Serialized, 
+    PresentModelField, 
+    OmittableModelField, 
+    OmittableNullableModelField, 
+    RequiredPartField, 
+    OptionalPartField,
+    ScurrypyStr, 
+    ScurrypyInt, 
+    ScurrypyBool
+)
 
 from ...enums.attachment import AttachmentFlags
 
-@dataclass
+@datamodel
 class AttachmentModel(DataModel):
     """Represents an attachment object."""
 
@@ -18,34 +28,34 @@ class AttachmentModel(DataModel):
     attachment's index in the upload list.
     """
 
-    filename: PresentModelField[str]
+    filename: PresentModelField[ScurrypyStr]
     """Name of the file."""
 
-    title: OmittableModelField[str]
+    title: OmittableModelField[ScurrypyStr]
     """Title of the file."""
 
-    description: OmittableModelField[str]
+    description: OmittableModelField[ScurrypyStr]
     """Description of the file."""
 
-    content_type: OmittableModelField[str]
+    content_type: OmittableModelField[ScurrypyStr]
     """Media type of the file."""
 
-    size: PresentModelField[int]
+    size: PresentModelField[ScurrypyInt]
     """Size of file (in bytes)."""
 
-    url: PresentModelField[str]
+    url: PresentModelField[ScurrypyStr]
     """Source URL of the file."""
 
-    proxy_url:PresentModelField [str]
+    proxy_url:PresentModelField [ScurrypyStr]
     """A proxied URL of the file."""
 
-    height: OmittableNullableModelField[int]
+    height: OmittableNullableModelField[ScurrypyInt]
     """Height of file (if image)."""
 
-    width: OmittableNullableModelField[int]
+    width: OmittableNullableModelField[ScurrypyInt]
     """Width of file (if image)."""
 
-    ephemeral: OmittableModelField[bool]
+    ephemeral: OmittableModelField[ScurrypyBool]
     """Whether this file is ephemeral."""
 
     flags: OmittableModelField[AttachmentFlags]

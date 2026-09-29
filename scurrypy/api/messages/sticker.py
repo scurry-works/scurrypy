@@ -1,14 +1,22 @@
 from dataclasses import dataclass
 
-from ...core.model import DataModel
+from ...core.model import DataModel, datamodel
 from ...core.snowflake import Snowflake
-from ...core.types import PresentModelField, OmittableModelField, PresentNullableModelField, RequiredPartField
+from ...core.types import (
+    PresentModelField, 
+    OmittableModelField, 
+    PresentNullableModelField, 
+    RequiredPartField,
+    ScurrypyStr, 
+    ScurrypyInt, 
+    ScurrypyBool
+)
 
 from ...enums.guild import StickerType, StickerFormatType
 
 from ..user import UserModel
 
-@dataclass
+@datamodel
 class StickerModel(DataModel):
     """Represents the sticker object."""
 
@@ -18,13 +26,13 @@ class StickerModel(DataModel):
     pack_id: OmittableModelField[Snowflake]
     """ID of the pack the sticker is from (if standard)."""
 
-    name: PresentModelField[str]
+    name: PresentModelField[ScurrypyStr]
     """Name of the sticker."""
 
-    description: PresentNullableModelField[str]
+    description: PresentNullableModelField[ScurrypyStr]
     """Description of the sticker."""
 
-    tags: PresentModelField[str]
+    tags: PresentModelField[ScurrypyStr]
     """Autocomplete/suggestion tags for the sticker."""
 
     type: PresentModelField[StickerType]
@@ -33,7 +41,7 @@ class StickerModel(DataModel):
     format_type: PresentModelField[StickerFormatType]
     """Type of sticker format."""
 
-    available: OmittableModelField[bool]
+    available: OmittableModelField[ScurrypyBool]
     """Whether this guild sticker can be used.
     
     !!! note
@@ -46,23 +54,23 @@ class StickerModel(DataModel):
     user: OmittableModelField[UserModel]
     """The user that uploaded the guild sticker."""
 
-    sort_type: OmittableModelField[int]
+    sort_type: OmittableModelField[ScurrypyInt]
     """The standard sticker's sort order within its pack."""
 
-@dataclass
+@datamodel
 class StickerItemModel(DataModel):
     """Represents a minimal sticker item."""
     
     id: PresentModelField[Snowflake]
     """ID of the sticker."""
 
-    name: PresentModelField[str]
+    name: PresentModelField[ScurrypyStr]
     """Name of the sticker."""
 
     format_type: PresentModelField[StickerFormatType]
     """Type of sticker format."""
 
-@dataclass
+@datamodel
 class StickerPackModel(DataModel):
     """Represents a pack of standard stickers."""
 
@@ -72,7 +80,7 @@ class StickerPackModel(DataModel):
     stickers: PresentModelField[list[StickerModel]]
     """The stickers in the pack."""
 
-    name: PresentModelField[str]
+    name: PresentModelField[ScurrypyStr]
     """Name of the sticker pack."""
 
     sku_id: PresentModelField[Snowflake]
@@ -81,7 +89,7 @@ class StickerPackModel(DataModel):
     cover_sticker_id: OmittableModelField[Snowflake]
     """ID of a sticker in the pack which is shown as the pack's icon."""
 
-    description: PresentModelField[str]
+    description: PresentModelField[ScurrypyStr]
     """Description of the sticker pack."""
 
     banner_asset_id: OmittableModelField[Snowflake]

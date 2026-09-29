@@ -1,14 +1,23 @@
 from dataclasses import dataclass
 
-from ...core.model import DataModel
+from ...core.model import DataModel, datamodel
 from ...core.snowflake import Snowflake
-from ...core.types import PresentModelField, OmittableModelField, PresentNullableModelField, RequiredPartField, OptionalPartField, RequiredNullablePartField
+from ...core.types import (
+    PresentModelField, 
+    OmittableModelField, 
+    PresentNullableModelField, 
+    RequiredPartField, 
+    OptionalPartField, 
+    RequiredNullablePartField,
+    ScurrypyStr, 
+    ScurrypyBool
+)
 
 from ...enums.guild import OnboardingMode, PromptType
 
 from ..emoji import EmojiModel
 
-@dataclass
+@datamodel
 class OnboardingPromptOptionModel(DataModel):
     """Represents a guild's prompt option for onboarding."""
 
@@ -27,19 +36,19 @@ class OnboardingPromptOptionModel(DataModel):
     emoji_id: OmittableModelField[Snowflake]
     """ID for the emoji of the option."""
 
-    emoji_name: OmittableModelField[str]
+    emoji_name: OmittableModelField[ScurrypyStr]
     """Name for the emoji of the option."""
 
-    emoji_animated: OmittableModelField[bool]
+    emoji_animated: OmittableModelField[ScurrypyBool]
     """Whether the emoji of the option is animated."""
 
-    title: PresentModelField[str]
+    title: PresentModelField[ScurrypyStr]
     """Title of the option."""
 
-    description: PresentNullableModelField[str]
+    description: PresentNullableModelField[ScurrypyStr]
     """Description of the option."""
 
-@dataclass
+@datamodel
 class OnboardingPromptModel(DataModel):
     """Represents a guild's prompt for onboarding."""
 
@@ -52,19 +61,19 @@ class OnboardingPromptModel(DataModel):
     options: PresentModelField[list[OnboardingPromptOptionModel]]
     """Options available with the prompt."""
 
-    title: PresentModelField[str]
+    title: PresentModelField[ScurrypyStr]
     """Title of the prompt."""
 
-    single_select: PresentModelField[bool]
+    single_select: PresentModelField[ScurrypyBool]
     """Whether users are limited to selecting one option."""
 
-    required: PresentModelField[bool]
+    required: PresentModelField[ScurrypyBool]
     """Whether the prompt is required for completing the onboarding process."""
 
-    in_onboarding: PresentModelField[bool]
+    in_onboarding: PresentModelField[ScurrypyBool]
     """Whether the prompt is present in the onboarding flow."""
 
-@dataclass
+@datamodel
 class GuildOnboadingModel(DataModel):
     """Represents a guild's onboarding flow."""
 
@@ -77,7 +86,7 @@ class GuildOnboadingModel(DataModel):
     default_channel_ids: PresentModelField[list[Snowflake]]
     """Channel IDs members are opted into by default."""
 
-    enabled: PresentModelField[bool]
+    enabled: PresentModelField[ScurrypyBool]
     """Whether onboarding is enabled for the guild."""
 
     mode: PresentModelField[OnboardingMode]

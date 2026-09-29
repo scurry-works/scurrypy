@@ -15,7 +15,6 @@ MIN_BACKOFF = 5
 
 from dataclasses import dataclass
 import time
-from typing import Protocol
 
 from .types import JSON
 
@@ -24,21 +23,7 @@ class GatewayMetrics:
     _last_heartbeat_sent: float
     heartbeat_rrt: float
 
-class EventQueueProtocol(Protocol):
-    """Internal contract for the GatewayClient's event queue used by the Client. Meant for testing."""
-    async def put(self, item: tuple[str, JSON]) -> None: ...
-    async def get(self) -> tuple[str, JSON]: ...
-
-class GatewayClientProtocol(Protocol):
-    """Internal contract for the GatewayClient used by the Client. Meant for testing."""
-    event_queue: EventQueueProtocol
-    shard_id: int
-    total_shards: int
-
-    async def start(self, token: str, intents: int, shard_id: int, total_shards: int) -> None: ...
-    async def close_ws(self) -> None: ...
-
-class GatewayClient(GatewayClientProtocol):
+class GatewayClient:
     def __init__(self) -> None:
         self.shard_id: int = 0
         self.total_shards: int = 0
@@ -59,7 +44,7 @@ class GatewayClient(GatewayClientProtocol):
 
     @property
     def ws(self) -> websockets.ClientConnection:
-        if not self._ws:
+        if self._ws is None:
             raise NoSession("Websocket session not started.")
         return self._ws
 
@@ -77,6 +62,8 @@ class GatewayClient(GatewayClientProtocol):
         Args:
             token (str): the bot's token
             intents (int): the bot's intents
+            shard_id (int): shard ID to start
+            total_shards (int): total number of shards to start
         """
         self.shard_id = shard_id
         self.total_shards = total_shards
@@ -134,6 +121,8 @@ class GatewayClient(GatewayClientProtocol):
         # wait to recv HELLO
         hello = await self.receive()
 
+        logger.info(f"SHARD ID {self.shard_id}: HELLO received.")
+
         # extra info from recv'd HELLO
         self.heartbeat_interval = hello["d"]["heartbeat_interval"] / 1000
 
@@ -146,7 +135,9 @@ class GatewayClient(GatewayClientProtocol):
         Args:
             data (dict): data to send
         """
-        await self.ws.send(json.dumps(data))
+        msg = json.dumps(data)
+        logger.debug(f"SENDING {msg}")
+        await self.ws.send(msg)
 
     async def receive(self) -> JSON:
         """Receive data through the websocket.
@@ -154,7 +145,9 @@ class GatewayClient(GatewayClientProtocol):
         Returns:
             (dict): websocket data
         """
-        return dict(json.loads(await self.ws.recv()))
+        msg = dict(json.loads(await self.ws.recv()))
+        logger.debug(f"RECEIVING {msg}")
+        return msg
 
     async def heartbeat(self) -> None:
         """Heartbeat task to keep connection alive."""
@@ -271,12 +264,12 @@ class GatewayClient(GatewayClientProtocol):
     async def close_ws(self) -> None:
         """Close the websocket connection if one is still open and cancels heartbeat."""
 
-        if self._ws_closed or not self.ws:
-            logger.debug(f"Shard ID {self.shard_id}: Connection already closed!")
+        if self._ws_closed or self._ws is None:
+            logger.debug(f"SHARD ID {self.shard_id}: Connection already closed!")
             return
     
         self._ws_closed = True
-        logger.info(f"Shard ID {self.shard_id}: Closing connection...")
+        logger.info(f"SHARD ID {self.shard_id}: Closing connection...")
 
         if self.heartbeat_task:
             self.heartbeat_task.cancel()

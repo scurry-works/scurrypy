@@ -1,9 +1,10 @@
 from datetime import datetime, timezone
-from typing import Self
 
 DISCORD_EPOCH = 1420070400000
 
-class Snowflake(int):
+from .types import ScurrypyInt
+
+class Snowflake(ScurrypyInt):
     """Represents a Discord snowflake ID."""
 
     @property
@@ -35,15 +36,3 @@ class Snowflake(int):
     def increment(self) -> int:
         """Increment associated with the ID."""
         return self & 0xFFF
-
-    @classmethod
-    def from_dict(cls, v: str) -> Self:
-        """Deserialize this snowflake.
-
-        Args:
-            v (str): serialized value
-
-        Returns:
-            (Snowflake): snowflake object   
-        """
-        return cls(int(v))

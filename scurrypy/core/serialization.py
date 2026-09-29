@@ -1,20 +1,100 @@
-from typing import get_args, get_origin, Union, TypeAliasType, Any
-from types import UnionType
+from dataclasses import Field
+from typing import (
+    Any, 
+    TypeAlias,
+    get_args, 
+    get_origin, 
+    cast
+)
+from collections.abc import Callable
 
-from .exceptions import DataModelTypeError
-from .types import JSON
+from ..core.snowflake import Snowflake
+from ..core.types import (
+    JSON, 
+    OptionalNullablePartField,
+    ScurrypyStr,
+    ScurrypyInt,
+    ScurrypyBool,
+    ScurrypyFloat
+)
+from ..core.exceptions import DataModelTypeError
 
-def _serialize(val: JSON) -> JSON:
-    if hasattr(val, "to_dict"):
-        return JSON(val.to_dict())
+CONVERTER_TYPE_MAP = {
+    str: ScurrypyStr,
+    int: ScurrypyInt,
+    bool: ScurrypyBool,
+    float: ScurrypyFloat,
+    Snowflake: Snowflake
+}
+"""Maps primitive Python types to their Scurrypy conversion types."""
 
-    if isinstance(val, list):
-        return [_serialize(v) for v in val if v is not None]
+Converter: TypeAlias = Callable[[Any], Any]
+"""Callback used to deserialize a field value (what can convert a value)."""
 
-    if isinstance(val, dict):
-        return {k: _serialize(v) for k, v in val.items()}
+def determine_converter(field_type: Any) -> Converter:
+    """Resolves a field type to its value conversion callback.
 
-    return val
+    Args:
+        field_type (Any): inner field type
+
+    Raises:
+        (DataModelTypeError): dict key must be Snowflake
+
+    Returns:
+        (Converter): `from_dict` callback
+    """
+    o = get_args(field_type)[0]
+    t = get_origin(o)
+
+    from ..bases.components import Component, ContainerComponent
+
+    if t is list:
+        p = get_args(o)[0]
+
+        if p in (Component, ContainerComponent):
+            from ..api.components import MessageComponentFactory
+            item_converter = MessageComponentFactory.from_dict
+        elif p in CONVERTER_TYPE_MAP:
+            item_converter = CONVERTER_TYPE_MAP[p]
+        else:
+            item_converter = p.from_dict
+
+        return lambda value: (
+            None
+            if value is None
+            else [item_converter(item) for item in value]
+        )
+
+    if t is dict:
+        key_type = get_args(o)[0]
+
+        if key_type is not Snowflake:
+            raise DataModelTypeError("dict key must be Snowflake")
+
+        p = get_args(o)[1]
+
+        if p in (Component, ContainerComponent):
+            from ..api.components import MessageComponentFactory
+            v_converter = MessageComponentFactory.from_dict
+        elif p in CONVERTER_TYPE_MAP:
+            v_converter = CONVERTER_TYPE_MAP[p]
+        else:
+            v_converter = p.from_dict
+
+        return lambda value: (
+            None
+            if value is None
+            else {
+                Snowflake(k): v_converter(v)
+                for k, v in value.items()
+            }
+        )
+
+    if t in (Component, ContainerComponent):
+        from ..api.components import MessageComponentFactory
+        return MessageComponentFactory.from_dict
+
+    return cast(Converter, o.from_dict)
 
 def serialize(val: JSON) -> JSON:
     """Serialize the value.
@@ -25,70 +105,17 @@ def serialize(val: JSON) -> JSON:
     Returns:
         (JSON): serialized value
     """
-    return _serialize(val)
+    if hasattr(val, "to_dict"):
+        return JSON(val.to_dict())
 
-def convert(t: object, v: object) -> object:
-    """Convert the given value to the given type.
+    if isinstance(val, list):
+        return [serialize(v) for v in val if v is not None]
 
-    Args:
-        t (object): type in which to convert value
-        v (object): value to be converted
+    if isinstance(val, dict):
+        return {k: serialize(v) for k, v in val.items()}
 
-    Raises:
-        (DataModelTypeError): ambiguous type
+    return val
 
-    Returns:
-        (object): converted value
-    """
-    o = get_origin(t)
-
-    if o in (Union, UnionType) or type(o) is TypeAliasType: # optional[T] or similar
-        non_none = [a for a in get_args(t) if a is not type(None)]
-
-        if len(non_none) > 1:
-            raise DataModelTypeError(f"Expected deterministic type; got {non_none}.")
-        
-        return convert(non_none[0], v)
-
-    if v is None: # missing field
-        return None
-    
-    if t is bool:
-        return v in ('true', 'True', True)
-    
-    if o is dict: # mappings
-        assert isinstance(v, dict)
-        from .snowflake import Snowflake
-        vt = get_args(t)[1]
-        return {
-            Snowflake(k): convert(vt, x) 
-            for k, x in v.items()
-        }
-    
-    if o is list:
-        assert isinstance(v, list)
-        lt = get_args(t)[0]
-        return [convert(lt, x) for x in v]
-    
-    from ..bases.components import Component
-    if t is Component:
-        assert isinstance(v, dict)
-        from ..api.components import MessageComponentFactory
-        return MessageComponentFactory.from_dict(v)
-
-    if hasattr(t, "from_dict"):
-        return t.from_dict(v)
-
-    # primitive / fallback
-    assert not isinstance(t, str)
-
-    if callable(t):
-        return t(v)
-
-    return v
-
-from ..core.types import OptionalNullablePartField
-from dataclasses import Field
 
 def is_nullable_field(field: Field[Any]) -> bool:
     """Determines whether the specified field is of type OptionalNullablePartField.
@@ -100,3 +127,4 @@ def is_nullable_field(field: Field[Any]) -> bool:
         bool: whether field is optional and nullable
     """
     return get_origin(field.type) is OptionalNullablePartField
+

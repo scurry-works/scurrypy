@@ -9,10 +9,9 @@ from ..core.serialization import serialize
 from ..enums.message import MessageFlags
 from ..enums.interaction import InteractionCallbackType
 
-from ..api.interactions.modal import ModalPart
-from ..api.interactions.interaction import InteractionCallbackModel
-from ..api.messages.message import MessagePart
-from ..api.commands.slash import CommandOptionChoicePart
+from ..api.interactions import ModalPart, InteractionCallbackModel
+from ..api.messages import MessagePart
+from ..api.commands import CommandOptionChoicePart
 
 from ..params.message import EditMessageParams
 
@@ -75,6 +74,7 @@ class Interaction(BaseResource, _EditMessageMixin):
         )
 
         if with_response:
+            assert isinstance(data, dict)
             return InteractionCallbackModel.from_dict(data)
         
         return None
@@ -92,7 +92,7 @@ class Interaction(BaseResource, _EditMessageMixin):
             suppress_embeds (optional, bool): whether the response's embeds should be removed
         """
         files = self._prepare_attachments(dict(options))
-        opts = serialize(dict(options))
+        opts = serialize(dict(options)) # nested objects in EditMessageParams
         self._apply_suppress_embeds(opts, suppress_embeds)
 
         content = {
@@ -230,7 +230,7 @@ class Interaction(BaseResource, _EditMessageMixin):
             options (EditMessageParams): fields to edit
             suppress_embeds (optional, bool): whether the response's embeds should be removed
         """
-        opts = serialize(dict(options))
+        opts = serialize(dict(options)) # nested objects in EditMessageParams
         self._apply_suppress_embeds(opts, suppress_embeds)
         files = self._prepare_attachments(opts)
 

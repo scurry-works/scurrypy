@@ -19,6 +19,6 @@ class Application(BaseResource):
         Returns:
             (Application): queried application
         """
-        data = await self.http.request('GET', '/applications/@me')
+        data = await self.http.request_json('GET', '/applications/@me')
 
         return ApplicationModel.from_dict(data)

@@ -1,6 +1,5 @@
-from scurrypy import Client
-from scurrypy.bases import Addon
-from scurrypy.core import Snowflake
+from scurrypy import Client, Addon
+from scurrypy.core import Snowflake, MissingField
 from scurrypy.api import EmojiModel
 
 class ApplicationEmojisCacheAddon(Addon):
@@ -15,10 +14,16 @@ class ApplicationEmojisCacheAddon(Addon):
         client.add_startup_hook(self.load_bot_emojis)
 
     async def load_bot_emojis(self) -> None:
-        """Fetch all bot's emojis and add them to the cache."""
+        """Fetch all bot's emojis and add them to the cache.
+
+        Raises:
+            (MissingField): missing emoji name
+        """
         emojis = await self.bot.application_emoji(self.application_id).fetch_all()
 
         for emoji in emojis:
+            if emoji.name is None:
+                raise MissingField("Missing emoji name")
             self.emojis[emoji.name] = emoji
 
     def get_emoji(self, name: str) -> EmojiModel | None:

@@ -2,15 +2,16 @@ import asyncio
 import inspect
 
 from .intents import Intents
-from .core.http import HTTPClient, HTTPClientProtocol
-from .core.gateway import GatewayClient, GatewayClientProtocol
+from .core.http import HTTPClient
+from .core.gateway import GatewayClient
 from .core.error import DiscordError
 from .core.snowflake import Snowflake
-from .core.exceptions import MissingIntents, InvalidCallbackSignature
+from .core.exceptions import MissingIntents, InvalidCallbackSignature, EventNotFound
 from .core.events import EVENTS
 
 from .enums.events import EventType
 
+from .events.base_event import Event
 from .events.gateway_events import GatewayEvent
 
 from .resources.application import Application
@@ -48,13 +49,13 @@ class Client:
     intents: Intents
     """Bot intents for listening to events."""
 
-    http: HTTPClientProtocol
+    http: HTTPClient
     """Public HTTP session for requests."""
 
-    shards: list[GatewayClientProtocol]
+    shards: list[GatewayClient]
     """Shards as a list of gateways."""
 
-    events: dict[EventType, list[CoreHandler]]
+    events: dict[EventType | str, list[CoreHandler]]
     """Events for the client to listen to."""
 
     startup_hooks: list[HookHandler]
@@ -68,17 +69,13 @@ class Client:
         *,
         token: str,
         intents: Intents = Intents.DEFAULT,
-        shard_count: int = 0,
-        http: HTTPClientProtocol | None = None,
-        gateway_impl: type[GatewayClientProtocol] | None = None,
+        shard_count: int = 0
     ):
         """
         Args:
             token (str): the bot's token
             intents (Intents, optional): gateway intents. Defaults to `Intents.DEFAULT`.
             shard_count (int, optional): number of shards to spawn. Defaults to `0` or recommended shard count.
-            http (HTTPClientProtocol, optional): HTTP protocol implementation. Leave blank for default client.
-            gateway_impl (GatewayClientProtocol, optional): Gateway protocol implementation. Leave blank for default client.
         """
         if not isinstance(intents, Intents):
             raise MissingIntents("Invalid intents type.")
@@ -87,20 +84,19 @@ class Client:
         self.intents = intents
         self.shard_count = shard_count
         
-        self.http: HTTPClientProtocol = http or HTTPClient()
+        self.http: HTTPClient = HTTPClient()
 
-        self.shards: list[GatewayClientProtocol] = []
-        self.shard_type = gateway_impl or GatewayClient
+        self.shards: list[GatewayClient] = []
 
         self.events = {}
         self.startup_hooks = []
         self.shutdown_hooks = []
 
-    def add_event_listener(self, event: EventType, handler: CoreHandler) -> None:
+    def add_event_listener(self, event: EventType | str, handler: CoreHandler) -> None:
         """Helper function to register listener functions.
 
         Args:
-            event (EventType): name of the event to listen
+            event (EventType | str): name of the event to listen
             handler (CoreHandler): listener function
         """
         if not inspect.iscoroutinefunction(handler):
@@ -109,10 +105,30 @@ class Client:
         sig = inspect.signature(handler)
         params = list(sig.parameters.values())
 
+        event_type = EVENTS.get(event)
+
+        if not event_type:
+            raise EventNotFound(f"{event} has no event data model")
+
         if len(params) != 1:
-            raise InvalidCallbackSignature(f"{handler.__name__} must accept exactly 1 parameter (event: {EVENTS[event].__name__})")
+            raise InvalidCallbackSignature(f"{handler.__name__} must accept exactly 1 parameter (event: {event_type.__name__})")
 
         self.events.setdefault(event, []).append(handler)
+
+    def add_event(self, event: EventType | str, event_data: type[Event]) -> None:
+        """Add/change the event structure filled to the corresponding event type.
+
+        Args:
+            event (EventType | str): dispatch name
+            event_data (type[Event]): event data structure to pair with the dispatch name
+        """
+        old_event = EVENTS.get(event)
+        
+        if old_event is not None:
+            logger.warning(f"{event_data.__name__} will replace {old_event.__name__} when {event} is dispatched")
+
+        EVENTS[event] = event_data
+        logger.info(f"Added listener {event_data.__name__} → {event}")
 
     def _check_hook_signature(self, handler: HookHandler) -> None:
         """Helper function for checking hook signatures.
@@ -284,27 +300,48 @@ class Client:
         """
         return User(self.http)
 
-    async def listen_shard(self, shard: GatewayClientProtocol) -> None:
+    def get_shard_from_guild_id(self, guild_id: Snowflake) -> GatewayClient:
+        """Fetch the shard in which the guild belongs.
+
+        Args:
+            guild_id (Snowflake): ID of the guild
+
+        Returns:
+            (GatewayClient): shard of the guild
+        """
+        return self.shards[(guild_id >> 22) % self.shard_count]
+
+    def get_shard_id_from_guild_id(self, guild_id: Snowflake) -> int:
+        """Fetch the shard ID in which the guild belongs.
+
+        Args:
+            guild_id (Snowflake): ID of the guild
+
+        Returns:
+            (int): shard ID of the guild
+        """
+        return (guild_id >> 22) % self.shard_count
+
+    async def listen_shard(self, shard: GatewayClient) -> None:
         """Consume a gateway client's event queue.
 
         Args:
-            shard (GatewayClientProtocol): gateway to listen on
+            shard (GatewayClient): gateway to listen on
         """
-
         while True:
             try:
                 dispatch_type, event_data = await shard.event_queue.get()
 
+                logger.info(f"SHARD ID {shard.shard_id} RECV -> {dispatch_type}")
+
                 event_type = EventType.from_dict(str(dispatch_type))
 
-                if event_type not in self.events.keys():
-                    logger.debug(f"SHARD ID {shard.shard_id} DISPATCH -> {dispatch_type}")
-                else:
+                if event_type in self.events.keys():
                     logger.info(f"SHARD ID {shard.shard_id} DISPATCH -> {dispatch_type}")
 
                 event_model = EVENTS.get(event_type)
                 if not event_model:
-                    logger.warning(f"Event {dispatch_type} is not implemented.")
+                    logger.warning(f"Event {dispatch_type} is not implemented")
                     continue
 
                 obj = event_model.from_dict(event_data)
@@ -335,6 +372,7 @@ class Client:
 
         # pull important values for easier access
         total_shards = self.shard_count or gateway.shards
+        self.shard_count = total_shards
         batch_size = gateway.session_start_limit.max_concurrency
 
         tasks = []
@@ -345,7 +383,7 @@ class Client:
             logger.debug(f"Starting shards {batch_start}-{batch_end} of {total_shards}")
 
             for shard_id in range(batch_start, batch_end):
-                shard = self.shard_type()
+                shard = GatewayClient()
                 self.shards.append(shard)
 
                 # fire and forget
@@ -362,7 +400,7 @@ class Client:
         try:
             await self.http.start(self.token)
 
-            data = await self.http.request('GET', '/gateway/bot')
+            data = await self.http.request_json('GET', '/gateway/bot')
 
             if not data:
                 return

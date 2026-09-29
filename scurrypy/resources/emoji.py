@@ -25,7 +25,7 @@ class ApplicationEmoji(BaseResource):
         Returns:
             (EmojiModel): queried emoji
         """
-        data = await self.http.request("GET", f"/applications/{self.application_id}/emojis/{emoji_id}")
+        data = await self.http.request_json("GET", f"/applications/{self.application_id}/emojis/{emoji_id}")
 
         return EmojiModel.from_dict(data)
     
@@ -35,11 +35,9 @@ class ApplicationEmoji(BaseResource):
         Returns:
             (list[EmojiModel]): queried list of bot emojis
         """
-        data = await self.http.request("GET", f"/applications/{self.application_id}/emojis")
-        assert isinstance(data, dict)
-
+        data = await self.http.request_json("GET", f"/applications/{self.application_id}/emojis")
         emojis = data.get("items")
-
+        
         assert isinstance(emojis, list)
         return [EmojiModel.from_dict(emoji) for emoji in emojis]
     
@@ -52,7 +50,7 @@ class ApplicationEmoji(BaseResource):
         Returns:
             (EmojiModel): new emoji
         """
-        data = await self.http.request(
+        data = await self.http.request_json(
             'POST', 
             f'/applications/{self.application_id}/emojis',
             data=emoji.to_dict()
@@ -72,7 +70,7 @@ class ApplicationEmoji(BaseResource):
         """
         opts = dict(options)
 
-        data = await self.http.request(
+        data = await self.http.request_json(
             'PATCH', 
             f'/applications/{self.application_id}/emojis/{emoji_id}', 
             data=opts
@@ -104,7 +102,7 @@ class GuildEmoji(BaseResource):
         Returns:
             (EmojiModel): queried guild emoji
         """
-        data = await self.http.request("GET", f"/guilds/{self.guild_id}/emojis/{emoji_id}")
+        data = await self.http.request_json("GET", f"/guilds/{self.guild_id}/emojis/{emoji_id}")
 
         return EmojiModel.from_dict(data)
     
@@ -114,9 +112,8 @@ class GuildEmoji(BaseResource):
         Returns:
             (list[EmojiModel]): queried list of guild emojis
         """
-        data = await self.http.request("GET", f"/guilds/{self.guild_id}/emojis")
+        data = await self.http.request_list("GET", f"/guilds/{self.guild_id}/emojis")
 
-        assert isinstance(data, list)
         return [EmojiModel.from_dict(emoji) for emoji in data]
 
     async def create(self, emoji: GuildEmojiPart) -> EmojiModel:
@@ -129,7 +126,7 @@ class GuildEmoji(BaseResource):
         Returns:
             (EmojiModel): new emoji
         """
-        data = await self.http.request(
+        data = await self.http.request_json(
             'POST', 
             f'/guilds/{self.guild_id}/emojis', 
             data=emoji.to_dict()
@@ -150,7 +147,7 @@ class GuildEmoji(BaseResource):
         """
         opts = dict(options)
 
-        data = await self.http.request(
+        data = await self.http.request_json(
             'PATCH', 
             f'/guilds/{self.guild_id}/emojis/{emoji_id}', 
             data=opts

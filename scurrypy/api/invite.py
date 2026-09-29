@@ -1,8 +1,17 @@
 from dataclasses import dataclass
 
-from ..core.model import DataModel
+from ..core.model import DataModel, datamodel
 from ..core.snowflake import Snowflake
-from ..core.types import PresentModelField, OmittableModelField, PresentNullableModelField, OptionalPartField
+from ..core.timestamp import Timestamp
+from ..core.types import (
+    PresentModelField, 
+    OmittableModelField, 
+    PresentNullableModelField, 
+    OptionalPartField,
+    ScurrypyStr, 
+    ScurrypyInt, 
+    ScurrypyBool
+)
 
 from ..enums.invite import InviteType
 
@@ -12,14 +21,14 @@ from .channels.channel import ChannelModel
 
 from .user import UserModel
 
-@dataclass
+@datamodel
 class InviteModel(DataModel):
     """Represents a code that adds a user to guild or group DM channel."""
 
     type: PresentModelField[InviteType]
     """Type of invite."""
 
-    code: PresentModelField[str]
+    code: PresentModelField[ScurrypyStr]
     """Invite code (unique ID)."""
 
     guild: OmittableModelField[GuildModel]
@@ -31,32 +40,32 @@ class InviteModel(DataModel):
     inviter: OmittableModelField[UserModel]
     """User who created invite."""
 
-    approximate_member_count: OmittableModelField[int]
+    approximate_member_count: OmittableModelField[ScurrypyInt]
     """Approximate count of total members."""
 
-    expires_at: PresentNullableModelField[str]
+    expires_at: PresentNullableModelField[Timestamp]
     """ISO8601 timestamp for expiration date."""
 
     roles: OmittableModelField[list[GuildRoleModel]]
     """Roles assigned to the user upon accepting the invite."""
 
-@dataclass
+@datamodel
 class InviteWithMetadataModel(InviteModel):
     """Represents the invite model with extra information."""
 
-    uses: PresentModelField[int]
+    uses: PresentModelField[ScurrypyInt]
     """Number of times this invite was used."""
 
-    max_uses: PresentModelField[int]
+    max_uses: PresentModelField[ScurrypyInt]
     """Max number of times this invite can be used."""
 
-    max_age: PresentModelField[int]
+    max_age: PresentModelField[ScurrypyInt]
     """Duration (in seconds) after which this invite expires."""
 
-    temporary: PresentModelField[bool]
+    temporary: PresentModelField[ScurrypyBool]
     """Whether this invite only grants temporary membership."""
 
-    created_at: PresentModelField[str]
+    created_at: PresentModelField[Timestamp]
     """ISO8601 timestamp for when this invite was created."""
 
 @dataclass
@@ -92,3 +101,6 @@ class InvitePart(DataModel):
         Requires `MANAGE_ROLES` and cannot assign roles with higher
         permissions than the sender.
     """
+
+    target_user_ids: OptionalPartField[list[Snowflake]] = None
+    """IDs of all users able to see and accept this invite."""

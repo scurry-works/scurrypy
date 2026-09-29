@@ -81,7 +81,15 @@ class ForumLayoutType(DiscordTypes):
 
 class AutoArchiveDurationType(DiscordTypes):
     """Auto archive duration options."""
+
     ONE_HR = 60
+    """One hour duration."""
+
     ONE_DAY = 1440
+    """One day duration."""
+
     THREE_DAYS = 4320
+    """Three weeks duration."""
+
     ONE_WEEK = 10080
+    """One week duration."""

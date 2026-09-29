@@ -1,8 +1,19 @@
 from dataclasses import dataclass
 
-from ...core.model import DataModel
+from ...core.model import DataModel, datamodel
 from ...core.snowflake import Snowflake
-from ...core.types import RequiredPartField, OptionalPartField, OptionalNullablePartField, PresentModelField, OmittableModelField, OmittableNullableModelField
+from ...core.timestamp import Timestamp
+from ...core.types import (
+    RequiredPartField, 
+    OptionalPartField, 
+    OptionalNullablePartField, 
+    PresentModelField, 
+    OmittableModelField, 
+    OmittableNullableModelField,
+    ScurrypyStr, 
+    ScurrypyInt, 
+    ScurrypyBool
+)
 
 from ...enums.channel import ChannelType, AutoArchiveDurationType
 
@@ -42,33 +53,33 @@ class ThreadWithoutMessagePart(DataModel):
     rate_limit_per_user: OptionalNullablePartField[int] = None
     """Seconds user must wait between sending messages in the channel."""
 
-@dataclass
+@datamodel
 class ThreadMetadataModel(DataModel):
     """Represents the thread metadata object."""
 
-    archived: PresentModelField[bool]
+    archived: PresentModelField[ScurrypyBool]
     """Whether the thread is archived."""
 
-    auto_archive_duration: PresentModelField[int]
+    auto_archive_duration: PresentModelField[ScurrypyInt]
     """How long to wait until the thread is hidden (in minutes)."""
 
-    archive_timestamp: PresentModelField[str]
+    archive_timestamp: PresentModelField[Timestamp]
     """ISO8601 timestamp of when the thread's archive status was last changed."""
 
-    locked: PresentModelField[bool]
+    locked: PresentModelField[ScurrypyBool]
     """Whether the thread is locked.
     
     !!! note
         Only users with `MANAGE_THREADS` can unarchive the thread.
     """
 
-    invitable: OmittableModelField[bool]
+    invitable: OmittableModelField[ScurrypyBool]
     """Whether non-moderators can add other non-moderators to the thread (private threads only)."""
 
-    create_timestamp: OmittableNullableModelField[str]
+    create_timestamp: OmittableNullableModelField[Timestamp]
     """ISO8601 timestamp of thread creation (field only exists after Jan 09, 2022)."""
 
-@dataclass
+@datamodel
 class ThreadMemberModel(DataModel):
     """Represents a user that has joined a thread."""
 
@@ -78,7 +89,7 @@ class ThreadMemberModel(DataModel):
     user_id: OmittableModelField[Snowflake]
     """ID of the user."""
 
-    join_timestamp: PresentModelField[str]
+    join_timestamp: PresentModelField[Timestamp]
     """ISO8601 timestamp of when the user last joined the thread."""
 
     member: OmittableModelField[GuildMemberModel]
@@ -88,7 +99,7 @@ class ThreadMemberModel(DataModel):
         Only present when `with_member` is toggled on request.
     """
 
-@dataclass
+@datamodel
 class ArchivedThreadsModel(DataModel):
     """Response body for fetching archived threads."""
 
@@ -98,10 +109,10 @@ class ArchivedThreadsModel(DataModel):
     members: PresentModelField[list[ThreadMemberModel]]
     """Thread member for each returned thread the bot has joined."""
 
-    has_more: PresentModelField[bool]
+    has_more: PresentModelField[ScurrypyBool]
     """Whether there are additional threads to be returned with subsequent calls."""
 
-@dataclass
+@datamodel
 class ActiveThreadsModel(DataModel):
     """Response body for fetching active guild threads."""
 
@@ -111,7 +122,7 @@ class ActiveThreadsModel(DataModel):
     members: PresentModelField[list[ThreadMemberModel]]
     """Thread member for each returned thread the bot has joined."""
 
-@dataclass
+@datamodel
 class ThreadChannelModel(ChannelModel):
     """Represents the thread channel."""
 

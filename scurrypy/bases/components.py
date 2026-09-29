@@ -1,8 +1,12 @@
-from ..core.model import DataModel
+from .scurrypy_type import ScurrypyType
 
-class Component(DataModel):
-    """Marker class for all interaction components and containers."""
-    pass
+class Component(ScurrypyType):
+    """Marker class for all interaction components."""
+    __slots__ = ()
+
+class ContainerComponent(Component):
+    """Marker class for all container components."""
+    __slots__ = ()
 
 class ActionRowChild: 
     """Marker class for all components that go into an action row.
@@ -57,9 +61,9 @@ class LabelChild:
         [`RoleSelect`][scurrypy.api.components.RoleSelect], 
         [`MentionableSelect`][scurrypy.api.components.MentionableSelect], 
         [`ChannelSelect`][scurrypy.api.components.ChannelSelect], 
-        [`FileUpload`][scurrypy.api.components.FileUpload]
-        [`RadioGroup`][scurrypy.api.components.RadioGroup]
-        [`CheckboxGroup`][scurrypy.api.components.CheckboxGroup]
+        [`FileUpload`][scurrypy.api.components.FileUpload],
+        [`RadioGroup`][scurrypy.api.components.RadioGroup],
+        [`CheckboxGroup`][scurrypy.api.components.CheckboxGroup],
         [`Checkbox`][scurrypy.api.components.Checkbox]
     """
     __slots__ = ()
