@@ -1,6 +1,7 @@
 # scurrypy/resources
 
 from .application import Application
+from .base_resource import BaseResource
 from .channel import Channel
 from .command import GuildCommand, GlobalCommand
 from .emoji import ApplicationEmoji, GuildEmoji
@@ -13,6 +14,8 @@ from .user import User
 
 __all__ = [    
     "Application",
+
+    "BaseResource",
 
     "Channel",
 

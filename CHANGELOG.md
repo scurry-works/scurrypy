@@ -2,6 +2,11 @@
 
 This changelog documents all notable and breaking changes to the ScurryPy PyPi package.
 
+## [2.4.0.1] - 29 Sept 2026
+
+* Bug Fix: Client wouldn't accept any event not in `EventType`
+* Bug Fix: Added `BaseResource` to `scurrypy.resources` for easier reach
+
 ## [2.4.0] - 29 Sept 2026
 
 * Removed the HTTP and Gateway Protocol classes and their respective tests

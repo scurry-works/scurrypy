@@ -334,12 +334,10 @@ class Client:
 
                 logger.info(f"SHARD ID {shard.shard_id} RECV -> {dispatch_type}")
 
-                event_type = EventType.from_dict(str(dispatch_type))
-
-                if event_type in self.events.keys():
+                if dispatch_type in self.events.keys():
                     logger.info(f"SHARD ID {shard.shard_id} DISPATCH -> {dispatch_type}")
 
-                event_model = EVENTS.get(event_type)
+                event_model = EVENTS.get(dispatch_type)
                 if not event_model:
                     logger.warning(f"Event {dispatch_type} is not implemented")
                     continue
@@ -347,7 +345,7 @@ class Client:
                 obj = event_model.from_dict(event_data)
                 obj.raw = event_data
 
-                handlers = self.events.get(event_type, [])
+                handlers = self.events.get(dispatch_type, [])
                 for handler in handlers:
                     try:
                         await handler(obj)
