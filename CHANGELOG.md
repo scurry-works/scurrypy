@@ -2,6 +2,10 @@
 
 This changelog documents all notable and breaking changes to the ScurryPy PyPi package.
 
+## [2.4.0.2] - 30 Sept 2026
+
+* Bug Fix: `DiscordTypes` and `DiscordStr` error when a value isn't known
+
 ## [2.4.0.1] - 29 Sept 2026
 
 * Bug Fix: Client wouldn't accept any event not in `EventType`

@@ -128,7 +128,7 @@ class Client:
             logger.warning(f"{event_data.__name__} will replace {old_event.__name__} when {event} is dispatched")
 
         EVENTS[event] = event_data
-        logger.info(f"Added listener {event_data.__name__} → {event}")
+        logger.info(f"Added listener {event_data.__name__} -> {event}")
 
     def _check_hook_signature(self, handler: HookHandler) -> None:
         """Helper function for checking hook signatures.

@@ -5,16 +5,20 @@ class DiscordTypes(IntEnum):
     """Base class for Discord's types."""
 
     @classmethod
-    def from_dict(cls, v: str) -> Self:
+    def from_dict(cls, v: str) -> Self | int:
         """Deserialize this Discord type.
 
         Args:
             v (str): serialized Discord type
 
         Returns:
-            (DiscordTypes): DiscordTypes object
+            (DiscordTypes | int): DiscordTypes object if the value is known,
+                otherwise the raw integer value.
         """
-        return cls(int(v))
+        int_v = int(v)
+        if int_v in cls:
+            return cls(int_v)
+        return int_v
     
 class DiscordFlags(IntFlag):
     """Base class for Discord's flags."""
@@ -37,13 +41,17 @@ class DiscordString(StrEnum):
     """Base class for Discord's pre-defined strings."""
 
     @classmethod
-    def from_dict(cls, v: str) -> Self:
+    def from_dict(cls, v: str) -> Self | str:
         """Deserialize this pre-defined Discord string.
 
         Args:
             v (str): serialized Discord string
 
         Returns:
-            (DiscordString): DiscordString object
+            (DiscordString | str): DiscordStrig object if the value is known,
+                otherwise the raw string value.
         """
-        return cls(str(v))
+        str_v = str(v)
+        if str_v in cls:
+            return cls(str_v)
+        return str_v
