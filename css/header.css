@@ -1,11 +1,5 @@
-/* Increase the logo in the header */
 .md-header__button.md-logo img {
-    height: 48px !important;  /* Try 48–64px */
+    height: 48px !important;
     width: auto !important;
-    image-rendering: pixelated; /* keeps pixel art sharp */
+    image-rendering: pixelated;
 }
-/* 
-* {
-    font-family: "SquirrelFont" !important;
-} 
-*/

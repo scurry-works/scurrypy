@@ -37,29 +37,29 @@
   --md-code-font: 'Cascadia Code';
 
   /* Numbers / constants */
-  --md-code-hl-number-color:           #b45309;   /* rich amber-orange */
+  --md-code-hl-number-color:           #b45309;
 
   /* Function names */
-  --md-code-hl-function-color:         #1e40af;   /* deep blue */
+  --md-code-hl-function-color:         #1e40af;
 
   /* Built-in types / constants */
-  --md-code-hl-constant-color:         #7e22ce;   /* purple */
+  --md-code-hl-constant-color:         #7e22ce;
 
   /* Keywords */
-  --md-code-hl-keyword-color:          #c026d3;   /* magenta */
+  --md-code-hl-keyword-color:          #c026d3;
 
   /* Strings */
-  --md-code-hl-string-color:           #15803d;   /* green */
+  --md-code-hl-string-color:           #15803d;
 
   /* Variables / general names */
-  --md-code-hl-name-color:             #383a42;   /* near-black text */
+  --md-code-hl-name-color:             #383a42;
 
   /* Operators */
-  --md-code-hl-operator-color:         #0369a1;   /* teal-blue */
+  --md-code-hl-operator-color:         #0369a1;
 
   /* Punctuation */
-  --md-code-hl-punctuation-color:      #383a42;   /* base text */
+  --md-code-hl-punctuation-color:      #383a42;
 
   /* Comments */
-  --md-code-hl-comment-color:          #6b7280;   /* gray */
+  --md-code-hl-comment-color:          #6b7280;
 }

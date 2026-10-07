@@ -1,18 +1,16 @@
-/* Center Markdown Tables (requires md_in_html extension) */
 .center {
     text-align: center;
 }
 
 .md-typeset .center :is(td,th):not([align]) {
-    /* Reset alignment for table cells */
     text-align: initial;
 }
 
 .reading-paragraph {
-    line-height: 2.0; /* This creates double spacing */
+    line-height: 2.0;
     text-indent: 2em;
 }
 
 .reading-list {
-    line-height: 2.0; /* This creates double spacing */
+    line-height: 2.0;
 }
