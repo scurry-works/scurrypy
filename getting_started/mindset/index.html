@@ -4495,17 +4495,16 @@
 <hr />
 <p>JSON payloads received from Discord are wrapped in <a class="autorefs autorefs-internal" title="              JsonQuery" href="../../internals/model/#scurrypy.core.json_query.JsonQuery"><code>JsonQuery</code></a> to support traversal and common operations.</p>
 <p>For example, if you want an event user's ID:</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user.id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">Snowflake</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user.id&#39;</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">Snowflake</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 </code></pre></div></td></tr></table></div>
+where:</p>
+<ol>
+<li><code>get</code> traverses the event data by getting <code>user &gt; id</code> and interprets the resulting value as a <code>Snowflake</code>.</li>
+<li><code>value</code> is the resulting value of the entire chain. It should be the user's ID as a Snowflake!</li>
+</ol>
 <p>Need to get a value from a list of objects?</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attachments.0.filename&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 </code></pre></div></td></tr></table></div>
-<p>where:</p>
-<ol>
-<li><code>get</code> traverses the event data by getting the <code>user</code> key value and then the <code>id</code> of the <code>user</code> key value.</li>
-<li><code>transform</code> interprets the resulting value as a <code>Snowflake</code>.</li>
-<li><code>value</code> is the resulting value of the entire chain. It should be the user's ID as a Snowflake!</li>
-</ol>
 <div class="admonition tip">
 <p class="admonition-title">Keys Not Found</p>
 <p>Keys that are not found return <code>None</code>. Keep an eye out for Omittable fields in event payloads as these fields are NOT always present!</p>
