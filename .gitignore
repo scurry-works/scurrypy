@@ -1,5 +1,4 @@
 __pycache__/
-docs/
 misc/
 site/
 build/
@@ -7,5 +6,4 @@ dist/
 notes/
 *.egg-info
 *.bash
-mkdocs.yaml
 .mypy_cache/

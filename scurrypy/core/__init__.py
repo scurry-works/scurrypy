@@ -1,7 +1,6 @@
 # scurrypy/core
 
 from .error import DiscordError
-from .events import EVENTS
 from .exceptions import (
     ScurrypyError,
     InvalidCallbackSignature,
@@ -16,22 +15,13 @@ from .exceptions import (
     EventNotFound
 )
 from .gateway import GatewayClient
-from .http import HTTPClient
-from .model import DataModel, datamodel
+from .http import HttpClient
+from .part import Part
 from .snowflake import Snowflake
 from .timestamp import Timestamp, TimestampStyle
-from .types import (
-    ScurrypyPrimitive,
-    ScurrypyInt,
-    ScurrypyStr,
-    ScurrypyBool,
-    ScurrypyFloat
-)
 
 __all__ = [
     "DiscordError",
-
-    "EVENTS",
 
     "ScurrypyError",
     "InvalidCallbackSignature",
@@ -47,10 +37,9 @@ __all__ = [
 
     "GatewayClient",
 
-    "HTTPClient",
+    "HttpClient",
 
-    "DataModel",
-    "datamodel",
+    "Part",
 
     "Snowflake",
 

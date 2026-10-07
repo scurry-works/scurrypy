@@ -1,0 +1,4 @@
+# Enums
+---
+
+:::scurrypy.enums.interaction

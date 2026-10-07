@@ -8,6 +8,7 @@ from ..enums.channel import (
 )
 
 from ..api.channels import DefaultReactionPart, TagPart
+from ..api import PermissionOverwritePart
 
 class EditGuildChannelParams(TypedDict, total=False):
     """Parameters for editing a guild channel."""
@@ -33,6 +34,9 @@ class EditGuildChannelParams(TypedDict, total=False):
 
     rate_limit_per_user: int
     """Seconds user must wait between sending messages in the channel."""
+
+    permission_overwrites: PermissionOverwritePart
+    """Explicit permission overwrites for members and roles."""
 
     parent_id: int
     """Category ID of the channel."""

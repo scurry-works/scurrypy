@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scurrypy"
-version = "2.4.0.2"
+version = "3.0.0"
 
-description = "Dataclass-driven Discord API Wrapper in Python"
+description = "Minimal, explicit Discord API wrapper designed for clarity and control"
 readme = "README.md"
 authors = [{ name = "Furmissile" }]
 requires-python = ">=3.12"
@@ -20,16 +20,15 @@ dependencies = [
 packages = [
   "scurrypy",
   "scurrypy.api",
+  "scurrypy.api.automod",
   "scurrypy.api.channels",
   "scurrypy.api.commands",
   "scurrypy.api.components",
   "scurrypy.api.guilds",
-  "scurrypy.api.interactions",
   "scurrypy.api.messages",
   "scurrypy.bases",
   "scurrypy.core",
   "scurrypy.enums",
-  "scurrypy.events",
   "scurrypy.ext",
   "scurrypy.ext.cache",
   "scurrypy.ext.commands",

@@ -2,8 +2,6 @@ from datetime import datetime
 
 from ..enums.enum_types import DiscordString
 
-from .types import ScurrypyStr
-
 class TimestampStyle(DiscordString):
     """Represents styles for Discord's timestamps."""
 
@@ -34,7 +32,7 @@ class TimestampStyle(DiscordString):
     RELATIVE_TIME = 'R'
     """Format from now (e.g., 4 years ago or 5 hours ago)."""
 
-class Timestamp(ScurrypyStr):
+class Timestamp(str):
     """Represents a Discord timestamp in ISO8601 format."""
 
     @property

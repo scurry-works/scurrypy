@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 
-from ..core.http import HTTPClient
+from ..core.http import HttpClient
 
 @dataclass
 class BaseResource:
-    """Represents a Discord Resource object."""
+    """Represents a Discord resource."""
 
-    http: HTTPClient
+    http: HttpClient
     """HTTP session for requests."""

@@ -1,0 +1,4 @@
+# Resources
+---
+
+:::scurrypy.resources.guild

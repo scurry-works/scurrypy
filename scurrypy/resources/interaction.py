@@ -1,25 +1,25 @@
 from dataclasses import dataclass
 from typing import Unpack
 
+from ..core.json_query import JsonQuery
+from ..core.snowflake import Snowflake
+from ..core.part import serialize
+
 from .base_resource import BaseResource
 
-from ..core.snowflake import Snowflake
-from ..core.serialization import serialize
+from ..enums import MessageFlags, InteractionCallbackType
 
-from ..enums.message import MessageFlags
-from ..enums.interaction import InteractionCallbackType
-
-from ..api.interactions import ModalPart, InteractionCallbackModel
 from ..api.messages import MessagePart
+from ..api.components import ModalPart
 from ..api.commands import CommandOptionChoicePart
 
-from ..params.message import EditMessageParams
+from ..params import EditMessageParams
 
 from .message import _EditMessageMixin
 
 @dataclass
 class Interaction(BaseResource, _EditMessageMixin):
-    """Represents a Discord Interaction object."""
+    """Represents a Discord interaction resource."""
 
     id: Snowflake
     """ID of the interaction."""
@@ -34,10 +34,10 @@ class Interaction(BaseResource, _EditMessageMixin):
         with_response: bool = False, 
         ephemeral: bool | None = None, 
         suppress_embeds: bool | None = None
-    ) -> InteractionCallbackModel | None:
+    ) -> JsonQuery | None:
         """Create a message in response to an interaction.
-        Fires [`InteractionEvent`][scurrypy.events.interaction_events.InteractionEvent]
-        and [`MessageCreateEvent`][scurrypy.events.message_events.MessageCreateEvent].
+        Fires [**Interaction Create**](https://docs.discord.com/developers/events/gateway-events#interaction-create)
+        and [**Message Create**](https://docs.discord.com/developers/events/gateway-events#message-create).
 
         Args:
             message (str | MessagePart): content as a string or MessagePart
@@ -46,7 +46,7 @@ class Interaction(BaseResource, _EditMessageMixin):
             suppress_embeds (optional, bool): whether the response's embeds should be removed
 
         Returns:
-            (InteractionCallbackModel | None): interaction callback object (if `with_response` is toggled) else None
+            (JsonQuery | None): interaction callback object (if `with_response` is toggled) else None
         """
         msg = MessagePart(content=message) if isinstance(message, str) else message
 
@@ -58,24 +58,24 @@ class Interaction(BaseResource, _EditMessageMixin):
         if suppress_embeds:
             msg.flags |= MessageFlags.SUPPRESS_EMBEDS
 
-        content = {
-            'type': InteractionCallbackType.CHANNEL_MESSAGE_WITH_SOURCE, 
-            'data': msg._prepare().to_dict()
-        }
-
         files = [str(f.path) for f in msg.attachments] if msg.attachments else None
 
         data = await self.http.request(
             'POST', 
             f'/interactions/{self.id}/{self.token}/callback', 
-            data=content, 
+            data={
+                'type': InteractionCallbackType.CHANNEL_MESSAGE_WITH_SOURCE, 
+                'data': msg._prepare().to_dict()
+            }, 
             files=files,
-            params={'with_response': with_response}
+            params={
+                'with_response': with_response
+            }
         )
 
         if with_response:
             assert isinstance(data, dict)
-            return InteractionCallbackModel.from_dict(data)
+            return JsonQuery(data)
         
         return None
         
@@ -95,87 +95,78 @@ class Interaction(BaseResource, _EditMessageMixin):
         opts = serialize(dict(options)) # nested objects in EditMessageParams
         self._apply_suppress_embeds(opts, suppress_embeds)
 
-        content = {
-            "type": InteractionCallbackType.UPDATE_MESSAGE,
-            "data": opts,
-        }
-
         await self.http.request(
             "POST",
             f"/interactions/{self.id}/{self.token}/callback",
-            data=content,
+            data={
+                "type": InteractionCallbackType.UPDATE_MESSAGE,
+                "data": opts,
+            },
             files=files
         )
 
     async def respond_modal(self, modal: ModalPart) -> None:
         """Create a modal in response to an interaction.
-        Fires [`InteractionEvent`][scurrypy.events.interaction_events.InteractionEvent].
+        Fires [**Interaction Create**](https://docs.discord.com/developers/events/gateway-events#interaction-create).
 
         Args:
             modal (ModalPart): modal data
         """
-        content = {
-            'type': InteractionCallbackType.MODAL,
-            'data': modal.to_dict()
-        }
-
         await self.http.request(
             'POST', 
             f'/interactions/{self.id}/{self.token}/callback', 
-            data=content)
+            data={
+                'type': InteractionCallbackType.MODAL,
+                'data': modal.to_dict()
+            }
+        )
 
     async def respond_autocomplete(self, choices: list[CommandOptionChoicePart]) -> None:
         """Autocomplete a command in response to an interaction.
-        Fires [`InteractionEvent`][scurrypy.events.interaction_events.InteractionEvent].
+        Fires [**Interaction Create**](https://docs.discord.com/developers/events/gateway-events#interaction-create).
 
         Args:
             choices (list[CommandOptionChoicePart]): list of choices to autocomplete
         """
-        content = {
-            'type': InteractionCallbackType.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
-            'data': {
-                'choices': [choice.to_dict() for choice in choices]
-            }
-        }
-
         await self.http.request(
             'POST',
             f'/interactions/{self.id}/{self.token}/callback',
-            data=content
+            data={
+                'type': InteractionCallbackType.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
+                'data': {
+                    'choices': [choice.to_dict() for choice in choices]
+                }
+            }
         )
 
     async def defer_respond(self, ephemeral: bool | None = None) -> None:
         """Defer creating a message in response to an interaction.
-        Fires [`InteractionEvent`][scurrypy.events.interaction_events.InteractionEvent].
+        Fires [**Interaction Create**](https://docs.discord.com/developers/events/gateway-events#interaction-create).
 
         Args:
             ephemeral (bool, optional): whether thinking + deferred interaction response is ephemeral
         """
-        content = {
-            'type': InteractionCallbackType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
-            'data': {
-                'flags': MessageFlags.EPHEMERAL if ephemeral else MessageFlags.NO_FLAGS
-            }
-        }
-
         await self.http.request(
             'POST',
             f'/interactions/{self.id}/{self.token}/callback',
-            data=content
+            data={
+                'type': InteractionCallbackType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
+                'data': {
+                    'flags': MessageFlags.EPHEMERAL if ephemeral else MessageFlags.NO_FLAGS
+                }
+            }
         )
 
     async def defer_update(self) -> None:
         """Defer updating a message in response to an interaction.
-        Fires [`InteractionEvent`][scurrypy.events.interaction_events.InteractionEvent].
+        Fires [**Interaction Create**](https://docs.discord.com/developers/events/gateway-events#interaction-create).
         """
-        content = {
-            'type': InteractionCallbackType.DEFERRED_UPDATE_MESSAGE,
-        }
-
         await self.http.request(
             'POST',
             f'/interactions/{self.id}/{self.token}/callback',
-            data=content
+            data={
+                'type': InteractionCallbackType.DEFERRED_UPDATE_MESSAGE,
+            }
         )
 
     async def followup(
@@ -186,7 +177,7 @@ class Interaction(BaseResource, _EditMessageMixin):
         suppress_embeds: bool | None = None
     ) -> None:
         """Create a new message to respond to a deferred interaction.
-        Fires [`MessageCreateEvent`][scurrypy.events.message_events.MessageCreateEvent].
+        Fires [**Message Create**](https://docs.discord.com/developers/events/gateway-events#message-create).
 
         !!! important
             Apps are limited to 5 followup messages PER interaction.
@@ -208,12 +199,10 @@ class Interaction(BaseResource, _EditMessageMixin):
         if suppress_embeds:
             message.flags |= MessageFlags.SUPPRESS_EMBEDS
 
-        content = message._prepare().to_dict()
-
         await self.http.request(
             'POST',
             f'/webhooks/{application_id}/{self.token}',
-            data=content
+            data=message._prepare().to_dict()
         )
 
     async def edit_original(
@@ -232,11 +221,10 @@ class Interaction(BaseResource, _EditMessageMixin):
         """
         opts = serialize(dict(options)) # nested objects in EditMessageParams
         self._apply_suppress_embeds(opts, suppress_embeds)
-        files = self._prepare_attachments(opts)
 
         await self.http.request(
             "PATCH",
             f"/webhooks/{application_id}/{self.token}/messages/@original",
             data=opts,
-            files=files
+            files=self._prepare_attachments(opts)
         )

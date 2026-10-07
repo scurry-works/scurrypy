@@ -1,0 +1,4 @@
+# Objects
+---
+
+:::scurrypy.api.sticker

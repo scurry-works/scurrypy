@@ -10,8 +10,6 @@ from .components import (
     ContainerChild,
     LabelChild
 )
-from .interaction import InteractionData
-from .scurrypy_type import ScurrypyType
 
 __all__ = [
     "GuildChannelCreate",
@@ -22,9 +20,5 @@ __all__ = [
     "SectionChild",
     "SectionAccessoryChild",
     "ContainerChild",
-    "LabelChild",
-
-    "InteractionData",
-
-    "ScurrypyType"
+    "LabelChild"
 ]

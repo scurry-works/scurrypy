@@ -1,7 +1,7 @@
 from typing import TypedDict
 
 class EditApplicationEmojiParams(TypedDict):
-    """Represents options for editing a bot emoji."""
+    """Parameters for editing a bot emoji."""
     
     name: str
     """Name of the emoji."""

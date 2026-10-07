@@ -1,56 +1,55 @@
 from dataclasses import dataclass
 from typing import Unpack
 
+from ..core.json_query import JsonQuery
+from ..core.snowflake import Snowflake
+from ..core.part import serialize
+
 from .base_resource import BaseResource
 
-from ..core.snowflake import Snowflake
-from ..core.serialization import serialize
-
-from ..api.messages import MessageModel, PinnedMessageModel, MessagePart
+from ..api.messages import MessagePart
 from ..api.channels import (
-    ChannelModel, 
-    FollowedChannelModel, 
-    ThreadMemberModel, 
-    ArchivedThreadsModel, 
     ThreadFromMessagePart, 
     ThreadWithoutMessagePart
 )
-from ..api.invite import InviteModel, InvitePart, InviteWithMetadataModel
+from ..api import InvitePart
 
-from ..params.channel import EditGuildChannelParams, EditThreadChannelParams
+from ..params import EditGuildChannelParams, EditThreadChannelParams
 
 @dataclass
 class Channel(BaseResource):
-    """Represents a Discord channel."""
+    """Represents a Discord channel resource."""
 
     id: Snowflake
     """ID of the channel."""
 
     # --- CHANNEL ---
-    async def fetch(self) -> ChannelModel:
+    async def fetch(self) -> JsonQuery:
         """Fetch the full channel data from Discord.
 
         Returns:
-            (ChannelModel): queried channel
+            (JsonQuery): queried channel
         """
         data = await self.http.request_json("GET", f"/channels/{self.id}")
 
-        return ChannelModel.from_dict(data)
+        return JsonQuery(data)
 
     async def delete(self) -> None:
         """Deletes this channel from the server. 
-        Fires [`ChannelUpdateEvent`][scurrypy.events.channel_events.ChannelUpdateEvent] if success,
-        and [`ChannelDeleteEvent`][scurrypy.events.channel_events.ChannelDeleteEvent] 
-            (or [`ThreadDeleteEvent`][scurrypy.events.thread_events.ThreadDeleteEvent] if a thread).
+        
+        Fires [**Channel Update**](https://docs.discord.com/developers/events/gateway-events#channel-update) if success,
+        and [**Channel Delete**](https://docs.discord.com/developers/events/gateway-events#channel-delete) 
+            (or [**Thread Delete**](https://docs.discord.com/developers/events/gateway-events#thread-delete) if a thread).
 
         !!! important "Permissions"
             Requires `MANAGE_CHANNELS` if channel is a guild channel or `MANAGE_THREADS` if channel is a thread
         """
         await self.http.request("DELETE", f"/channels/{self.id}")
 
-    async def follow(self, webhook_channel_id: Snowflake) -> FollowedChannelModel:
+    async def follow(self, webhook_channel_id: Snowflake) -> JsonQuery:
         """Follow announcement channel to send messages to a target channel.
-        Fires [`WebhooksUpdateEvent`][scurrypy.events.channel_events.WebhooksUpdateEvent].
+        
+        Fires [**Webhooks Update**](https://docs.discord.com/developers/events/gateway-events#webhooks-update).
 
         !!! important "Permissions"
             Requires `MANAGE_WEBHOOKS` in the target channel
@@ -59,23 +58,26 @@ class Channel(BaseResource):
             webhook_channel_id (Snowflake): ID of target channel
 
         Returns:
-            (FollowedChannelModel): followed channel
+            (JsonQuery): followed channel
         """
         data = await self.http.request_json(
             'POST', 
             f'/channels/{self.id}/followers', 
-            params={'webhook_channel_id': webhook_channel_id}
+            params={
+                'webhook_channel_id': webhook_channel_id
+            }
         )
 
-        return FollowedChannelModel.from_dict(data)
+        return JsonQuery(data)
 
     # --- GUILD CHANNEL ---
-    async def edit_guild_channel(self, **options: Unpack[EditGuildChannelParams]) -> ChannelModel:
+    async def edit_guild_channel(self, **options: Unpack[EditGuildChannelParams]) -> JsonQuery:
         """Edit this channel. 
-        Fires [`ChannelUpdateEvent`][scurrypy.events.channel_events.ChannelUpdateEvent].
+        
+        Fires [**Channel Update**](https://docs.discord.com/developers/events/gateway-events#channel-update).
         
         !!! note
-            If modifying a category, all child channels also fire [`ChannelUpdateEvent`][scurrypy.events.channel_events.ChannelUpdateEvent].
+            If modifying a category, all child channels also fire [**ChannelUpdateEvent**](https://docs.discord.com/developers/events/gateway-events#channel-update).
 
         !!! important "Permissions"
             Requires `MANAGE_CHANNELS` for the guild
@@ -84,16 +86,18 @@ class Channel(BaseResource):
             options (EditGuildChannelParams): channel fields to edit
 
         Returns:
-            (ChannelModel): updated channel
+            (JsonQuery): updated channel
         """
-        opts = serialize(dict(options)) # nested objects in EditGuildChannelParams
-
-        data = await self.http.request_json('PATCH', f'/channels/{self.id}', data=opts)
-
-        return ChannelModel.from_dict(data)
+        data = await self.http.request_json(
+            'PATCH', 
+            f'/channels/{self.id}', 
+            data=serialize(dict(options)) # nested objects in EditGuildChannelParams
+        )
+        
+        return JsonQuery(data)
     
     # --- MESSAGES ---
-    async def fetch_messages(self, limit: int = 50, before: Snowflake | None = None, after: Snowflake | None = None, around: Snowflake | None = None) -> list[MessageModel]:
+    async def fetch_messages(self, limit: int = 50, before: Snowflake | None = None, after: Snowflake | None = None, around: Snowflake | None = None) -> JsonQuery:
         """Fetches this channel's messages.
 
         !!! important "Permissions"
@@ -106,20 +110,23 @@ class Channel(BaseResource):
             around (Snowflake, optional): get messages around this message ID
 
         Returns:
-            (list[MessageModel]): queried list of messages
+            (JsonQuery): queried list of messages
         """
-        params = {
-            "limit": limit,
-            "before": before,
-            "after": after,
-            "around": around
-        }
 
-        data = await self.http.request_list('GET', f'/channels/{self.id}/messages', params=params)
+        data = await self.http.request_list(
+            'GET', 
+            f'/channels/{self.id}/messages', 
+            params={
+                "limit": limit,
+                "before": before,
+                "after": after,
+                "around": around
+            }
+        )
 
-        return [MessageModel.from_dict(msg) for msg in data]
+        return JsonQuery(data)
 
-    async def fetch_pins(self, limit: int = 50, before: str | None = None) -> list[PinnedMessageModel]:
+    async def fetch_pins(self, limit: int = 50, before: str | None = None) -> JsonQuery:
         """Get this channel's pinned messages.
 
         !!! important "Permissions"
@@ -133,21 +140,23 @@ class Channel(BaseResource):
             before (str, optional): get pinned messages before this ISO8601 timestamp
         
         Returns:
-            (list[PinnedMessageModel]): queried list of pinned messages
+            (JsonQuery): queried list of pinned messages
         """
-        # Set default limit if user didn't supply one
-        params = {
-            "limit": limit,
-            "before": before
-        }
+        data = await self.http.request_list(
+            'GET', 
+            f'/channels/{self.id}/pins', 
+            params={
+                "limit": limit,
+                "before": before
+            }
+        )
 
-        data = await self.http.request_list('GET', f'/channels/{self.id}/pins', params=params)
+        return JsonQuery(data)
 
-        return [PinnedMessageModel.from_dict(item) for item in data]
-
-    async def send(self, message: str | MessagePart) -> MessageModel:
+    async def send(self, message: str | MessagePart) -> JsonQuery:
         """Send a message to this channel.
-        Fires [`MessageCreateEvent`][scurrypy.events.message_events.MessageCreateEvent].
+        
+        Fires [**Message Create**](https://docs.discord.com/developers/events/gateway-events#message-create).
 
         !!! important "Permissions"
             Requires `SEND_MESSAGES` if in a guild channel.
@@ -158,7 +167,7 @@ class Channel(BaseResource):
             message (str | MessagePart): content as a string or MessagePart
 
         Returns:
-            (MessageModel): created message
+            (JsonQuery): created message
         """
         # normalize to MessagePart
         msg = MessagePart(content=message) if isinstance(message, str) else message
@@ -174,11 +183,12 @@ class Channel(BaseResource):
             files=files
         )
 
-        return MessageModel.from_dict(data)
+        return JsonQuery(data)
     
     async def bulk_delete_messages(self, message_ids: list[Snowflake]) -> None:
         """Delete multiple messages in a single request.
-        Fires [`BulkMessageDeleteEvent`][scurrypy.events.message_events.BulkMessageDeleteEvent].
+        
+        Fires [**Bulk Message Delete**](https://docs.discord.com/developers/events/gateway-events#message-delete-bulk).
         
         !!! important "Permissions"
             Requires `MANAGE_MESSAGES`
@@ -195,11 +205,13 @@ class Channel(BaseResource):
         await self.http.request(
             'POST', 
             f'/channels/{self.id}/messages/bulk-delete', 
-            data={'messages': message_ids}
+            data={
+                'messages': message_ids
+            }
         )
 
     # --- INVITES ---
-    async def fetch_invites(self) -> list[InviteWithMetadataModel]:
+    async def fetch_invites(self) -> JsonQuery:
         """Fetch a list of invites for this channel.
 
         !!! important "Permissions"
@@ -209,15 +221,16 @@ class Channel(BaseResource):
             Only usable on guild channels.
 
         Returns:
-            list[InviteWithMetadataModel]: queried list of invites
+            (JsonQuery): queried list of invites
         """
         data = await self.http.request_list('GET', f'/channels/{self.id}/invites')
 
-        return [InviteWithMetadataModel.from_dict(i) for i in data]
+        return JsonQuery(data)
 
-    async def create_invite(self, invite: InvitePart) -> InviteModel:
+    async def create_invite(self, invite: InvitePart) -> JsonQuery:
         """Create a new invite for this channel.
-        Fires [`InviteCreateEvent`][scurrypy.events.invite_events.InviteCreateEvent].
+        
+        Fires [**Invite Create**](https://docs.discord.com/developers/events/gateway-events#invite-create).
 
         !!! important "Permissions"
             Requires `CREATE_INSTANT_INVITE`
@@ -229,14 +242,18 @@ class Channel(BaseResource):
             invite (InvitePart): invite to create
 
         Returns:
-            (InviteModel): created invite object 
+            (JsonQuery): created invite object 
         """
-        data = await self.http.request_json('POST', f'/channels/{self.id}/invites', data=invite.to_dict())
+        data = await self.http.request_json(
+            'POST', 
+            f'/channels/{self.id}/invites', 
+            data=invite.to_dict()
+        )
 
-        return InviteModel.from_dict(data)
+        return JsonQuery(data)
 
     # --- THREAD CHANNELS ---
-    async def fetch_thread_member(self, user_id: Snowflake, with_member: bool = False) -> ThreadMemberModel:
+    async def fetch_thread_member(self, user_id: Snowflake, with_member: bool = False) -> JsonQuery:
         """Fetch a thread member of the specified user ID from this thread.
 
         Args:
@@ -244,16 +261,19 @@ class Channel(BaseResource):
             with_member (bool, optional): whether to include the member object. Defaults to `False`.
         
         Returns:
-            (ThreadMemberModel): queried thread member
+            (JsonQuery): queried thread member
         """
+        data = await self.http.request_json(
+            'GET', 
+            f'/channels/{self.id}/thread-members/{user_id}', 
+            params={ 
+                'with_member': with_member
+            }
+        )
 
-        params = { 'with_member': with_member }
-
-        data = await self.http.request_json('GET', f'/channels/{self.id}/thread-members/{user_id}', params=params)
-
-        return ThreadMemberModel.from_dict(data)
+        return JsonQuery(data)
     
-    async def fetch_thread_members(self, limit: int = 100, after: Snowflake | None = None, with_member: bool = False) -> list[ThreadMemberModel]:
+    async def fetch_thread_members(self, limit: int = 100, after: Snowflake | None = None, with_member: bool = False) -> JsonQuery:
         """Fetch all members of this thread.
 
         !!! warning
@@ -270,23 +290,25 @@ class Channel(BaseResource):
             with_member (bool, optional): whether to include the member object. Defaults to `False`.
 
         Returns:
-            (list[ThreadMemberModel]): queried list of thread members
+            (JsonQuery): queried list of thread members
         """
+        data = await self.http.request_list(
+            'GET', 
+            f"/channels/{self.id}/thread-members", 
+            params={
+                'with_member': with_member,
+                'after': after,
+                'limit': limit
+            }
+        )
 
-        params = {
-            'with_member': with_member,
-            'after': after,
-            'limit': limit
-        }
+        return JsonQuery(data)
 
-        data = await self.http.request_list('GET', f"/channels/{self.id}/thread-members", params=params)
-
-        return [ThreadMemberModel.from_dict(n) for n in data]
-
-    async def create_thread_from_message(self, message_id: Snowflake, thread: ThreadFromMessagePart) -> ChannelModel:
+    async def create_thread_from_message(self, message_id: Snowflake, thread: ThreadFromMessagePart) -> JsonQuery:
         """Create a thread from a message (attached to the message). 
-        Fires [`ThreadCreateEvent`][scurrypy.events.thread_events.ThreadCreateEvent] 
-        and [`MessageUpdateEvent`][scurrypy.events.message_events.MessageUpdateEvent].
+        
+        Fires [**Thread Create**](https://docs.discord.com/developers/events/gateway-events#thread-create) 
+        and [**Message Update**](https://docs.discord.com/developers/events/gateway-events#thread-update).
 
         !!! note
             Creates a `PUBLIC_THREAD` when created in a `GUILD_TEXT` channel.
@@ -298,31 +320,39 @@ class Channel(BaseResource):
             thread (ThreadFromMessagePart): thread to attach
 
         Returns:
-            (ChannelModel): new thread
+            (JsonQuery): new thread
         """
+        data = await self.http.request_json(
+            'POST', 
+            f"/channels/{self.id}/messages/{message_id}/threads", 
+            data=thread.to_dict()
+        )
 
-        data = await self.http.request_json('POST', f"/channels/{self.id}/messages/{message_id}/threads", data=thread.to_dict())
+        return JsonQuery(data)
 
-        return ChannelModel.from_dict(data)
-
-    async def create_thread_without_message(self, thread: ThreadWithoutMessagePart) -> ChannelModel:
+    async def create_thread_without_message(self, thread: ThreadWithoutMessagePart) -> JsonQuery:
         """Create a thread not connected to an existing message.
-        Fires [`ThreadCreateEvent`][scurrypy.events.thread_events.ThreadCreateEvent].
+        
+        Fires [**Thread Create**](https://docs.discord.com/developers/events/gateway-events#thread-create).
 
         Args:
             thread (ThreadWithoutMessagePart): thread to create
 
         Returns:
-            (ChannelModel): new thread
+            (JsonQuery): new thread
         """
+        data = await self.http.request_json(
+            'POST', 
+            f'/channels/{self.id}/threads', 
+            data=thread.to_dict()
+        )
 
-        data = await self.http.request_json('POST', f'/channels/{self.id}/threads', data=thread.to_dict())
+        return JsonQuery(data)
 
-        return ChannelModel.from_dict(data)
-
-    async def edit_thread(self, **options: Unpack[EditThreadChannelParams]) -> ChannelModel:
+    async def edit_thread(self, **options: Unpack[EditThreadChannelParams]) -> JsonQuery:
         """Edit this thread. 
-        Fires [`ChannelUpdateEvent`][scurrypy.events.channel_events.ChannelUpdateEvent].
+        
+        Fires [**Channel Update**](https://docs.discord.com/developers/events/gateway-events#channel-update).
 
         !!! important "Permissions"
             Requires `MANAGE_THREADS`
@@ -334,19 +364,21 @@ class Channel(BaseResource):
             options (EditThreadChannelParams): channel fields to edit
 
         Returns:
-            (ChannelModel): updated channel
+            (JsonQuery): updated channel
         """
+        data = await self.http.request_json(
+            'PATCH', 
+            f'/channels/{self.id}', 
+            data=dict(options)
+        )
 
-        opts = dict(options)
-
-        data = await self.http.request_json('PATCH', f'/channels/{self.id}', data=opts)
-
-        return ChannelModel.from_dict(data)
+        return JsonQuery(data)
 
     async def join_thread(self) -> None:
         """Add the bot to this thread.
-        Fires [`ThreadMembersUpdateEvent`][scurrypy.events.thread_events.ThreadMembersUpdateEvent] 
-        and [`ThreadCreateEvent`][scurrypy.events.thread_events.ThreadCreateEvent].
+        
+        Fires [**Thread Members Update**](https://docs.discord.com/developers/events/gateway-events#thread-members-update) 
+        and [**Thread Create**](https://docs.discord.com/developers/events/gateway-events#thread-create).
 
         !!! important
             Requires the thread is NOT archived.
@@ -355,7 +387,8 @@ class Channel(BaseResource):
 
     async def leave_thread(self) -> None:
         """Remove the bot from a thread.
-        Fires [`ThreadMembersUpdateEvent`][scurrypy.events.thread_events.ThreadMembersUpdateEvent].
+        
+        Fires [**Thread Members Update**](https://docs.discord.com/developers/events/gateway-events#thread-members-update).
 
         !!! important
             Requires the thread is NOT archived.
@@ -364,7 +397,8 @@ class Channel(BaseResource):
 
     async def add_thread_member(self, user_id: Snowflake) -> None:
         """Add a user to this thread.
-        Fires [`ThreadMembersUpdateEvent`][scurrypy.events.thread_events.ThreadMembersUpdateEvent].
+        
+        Fires [**Thread Members Update**](https://docs.discord.com/developers/events/gateway-events#thread-members-update).
 
         !!! important
             Requires the thread is NOT archived.
@@ -376,7 +410,8 @@ class Channel(BaseResource):
 
     async def remove_thread_member(self, user_id: Snowflake) -> None:
         """Remove a user to this thread.
-        Fires [`ThreadMembersUpdateEvent`][scurrypy.events.thread_events.ThreadMembersUpdateEvent].
+        
+        Fires [**Thread Members Update**](https://docs.discord.com/developers/events/gateway-events#thread-members-update).
 
         !!! important "Permissions"
             Requires `MANAGE_THREADS` or thread creator if `PRIVATE_THREAD`
@@ -389,7 +424,7 @@ class Channel(BaseResource):
         """
         await self.http.request('DELETE', f'/channels/{self.id}/thread-members/{user_id}')
 
-    async def fetch_public_archived_threads(self, before: str | None = None, limit: int | None = None) -> ArchivedThreadsModel:
+    async def fetch_public_archived_threads(self, before: str | None = None, limit: int | None = None) -> JsonQuery:
         """Fetch archived public threads in this channel.
 
         !!! important "Permissions"
@@ -407,7 +442,7 @@ class Channel(BaseResource):
             limit (int, optional): max number of threads to fetch
 
         Returns:
-            (ArchivedThreadsModel): queried public archived threads
+            (JsonQuery): queried public archived threads
         """
         data = await self.http.request_json(
             'GET', 
@@ -418,9 +453,9 @@ class Channel(BaseResource):
             }
         )
 
-        return ArchivedThreadsModel.from_dict(data)
+        return JsonQuery(data)
     
-    async def fetch_private_archived_threads(self, before: str | None = None, limit: int | None = None) -> ArchivedThreadsModel:
+    async def fetch_private_archived_threads(self, before: str | None = None, limit: int | None = None) -> JsonQuery:
         """Fetch archived private threads in this channel.
 
         !!! important "Permissions"
@@ -434,7 +469,7 @@ class Channel(BaseResource):
             limit (int, optional): max numer of threads to fetch
 
         Returns:
-            (ArchivedThreadsModel): queried private archived threads
+            (JsonQuery): queried private archived threads
         """
         data = await self.http.request_json(
             'GET', 
@@ -445,9 +480,9 @@ class Channel(BaseResource):
             }
         )
 
-        return ArchivedThreadsModel.from_dict(data)
+        return JsonQuery(data)
     
-    async def fetch_joined_private_archived_threads(self, before: str | None = None, limit: int | None = None) -> ArchivedThreadsModel:
+    async def fetch_joined_private_archived_threads(self, before: str | None = None, limit: int | None = None) -> JsonQuery:
         """Fetch archived private threads in this channel the bot has joined.
 
         !!! important "Permissions"
@@ -461,7 +496,7 @@ class Channel(BaseResource):
             limit (int, optional): max numer of threads to fetch
 
         Returns:
-            (ArchivedThreadsModel): queried private archived threads
+            (JsonQuery): queried private archived threads
         """
         data = await self.http.request_json(
             'GET', 
@@ -472,4 +507,4 @@ class Channel(BaseResource):
             }
         )
 
-        return ArchivedThreadsModel.from_dict(data)
+        return JsonQuery(data)

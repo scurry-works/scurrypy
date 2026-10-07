@@ -18,30 +18,6 @@ class OnboardingMode(DiscordTypes):
     ONBOARDING_ADVANCED = 1
     """Counts Default Channels and Questions towards constraints."""
 
-class StickerType(DiscordTypes):
-    """Sticker types."""
-
-    STANDARD = 1
-    """An official sticker in a pack."""
-
-    GUILD = 2
-    """A sticker uploaded to a guild for the guild's members."""
-
-class StickerFormatType(DiscordTypes):
-    """Represents constants for sticker format types."""
-
-    PNG = 1
-    """Sticker is a PNG."""
-
-    APNG = 2
-    """Sticker is an animated PNG"""
-
-    LOTTIE = 3
-    """Sticker is a JSON-based vector animation."""
-
-    GIF = 4
-    """Sticker is a GIF."""
-
 class GuildFeature(DiscordString):
     """Represents features available to a guild."""
 
@@ -68,3 +44,56 @@ class GuildFeature(DiscordString):
 
     PARTNERED = "PARTNERED"
     """Guild is partnered."""
+
+class GuildVerificationLevel(DiscordTypes):
+    """Represents verification levels for a guild."""
+
+    NONE = 0
+    """Unrestricted."""
+
+    LOW = 1
+    """Must have verified email on account."""
+
+    MEDIUM = 2
+    """Must be registered on Discord for longer than 5 minutes."""
+
+    HIGH = 3
+    """Must be a member of the server for longer than 10 minutes."""
+
+    VERY_HIGH = 4
+    """Must have a verified phone number"""
+
+class GuildDefaultMessageNotificationLevel(DiscordTypes):
+    """Represents default message notification levels in a guild."""
+
+    ALL_MESSAGES = 0
+    """Members will receive notifications for all messages by default."""
+
+    ONLY_MENTIONS = 1
+    """Members will receive notifications only for messages that mention them by default."""
+
+class GuildExplicitContentFilterLevel(DiscordTypes):
+    """Represents explicit content filter levels in a guild."""
+
+    DISABLED = 0
+    """Media content will not be scanned."""
+
+    MEMBERS_WITHOUT_ROLES = 1
+    """Media content sent by members without roles will be scanned"""
+
+    ALL_MEMBERS = 2
+    """Media content sent by all members will be scanned."""
+
+class MFA_Level(DiscordTypes):
+    """Represents MFA levels within in a guild.
+    
+    !!! note
+        MFA = Multi-factor Authentication
+        2FA = 2-Factor Authentication
+    """
+
+    NONE = 0
+    """Guild has no MFA/2FA requirement for moderation actions."""
+
+    ELEVATED = 1
+    """Guild has a 2FA requirement for moderation actions."""

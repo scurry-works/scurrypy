@@ -28,3 +28,9 @@ import logging
 logging.getLogger('websockets').setLevel(logging.WARNING)
 logging.getLogger('aiohttp').setLevel(logging.WARNING)
 logging.getLogger('asyncio').setLevel(logging.WARNING)
+
+def version() -> str:
+    """Reports this package's version."""
+    from importlib import metadata
+
+    return metadata.version("scurrypy")

@@ -1,0 +1,65 @@
+/* Refer to: https://squidfunk.github.io/mkdocs-material/setup */
+
+/* Dark mode */
+[data-md-color-scheme="slate"] {
+  --md-code-font: 'Cascadia Code';
+
+  /* Numbers / constants */
+  --md-code-hl-number-color:           #fab387;
+
+  /* Function names */
+  --md-code-hl-function-color:         #89b4fa;
+
+  /* Built-in types / constants */
+  --md-code-hl-constant-color:         #cba6f7;
+
+  /* Keywords (if, return, class, etc.) */
+  --md-code-hl-keyword-color:          #f38ba8;
+
+  /* Strings */
+  --md-code-hl-string-color:           #a6e3a1;
+
+  /* Variables / general names */
+  --md-code-hl-name-color:             #d9e0ee;
+
+  /* Operators */
+  --md-code-hl-operator-color:         #94e2d5;
+
+  /* Punctuation (default / neutral text) */
+  --md-code-hl-punctuation-color:      #d9e0ee;
+
+  /* Comments */
+  --md-code-hl-comment-color:          #6c7086;
+}
+
+/* Light mode */
+[data-md-color-scheme="default"] {
+  --md-code-font: 'Cascadia Code';
+
+  /* Numbers / constants */
+  --md-code-hl-number-color:           #b45309;
+
+  /* Function names */
+  --md-code-hl-function-color:         #1e40af;
+
+  /* Built-in types / constants */
+  --md-code-hl-constant-color:         #7e22ce;
+
+  /* Keywords */
+  --md-code-hl-keyword-color:          #c026d3;
+
+  /* Strings */
+  --md-code-hl-string-color:           #15803d;
+
+  /* Variables / general names */
+  --md-code-hl-name-color:             #383a42;
+
+  /* Operators */
+  --md-code-hl-operator-color:         #0369a1;
+
+  /* Punctuation */
+  --md-code-hl-punctuation-color:      #383a42;
+
+  /* Comments */
+  --md-code-hl-comment-color:          #6b7280;
+}

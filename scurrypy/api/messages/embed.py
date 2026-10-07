@@ -1,22 +1,18 @@
 from dataclasses import dataclass
+from datetime import datetime, timezone
 
-from ...core.model import DataModel, datamodel
+from ...core.part import Part
+from ...core.json_query import JsonQuery
 from ...core.exceptions import DataModelTypeError
+from ...core.snowflake import Snowflake
 from ...core.types import (
     OptionalPartField,
     RequiredPartField,
-    ScurrypyBool,
-    ScurrypyInt,
-    ScurrypyStr,
-    Serialized,
+    Serialized
 )
 
-from ..user import UserModel
-
-from datetime import datetime, timezone
-
 @dataclass
-class EmbedAuthorPart(DataModel):
+class EmbedAuthorPart(Part):
     """Represents fields for creating an embed author."""
 
     name: RequiredPartField[str] = None
@@ -28,35 +24,15 @@ class EmbedAuthorPart(DataModel):
     icon_url: OptionalPartField[str] = None
     """URL of author's icon. http or attachment://<filename> scheme."""
 
-@datamodel
-class EmbedAuthorModel(DataModel):
-    """Represents fields for an embed author."""
-
-    name: RequiredPartField[ScurrypyStr]
-    """Name of the author."""
-
-    url: OptionalPartField[ScurrypyStr]
-    """URL of the author. http or attachment://<filename> scheme."""
-
-    icon_url: OptionalPartField[ScurrypyStr]
-    """URL of author's icon. http or attachment://<filename> scheme."""
-
 @dataclass
-class EmbedThumbnailPart(DataModel):
+class EmbedThumbnailPart(Part):
     """Represents fields for creating an embed thumbnail."""
 
     url: RequiredPartField[str] = None
     """Thumbnail content. http or attachment://<filename> scheme."""
 
-@datamodel
-class EmbedThumbnailModel(DataModel):
-    """Represents fields for an embed thumbnail."""
-
-    url: RequiredPartField[ScurrypyStr]
-    """Thumbnail content. http or attachment://<filename> scheme."""
-
 @dataclass
-class EmbedFieldPart(DataModel):
+class EmbedFieldPart(Part):
     """Represents fields for creating an embed field."""
 
     name: RequiredPartField[str] = None
@@ -68,35 +44,15 @@ class EmbedFieldPart(DataModel):
     inline: OptionalPartField[bool] = None
     """Whether or not this field should display inline."""
 
-@datamodel
-class EmbedFieldModel(DataModel):
-    """Represents fields for an embed field."""
-
-    name: RequiredPartField[ScurrypyStr]
-    """Name of the field."""
-
-    value: RequiredPartField[ScurrypyStr]
-    """Value of the field."""
-
-    inline: OptionalPartField[ScurrypyBool]
-    """Whether or not this field should display inline."""
-
 @dataclass
-class EmbedImagePart(DataModel):
+class EmbedImagePart(Part):
     """Represents fields for creating an embed image."""
 
     url: RequiredPartField[str] = None
     """Image content. http or attachment://<filename> scheme."""
 
-@datamodel
-class EmbedImageModel(DataModel):
-    """Represents fields for an embed image."""
-
-    url: RequiredPartField[ScurrypyStr]
-    """Image content. http or attachment://<filename> scheme."""
-
 @dataclass
-class EmbedFooterPart(DataModel):
+class EmbedFooterPart(Part):
     """Represents fields for creating an embed footer."""
 
     text: RequiredPartField[str] = None
@@ -105,18 +61,8 @@ class EmbedFooterPart(DataModel):
     icon_url: OptionalPartField[str] = None
     """URL of the footer icon. http or attachment://<filename> scheme."""
 
-@datamodel
-class EmbedFooterModel(DataModel):
-    """Represents fields for an embed footer."""
-
-    text: RequiredPartField[ScurrypyStr]
-    """Footer text."""
-
-    icon_url: OptionalPartField[ScurrypyStr]
-    """URL of the footer icon. http or attachment://<filename> scheme."""
-
 @dataclass
-class EmbedPart(DataModel):
+class EmbedPart(Part):
     """Represents fields for creating an embed."""
 
     title: OptionalPartField[str] = None
@@ -146,15 +92,15 @@ class EmbedPart(DataModel):
     footer: OptionalPartField[EmbedFooterPart] = None
     """Embed's footer."""
 
-    def set_user_author(self, user: UserModel) -> None:
+    def set_user_author(self, user: JsonQuery) -> None:
         """Embed author builder.
 
         Args:
-            user (UserModel): user author
+            user (JSON): user author
         """
         self.author = EmbedAuthorPart(
-            name=user.username,
-            icon_url=f"https://cdn.discordapp.com/avatars/{user.id}/{user.avatar}.png"
+            name=user.get('username').value,
+            icon_url=f"https://cdn.discordapp.com/avatars/{user.get('id', t=Snowflake).value}/{user.get('avatar').value}.png"
         )
 
     def set_timestamp(self, dt: datetime | None = None) -> None:
@@ -191,34 +137,3 @@ class EmbedPart(DataModel):
             )
         
         return super().to_dict()
-
-@datamodel
-class EmbedModel(DataModel):
-    """Represents fields for an embed."""
-
-    title: OptionalPartField[ScurrypyStr]
-    """This embed's title."""
-
-    description: OptionalPartField[ScurrypyStr]
-    """This embed's description."""
-
-    timestamp: OptionalPartField[ScurrypyStr]
-    """Timestamp of when the embed was sent."""
-
-    color: OptionalPartField[ScurrypyInt]
-    """Embed's accent color."""
-
-    author: OptionalPartField[EmbedAuthorModel]
-    """Embed's author."""
-
-    thumbnail: OptionalPartField[EmbedThumbnailModel]
-    """Embed's thumbnail attachment."""
-
-    image: OptionalPartField[EmbedImageModel]
-    """Embed's image attachment."""
-
-    fields: OptionalPartField[list[EmbedFieldModel]]
-    """List of embed's fields."""
-
-    footer: OptionalPartField[EmbedFooterModel]
-    """Embed's footer."""

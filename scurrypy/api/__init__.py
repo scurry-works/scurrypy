@@ -1,45 +1,55 @@
 # scurrypy/api
 
-from .application import ApplicationModel
 from .emoji import (
-    EmojiModel, 
+    EmojiPart,
     ApplicationEmojiPart, 
     GuildEmojiPart
 )
+from .guild_scheduled_event import (
+    RecurrenceRulePart,
+    GuildScheduledEventPart
+)
+from .guild_template import GuildTemplatePart
 from .image_data import (
     ImageDataPart, 
     ImageAssetPart
 )
-from .integration import IntegrationModel
-from .invite import (
-    InviteModel, 
-    InviteWithMetadataModel, 
-    InvitePart
+from .invite import InvitePart
+from .permission_overwrite import PermissionOverwritePart
+from .poll import (
+    PollMediaPart,
+    PollAnswerPart,
+    PollPart
 )
-from .resolved import ResolvedDataModel
-from .user import (
-    UserModel, 
-    GuildMemberModel
+from .sticker import StickerPart
+from .webhook import (
+    WebhookPart,
+    WebhookMessagePart
 )
 
 __all__ = [
-    "ApplicationModel",
-
-    "EmojiModel", 
+    "EmojiPart", 
     "ApplicationEmojiPart", 
     "GuildEmojiPart",
+
+    "RecurrenceRulePart",
+    "GuildScheduledEventPart",
+
+    "GuildTemplatePart",
 
     "ImageDataPart", 
     "ImageAssetPart",
 
-    "IntegrationModel",
-
-    "InviteModel", 
-    "InviteWithMetadataModel", 
     "InvitePart",
 
-    "ResolvedDataModel",
+    "PermissionOverwritePart",
 
-    "UserModel", 
-    "GuildMemberModel"
+    "PollMediaPart",
+    "PollAnswerPart",
+    "PollPart",
+
+    "StickerPart",
+
+    "WebhookPart",
+    "WebhookMessagePart"
 ]

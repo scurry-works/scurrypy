@@ -2,8 +2,8 @@ import logging
 
 logger = logging.getLogger('scurrypy')
 
-from scurrypy import Client, Addon
-from scurrypy.enums import EventType, InteractionDataType
+from scurrypy import Client, Addon, JsonQuery
+from scurrypy.enums import EventType, InteractionDataType, InteractionType
 from scurrypy.core import (
     DiscordError, 
     Snowflake, 
@@ -20,12 +20,6 @@ from scurrypy.api.commands import (
     SubcommandGroupPart,
     SubcommandPart
 )
-from scurrypy.api.interactions import (
-    ApplicationCommandDataModel, 
-    AutocompleteApplicationCommandDataModel
-)
-
-from scurrypy.events import InteractionEvent
 
 from .ctx import CommandContext, ApplicationCommandContext, AutocompleteApplicationCommandContext
 
@@ -282,26 +276,15 @@ class CommandsAddon(Addon):
 
     async def _register_commands(self) -> None:
         """Register both guild and global commands to the client."""
-        # global registry
-        _global_commands = self.bot.global_command(self.application_id)
-        global_commands = await _global_commands.fetch_all()
+        global_cmd_res = self.bot.global_command(self.application_id)
 
-        for g_cmd in global_commands:
-            await _global_commands.delete(g_cmd.id)
+        await global_cmd_res.bulk_overwrite(self._global_commands)
 
-        for cmd in self._global_commands:
-            await _global_commands.create(cmd)
+        # only guilds in the registry are updated
+        for guild_id, commands in self._guild_commands.items():
+            guild_cmd_res = self.bot.guild_command(self.application_id, guild_id)
 
-        # guild registry (only guilds in the registry are updated)
-        for guild_id, cmds in self._guild_commands.items():
-            _guild_commands = self.bot.guild_command(self.application_id, guild_id)
-            commands_ = await _guild_commands.fetch_all()
-
-            for delete_cmd in commands_:
-                await _guild_commands.delete(delete_cmd.id)
-
-            for create_cmd in cmds:
-                await _guild_commands.create(create_cmd)
+            await guild_cmd_res.bulk_overwrite(commands)
     
     def _queue_command(self, 
         command: AnyCommand, 
@@ -340,28 +323,32 @@ class CommandsAddon(Addon):
                 else:
                     logger.info(f"Guild commands for ID {gid} have been cleared.")
 
-    async def dispatch(self, event: InteractionEvent) -> None:
+    async def dispatch(self, event: JsonQuery) -> None:
         """Dispatch a response to an `INTERACTION_CREATE` event.
 
         Raises:
             (DataModelTypeError): no command context
 
         Args:
-            event (InteractionEvent): interaction event object
+            event (JsonQuery): interaction event object
         """
-        if not isinstance(event.data, (ApplicationCommandDataModel, AutocompleteApplicationCommandDataModel)):
+        interaction_type: InteractionType = event.get('type', t=InteractionType).value
+
+        if interaction_type not in (InteractionType.APPLICATION_COMMAND, InteractionType.APPLICATION_COMMAND_AUTOCOMPLETE):
             return # ignore non-command interactions
         
         handler = None
-        name = None
 
-        data = event.data
-        name = data.name # name is present in CommandDataModel
+        data = JsonQuery(event.get('data').value)
+        name: str = data.get('name').value
 
         ctx: CommandContext
 
-        if isinstance(data, ApplicationCommandDataModel): # command types are NOT structurally identical
-            match data.type:
+        if interaction_type == InteractionType.APPLICATION_COMMAND: # command types are NOT structurally identical
+            
+            interaction_data_type: InteractionDataType = data.get('type', t=InteractionDataType).value
+
+            match interaction_data_type:
                 case InteractionDataType.SLASH_COMMAND: # command data types are structurally identical
                     handler = self.slash_handlers.get(name)
                 case InteractionDataType.USER_COMMAND:
@@ -371,16 +358,26 @@ class CommandsAddon(Addon):
 
             ctx = ApplicationCommandContext(self.bot, event)
 
-        elif isinstance(data, AutocompleteApplicationCommandDataModel):
+        elif interaction_type == InteractionType.APPLICATION_COMMAND_AUTOCOMPLETE:
             # Extract option being autocompleted
 
-            focused = next((opt for opt in data.options or [] if opt.focused), None)
+            options = data.get('options').value
+
+            focused = next(
+                (
+                    opt 
+                    for opt in options or [] 
+                    if JsonQuery(opt).get('focused', t=bool).value is True
+                ), 
+                None)
 
             if not focused:
                 logger.error("No focused option found for autocomplete!")
                 return
 
-            auto_complete_name = f"{event.data.name}:{focused.name}"
+            focused_name = JsonQuery(focused).get('name').value
+
+            auto_complete_name = f"{name}:{focused_name}"
             handler = self.autocomplete_handlers.get(auto_complete_name)
 
             ctx = AutocompleteApplicationCommandContext(self.bot, event)

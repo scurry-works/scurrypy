@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 from typing import Self
 
-from ...core.model import DataModel
+from ...core.part import Part
 from ...core.types import JSON, RequiredPartField
 
 @dataclass
-class UnfurledMediaPart(DataModel):
-    """Represents unfurled media for Discord components.
+class UnfurledMediaPart(Part):
+    """Represents fields for creating an unfurled media for Discord components.
 
     !!! note
         This part is a Components-specific structure.
@@ -22,7 +22,7 @@ class UnfurledMediaPart(DataModel):
             filename (str): file name
 
         Returns:
-            UnfurledMediaPart: self
+            (UnfurledMediaPart): self
         """
         return cls(url=f"attachment://{filename}")
 

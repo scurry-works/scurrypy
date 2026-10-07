@@ -24,18 +24,22 @@ class DiscordFlags(IntFlag):
     """Base class for Discord's flags."""
 
     @classmethod
-    def from_dict(cls, v: str | None) -> Self:
+    def from_dict(cls, v: str | None) -> Self | int:
         """Deserialize this Discord flag.
 
         Args:
             v (str | None): serialized Discord flag
 
         Returns:
-            (DiscordFlags): DiscordFlags object
+            (DiscordFlags | int): DiscordFlags object if the value is known,
+                otherwise the raw int value.
         """
         if not v:
             return cls(0)
-        return cls(int(v))
+        int_v = int(v)
+        if int_v in cls:
+            return cls(int(v))
+        return int_v
 
 class DiscordString(StrEnum):
     """Base class for Discord's pre-defined strings."""
@@ -48,7 +52,7 @@ class DiscordString(StrEnum):
             v (str): serialized Discord string
 
         Returns:
-            (DiscordString | str): DiscordStrig object if the value is known,
+            (DiscordString | str): DiscordString object if the value is known,
                 otherwise the raw string value.
         """
         str_v = str(v)

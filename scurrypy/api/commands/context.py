@@ -1,13 +1,13 @@
 from dataclasses import dataclass, field
 
-from ...core.model import DataModel
+from ...core.part import Part
 from ...core.types import RequiredPartField
 
 from ...enums.command import CommandType
 
 @dataclass
-class UserCommandPart(DataModel):
-    """Represents the user command object."""
+class UserCommandPart(Part):
+    """Represents fields for creating an user command object."""
 
     name: RequiredPartField[str] = None
     """Name of the command."""
@@ -16,8 +16,8 @@ class UserCommandPart(DataModel):
     """Command type. Always `CommandType.USER` for this class."""
 
 @dataclass
-class MessageCommandPart(DataModel):
-    """Represents the message command object."""
+class MessageCommandPart(Part):
+    """Represents fields for creating a message command object."""
     
     name: RequiredPartField[str] = None
     """Name of the command."""

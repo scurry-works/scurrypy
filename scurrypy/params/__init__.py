@@ -1,6 +1,6 @@
 # scurrypy/params
 
-from .emoji import EditApplicationEmojiParams
+from .automod import AutoModerationRuleParams
 from .channel import (
     EditGuildChannelParams, 
     EditThreadChannelParams
@@ -9,7 +9,12 @@ from .command import (
     EditGuildCommandParams, 
     EditGlobalCommandParams
 )
-from .emoji import EditGuildEmojiParams
+from .emoji import (
+    EditGuildEmojiParams, 
+    EditApplicationEmojiParams
+)
+from .guild_scheduled_event import GuildScheduledEventParams
+from .guild_template import GuildTemplateParams
 from .guild import (
     EditGuildRoleParams, 
     EditGuildParams, 
@@ -22,17 +27,23 @@ from .user import (
     EditGuildMemberParams, 
     EditUserParams
 )
+from .webhook import WebhookParams
 
 __all__ = [
-    "EditApplicationEmojiParams",
-
+    "AutoModerationRuleParams",
+    
     "EditGuildChannelParams", 
     "EditThreadChannelParams",
 
     "EditGuildCommandParams", 
     "EditGlobalCommandParams",
 
-    "EditGuildEmojiParams",
+    "EditGuildEmojiParams", 
+    "EditApplicationEmojiParams",
+
+    "GuildScheduledEventParams",
+
+    "GuildTemplateParams",
 
     "EditGuildRoleParams", 
     "EditGuildParams", 
@@ -44,5 +55,7 @@ __all__ = [
     "EditMessageParams",
 
     "EditGuildMemberParams", 
-    "EditUserParams"
+    "EditUserParams",
+
+    "WebhookParams"
 ]

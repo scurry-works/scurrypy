@@ -1,16 +1,18 @@
 from dataclasses import dataclass, field
 
-from ...core.model import DataModel
+from ...core.part import Part
 from ...core.snowflake import Snowflake
 from ...core.types import RequiredPartField, OptionalNullablePartField
 
-from ...bases.channel import GuildChannelCreate
+from ...bases import GuildChannelCreate
 
-from ...enums.channel import ChannelType
+from ...enums import ChannelType
+
+from ..permission_overwrite import PermissionOverwritePart
 
 @dataclass
-class GuildTextChannelPart(DataModel, GuildChannelCreate):
-    """Parameters for creating a guild text channel."""
+class GuildTextChannelPart(Part, GuildChannelCreate):
+    """Represents fields for creating a guild text channel."""
 
     name: RequiredPartField[str] = None
     """Name of the channel."""
@@ -20,6 +22,9 @@ class GuildTextChannelPart(DataModel, GuildChannelCreate):
 
     position: OptionalNullablePartField[int] = None
     """Sorting position of the channel (channels with the same position are sorted by id)."""
+
+    permission_overwrites: OptionalNullablePartField[list[PermissionOverwritePart]] = None
+    """Explicit permission overwrites for members and roles."""
 
     rate_limit_per_user: OptionalNullablePartField[int] = None
     """Seconds user must wait between sending messages in the channel."""

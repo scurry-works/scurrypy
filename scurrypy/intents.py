@@ -54,4 +54,16 @@ class Intents(DiscordFlags):
         Requires the app setting `Message Content Intent` to be toggled.
     """
 
+    GUILD_SCHEDULED_EVENTS = 1 << 16
+    """Receive events related to guild scheduled events."""
+
+    AUTO_MODERATION_CONFIGURATION = 1 << 20
+    """Receive events related to when an auto moderation rule is configured."""
+
+    AUTO_MODERATION_EXECUTION = 1 << 21
+    """Receive events related to when an auto moderation rule is executed."""
+
+    GUILD_MESSAGE_POLLS = 1 << 24
+    """Receive events related to polls in guilds."""
+
     DEFAULT = GUILDS | GUILD_MESSAGES

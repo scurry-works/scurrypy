@@ -2,9 +2,7 @@ from datetime import datetime, timezone
 
 DISCORD_EPOCH = 1420070400000
 
-from .types import ScurrypyInt
-
-class Snowflake(ScurrypyInt):
+class Snowflake(int):
     """Represents a Discord snowflake ID."""
 
     @property

@@ -1,5 +1,7 @@
 from typing import TypedDict
 
+from ..enums import InteractionContextType
+
 from ..api.commands import CommandOptionPart
 
 class EditGlobalCommandParams(TypedDict, total=False):
@@ -10,6 +12,9 @@ class EditGlobalCommandParams(TypedDict, total=False):
 
     description: str
     """Description for the command."""
+
+    contexts: list[InteractionContextType]
+    """Where the command can be used."""
 
     options: list[CommandOptionPart]
     """Options with the command."""

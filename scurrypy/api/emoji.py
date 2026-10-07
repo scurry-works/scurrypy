@@ -1,53 +1,29 @@
 from dataclasses import dataclass
-from urllib.parse import quote
-from typing import Self
 
-from ..core.model import DataModel, datamodel
+from ..core.part import Part
 from ..core.snowflake import Snowflake
 from ..core.types import (
-    PresentNullableModelField, 
-    OmittableModelField, 
+    RequiredNullablePartField, 
+    OptionalPartField, 
     RequiredPartField, 
-    ScurrypyStr, 
-    ScurrypyBool
 )
 
 from .image_data import ImageDataPart
 
-@datamodel
-class EmojiModel(DataModel):
+from urllib.parse import quote
+
+@dataclass
+class EmojiPart(Part):
     """Represents a Discord emoji."""
     
-    name: PresentNullableModelField[ScurrypyStr] = None
+    name: RequiredNullablePartField[str] = None
     """Name of emoji."""
 
-    id: OmittableModelField[Snowflake] = None
+    id: OptionalPartField[Snowflake] = None
     """ID of the emoji (if custom)."""
 
-    animated: OmittableModelField[ScurrypyBool] = None
+    animated: OptionalPartField[bool] = None
     """If the emoji is animated."""
-
-    @classmethod
-    def from_name(cls, name: str) -> Self:
-        return cls(name=ScurrypyStr(name))
-
-    @property
-    def is_custom(self) -> bool:
-        return self.id is not None
-
-    @property
-    def mention(self) -> str | None:
-        """Mention this emoji in a message."""
-        if self.name is None:
-            return None
-        # unicode emoji
-        if self.id is None:
-            return self.name
-        # animated emoji
-        if self.animated:
-            return f"<a:{self.name}:{self.id}>"
-        
-        return f"<:{self.name}:{self.id}>"
 
     @property
     def api_code(self) -> str | None:
@@ -63,23 +39,8 @@ class EmojiModel(DataModel):
         
         return quote(f"{self.name}:{self.id}")
 
-    @property
-    def url(self) -> str | None:
-        """Full qualifying link for this emoji.
-
-        !!! warning "Important"
-            This only works for custom Discord emojis (those with an ID). 
-            Unicode emojis will return `None`.
-        """
-        if self.id is None:
-            return None
-        
-        ext = 'gif' if self.animated else 'png'
-
-        return f"https://cdn.discordapp.com/emojis/{self.id}.{ext}"
-
 @dataclass
-class ApplicationEmojiPart(DataModel):
+class ApplicationEmojiPart(Part):
     """Represents fields for creating a bot emoji."""
     
     name: RequiredPartField[str] = None
@@ -89,7 +50,7 @@ class ApplicationEmojiPart(DataModel):
     """Image data for the icon of the emoji."""
 
 @dataclass
-class GuildEmojiPart(DataModel):
+class GuildEmojiPart(Part):
     """Represents fields for creating a guild emoji."""
     
     name: RequiredPartField[str] = None

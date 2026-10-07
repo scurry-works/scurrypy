@@ -1,75 +1,11 @@
 from dataclasses import dataclass
 
-from ..core.model import DataModel, datamodel
+from ..core.part import Part
 from ..core.snowflake import Snowflake
-from ..core.timestamp import Timestamp
-from ..core.types import (
-    PresentModelField, 
-    OmittableModelField, 
-    PresentNullableModelField, 
-    OptionalPartField,
-    ScurrypyStr, 
-    ScurrypyInt, 
-    ScurrypyBool
-)
-
-from ..enums.invite import InviteType
-
-from .guilds.guild import GuildModel
-from .guilds.role import GuildRoleModel
-from .channels.channel import ChannelModel
-
-from .user import UserModel
-
-@datamodel
-class InviteModel(DataModel):
-    """Represents a code that adds a user to guild or group DM channel."""
-
-    type: PresentModelField[InviteType]
-    """Type of invite."""
-
-    code: PresentModelField[ScurrypyStr]
-    """Invite code (unique ID)."""
-
-    guild: OmittableModelField[GuildModel]
-    """Guild the invite is for."""
-
-    channel: PresentNullableModelField[ChannelModel]
-    """Channel this invite is for."""
-
-    inviter: OmittableModelField[UserModel]
-    """User who created invite."""
-
-    approximate_member_count: OmittableModelField[ScurrypyInt]
-    """Approximate count of total members."""
-
-    expires_at: PresentNullableModelField[Timestamp]
-    """ISO8601 timestamp for expiration date."""
-
-    roles: OmittableModelField[list[GuildRoleModel]]
-    """Roles assigned to the user upon accepting the invite."""
-
-@datamodel
-class InviteWithMetadataModel(InviteModel):
-    """Represents the invite model with extra information."""
-
-    uses: PresentModelField[ScurrypyInt]
-    """Number of times this invite was used."""
-
-    max_uses: PresentModelField[ScurrypyInt]
-    """Max number of times this invite can be used."""
-
-    max_age: PresentModelField[ScurrypyInt]
-    """Duration (in seconds) after which this invite expires."""
-
-    temporary: PresentModelField[ScurrypyBool]
-    """Whether this invite only grants temporary membership."""
-
-    created_at: PresentModelField[Timestamp]
-    """ISO8601 timestamp for when this invite was created."""
+from ..core.types import OptionalPartField
 
 @dataclass
-class InvitePart(DataModel):
+class InvitePart(Part):
     """Represents fields for creating an invite."""
 
     max_age: OptionalPartField[int] = None

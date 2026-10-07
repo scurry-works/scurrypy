@@ -1,0 +1,229 @@
+site_name: ScurryPy
+site_url: https://furmissile.github.io/scurrypy/
+
+theme: # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#changing-the-colors
+  name: material
+  logo: assets/wizard.svg
+  favicon: assets/wizard.svg
+  font:
+    text: Source Serif Pro
+  features:
+    - content.code.copy
+    - navigation.sections
+    - header.repo
+    - content.tabs.link
+    - navigation.top
+    - navigation.tabs
+    - navigation.tabs.sticky
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: green
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: deep purple # header, the sidebar, text links, etc.
+      accent: green # interactive components
+      toggle: # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#color-palette-toggle
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+repo_url: https://github.com/scurry-works/scurrypy
+
+markdown_extensions:
+  - md_in_html
+  - admonition
+  - attr_list
+  - tables
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+
+extra_css:
+  - css/custom_color.css
+  - css/header.css
+  - css/text_alignment.css
+
+copyright: Copyright &copy; 2025 - present Furmissile
+
+plugins:
+  - search
+  - autorefs
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_section_style: list
+            show_if_no_docstring: true
+            show_signature: false
+            merge_init_into_class: true
+            show_symbol_type_toc: true
+            show_inheritance_diagram: true
+            show_root_heading: true
+            show_root_full_path: false
+            show_signature_annotations: true
+            show_signature_type_parameters: true
+            show_source: false
+            show_symbol_type_heading: true
+            inherited_members: false
+            docstring_style: google
+            members_order: source
+            filters:
+              - "!from_dict"
+              - "!to_dict"
+              - "!^_"
+
+watch:
+  - scurrypy
+  - docs
+
+nav:
+  - Home: index.md
+
+  - FAQ: faq.md
+
+  - Getting Started:
+    - Start Here!: getting_started/start_here.md
+    - Examples: getting_started/quickstart.md
+    - Addons: getting_started/addons.md
+    - New Mindset: getting_started/mindset.md
+    - Advanced Patterns: getting_started/advanced.md
+    - Core Examples: getting_started/core_examples.md
+    - Project Tree: getting_started/structure.md
+
+  - Manifesto: manifesto.md
+
+  - API:
+    - Overview: api/index.md
+    - Client: api/client.md
+    - Intents: api/intents.md
+    - Addon: api/addon.md
+    - Primitives:
+      - Event Types: api/primitives/event_types.md
+      - Snowflake: api/primitives/snowflake.md
+      - Timestamp: api/primitives/timestamp.md
+      - Image Data: api/primitives/image_data.md
+      - Types: api/primitives/types.md
+      - Exceptions: api/primitives/exceptions.md
+    - Applications:
+      - Enums: api/applications/enums.md
+      - Resources: api/applications/resources.md
+    - Audit Log:
+      - Enums: api/audit_logs/enums.md
+      - Resources: api/audit_logs/resources.md
+    - Auto Moderation:
+      - Enums: api/automod/enums.md
+      - Parts: api/automod/parts.md
+      - Resources: api/automod/resources.md
+      - Parameters: api/automod/params.md
+    - Channels:
+      - Bases: api/channels/bases.md
+      - Enums: api/channels/enums.md
+      - Parts: api/channels/parts.md
+      - Resources: api/channels/resources.md
+      - Parameters: api/channels/params.md
+    - Commands: 
+      - Enums: api/commands/enums.md
+      - Parts: api/commands/parts.md
+      - Resources: api/commands/resources.md
+      - Parameters: api/commands/params.md
+    - Components:
+      - Bases: api/components/bases.md
+      - Enums: api/components/enums.md
+      - Parts: api/components/parts.md
+    - Emojis:
+      - Enums: api/emojis/enums.md
+      - Parts: api/emojis/parts.md
+      - Resources: api/emojis/resources.md
+      - Parameters: api/emojis/params.md
+    - Guild Scheduled Events:
+      - Enums: api/guild_scheduled_events/enums.md
+      - Parts: api/guild_scheduled_events/parts.md
+      - Resources: api/guild_scheduled_events/resources.md
+      - Parameters: api/guild_scheduled_events/params.md
+    - Guild Templates:
+      - Parts: api/guild_templates/parts.md
+      - Resources: api/guild_templates/resources.md
+      - Parameters: api/guild_templates/params.md
+    - Guilds:
+      - Enums: api/guilds/enums.md
+      - Parts: api/guilds/parts.md
+      - Resources: api/guilds/resources.md
+      - Parameters: api/guilds/params.md
+    - Integrations:
+      - Enums: api/integrations/enums.md
+    - Interactions:
+      - Enums: api/interactions/enums.md
+      - Resources: api/interactions/resources.md
+    - Invites:
+      - Enums: api/invites/enums.md
+      - Parts: api/invites/parts.md
+      - Resources: api/invites/resources.md
+    - Messages:
+      - Enums: api/messages/enums.md
+      - Parts: api/messages/parts.md
+      - Resources: api/messages/resources.md
+      - Parameters: api/messages/params.md
+    - Permissions:
+      - Enums: api/permissions/enums.md
+      - Parts: api/permissions/parts.md
+    - Polls:
+      - Enums: api/polls/enums.md
+      - Parts: api/polls/parts.md
+      - Resources: api/polls/resources.md
+    - Stickers:
+      - Enums: api/stickers/enums.md
+      - Parts: api/stickers/parts.md
+      - Resources: api/stickers/resources.md
+    - Users:
+      - Enums: api/users/enums.md
+      - Resources: api/users/resources.md
+      - Parameters: api/users/params.md
+    - Webhooks:
+      - Enums: api/webhooks/enums.md
+      - Parts: api/webhooks/parts.md
+      - Resources: api/webhooks/resources.md
+      - Parameters: api/webhooks/params.md
+
+  - Extensions:
+    - Overview: ext/index.md
+    - Commands:
+      - Addon: ext/commands/addon.md
+      - Contexts: ext/commands/ctx.md
+    - Components:
+      - Addon: ext/components/addon.md
+      - Contexts: ext/components/ctx.md
+    - Events:
+      - Addon: ext/events/addon.md
+    - Interactions:
+      - Contexts: ext/interactions/ctx.md
+    - Helpers:
+      - Emoji: ext/helpers/emoji.md
+    - Prefixes:
+      - Addon: ext/prefixes/addon.md
+      - Contexts: ext/prefixes/ctx.md
+    - Caching:
+      - Application Emojis: ext/caching/application_emojis.md
+      - Channels: ext/caching/channels.md
+      - Guild Emojis: ext/caching/guild_emojis.md
+      - Guild Roles: ext/caching/guild_roles.md
+
+  - Internals:
+    - Overview: internals/index.md
+    - Base Models: internals/model.md
+    - Enum Types: internals/enum_types.md
+    - Discord Error: internals/error.md
+    - Gateway: internals/gateway.md
+    - HTTP: internals/http.md
+    - Technical Writeup: internals/technical_writeup.md

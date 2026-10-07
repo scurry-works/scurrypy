@@ -1,18 +1,18 @@
 from dataclasses import dataclass, field
 
-from ...core.model import DataModel
+from ...core.part import Part
 from ...core.snowflake import Snowflake
 from ...core.types import RequiredPartField, OptionalPartField
 
-from ...bases.components import ActionRowChild, LabelChild, Component
+from ...bases import ActionRowChild, LabelChild, Component
 
-from ...enums.components import ComponentType, DefaultValueType
+from ...enums import ComponentType, DefaultValueType
 
-from ..emoji import EmojiModel
+from ..emoji import EmojiPart
 
 @dataclass
-class SelectOption(DataModel):
-    """Represents the Select Option component."""
+class SelectOption(Part):
+    """Represents fields for creating the select option component."""
 
     label: RequiredPartField[str] = None
     """User-facing name of the option."""
@@ -23,15 +23,15 @@ class SelectOption(DataModel):
     description: OptionalPartField[str] = None
     """Additional description of the option."""
 
-    emoji: OptionalPartField[EmojiModel] = None
+    emoji: OptionalPartField[EmojiPart] = None
     """Partial emoji object."""
 
     default: OptionalPartField[bool] = None
     """Whether this option is selected by default. Discord defaults to `False`."""
 
 @dataclass
-class StringSelect(DataModel, Component, ActionRowChild, LabelChild):
-    """Represents the String Select component.
+class StringSelect(Part, Component, ActionRowChild, LabelChild):
+    """Represents fields for creating a string select component.
     
     A String Select allows users to select one or more provided options.
     """
@@ -66,8 +66,8 @@ class StringSelect(DataModel, Component, ActionRowChild, LabelChild):
 
 
 @dataclass
-class DefaultValue(DataModel):
-    """Represents the Default Value for Select components."""
+class DefaultValue(Part):
+    """Represents fields for creating a default value for select components."""
 
     id:RequiredPartField [Snowflake] = None
     """ID of role, user, or channel."""
@@ -76,7 +76,7 @@ class DefaultValue(DataModel):
     """Type of value that `id` represents."""
 
 @dataclass
-class SelectMenuMixin(DataModel):
+class SelectMenuMixin(Part):
     """Represents common fields for Discord's select menus."""
 
     custom_id: RequiredPartField[str] = None
@@ -105,7 +105,7 @@ class SelectMenuMixin(DataModel):
 
 @dataclass
 class UserSelect(SelectMenuMixin, Component, ActionRowChild, LabelChild):
-    """Represents the User Select component.
+    """Represents fields for creating a user select component.
     
     User Select allows users to select one or more users.
     """
@@ -115,7 +115,7 @@ class UserSelect(SelectMenuMixin, Component, ActionRowChild, LabelChild):
 
 @dataclass
 class RoleSelect(SelectMenuMixin, Component, ActionRowChild, LabelChild):
-    """Represents the Role Select component.
+    """Represents fields for creating a role select component.
     
     A Role Select allows users to select one or more roles
     """
@@ -125,7 +125,7 @@ class RoleSelect(SelectMenuMixin, Component, ActionRowChild, LabelChild):
 
 @dataclass
 class MentionableSelect(SelectMenuMixin, Component, ActionRowChild, LabelChild):
-    """Represents the Mentionable Select component.
+    """Represents fields for creating a mentionable select component.
     
     A Mentionable Select allows users to select one or more mentionables.
     """
@@ -135,7 +135,7 @@ class MentionableSelect(SelectMenuMixin, Component, ActionRowChild, LabelChild):
 
 @dataclass
 class ChannelSelect(SelectMenuMixin, Component, ActionRowChild, LabelChild):
-    """Represents the Channel Select component.
+    """Represents fields for creating a channel select component.
     
     A Channel Select allows users to select one or more channels.
     """

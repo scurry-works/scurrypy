@@ -56,3 +56,15 @@ class InteractionCallbackType(DiscordTypes):
 
     MODAL = 9
     """Respond to an interaction with a popup modal (not available for MODAL_SUBMIT and PING interactions)."""
+
+class InteractionContextType(DiscordTypes):
+    """Types of contexts where the interaction can be used."""
+
+    GUILD = 0
+    """Interaction can be used within servers."""
+
+    BOT_DM = 1
+    """Interaction can be used within DMs with the app's bot user."""
+    
+    PRIVATE_CHANNEL = 2
+    """Interaction can be used within Group DMs and DMs other than the app's bot user."""

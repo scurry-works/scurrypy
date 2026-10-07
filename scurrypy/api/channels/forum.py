@@ -1,44 +1,24 @@
 from dataclasses import dataclass, field
 
-from ...core.model import DataModel, datamodel
+from ...core.part import Part
 from ...core.snowflake import Snowflake
 from ...core.types import (
-    OmittableModelField, 
-    OmittableNullableModelField, 
     RequiredPartField, 
     OptionalNullablePartField
 )
 
-from ...bases.channel import GuildChannelCreate
+from ...bases import GuildChannelCreate
 
-from ...enums.channel import ChannelType, SortOrderType, ForumLayoutType
+from ...enums import ChannelType, SortOrderType, ForumLayoutType
 
-from .channel import ChannelModel
-from .default_reaction import DefaultReactionModel, DefaultReactionPart
-from .tag import TagModel, TagPart
+from ..permission_overwrite import PermissionOverwritePart
 
-@datamodel
-class GuildForumChannelModel(ChannelModel):
-    """Represents the forum channel."""
-
-    available_tags: OmittableModelField[list[TagModel]]
-    """Set of tags that can be applied to a `GUILD_FORUM` post."""
-
-    applied_tags: OmittableModelField[list[Snowflake]]
-    """Set of tags applied to a `GUILD_FORUM` post."""
-
-    default_reaction_emoji: OmittableNullableModelField[DefaultReactionModel]
-    """Emoji to show in the add reaction button in a `GUILD_FORUM` post."""
-
-    default_sort_order: OmittableNullableModelField[SortOrderType]
-    """Default forum sort order."""
-
-    default_forum_layout: OmittableModelField[ForumLayoutType]
-    """Default forum layout view. Discord defaults to `ForumLayoutTypes.NOT_SET`."""
+from .default_reaction import DefaultReactionPart
+from .tag import TagPart
 
 @dataclass
-class GuildForumChannelPart(DataModel, GuildChannelCreate):
-    """Parameters for creating a guild forum channel."""
+class GuildForumChannelPart(Part, GuildChannelCreate):
+    """Represents fields for creating a guild forum channel."""
 
     name: RequiredPartField[str] = None
     """Name of the channel."""
@@ -48,6 +28,9 @@ class GuildForumChannelPart(DataModel, GuildChannelCreate):
 
     position: OptionalNullablePartField[int] = None
     """Sorting position of the channel (channels with the same position are sorted by id)."""
+
+    permission_overwrites: OptionalNullablePartField[list[PermissionOverwritePart]] = None
+    """Explicit permission overwrites for members and roles."""
 
     rate_limit_per_user: OptionalNullablePartField[int] = None
     """Seconds user must wait between sending messages in the channel."""

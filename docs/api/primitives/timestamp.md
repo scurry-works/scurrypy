@@ -1,0 +1,4 @@
+# Timestamp
+---
+
+:::scurrypy.core.timestamp

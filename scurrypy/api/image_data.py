@@ -1,12 +1,12 @@
 from dataclasses import dataclass, field
 
-from ..core.model import DataModel
+from ..core.part import Part
 from ..core.exceptions import InvalidFile, MissingField
 from ..core.types import JSON, RequiredPartField
 
 @dataclass
-class ImageDataPart(DataModel):
-    """Represents Discord's data URI scheme for images."""
+class ImageDataPart(Part):
+    """Represents fields for creating a URI scheme for images."""
     
     path: RequiredPartField[str] = None
     """Path to image."""
@@ -35,7 +35,7 @@ class ImageDataPart(DataModel):
         return f"data:{mime};base64,{encoded}"
 
 @dataclass
-class ImageAssetPart(DataModel):
+class ImageAssetPart(Part):
     """Represents fields for creating an image asset."""
 
     filename: RequiredPartField[str] = None

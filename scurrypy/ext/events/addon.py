@@ -2,14 +2,13 @@ import logging
 
 logger = logging.getLogger('scurrypy')
 
-from scurrypy import Client, Addon
+from scurrypy import Client, Addon, JsonQuery
 from scurrypy.enums import EventType
 from scurrypy.core import DiscordError, InvalidCallbackSignature
-from scurrypy.events import Event
 
 from collections.abc import Callable, Awaitable
 
-type AddonHandler = Callable[[Client, Event], Awaitable[None]]
+type AddonHandler = Callable[[Client, JsonQuery], Awaitable[None]]
 
 type AddonDecorator = Callable[[AddonHandler], AddonHandler]
 
@@ -68,13 +67,15 @@ class EventsAddon(Addon):
         self._events.setdefault(event_name, []).append(handler)
         return None
 
-    async def dispatch(self, event: Event) -> None:
+    async def dispatch(self, event: JsonQuery) -> None:
         """Addon's entry point.
 
         Args:
             event (Event): event data object
         """
-        handlers = self._events.get(event.dispatch_name)
+        dispatch_name: str = event.get('dispatch_name').value
+
+        handlers = self._events.get(dispatch_name)
 
         if not handlers:
             return

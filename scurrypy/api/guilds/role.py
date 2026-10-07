@@ -1,75 +1,17 @@
 from dataclasses import dataclass
 
-from ...core.model import DataModel, datamodel
-from ...core.snowflake import Snowflake
+from ...core.part import Part
 from ...core.types import (
-    PresentModelField, 
-    PresentNullableModelField, 
-    OmittableModelField, 
-    OmittableNullableModelField, 
     RequiredNullablePartField, 
-    RequiredPartField,
-    ScurrypyStr, 
-    ScurrypyInt, 
-    ScurrypyBool
+    RequiredPartField
 )
 
-from ...enums.permissions import Permissions
+from ...enums import Permissions
 from ..image_data import ImageDataPart
 
-@datamodel
-class GuildRoleColorModel(DataModel):
-    """Represents role color data."""
-
-    primary_color: PresentModelField[ScurrypyInt]
-    """Primary color of the role."""
-
-    secondary_color: PresentNullableModelField[ScurrypyInt]
-    """Secondary color of the role. Creates a gradient."""
-
-    tertiary_color: PresentNullableModelField[ScurrypyInt]
-    """Tertiary color of the role. Creates a holographic style."""
-
-@datamodel
-class GuildRoleModel(DataModel):
-    """Represents a Discord role."""
-
-    id: PresentModelField[Snowflake]
-    """ID of the role."""
-
-    name: PresentModelField[ScurrypyStr]
-    """Name of the role."""
-
-    colors: PresentModelField[GuildRoleColorModel]
-    """Colors of the role."""
-
-    hoist: PresentModelField[ScurrypyBool]
-    """If the role is pinned in user listing."""
-
-    position: PresentModelField[ScurrypyInt]
-    """Position of the role."""
-
-    permissions: PresentModelField[Permissions]
-    """Permission bit set. [INT_LIMIT]"""
-
-    managed: PresentModelField[ScurrypyBool]
-    """If the role is managed by an integration."""
-
-    mentionable: PresentModelField[ScurrypyBool]
-    """If the role is mentionable."""
-
-    flags: PresentModelField[ScurrypyInt]
-    """Role flags combined as a bitfield."""
-
-    icon: OmittableModelField[ScurrypyStr]
-    """Icon hash of the role."""
-
-    unicode_emoji: OmittableNullableModelField[ScurrypyStr]
-    """Unicode emoji of the role."""
-
 @dataclass
-class GuildRoleColorsPart(DataModel):
-    """Parameters for setting role colors."""
+class GuildRoleColorsPart(Part):
+    """Represents fields for setting role colors."""
 
     primary_color: RequiredPartField[int] = None
     """Primary color of the role."""
@@ -81,8 +23,8 @@ class GuildRoleColorsPart(DataModel):
     """Tertiary color of the role. Creates a holographic style."""
 
 @dataclass
-class GuildRolePart(DataModel):
-    """Parameters for creating a role."""
+class GuildRolePart(Part):
+    """Represents fields for creating a role."""
 
     name: RequiredPartField[str] = None
     """Name of the role. Discord defaults to \"user role\"."""

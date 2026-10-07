@@ -24,7 +24,7 @@ alt="Fire-breathing squirrel"
 * Rate limit handling
 * Automatic session & gateway management
 * Automatic sharding
-* Predictable event models and resource classes
+* Predictable behavior
 
 Your focus is building what you want instead of fighting a framework.
 
@@ -40,7 +40,7 @@ pip install scurrypy
 
 ## Examples
 
-The following examples are quick drop-in starters if you wish to try ScurryPy.
+The following examples are quick drop-in starters if you'd like to try ScurryPy.
 
 > [!TIP]
 > It is recommended to use a `.env` file for bot tokens. More details about using a `.env` file [here](https://scurry-works.github.io/scurrypy/getting_started/start_here/).

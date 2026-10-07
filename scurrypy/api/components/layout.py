@@ -1,9 +1,9 @@
 from dataclasses import dataclass, field
 
-from ...core.model import DataModel
+from ...core.part import Part
 from ...core.types import RequiredPartField, OptionalPartField, OptionalNullablePartField
 
-from ...bases.components import (
+from ...bases import (
     ContainerChild, 
     SectionAccessoryChild,
     SectionChild,
@@ -11,13 +11,13 @@ from ...bases.components import (
     ContainerComponent
 )
 
-from ...enums.components import ComponentType, SeparatorType
+from ...enums import ComponentType, SeparatorType
 
 from .unfurled_media import UnfurledMediaPart
 
 @dataclass
-class ActionRow(DataModel, ContainerComponent, Component):
-    """Represents a container of interactable components."""
+class ActionRow(Part, ContainerComponent, Component):
+    """Represents fields for creating a container of interactable components."""
 
     components: RequiredPartField[list[Component]] = None
     """Up to 5 interactive button components or a single select component."""
@@ -26,8 +26,8 @@ class ActionRow(DataModel, ContainerComponent, Component):
     """Component type."""
 
 @dataclass
-class Section(DataModel, Component, ContainerChild):
-    """Represents the Section component.
+class Section(Part, Component, ContainerChild):
+    """Represents fields for creating a section component.
     
     A Section contextually associates content with an accessory component.
     """
@@ -49,8 +49,8 @@ class Section(DataModel, Component, ContainerChild):
 
 
 @dataclass
-class TextDisplay(DataModel, Component, ContainerChild, SectionChild):
-    """Represents the Text Display component.
+class TextDisplay(Part, Component, ContainerChild, SectionChild):
+    """Represents fields for creating a text display component.
     
     A Text Display adds markdown formatted text, including mentions (users, roles, etc) and emojis.
     """
@@ -62,8 +62,8 @@ class TextDisplay(DataModel, Component, ContainerChild, SectionChild):
     """Component type. Always `ComponentType.TEXT_DISPLAY` for this class."""
 
 @dataclass
-class Thumbnail(DataModel, Component, SectionAccessoryChild):
-    """Represents the Thumbnail component.
+class Thumbnail(Part, Component, SectionAccessoryChild):
+    """Represents fields for creating a thumbnail component.
     
     A Thumbnail displays visual media in a small form-factor.
     """
@@ -81,8 +81,8 @@ class Thumbnail(DataModel, Component, SectionAccessoryChild):
     """Component type. Always `ComponentType.THUMBNAIL` for this class."""
 
 @dataclass
-class MediaGalleryItem(DataModel):
-    """Represents the Media Gallery Item component."""
+class MediaGalleryItem(Part):
+    """Represents fields for creating a media gallery item component."""
 
     media: RequiredPartField[UnfurledMediaPart] = None
     """Image data. URL or attachment scheme."""
@@ -94,21 +94,21 @@ class MediaGalleryItem(DataModel):
     """Whether the thumbnail should be a spoiler (or blurred out). Discord defaults to `False`."""
 
 @dataclass
-class MediaGallery(DataModel, Component, ContainerChild):
-    """Represents the Media Gallery component.
+class MediaGallery(Part, Component, ContainerChild):
+    """Represents fields for creating a media gallery component.
     
-    A Media Gallery displays 1-10 media attachments in an organized gallery format.
+    A Media Gallery displays media attachments in an organized gallery format.
     """
 
     items: RequiredPartField[list[MediaGalleryItem]] = None
-    """1 to 10 nedia gallery items."""
+    """Media gallery items to display."""
 
     type: ComponentType = field(init=False, default=ComponentType.MEDIA_GALLERY)
     """Component type. Always `ComponentType.MEDIA_GALLERY` for this class."""
 
 @dataclass
-class File(DataModel, Component, ContainerChild):
-    """Represents the File component.
+class File(Part, Component, ContainerChild):
+    """Represents fields for creating a file component.
     
     A File displays an uploaded file as an attachment to the message and reference it in the component.
     """
@@ -123,8 +123,8 @@ class File(DataModel, Component, ContainerChild):
     """Component type. Always `ComponentType.FILE` for this class."""
 
 @dataclass
-class Separator(DataModel, Component, ContainerChild):
-    """Represents the Separator component.
+class Separator(Part, Component, ContainerChild):
+    """Represents fields for creating a separator component.
     
     A Separator adds vertical padding and visual division between other components.
     """
@@ -139,8 +139,8 @@ class Separator(DataModel, Component, ContainerChild):
     """Component type. Always `ComponentType.SEPARATOR` for this class."""
 
 @dataclass
-class Container(DataModel, ContainerComponent):
-    """Represents a container of display and interactable components.
+class Container(Part, ContainerComponent):
+    """Represents fields for creating a container of display and interactable components.
     
     A Container visually encapsulates a collection of components.
     """
@@ -161,8 +161,8 @@ class Container(DataModel, ContainerComponent):
     """Component type. Always `ComponentType.CONTAINER` for this class."""
 
 @dataclass
-class Label(DataModel, Component):
-    """Represents the Discord Label component.
+class Label(Part, Component):
+    """Represents fields for creating a Discord label component.
     
     Labels wrap modal components with text as a label and optional description.
     """

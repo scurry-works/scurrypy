@@ -19,10 +19,6 @@ Contributions should therefore focus on:
 * Typing and serialization improvements
 * Architectural consistency
 
-**Not Accepting:**
-
-See [coverage](https://scurry-works.github.io/scurrypy/coverage/) for details on what ScurryPy is currently not accepting.
-
 While ScurryPy itself may not offer these features by default, ScurryPy is capable of being extended to include these features.
 
 > [!TIP]
@@ -30,11 +26,12 @@ While ScurryPy itself may not offer these features by default, ScurryPy is capab
 
 ## Reference
 
-### API (Parts and Models)
+### API (Parts and Params)
 
 For parts:
 ```python
-from ..core.types import RequiredPartField, OptionalPartField, RequiredNullablePartField, OptionalNullablePartField
+from scurrypy.core.part import Part
+from scurrypy.core.types import RequiredPartField, OptionalPartField, RequiredNullablePartField, OptionalNullablePartField
 
 @dataclass
 class YourPart(DataModel):
@@ -53,73 +50,7 @@ class YourPart(DataModel):
     """This is an optional field and can be omitted. This field accepts None."""
 ```
 
-For models:
-```py
-from ..core.types import PresentModelField, OmittableModelField, PresentNullableModelField, OmittableNullableModelField
-from ..core.serialization import ScurrypyStr, ScurrypyInt, ScurrypyBool, ScurrypyFloat, ScurrypyPrimitive
-
-@dataclass
-class YourModel(DataModel):
-    """Your model's description."""
-
-    field_1: PresentModelField[ScurrypyType]
-    """This field will always be present."""
-
-    field_2: OmittableModelField[ScurrypyType]
-    """This field might be omitted."""
-
-    field_3: PresentNullableModelField[ScurrypyType]
-    """This field will always be present, but can also be None."""
-
-    field_4: OmittableNullableModelField[ScurrypyType]
-    """This field might be omitted, but can also be None."""
-```
-
-Model field types must ultimately be compatible with ScurrypyType. 
-Built-in primitive types include `ScurrypyStr`, `ScurrypyInt`, `ScurrypyBool`, `ScurrypyFloat`, and `ScurrypyPrimitive`.
-
-Lists are `list[ScurrypyType]`.
-
-Maps must be `dict[Snowflake, ScurrypyType]`.
-
-> [!NOTE]
-> Objects must be unique (no partial structures) with their fields replicating Discord's and be fully documented.
-> For example, Discord frequently documents "partial emojis." `EmojiModel` is the single source of truth for all emoji structures.
-
-### Resources
-
-```python
-from dataclasses import dataclass
-from .base_resource import BaseResource
-
-@dataclass
-class YourResource(BaseResource):
-    """Your resource's description."""
-
-    # fields needed to fetch this resource
-
-    # endpoints as functions
-```
-
-Then in the client class:
-
-```python
-def your_resource(self, some_id: int, etc, *, context = None):
-    """Creates an interactable resource.
-
-    Args:
-        some_id (int): ID of target resource
-
-    Returns:
-        (YourResource): the class resource
-    """
-    from .resources.me import YourResource
-
-    return YourResource(self._http, some_id, etc...)
-```
-
-### Parameters
-
+For parameters:
 ```python
 from typing import TypedDict
 
@@ -133,11 +64,43 @@ class MyParams(TypedDict, total=False):
     """This field can be type or set to None."""
 ```
 > [!NOTE]
-> If a DataModel is included, please use `scurrypy.core.serialization.serialize` before passing to `HTTPClient.request`.
+> If a Part is included, please use `scurrypy.core.part.serialize` before passing to `HTTPClient.request`.
 
 > [!NOTE]
 > By adding `total=False`, it is implied all fields are optional.
 > PLEASE be careful here. Some Params are all optional and some are all optional AND nullable!
+
+### Resources
+
+```python
+from dataclasses import dataclass
+from scurrypy.resources import BaseResource
+
+@dataclass
+class YourResource(BaseResource):
+    """Your resource's description."""
+
+    # fields needed to fetch this resource
+
+    # endpoints as functions
+```
+
+Then in the client class:
+
+```python
+from .resources.me import YourResource
+
+def your_resource(self, some_id: int, etc...):
+    """Creates an interactable resource.
+
+    Args:
+        some_id (int): ID of target resource
+
+    Returns:
+        (YourResource): the class resource
+    """
+    return YourResource(self.http, some_id, etc...)
+```
 
 ## Questions?
 Open an issue or discussion!

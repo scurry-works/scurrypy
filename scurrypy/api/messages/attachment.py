@@ -1,68 +1,15 @@
 from dataclasses import dataclass
 
-from ...core.model import DataModel, datamodel
-from ...core.snowflake import Snowflake
+from ...core.part import Part
 from ...core.exceptions import MissingField
 from ...core.types import (
     Serialized, 
-    PresentModelField, 
-    OmittableModelField, 
-    OmittableNullableModelField, 
     RequiredPartField, 
-    OptionalPartField,
-    ScurrypyStr, 
-    ScurrypyInt, 
-    ScurrypyBool
+    OptionalPartField
 )
 
-from ...enums.attachment import AttachmentFlags
-
-@datamodel
-class AttachmentModel(DataModel):
-    """Represents an attachment object."""
-
-    id: PresentModelField[Snowflake]
-    """Attachment ID.
-    
-    For new uploads, this value is assigned internally to the
-    attachment's index in the upload list.
-    """
-
-    filename: PresentModelField[ScurrypyStr]
-    """Name of the file."""
-
-    title: OmittableModelField[ScurrypyStr]
-    """Title of the file."""
-
-    description: OmittableModelField[ScurrypyStr]
-    """Description of the file."""
-
-    content_type: OmittableModelField[ScurrypyStr]
-    """Media type of the file."""
-
-    size: PresentModelField[ScurrypyInt]
-    """Size of file (in bytes)."""
-
-    url: PresentModelField[ScurrypyStr]
-    """Source URL of the file."""
-
-    proxy_url:PresentModelField [ScurrypyStr]
-    """A proxied URL of the file."""
-
-    height: OmittableNullableModelField[ScurrypyInt]
-    """Height of file (if image)."""
-
-    width: OmittableNullableModelField[ScurrypyInt]
-    """Width of file (if image)."""
-
-    ephemeral: OmittableModelField[ScurrypyBool]
-    """Whether this file is ephemeral."""
-
-    flags: OmittableModelField[AttachmentFlags]
-    """Attachment flags as a combined bitfield."""
-
 @dataclass
-class AttachmentPart(DataModel):
+class AttachmentPart(Part):
     """Represents an attachment."""
 
     path: RequiredPartField[str] = None

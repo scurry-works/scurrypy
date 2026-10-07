@@ -1,13 +1,13 @@
 from dataclasses import dataclass, field
 
-from ...core.model import DataModel
+from ...core.part import Part
 from ...core.types import RequiredPartField, OptionalPartField
 
 from ...enums.command import CommandOptionType, CommandType
 
 @dataclass
-class CommandOptionChoicePart(DataModel):
-    """Choice for a command option."""
+class CommandOptionChoicePart(Part):
+    """Represents fields for creating an option choice."""
 
     name: RequiredPartField[str] = None
     """Name of the choice."""
@@ -16,8 +16,8 @@ class CommandOptionChoicePart(DataModel):
     """Value for the user to select (same as option type)."""
 
 @dataclass
-class CommandOptionPart(DataModel):
-    """Option for a slash command."""
+class CommandOptionPart(Part):
+    """Represents fields for creating a slash command option."""
 
     type: RequiredPartField[CommandOptionType] = None
     """Type of option."""
@@ -38,8 +38,8 @@ class CommandOptionPart(DataModel):
     """Whether autocomplete interactions are enabled for this option. Discord defaults to `False`."""
 
 @dataclass
-class SubcommandPart(DataModel):
-    """Represents the subcommand."""
+class SubcommandPart(Part):
+    """Represents fields for creating a subcommand."""
 
     name: RequiredPartField[str] = None
     """Name of the subcommand."""
@@ -54,8 +54,8 @@ class SubcommandPart(DataModel):
     """Command type. Always `CommandOptionType.SUB_COMMAND` for this class."""
 
 @dataclass
-class SubcommandGroupPart(DataModel):
-    """Represents a subcommand group."""
+class SubcommandGroupPart(Part):
+    """Represents fields for creating a subcommand group."""
 
     name: RequiredPartField[str] = None
     """Name of the subcommand group."""
@@ -70,8 +70,8 @@ class SubcommandGroupPart(DataModel):
     """Command type. Always `CommandOptionType.SUB_COMMAND_GROUP` for this class."""
 
 @dataclass
-class SlashCommandFamilyPart(DataModel):
-    """Represents a slash command with subcommands."""
+class SlashCommandFamilyPart(Part):
+    """Represents fields for creating a slash command with subcommands."""
 
     name: RequiredPartField[str] = None
     """Name of the command."""
@@ -83,8 +83,8 @@ class SlashCommandFamilyPart(DataModel):
     """Subcommands or subcommand groups for the command."""
 
 @dataclass
-class SlashCommandPart(DataModel):
-    """Represents the slash command."""
+class SlashCommandPart(Part):
+    """Represents fields for creating a slash command."""
 
     name: RequiredPartField[str] = None
     """Name of the command."""

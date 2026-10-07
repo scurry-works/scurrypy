@@ -2,11 +2,9 @@ import logging
 
 logger = logging.getLogger('scurrypy')
 
-from scurrypy import Client, Addon
-from scurrypy.enums import EventType
+from scurrypy import Client, Addon, JsonQuery
+from scurrypy.enums import EventType, InteractionType
 from scurrypy.core import DiscordError, InvalidCallbackSignature, DataModelTypeError
-from scurrypy.api.interactions import MessageComponentDataModel, ModalDataModel
-from scurrypy.events import InteractionEvent
 
 from .ctx import MessageComponentContext, ComponentModalContext, ComponentContext
 
@@ -120,22 +118,24 @@ class ComponentsAddon(Addon):
                 return v
         return None
 
-    async def dispatch(self, event: InteractionEvent) -> None:
+    async def dispatch(self, event: JsonQuery) -> None:
         """Dispatch a response to an `INTERACTION_CREATE` event
 
         Raises:
             (DataModelTypeError): no component context
 
         Args:
-            event (InteractionEvent): interaction event object
+            event (JsonQuery): interaction event object
         """
         # only respond to component interactions
-        data = event.data
+        data = JsonQuery(event.get('data').value)
+        
+        interaction_type: InteractionType = event.get('type', t=InteractionType).value
 
-        if not isinstance(data, (MessageComponentDataModel, ModalDataModel)):
+        if interaction_type not in (InteractionType.MESSAGE_COMPONENT, InteractionType.MODAL_SUBMIT):
             return # ignore non-component interactions
 
-        name = data.custom_id
+        name: str = data.get('custom_id').value
         handler = self._get_handler(name)
 
         if handler is None:
@@ -143,11 +143,11 @@ class ComponentsAddon(Addon):
             return
         
         ctx: ComponentContext
-        
-        if isinstance(data, MessageComponentDataModel):
+
+        if interaction_type == InteractionType.MESSAGE_COMPONENT:
             ctx = MessageComponentContext(self.bot, event)
         
-        elif isinstance(data, ModalDataModel):
+        elif interaction_type == InteractionType.MODAL_SUBMIT:
             ctx = ComponentModalContext(self.bot, event)
 
         else:

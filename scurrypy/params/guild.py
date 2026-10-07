@@ -6,7 +6,7 @@ from ..api.guilds import WelcomeScreenChannelPart, OnboardingPromptPart, GuildRo
 from ..api.image_data import ImageDataPart
 
 class EditGuildParams(TypedDict, total=False):
-    """Represents fields for editing a guild."""
+    """Parameters for editing a guild."""
 
     name: str
     """Guild name."""
@@ -53,7 +53,7 @@ class EditGuildParams(TypedDict, total=False):
     """Channel ID for receiving safety alerts from Discord."""
 
 class EditGuildRoleParams(TypedDict, total=False):
-    """Represents fields for editing a guild role."""
+    """Parameters for editing a guild role."""
 
     name: str | None
     """Name of the role."""
@@ -77,7 +77,7 @@ class EditGuildRoleParams(TypedDict, total=False):
     """Whether the role should be mentionable."""
 
 class EditGuildWelcomeScreenParams(TypedDict, total=False):
-    """Represents fields for editing a guild welcome screen."""
+    """Parameters for editing a guild welcome screen."""
 
     enabled: bool
     """Whether the welcome scren is enabled."""
@@ -89,7 +89,7 @@ class EditGuildWelcomeScreenParams(TypedDict, total=False):
     """Guild description to show on the welcome screen."""
 
 class EditOnboardingParams(TypedDict, total=False):
-    """Represents fields for editing a guild onboarding flow."""
+    """Parameters for editing a guild onboarding flow."""
 
     prompts: list[OnboardingPromptPart]
     """Prompts shown during onboarding."""
@@ -104,7 +104,7 @@ class EditOnboardingParams(TypedDict, total=False):
     """Current mode of onboarding."""
 
 class EditGuildStickerParams(TypedDict, total=False):
-    """Represents fields for editing a guild sticker."""
+    """Parameters for editing a guild sticker."""
 
     name: str
     """Name of the sticker."""

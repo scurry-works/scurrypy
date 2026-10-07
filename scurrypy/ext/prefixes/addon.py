@@ -2,7 +2,7 @@ import logging
 
 logger = logging.getLogger('scurrypy')
 
-from scurrypy import Client, Addon, Intents
+from scurrypy import Client, Addon, JsonQuery, Intents
 
 from scurrypy.enums import EventType
 
@@ -12,8 +12,6 @@ from scurrypy.core import (
     InvalidCallbackSignature, 
     MissingIntents
 )
-
-from scurrypy.events import MessageCreateEvent
 
 from .ctx import PrefixCommandContext
 
@@ -80,25 +78,28 @@ class PrefixAddon(Addon):
         logger.info(f"Prefix command '{self._prefix + name}' registered.")
         return None
     
-    async def dispatch(self, event: MessageCreateEvent) -> None:
+    async def dispatch(self, event: JsonQuery) -> None:
         """Dispatch event to user-defined handler.
             Ignore bot responding to self and messages without the desired prefix.
 
         Args:
-            event (MessageCreateEvent): message create event object
+            event (JsonQuery): message create event object
         """
-        if not event.content:
+        content: str = event.get('content').value
+
+        if not content:
             return # ignore empty messages
-        
-        if event.author.id == self.application_id:
+
+        author_id: Snowflake = event.get('author.id', t=Snowflake).value
+        if author_id == self.application_id:
             return # ignore bot responding to itself
         
-        has_prefix = event.content.lower().startswith(self._prefix.lower())
+        has_prefix = content.lower().startswith(self._prefix.lower())
 
         if not has_prefix:
             return # ignore messages without prefix
         
-        command, *args = event.content[len(self._prefix):].strip().lower().split()
+        command, *args = content[len(self._prefix):].strip().lower().split()
         handler = self._commands.get(command)
 
         # warn if this command doesnt have a known handler

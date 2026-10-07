@@ -1,27 +1,21 @@
 from dataclasses import dataclass, field
 
-from ...core.model import DataModel
+from ...core.part import Part
 from ...core.types import RequiredPartField, OptionalPartField
 
-from ...bases.components import (
+from ...bases import (
     Component,
     ActionRowChild, 
     SectionAccessoryChild
 )
 
-from ...enums.components import (
-    ComponentType,
-    ButtonStyle
-)
+from ...enums import ComponentType, ButtonStyle
 
-from ..emoji import EmojiModel
+from ..emoji import EmojiPart
 
 @dataclass
-class Button(DataModel, Component, ActionRowChild, SectionAccessoryChild):
-    """Represents the Button component.
-    
-    A pressable button!
-    """
+class Button(Part, Component, ActionRowChild, SectionAccessoryChild):
+    """A pressable button!"""
 
     style: RequiredPartField[ButtonStyle] = None
     """A button style."""
@@ -32,7 +26,7 @@ class Button(DataModel, Component, ActionRowChild, SectionAccessoryChild):
     label: OptionalPartField[str] = None
     """Text that appears on the button."""
 
-    emoji: OptionalPartField[EmojiModel] = None
+    emoji: OptionalPartField[EmojiPart] = None
     """Emoji icon for the button."""
 
     url: OptionalPartField[str] = None

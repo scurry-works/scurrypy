@@ -1,6 +1,5 @@
-from .scurrypy_type import ScurrypyType
 
-class Component(ScurrypyType):
+class Component:
     """Marker class for all interaction components."""
     __slots__ = ()
 

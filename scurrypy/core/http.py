@@ -48,7 +48,7 @@ class Bucket:
     reset_on: float
     sleep_task: asyncio.Task[None] | None = None # if Task is set, it returns None (HTTPClient._sleep_endpoint)
 
-class HTTPClient:
+class HttpClient:
     BASE = "https://discord.com/api/v10"
     MAX_RETRIES = 3
 

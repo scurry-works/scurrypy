@@ -1,0 +1,4 @@
+# Addon
+---
+
+:::scurrypy.bases.addon

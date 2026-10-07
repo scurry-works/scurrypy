@@ -1,31 +1,33 @@
 from dataclasses import dataclass
 from typing import Unpack
 
+from ..core.json_query import JsonQuery
+from ..core.snowflake import Snowflake
+from ..core.part import serialize
+
 from .base_resource import BaseResource
 
-from ..core.snowflake import Snowflake
-from ..core.serialization import serialize
+from ..enums import InteractionContextType
 
 from ..api.commands import (
-    ApplicationCommandModel, 
     SlashCommandPart, 
     UserCommandPart, 
     MessageCommandPart,
     SlashCommandFamilyPart,
 )
 
-type AnyCommand = SlashCommandPart | UserCommandPart | MessageCommandPart | SlashCommandFamilyPart
-
 from ..params.command import EditGlobalCommandParams, EditGuildCommandParams
+
+type AnyCommand = SlashCommandPart | UserCommandPart | MessageCommandPart | SlashCommandFamilyPart
 
 @dataclass
 class GlobalCommand(BaseResource):
-    """Represents a global command."""
+    """Represents a global command resource."""
 
     application_id: Snowflake
     """Application ID of the commands."""
 
-    async def fetch(self, command_id: Snowflake) -> ApplicationCommandModel:
+    async def fetch(self, command_id: Snowflake) -> JsonQuery:
         """Fetches a command object.
 
         Args:
@@ -36,19 +38,19 @@ class GlobalCommand(BaseResource):
         """
         data = await self.http.request_json('GET', f"/applications/{self.application_id}/commands/{command_id}")
 
-        return ApplicationCommandModel.from_dict(data)
+        return JsonQuery(data)
     
-    async def fetch_all(self) -> list[ApplicationCommandModel]:
+    async def fetch_all(self) -> JsonQuery:
         """Fetches ALL global commands.
 
         Returns:
-            (list[ApplicationCommandModel]): queried list of application commands
+            (JsonQuery): queried list of application commands
         """
         data = await self.http.request_list('GET', f"applications/{self.application_id}/commands")
 
-        return [ApplicationCommandModel.from_dict(cmd) for cmd in data]
+        return JsonQuery(data)
 
-    async def create(self, command: AnyCommand) -> ApplicationCommandModel:
+    async def create(self, command: AnyCommand, contexts: list[InteractionContextType] | None = None) -> JsonQuery:
         """Add a command to the client.
 
         !!! danger
@@ -56,15 +58,27 @@ class GlobalCommand(BaseResource):
 
         Args:
             command (AnyCommand): command to register
+            contexts (list[InteractionContextType], optional): where the command can be used
 
         Returns:
-            (ApplicationCommandModel): created command
+            (JsonQuery): created command
         """
-        data = await self.http.request_json('POST', f"applications/{self.application_id}/commands", data=command.to_dict())
+        payload = command.to_dict()
 
-        return ApplicationCommandModel.from_dict(data)
+        assert isinstance(payload, dict)
+        
+        if contexts is not None:
+            payload['contexts'] = contexts
 
-    async def edit(self, command_id: Snowflake, **options: Unpack[EditGlobalCommandParams]) -> ApplicationCommandModel:
+        data = await self.http.request_json(
+            'POST', 
+            f"applications/{self.application_id}/commands", 
+            data=payload
+        )
+
+        return JsonQuery(data)
+
+    async def edit(self, command_id: Snowflake, **options: Unpack[EditGlobalCommandParams]) -> JsonQuery:
         """Edit a command.
 
         Args:
@@ -72,13 +86,15 @@ class GlobalCommand(BaseResource):
             options (EditGlobalCommandParams): command fields to edit
 
         Returns:
-            (ApplicationCommandModel): updated application command
+            (JsonQuery): updated application command
         """
-        opts = serialize(dict(options)) # nested objects in EditGlobalCommandParams
+        data = await self.http.request_json(
+            'PATCH', 
+            f"applications/{self.application_id}/commands/{command_id}", 
+            data=serialize(dict(options)) # nested objects in EditGlobalCommandParams
+        )
 
-        data = await self.http.request_json('PATCH', f"applications/{self.application_id}/commands/{command_id}", data=opts)
-
-        return ApplicationCommandModel.from_dict(data)
+        return JsonQuery(data)
 
     async def delete(self, command_id: Snowflake) -> None:
         """Delete a command.
@@ -88,7 +104,7 @@ class GlobalCommand(BaseResource):
         """
         await self.http.request('DELETE', f"applications/{self.application_id}/commands/{command_id}")
 
-    async def bulk_overwrite(self, commands: list[AnyCommand]) -> list[ApplicationCommandModel]:
+    async def bulk_overwrite(self, commands: list[AnyCommand]) -> JsonQuery:
         """Takes a list of application commands, overwriting existing commands list for this application. 
         
         !!! warning
@@ -101,16 +117,15 @@ class GlobalCommand(BaseResource):
             commands (list[AnyCommand]): commands to register
 
         Returns:
-            (list[ApplicationCommandModel]): created application commands
+            (JsonQuery): created application commands
         """
-
         data = await self.http.request_list(
             'PUT', 
             f"applications/{self.application_id}/commands", 
             data=[cmd.to_dict() for cmd in commands]
         )
 
-        return [ApplicationCommandModel.from_dict(cmd) for cmd in data]
+        return JsonQuery(data)
 
 
 @dataclass
@@ -123,30 +138,30 @@ class GuildCommand(BaseResource):
     guild_id: Snowflake
     "Guild ID of command."
 
-    async def fetch(self, command_id: Snowflake) -> ApplicationCommandModel:
+    async def fetch(self, command_id: Snowflake) -> JsonQuery:
         """Fetches the command object.
 
         Args:
             command_id (int): ID of command to fetch
 
         Returns:
-            (ApplicationCommandModel): queried application command
+            (JsonQuery): queried application command
         """
         data = await self.http.request_json('GET', f"applications/{self.application_id}/guilds/{self.guild_id}/commands/{command_id}")
 
-        return ApplicationCommandModel.from_dict(data)
+        return JsonQuery(data)
     
-    async def fetch_all(self) -> list[ApplicationCommandModel]:
+    async def fetch_all(self) -> JsonQuery:
         """Fetches ALL guild commands.
 
         Returns:
-            (list[ApplicationCommandModel]): queried list of application commands
+            (JsonQuery): queried list of application commands
         """
         data = await self.http.request_list('GET', f"applications/{self.application_id}/guilds/{self.guild_id}/commands" )
 
-        return [ApplicationCommandModel.from_dict(cmd) for cmd in data]
+        return JsonQuery(data)
 
-    async def create(self, command: AnyCommand) -> ApplicationCommandModel:
+    async def create(self, command: AnyCommand) -> JsonQuery:
         """Add a command to the client.
 
         !!! danger
@@ -156,13 +171,17 @@ class GuildCommand(BaseResource):
             command (AnyCommand): command to register
 
         Returns:
-            (ApplicationCommandModel): created command
+            (JsonQuery): created command
         """
-        data = await self.http.request_json('POST', f"applications/{self.application_id}/guilds/{self.guild_id}/commands", data=command.to_dict())
+        data = await self.http.request_json(
+            'POST', 
+            f"applications/{self.application_id}/guilds/{self.guild_id}/commands", 
+            data=command.to_dict()
+        )
 
-        return ApplicationCommandModel.from_dict(data)
+        return JsonQuery(data)
 
-    async def edit(self, command_id: Snowflake, **options: Unpack[EditGuildCommandParams]) -> ApplicationCommandModel:
+    async def edit(self, command_id: Snowflake, **options: Unpack[EditGuildCommandParams]) -> JsonQuery:
         """Edit a command.
 
         Args:
@@ -170,17 +189,15 @@ class GuildCommand(BaseResource):
             options (EditGuildCommandParams): command fields to edit
 
         Returns:
-            (ApplicationCommandModel): updated application command
+            (JsonQuery): updated application command
         """
-        opts = serialize(dict(options)) # nested objects in EditGuildCommandParams
-        
         data = await self.http.request_json(
             'PATCH', 
             f"applications/{self.application_id}/guilds/{self.guild_id}/commands/{command_id}", 
-            data=opts
+            data=serialize(dict(options)) # nested objects in EditGuildCommandParams
         )
 
-        return ApplicationCommandModel.from_dict(data)
+        return JsonQuery(data)
 
     async def delete(self, command_id: Snowflake) -> None:
         """Delete a command.
@@ -190,7 +207,7 @@ class GuildCommand(BaseResource):
         """
         await self.http.request('DELETE', f"applications/{self.application_id}/guilds/{self.guild_id}/commands/{command_id}")
 
-    async def bulk_overwrite(self, commands: list[AnyCommand]) -> list[ApplicationCommandModel]:
+    async def bulk_overwrite(self, commands: list[AnyCommand]) -> JsonQuery:
         """Takes a list of application commands, overwriting existing commands list for this guild. 
         
         !!! warning
@@ -203,7 +220,7 @@ class GuildCommand(BaseResource):
             commands (list[AnyCommand]): commands to register
 
         Returns:
-            (list[ApplicationCommandModel]): created application commands
+            (JsonQuery): created application commands
         """
         data = await self.http.request_list(
             'PUT', 
@@ -211,4 +228,4 @@ class GuildCommand(BaseResource):
             data=[cmd.to_dict() for cmd in commands]
         )
 
-        return [ApplicationCommandModel.from_dict(cmd) for cmd in data]
+        return JsonQuery(data)

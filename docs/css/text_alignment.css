@@ -1,0 +1,16 @@
+.center {
+    text-align: center;
+}
+
+.md-typeset .center :is(td,th):not([align]) {
+    text-align: initial;
+}
+
+.reading-paragraph {
+    line-height: 2.0;
+    text-indent: 2em;
+}
+
+.reading-list {
+    line-height: 2.0;
+}

@@ -1,56 +1,68 @@
-from scurrypy import Client
-from scurrypy.core import MissingField
-from scurrypy.api.user import UserModel, GuildMemberModel
+from scurrypy import Client, JsonQuery
+from scurrypy.core import Snowflake, MissingField
 from scurrypy.resources import (
     Interaction, 
     Message, 
     Channel, 
     Guild
 )
-from scurrypy.events import InteractionEvent
 
 class InteractionContext(Interaction):
     """Useful interaction event info."""
 
-    def __init__(self, bot: Client, event: InteractionEvent):
-        super().__init__(bot.http, event.id, event.token)
+    def __init__(self, bot: Client, event: JsonQuery):
+        id: Snowflake = event.get('id', t=Snowflake).value
+        token: str = event.get('token').value
+        super().__init__(bot.http, id, token)
         self.bot = bot
         self.event = event
-        self.data = event.data
+        self.data = event.get('data')
 
     @property
-    def user(self) -> UserModel | None:
+    def user(self) -> JsonQuery | None:
         """The invoking user."""
-        if not self.event.member:
+        user = self.event.get('member.user').value
+        if user is None:
             return None
-        return self.event.member.user
+        return JsonQuery(user)
 
     @property
-    def member(self) -> GuildMemberModel | None:
+    def member(self) -> JsonQuery | None:
         """The invoking user's member."""
-        return self.event.member
+        member = self.event.get('member').value
+        if member is None:
+            return None
+        return JsonQuery(member)
     
     @property
     def channel(self) -> Channel | None:
         """Channel resource of the interaction."""
-        if not self.event.channel_id:
+        channel_id = self.event.get('channel_id', t=Snowflake).value
+        if channel_id is None:
             raise MissingField("This event has no associated channel ID.")
-        return self.bot.channel(self.event.channel_id)
+        return self.bot.channel(channel_id)
     
     @property
     def guild(self) -> Guild:
         """Guild resource of the interaction."""
-        if not self.event.guild_id:
+        guild_id = self.event.get('guild_id', t=Snowflake).value
+        if not guild_id:
             raise MissingField("This event has no associated guild ID.")
         
-        return self.bot.guild(self.event.guild_id)
+        return self.bot.guild(guild_id)
 
     @property
     def message(self) -> Message:
         """Message resource of the interaction."""
-        if not self.event.message:
+        msg = self.event.get('message').value
+        if msg is None:
             raise MissingField("This event has no associated message.")
-        if not self.event.channel_id:
+
+        msg_id: Snowflake = JsonQuery(msg).get('id', t=Snowflake).value
+
+        channel_id: Snowflake = self.event.get('channel_id', t=Snowflake).value
+
+        if not channel_id:
             raise MissingField("This event has no associated channel ID.")
 
-        return self.bot.message(self.event.channel_id, self.event.message.id)
+        return self.bot.message(channel_id, msg_id)

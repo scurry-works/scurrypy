@@ -1,18 +1,17 @@
 from dataclasses import dataclass
 from typing import Unpack
 
-from .base_resource import BaseResource
-
+from ..core.json_query import JsonQuery
 from ..core.snowflake import Snowflake
-from ..core.serialization import serialize
+from ..core.part import serialize
 from ..core.types import JSON
 
-from ..enums.message import MessageFlags
-from ..enums.emoji import ReactionType
+from .base_resource import BaseResource
 
-from ..api.messages import MessageModel, AttachmentPart
-from ..api.emoji import EmojiModel
-from ..api.user import UserModel
+from ..enums import MessageFlags, ReactionType
+
+from ..api.messages import AttachmentPart
+from ..api import EmojiPart
 
 from ..params.message import EditMessageParams
 
@@ -72,7 +71,7 @@ class _EditMessageMixin:
 
 @dataclass
 class Message(BaseResource, _EditMessageMixin):
-    """A Discord message."""
+    """Represents a Discord message resource."""
 
     id: Snowflake
     """ID of the message"""
@@ -80,27 +79,28 @@ class Message(BaseResource, _EditMessageMixin):
     channel_id: Snowflake
     """Channel ID of the message."""
 
-    async def fetch(self) -> MessageModel:
+    async def fetch(self) -> JsonQuery:
         """Fetches the message data based on the given channel ID and message ID.
 
         !!! important "Permissions"
             Requires `VIEW_CHANNEL` and `READ_MESSAGE_HISTORY`
 
         Returns:
-            (MessageModel): queried message
+            (JsonQuery): queried message
         """
         data = await self.http.request_json('GET', f"/channels/{self.channel_id}/messages/{self.id}")
 
-        return MessageModel.from_dict(data)
+        return JsonQuery(data)
     
     async def edit(
         self,
         *,
         suppress_embeds: bool | None = None,
         **options: Unpack[EditMessageParams]
-    ) -> MessageModel:
+    ) -> JsonQuery:
         """Edits this message.
-        Fires [`MessageUpdateEvent`][scurrypy.events.message_events.MessageUpdateEvent].
+
+        Fires [**Message Update Event**](https://docs.discord.com/developers/events/gateway-events#message-update).
 
         !!! important "Permissions"
             Requires `MANAGE_MESSAGES` *only* if editing another user's message or to edit flags
@@ -110,9 +110,8 @@ class Message(BaseResource, _EditMessageMixin):
             suppress_embeds (optional, bool): whether the response's embeds should be removed
 
         Returns:
-            (MessageModel): updated message
+            (JsonQuery): updated message
         """
-        
         files = self._prepare_attachments(dict(options))
         opts = serialize(dict(options)) # nested objects in EditMessageParams
         self._apply_suppress_embeds(opts, suppress_embeds)
@@ -124,11 +123,12 @@ class Message(BaseResource, _EditMessageMixin):
             files=files,
         )
 
-        return MessageModel.from_dict(data)
+        return JsonQuery(data)
 
-    async def crosspost(self) -> MessageModel:
+    async def crosspost(self) -> JsonQuery:
         """Crosspost this message in an Annoucement channel to all following channels.
-        Fires [`MessageUpdateEvent`][scurrypy.events.message_events.MessageUpdateEvent].
+
+        Fires [**Message Update Event**](https://docs.discord.com/developers/events/gateway-events#message-update).
 
         !!! important "Permissions"
             Requires `SEND_MESSAGES` to publish your own messages
@@ -136,15 +136,16 @@ class Message(BaseResource, _EditMessageMixin):
             Requires `MANAGE_MESSAGES` to publish messages from others
 
         Returns:
-            (MessageModel): published (crossposted) message
+            (JsonQuery): published (crossposted) message
         """
         data = await self.http.request_json('POST', f'/channels/{self.channel_id}/messages/{self.id}/crosspost')
 
-        return MessageModel.from_dict(data)
+        return JsonQuery(data)
 
     async def delete(self) -> None:
         """Deletes this message.
-        Fires [`MessageDeleteEvent`][scurrypy.events.message_events.MessageDeleteEvent].
+
+        Fires [**Message Delete**](https://docs.discord.com/developers/events/gateway-events#message-delete).
 
         !!! important "Permissions"
             Requires `MANAGE_MESSAGES`
@@ -153,7 +154,8 @@ class Message(BaseResource, _EditMessageMixin):
 
     async def pin(self) -> None:
         """Pin this message to its channel's pins.
-        Fires [`ChannelPinsUpdateEvent`][scurrypy.events.channel_events.ChannelPinsUpdateEvent].
+
+        Fires [**Channel Pins Update**](https://docs.discord.com/developers/events/gateway-events#channel-pins-update).
 
         !!! important "Permissions"
             Requires `PIN_MESSAGES`
@@ -162,7 +164,8 @@ class Message(BaseResource, _EditMessageMixin):
     
     async def unpin(self) -> None:
         """Unpin this message from its channel's pins.
-        Fires [`ChannelPinsUpdateEvent`][scurrypy.events.channel_events.ChannelPinsUpdateEvent].
+
+        Fires [**Channel Pins Update**](https://docs.discord.com/developers/events/gateway-events#channel-pins-update).
 
         !!! important "Permissions"
             Requires `PIN_MESSAGES`
@@ -170,41 +173,41 @@ class Message(BaseResource, _EditMessageMixin):
         await self.http.request('DELETE', f'/channels/{self.channel_id}/messages/pins/{self.id}')
 
     async def fetch_emoji_reactions(self, 
-        emoji: EmojiModel | str, 
+        emoji: EmojiPart | str, 
         type: ReactionType = ReactionType.NORMAL, 
         after: int | None = None, 
         limit: int = 25
-    ) -> list[UserModel]:
+    ) -> JsonQuery:
         """Fetches users who reacted with the specified emoji parameters.
 
         Args:
-            emoji (EmojiModel | str): the standard emoji (str) or custom emoji (EmojiModel)
+            emoji (EmojiPart | str): the standard emoji (str) or custom emoji (EmojiPart)
             type (ReactionType, optional): Type of emoji. Defaults to `ReactionType.NORMAL`.
             after (int, optional): users after this ID
             limit (int, optional): Max number of users to return. Defaults to `25`.
 
         Returns:
-            list[UserModel]: list of users who reacted with this emoji
+            (JsonQuery): list of users who reacted with this emoji
         """
         if isinstance(emoji, str):
-            emoji = EmojiModel.from_name(emoji)
-
-        params={
-            'type': type,
-            'after': after,
-            'limit': limit
-        }
+            emoji = EmojiPart(name=emoji)
 
         data = await self.http.request_list(
             'GET',
             f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}",
-            params=params
+            params={
+                'type': type,
+                'after': after,
+                'limit': limit
+            }
         )
-        return [UserModel.from_dict(user) for user in data]
+        
+        return JsonQuery(data)
 
-    async def add_reaction(self, emoji: EmojiModel | str) -> None:
+    async def add_reaction(self, emoji: EmojiPart | str) -> None:
         """Add a reaction to this message.
-        Fires [`MessageReactionAddEvent`][scurrypy.events.reaction_events.ReactionAddEvent].
+
+        Fires [**Message Reaction Add**](https://docs.discord.com/developers/events/gateway-events#message-reaction-add).
 
         !!! important "Permissions"
             Requires `READ_MESSAGE_HISTORY`.
@@ -212,70 +215,64 @@ class Message(BaseResource, _EditMessageMixin):
             Requires `ADD_REACTIONS` of no reactions with this emoji are present.
 
         Args:
-            emoji (EmojiModel | str): the standard emoji (str) or custom emoji (EmojiModel)
+            emoji (EmojiPart | str): the standard emoji (str) or custom emoji (EmojiPart)
         """
         if isinstance(emoji, str):
-            emoji = EmojiModel.from_name(emoji)
+            emoji = EmojiPart(emoji)
 
-        await self.http.request_json(
-            "PUT",
-            f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}/@me")
+        await self.http.request_json("PUT", f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}/@me")
 
-    async def remove_reaction(self, emoji: EmojiModel | str) -> None:
+    async def remove_reaction(self, emoji: EmojiPart | str) -> None:
         """Remove the bot's reaction from this message.
-        Fires [`MessageReactionRemoveEvent`][scurrypy.events.reaction_events.ReactionRemoveEvent].
+
+        Fires [**Message Reaction Remove**](https://docs.discord.com/developers/events/gateway-events#message-reaction-remove).
 
         Args:
-            emoji (EmojiModel | str): the standard emoji (str) or custom emoji (EmojiModel)
+            emoji (EmojiPart | str): the standard emoji (str) or custom emoji (EmojiPart)
         """
         if isinstance(emoji, str):
-            emoji = EmojiModel.from_name(emoji)
+            emoji = EmojiPart(emoji)
 
-        await self.http.request(
-            "DELETE",
-            f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}/@me")
+        await self.http.request("DELETE", f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}/@me")
 
-    async def remove_user_reaction(self, emoji: EmojiModel | str, user_id: Snowflake) -> None:
+    async def remove_user_reaction(self, emoji: EmojiPart | str, user_id: Snowflake) -> None:
         """Remove a specific user's reaction from this message.
-        Fires [`MessageReactionRemoveEvent`][scurrypy.events.reaction_events.ReactionRemoveEvent].
+
+        Fires [**Message Reaction Remove**](https://docs.discord.com/developers/events/gateway-events#message-reaction-remove).
 
         !!! important "Permissions"
             Requires `MANAGE_MESSAGES`
 
         Args:
-            emoji (EmojiModel | str): the standard emoji (str) or custom emoji (EmojiModel)
+            emoji (EmojiPart | str): the standard emoji (str) or custom emoji (EmojiPart)
             user_id (Snowflake): user's ID
         """
         if isinstance(emoji, str):
-            emoji = EmojiModel.from_name(emoji)
+            emoji = EmojiPart(emoji)
 
-        await self.http.request(
-            "DELETE",
-            f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}/{user_id}")
+        await self.http.request("DELETE", f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}/{user_id}")
 
-    async def remove_emoji_reaction(self, emoji: EmojiModel | str) -> None:
+    async def remove_emoji_reaction(self, emoji: EmojiPart | str) -> None:
         """Clear all reactions for a given emoji from this message.
+        Fires [**Message Reaction Remove Emoji**](https://docs.discord.com/developers/events/gateway-events#message-reaction-remove-emoji).
 
         !!! important "Permissions"
             Requires `MANAGE_MESSAGES`
 
         Args:
-            emoji (EmojiModel | str): the standard emoji (str) or custom emoji (EmojiModel)
+            emoji (EmojiPart | str): the standard emoji (str) or custom emoji (EmojiPart)
         """
         if isinstance(emoji, str):
-            emoji = EmojiModel.from_name(emoji)
+            emoji = EmojiPart(emoji)
 
-        await self.http.request(
-            "DELETE",
-            f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}")
+        await self.http.request("DELETE", f"/channels/{self.channel_id}/messages/{self.id}/reactions/{emoji.api_code}")
 
     async def remove_all_reactions(self) -> None:
         """Clear all reactions from this message.
-        Fires [`MessageReactionRemoveAllEvent`][scurrypy.events.reaction_events.ReactionRemoveAllEvent].
+
+        Fires [**Message Reaction Remove All**](https://docs.discord.com/developers/events/gateway-events#message-reaction-remove-all).
 
         !!! important "Permissions"
             Requires `MANAGE_MESSAGES`
         """
-        await self.http.request(
-            "DELETE",
-            f"/channels/{self.channel_id}/messages/{self.id}/reactions")
+        await self.http.request("DELETE", f"/channels/{self.channel_id}/messages/{self.id}/reactions")

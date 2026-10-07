@@ -2,40 +2,40 @@ import asyncio
 import inspect
 
 from .intents import Intents
-from .core.http import HTTPClient
+from .core.http import HttpClient
 from .core.gateway import GatewayClient
 from .core.error import DiscordError
 from .core.snowflake import Snowflake
-from .core.exceptions import MissingIntents, InvalidCallbackSignature, EventNotFound
-from .core.events import EVENTS
+from .core.exceptions import MissingIntents, InvalidCallbackSignature
+from .core.json_query import JsonQuery
 
 from .enums.events import EventType
 
-from .events.base_event import Event
-from .events.gateway_events import GatewayEvent
-
 from .resources.application import Application
+from .resources.audit_log import AuditLog
+from .resources.automod import AutoModeration
 from .resources.emoji import ApplicationEmoji, GuildEmoji
 from .resources.channel import Channel
 from .resources.command import GlobalCommand, GuildCommand
+from .resources.guild_scheduled_event import GuildScheduledEvent
+from .resources.guild_template import GuildTemplate
 from .resources.guild import Guild
 from .resources.interaction import Interaction
 from .resources.invite import Invite
 from .resources.message import Message
+from .resources.poll import Poll
 from .resources.sticker import Sticker
 from .resources.user import User
+from .resources.webhook import Webhook
 
 import logging
 
 logger = logging.getLogger("scurrypy.client")
 logger.addHandler(logging.NullHandler())
 
-from typing import Any
 from collections.abc import Callable, Awaitable
 
-# The event parameter is intentionally Any: the concrete event instance
-# is determined by EventType at dispatch time, not by the handler annotation.
-type CoreHandler = Callable[[Any], Awaitable[None]]
+type CoreHandler = Callable[[JsonQuery], Awaitable[None]]
 type HookHandler = Callable[[], Awaitable[None] | None]
 
 class Client:
@@ -49,7 +49,7 @@ class Client:
     intents: Intents
     """Bot intents for listening to events."""
 
-    http: HTTPClient
+    http: HttpClient
     """Public HTTP session for requests."""
 
     shards: list[GatewayClient]
@@ -84,7 +84,7 @@ class Client:
         self.intents = intents
         self.shard_count = shard_count
         
-        self.http: HTTPClient = HTTPClient()
+        self.http: HttpClient = HttpClient()
 
         self.shards: list[GatewayClient] = []
 
@@ -105,30 +105,10 @@ class Client:
         sig = inspect.signature(handler)
         params = list(sig.parameters.values())
 
-        event_type = EVENTS.get(event)
-
-        if not event_type:
-            raise EventNotFound(f"{event} has no event data model")
-
         if len(params) != 1:
-            raise InvalidCallbackSignature(f"{handler.__name__} must accept exactly 1 parameter (event: {event_type.__name__})")
+            raise InvalidCallbackSignature(f"{handler.__name__} must accept exactly 1 parameter (event: JsonQuery)")
 
         self.events.setdefault(event, []).append(handler)
-
-    def add_event(self, event: EventType | str, event_data: type[Event]) -> None:
-        """Add/change the event structure filled to the corresponding event type.
-
-        Args:
-            event (EventType | str): dispatch name
-            event_data (type[Event]): event data structure to pair with the dispatch name
-        """
-        old_event = EVENTS.get(event)
-        
-        if old_event is not None:
-            logger.warning(f"{event_data.__name__} will replace {old_event.__name__} when {event} is dispatched")
-
-        EVENTS[event] = event_data
-        logger.info(f"Added listener {event_data.__name__} -> {event}")
 
     def _check_hook_signature(self, handler: HookHandler) -> None:
         """Helper function for checking hook signatures.
@@ -174,9 +154,6 @@ class Client:
     def application(self, application_id: Snowflake) -> Application:
         """Creates an interactable application resource.
 
-        Raises:
-            (InvalidCallbackSignature): invalid signature
-
         Args:
             application_id (Snowflake): ID of target application
 
@@ -184,6 +161,14 @@ class Client:
             (Application): the Application resource
         """
         return Application(self.http, application_id)
+
+    def audit_log(self) -> AuditLog:
+        """Creates an interactable application resource.
+
+        Returns:
+            (AuditLog): the AuditLog resource
+        """
+        return AuditLog(self.http)
     
     def application_emoji(self, application_id: Snowflake) -> ApplicationEmoji:
         """Creates an interactable application emoji resource.
@@ -195,6 +180,17 @@ class Client:
             (ApplicationEmoji): the ApplicationEmoji resource
         """
         return ApplicationEmoji(self.http, application_id)
+
+    def auto_moderation(self, guild_id: Snowflake) -> AutoModeration:
+        """Creates an interactable application auto moderation resource.
+
+        Args:
+            guild_id (Snowflake): guild ID of target automod rules
+
+        Returns:
+            (AutoModeration): the AutoModeration resource
+        """
+        return AutoModeration(self.http, guild_id)
 
     def channel(self, channel_id: Snowflake) -> Channel:
         """Creates an interactable channel resource.
@@ -223,7 +219,7 @@ class Client:
 
         Args:
             application_id (Snowflake): bot's user ID
-            guild_id (Snowflake, optional): ID of guild if command is in guild scope
+            guild_id (Snowflake): ID of guild in which the command belongs
 
         Returns:
             (GuildCommand): the GuildCommand resource
@@ -231,7 +227,7 @@ class Client:
         return GuildCommand(self.http, application_id, guild_id)
 
     def guild_emoji(self, guild_id: Snowflake) -> GuildEmoji:
-        """Creates an interactable emoji resource.
+        """Creates an interactable guild emoji resource.
 
         Args:
             guild_id (Snowflake): guild ID of target emojis
@@ -240,6 +236,25 @@ class Client:
             (GuildEmoji): the GuildEmoji resource
         """
         return GuildEmoji(self.http, guild_id)
+
+    def guild_scheduled_event(self, guild_id: Snowflake) -> GuildScheduledEvent:
+        """Creates an interactable guild scheduled event resource.
+
+        Args:
+            guild_id (Snowflake): ID of target guild
+
+        Returns:
+            (GuildScheduledEvent): the GuildScheduledEvent resource
+        """
+        return GuildScheduledEvent(self.http, guild_id)
+
+    def guild_template(self) -> GuildTemplate:
+        """Creates an interactable guild template resource.
+
+        Returns:
+            (GuildTemplate): the GuildTemplate resource
+        """
+        return GuildTemplate(self.http)
 
     def guild(self, guild_id: Snowflake) -> Guild:
         """Creates an interactable guild resource.
@@ -269,6 +284,9 @@ class Client:
 
         Args:
             code (str): unique invite code
+
+        Returns:
+            (Invite): the Invite resource
         """
         return Invite(self.http, code)
 
@@ -276,13 +294,25 @@ class Client:
         """Creates an interactable message resource.
 
         Args:
-            message_id (Snowflake): ID of target message
             channel_id (Snowflake): channel ID of target message
+            message_id (Snowflake): ID of target message
 
         Returns:
             (Message): the Message resource
         """
         return Message(self.http, message_id, channel_id)
+
+    def poll(self, channel_id: Snowflake, message_id: Snowflake) -> Poll:
+        """Creates an interactable poll resource
+
+        Args:
+            channel_id (Snowflake): ID of target message
+            message_id (Snowflake): channel ID of target message
+
+        Returns:
+            (Poll): the Poll resource
+        """
+        return Poll(self.http, channel_id, message_id)
 
     def sticker(self) -> Sticker:
         """Creates an interactable sticker resource
@@ -299,6 +329,14 @@ class Client:
             (User): the User resource
         """
         return User(self.http)
+
+    def webhook(self) -> Webhook:
+        """Creates an interactable webhook resource.
+
+        Returns:
+            (Webhook): the Webhook resource
+        """
+        return Webhook(self.http)
 
     def get_shard_from_guild_id(self, guild_id: Snowflake) -> GatewayClient:
         """Fetch the shard in which the guild belongs.
@@ -337,18 +375,11 @@ class Client:
                 if dispatch_type in self.events.keys():
                     logger.info(f"SHARD ID {shard.shard_id} DISPATCH -> {dispatch_type}")
 
-                event_model = EVENTS.get(dispatch_type)
-                if not event_model:
-                    logger.warning(f"Event {dispatch_type} is not implemented")
-                    continue
-
-                obj = event_model.from_dict(event_data)
-                obj.raw = event_data
-
                 handlers = self.events.get(dispatch_type, [])
                 for handler in handlers:
                     try:
-                        await handler(obj)
+                        event_data['dispatch_name'] = dispatch_type
+                        await handler(JsonQuery(event_data))
                     except DiscordError as e:
                         logger.error(e)
                         continue
@@ -358,20 +389,20 @@ class Client:
                 logger.exception(f"SHARD ID {shard.shard_id}: Dispatcher error")
                 continue
 
-    async def start_shards(self, gateway: GatewayEvent) -> list[asyncio.Task[None]]:
+    async def start_shards(self, gateway: JsonQuery) -> list[asyncio.Task[None]]:
         """Starts all shards batching by max_concurrency.
 
         Args:
-            gateway (GatewayEvent): gatewway info event data
+            gateway (JsonQuery): gatewway info event data
 
         Returns:
             list[asyncio.Task]: list of gateway connection tasks
         """
 
         # pull important values for easier access
-        total_shards = self.shard_count or gateway.shards
+        total_shards: int = self.shard_count or gateway.get('shards', t=int).value
         self.shard_count = total_shards
-        batch_size = gateway.session_start_limit.max_concurrency
+        batch_size: int = gateway.get('session_start_limit.max_concurrency', t=int).value
 
         tasks = []
         
@@ -398,16 +429,15 @@ class Client:
         try:
             await self.http.start(self.token)
 
-            data = await self.http.request_json('GET', '/gateway/bot')
+            gateway = await self.http.request_json('GET', '/gateway/bot')
 
-            if not data:
+            if not gateway:
                 return
 
-            gateway = GatewayEvent.from_dict(data)
+            # run startup hooks while shards are starting
+            asyncio.create_task(self.run_startup_hooks())
 
-            await self.run_startup_hooks()
-
-            tasks = await self.start_shards(gateway)
+            tasks = await self.start_shards(JsonQuery(gateway))
 
             await asyncio.gather(*tasks)
             

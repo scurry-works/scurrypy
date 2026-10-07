@@ -3,32 +3,30 @@ from typing import Unpack
 
 from .base_resource import BaseResource
 
+from ..core.json_query import JsonQuery
 from ..core.snowflake import Snowflake
-from ..core.serialization import serialize
+from ..core.part import serialize
 
-from ..api.channels import ChannelModel
-from ..api.user import UserModel, GuildMemberModel
-
-from ..params.user import EditUserParams
+from ..params import EditUserParams
 
 @dataclass
 class User(BaseResource):
-    """A Discord user."""
+    """Represents a Discord user resource."""
 
-    async def fetch(self, user_id: Snowflake) -> UserModel:
+    async def fetch(self, user_id: Snowflake) -> JsonQuery:
         """Fetch this user by ID.
 
         Args:
             user_id (Snowflake): ID of user to fetch
 
         Returns:
-            (UserModel): queried user
+            (JsonQuery): queried user
         """
         data = await self.http.request_json('GET', f'/users/{user_id}')
 
-        return UserModel.from_dict(data)
+        return JsonQuery(data)
 
-    async def fetch_guild_member(self, guild_id: Snowflake, user_id: Snowflake) -> GuildMemberModel:
+    async def fetch_guild_member(self, guild_id: Snowflake, user_id: Snowflake) -> JsonQuery:
         """Fetch this user's guild member data.
 
         Args:
@@ -36,51 +34,55 @@ class User(BaseResource):
             user_id (Snowflake): ID of user to fetch
 
         Returns:
-            (GuildMemberModel): queried guild member for the user
+            (JsonQuery): queried guild member for the user
         """
         data = await self.http.request_json('GET', f'/guilds/{guild_id}/members/{user_id}')
 
-        return GuildMemberModel.from_dict(data)
+        return JsonQuery(data)
 
-    async def modify_current_user(self, **options: Unpack[EditUserParams]) -> UserModel:
+    async def modify_current_user(self, **options: Unpack[EditUserParams]) -> JsonQuery:
         """Modify the bot's account settings.
-        Fires [`UserUpdateEvent`][scurrypy.events.user_events.UserUpdateEvent].
+        Fires [**User Update**](https://docs.discord.com/developers/events/gateway-events#user-update).
 
         Args:
             options (EditUserParams): fields to edit
 
         Returns:
-            (UserModel): edited user
+            (JsonQuery): edited user
         """
-        opts = serialize(dict(options)) # nested objects in EditUserParams
+        data = await self.http.request_json(
+            'PATCH', 
+            '/users/@me', 
+            data=serialize(dict(options)) # nested objects in EditUserParams
+        )
 
-        data = await self.http.request_json('PATCH', '/users/@me', data=opts)
-
-        return UserModel.from_dict(data)
+        return JsonQuery(data)
 
     async def leave_guild(self, guild_id: Snowflake) -> None:
         """Make the bot leave a guild.
-        Fires [`GuildDeleteEvent`][scurrypy.events.guild_events.GuildDeleteEvent]
-        and [`GuildMemberRemoveEvent`][scurrypy.events.user_events.GuildMemberRemoveEvent].
+        Fires [**Guild Delete**](https://docs.discord.com/developers/events/gateway-events#guild-delete)
+        and [**Guild Member Remove**](https://docs.discord.com/developers/events/gateway-events#guild-member-remove).
 
         Args:
             guild_id (Snowflake): ID of the guild to leave
         """
         await self.http.request('DELETE', f'/users/@me/guilds/{guild_id}')
 
-    async def create_dm(self, user_id: Snowflake) -> ChannelModel:
+    async def create_dm(self, user_id: Snowflake) -> JsonQuery:
         """Create a DM between the bot and this user.
 
         Args:
             user_id (Snowflake): ID of user to create DM with
         
         Returns:
-            (ChannelModel): created or existing DM channel
+            (JsonQuery): created or existing DM channel
         """
         data = await self.http.request_json(
             'POST', 
             '/users/@me/channels', 
-            data={'recipient_id': user_id}
+            data={
+                'recipient_id': user_id
+            }
         )
 
-        return ChannelModel.from_dict(data)
+        return JsonQuery(data)

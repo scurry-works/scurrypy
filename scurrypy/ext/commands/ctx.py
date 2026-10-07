@@ -1,14 +1,8 @@
 from typing import cast
 
+from scurrypy import JsonQuery
 from scurrypy.enums import CommandOptionType
 from scurrypy.core.exceptions import OptionNotFound
-from scurrypy.api.interactions import (
-    ApplicationCommandDataModel, 
-    ApplicationCommandOptionDataModel,
-    AutocompleteApplicationCommandDataModel, 
-    ApplicationSubcommandGroupDataModel,
-    ApplicationSubcommandDataModel
-)
 
 from ..interactions.ctx import InteractionContext
 
@@ -18,34 +12,37 @@ class CommandContext(InteractionContext):
 type CommandOptionValue = int | float | bool | str
 """Possible types in which a command option value can be converted."""
 
-def convert_option_value(option: ApplicationCommandOptionDataModel) -> CommandOptionValue:
+def convert_option_value(option: JsonQuery) -> CommandOptionValue:
     """Converts the option's value based on the option's type.
 
     Args:
-        option (ApplicationCommandOptionDataModel): command option
+        option (JsonQuery): command option
 
     Returns:
         (CommandOptionValue): converted command option value
     """
-    if option.type in [
+    opt_type: CommandOptionType = option.get('type', t=CommandOptionType).value
+    opt_value: str = option.get('value').value
+
+    if opt_type in [
         CommandOptionType.INTEGER,
         CommandOptionType.USER,
         CommandOptionType.CHANNEL,
         CommandOptionType.ROLE,
         CommandOptionType.ATTACHMENT
     ]:
-        return int(option.value)
+        return int(opt_value)
     
-    if option.type == CommandOptionType.NUMBER:
-        return float(option.value)
+    if opt_type == CommandOptionType.NUMBER:
+        return float(opt_value)
     
-    if option.type == CommandOptionType.BOOLEAN:
-        return option.value.lower() == 'true'
+    if opt_type == CommandOptionType.BOOLEAN:
+        return opt_value.lower() == 'true'
     
-    return option.value
+    return opt_value
 
 class ApplicationCommandContext(CommandContext):
-    data: ApplicationCommandDataModel
+    event: JsonQuery
 
     def get_option(self, option_name: str) -> CommandOptionValue | None:
         """Get a command option input value by name converted to its appropriate type.
@@ -60,36 +57,37 @@ class ApplicationCommandContext(CommandContext):
             (CommandOptionValue | None): converted command input value or None
                 if no command options are present
         """
-        options = self.data.options
+        options = self.event.get('data.options').value
 
-        if not options:
+        if options is None:
             return None
 
-        selected = options[0]
+        selected = JsonQuery(options[0])
+        selected_type: CommandOptionType = selected.get('type', t=CommandOptionType).value
 
-        if isinstance(selected, ApplicationSubcommandGroupDataModel):
-            command_options = selected.options[0].options
+        if selected_type == CommandOptionType.SUB_COMMAND_GROUP:
+            command_options = selected.get('options.0.options').value
 
-        elif isinstance(selected, ApplicationSubcommandDataModel):
-            command_options = selected.options
+        elif selected_type == CommandOptionType.SUB_COMMAND:
+            command_options = selected.get('options').value
 
         else:
-            command_options = cast( # guaranteed to be a list of ApplicationCommandOptionDataModel
-                list[ApplicationCommandOptionDataModel],
-                options
-            )
+            command_options = options
 
         if not command_options:
             return None
 
         for option in command_options:
-            if option.name == option_name:
+            opt = JsonQuery(option)
+            name: str = opt.get('name').value
+
+            if name == option_name:
                 return convert_option_value(option)
 
         raise OptionNotFound(f"Option name '{option_name}' not found")
 
 class AutocompleteApplicationCommandContext(CommandContext):
-    data: AutocompleteApplicationCommandDataModel
+    event: JsonQuery
 
     def get_focused_value(self) -> str | None:
         """Get the next focused value in options.
@@ -97,10 +95,17 @@ class AutocompleteApplicationCommandContext(CommandContext):
         Returns:
             (str | None): next focused value or None if no values are focused or no options are present
         """
-        options = self.data.options
-        if not options:
+        options = self.event.get('data.options').value
+
+        if options is None:
             return None
 
-        opt = next((o for o in options if o.focused), None)
+        next_focused = next(
+            (
+                o 
+                for o in options 
+                if JsonQuery(o).get('focused', t=bool).value is True
+            ), 
+            None)
 
-        return opt.value if opt else None
+        return JsonQuery(next_focused).get('value').value if next_focused is not None else None

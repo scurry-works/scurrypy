@@ -3,103 +3,27 @@ from typing import Self
 
 from ...bases.components import ContainerComponent
 
-from ...core.model import DataModel, datamodel
+from ...core.part import Part
 from ...core.snowflake import Snowflake
-from ...core.timestamp import Timestamp
 from ...core.types import (
     Serialized, 
-    PresentModelField, 
-    OmittableModelField, 
-    OptionalPartField,
-    ScurrypyStr, 
-    ScurrypyBool
+    OptionalPartField
 )
 
-from ...enums.message import MessageType, MessageFlags, MessageReferenceType
+from ...enums import (
+    MessageFlags, 
+    MessageReferenceType
+)
 
-from ..components.layout import Container
-from ..messages.attachment import AttachmentModel, AttachmentPart
-from ..messages.embed import EmbedModel, EmbedPart
-from ..messages.reaction import ReactionModel
-from ..channels.channel import ChannelModel
-from ..guilds.role import GuildRoleModel
+from ..components import Container
+from ..poll import PollPart
 
-from ..user import UserModel
-
-@datamodel
-class MessageModel(DataModel):
-    """Represents a Discord message."""
-
-    id: PresentModelField[Snowflake]
-    """ID of the message."""
-
-    channel_id: PresentModelField[Snowflake]
-    """Channel ID of the message."""
-
-    author: PresentModelField[UserModel]
-    """User data of author of the message."""
-    
-    content: PresentModelField[ScurrypyStr]
-    """Content of the message."""
-
-    timestamp: PresentModelField[ScurrypyStr]
-    """Timestamp of when the message was sent."""
-
-    edited_timestamp: PresentModelField[ScurrypyStr]
-    """Timestamp of when the message was last edited."""
-
-    mention_everyone: PresentModelField[ScurrypyBool]
-    """Whether the message mentions everyone."""
-
-    mentions: PresentModelField[list[UserModel]]
-    """List of mentioned users in the message."""
-
-    mention_roles: PresentModelField[list[GuildRoleModel]]
-    """List of mentioned roles in the message."""
-
-    mention_channels: OmittableModelField[list[ChannelModel]]
-    """List of mentioned channels in the message"""
-
-    attachments: PresentModelField[list[AttachmentModel]]
-    """Attached files."""
-
-    webhook_id: OmittableModelField[Snowflake]
-    """ID of the webhook if the message is a webhook."""
-
-    embeds: PresentModelField[list[EmbedModel]]
-    """Embedded content."""
-
-    reactions: OmittableModelField[list[ReactionModel]]
-    """Reactions to the message."""
-
-    pinned: PresentModelField[ScurrypyBool]
-    """If the message is pinned."""
-
-    type: PresentModelField[MessageType]
-    """Type of message."""
-
-    flags: OmittableModelField[MessageFlags]
-    """Message flags."""
-
-    thread: OmittableModelField[ChannelModel]
-    """Thread created from the message."""
-
-    components: OmittableModelField[list[ContainerComponent]]
-    """Components contained in the message."""
-
-@datamodel
-class PinnedMessageModel(DataModel):
-    """Represents a pinned message."""
-
-    message: PresentModelField[MessageModel]
-    """Message resource of the pinned message."""
-
-    pinned_at: PresentModelField[Timestamp]
-    """ISO8601 timestamp of when the message was pinned."""
+from .embed import EmbedPart
+from .attachment import AttachmentPart
 
 @dataclass
-class MessageReferencePart(DataModel):
-    """Represents the Message Reference object."""
+class MessageReferencePart(Part):
+    """Represents fields for creating a message reference."""
 
     message_id: OptionalPartField[Snowflake] = None
     """ID of the originating message."""
@@ -115,8 +39,8 @@ class MessageReferencePart(DataModel):
     """Type of reference. Discord defaults to `MessageReferenceTypes.DEFAULT`."""
 
 @dataclass
-class MessagePart(DataModel):
-    """Represents a Discord Message."""
+class MessagePart(Part):
+    """Represents fields for creating a Discord message."""
 
     content: OptionalPartField[str] = None
     """Message text content."""
@@ -135,6 +59,9 @@ class MessagePart(DataModel):
 
     message_reference: OptionalPartField[MessageReferencePart] = None
     """Message reference if reply."""
+
+    poll: OptionalPartField[PollPart] = None
+    """A poll!"""
 
     def _prepare(self) -> Self:
         """Prepares MessagePart for ANY internally set attributes.

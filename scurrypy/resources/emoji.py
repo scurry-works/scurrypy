@@ -1,54 +1,53 @@
 from dataclasses import dataclass
 from typing import Unpack
 
-from .base_resource import BaseResource
-
+from ..core.json_query import JsonQuery
 from ..core.snowflake import Snowflake
 
-from ..api.emoji import EmojiModel, ApplicationEmojiPart, GuildEmojiPart
+from .base_resource import BaseResource
 
-from ..params.emoji import EditApplicationEmojiParams, EditGuildEmojiParams
+from ..api import ApplicationEmojiPart, GuildEmojiPart
+
+from ..params import EditApplicationEmojiParams, EditGuildEmojiParams
 
 @dataclass
 class ApplicationEmoji(BaseResource):
-    """Represents a Discord Bot Emoji."""
+    """Represents a Discord bot emoji resource."""
 
     application_id: Snowflake
     """Application ID of the emojis."""
 
-    async def fetch(self, emoji_id: Snowflake) -> EmojiModel:
+    async def fetch(self, emoji_id: Snowflake) -> JsonQuery:
         """Fetch an emoji from the bot repository.
 
         Args:
             emoji_id (Snowflake): emoji ID
 
         Returns:
-            (EmojiModel): queried emoji
+            (JsonQuery): queried emoji
         """
         data = await self.http.request_json("GET", f"/applications/{self.application_id}/emojis/{emoji_id}")
 
-        return EmojiModel.from_dict(data)
+        return JsonQuery(data)
     
-    async def fetch_all(self) -> list[EmojiModel]:
+    async def fetch_all(self) -> JsonQuery:
         """Fetch all emojis from the bot repository.
 
         Returns:
-            (list[EmojiModel]): queried list of bot emojis
+            (JsonQuery): queried list of bot emojis
         """
         data = await self.http.request_json("GET", f"/applications/{self.application_id}/emojis")
-        emojis = data.get("items")
         
-        assert isinstance(emojis, list)
-        return [EmojiModel.from_dict(emoji) for emoji in emojis]
+        return JsonQuery(data)
     
-    async def create(self, emoji: ApplicationEmojiPart) -> EmojiModel:
+    async def create(self, emoji: ApplicationEmojiPart) -> JsonQuery:
         """Add an emoji to the bot emoji repository.
 
         Args:
             emoji (ApplicationEmojiPart): bot emoji fields
 
         Returns:
-            (EmojiModel): new emoji
+            (JsonQuery): new emoji
         """
         data = await self.http.request_json(
             'POST', 
@@ -56,9 +55,9 @@ class ApplicationEmoji(BaseResource):
             data=emoji.to_dict()
         )
     
-        return EmojiModel.from_dict(data)
+        return JsonQuery(data)
     
-    async def edit(self, emoji_id: Snowflake, **options: Unpack[EditApplicationEmojiParams]) -> EmojiModel:
+    async def edit(self, emoji_id: Snowflake, **options: Unpack[EditApplicationEmojiParams]) -> JsonQuery:
         """Edit an emoji in the bot repository.
 
         Args:
@@ -66,17 +65,15 @@ class ApplicationEmoji(BaseResource):
             options (EditBotEmojiParams): fields to edit the emoji
 
         Returns:
-            (EmojiModel): updated emoji
+            (JsonQuery): updated emoji
         """
-        opts = dict(options)
-
         data = await self.http.request_json(
             'PATCH', 
             f'/applications/{self.application_id}/emojis/{emoji_id}', 
-            data=opts
+            data=dict(options)
         )
 
-        return EmojiModel.from_dict(data)
+        return JsonQuery(data)
 
     async def delete(self, emoji_id: Snowflake) -> None:
         """Deletes an emoji from the bot repository.
@@ -93,38 +90,38 @@ class GuildEmoji(BaseResource):
     guild_id: Snowflake
     """Guild ID of the emojis."""
 
-    async def fetch(self, emoji_id: Snowflake) -> EmojiModel:
+    async def fetch(self, emoji_id: Snowflake) -> JsonQuery:
         """Fetch an emoji from this guild.
 
         Args:
             emoji_id (Snowflake): emoji ID
 
         Returns:
-            (EmojiModel): queried guild emoji
+            (JsonQuery): queried guild emoji
         """
         data = await self.http.request_json("GET", f"/guilds/{self.guild_id}/emojis/{emoji_id}")
 
-        return EmojiModel.from_dict(data)
+        return JsonQuery(data)
     
-    async def fetch_all(self) -> list[EmojiModel]:
+    async def fetch_all(self) -> JsonQuery:
         """Fetch all emojis from this guild.
 
         Returns:
-            (list[EmojiModel]): queried list of guild emojis
+            (JsonQuery): queried list of guild emojis
         """
         data = await self.http.request_list("GET", f"/guilds/{self.guild_id}/emojis")
 
-        return [EmojiModel.from_dict(emoji) for emoji in data]
+        return JsonQuery(data)
 
-    async def create(self, emoji: GuildEmojiPart) -> EmojiModel:
+    async def create(self, emoji: GuildEmojiPart) -> JsonQuery:
         """Create a new emoji for this guild.
-        Fires [`GuildEmojisUpdateEvent`][scurrypy.events.guild_events.GuildEmojisUpdateEvent].
+        Fires [**Guild Emojis Update**](https://docs.discord.com/developers/events/gateway-events#guild-emojis-update).
 
         Args:
             emoji (GuildEmojiPart): fields for creating a guild emoji
 
         Returns:
-            (EmojiModel): new emoji
+            (JsonQuery): new emoji
         """
         data = await self.http.request_json(
             'POST', 
@@ -132,32 +129,30 @@ class GuildEmoji(BaseResource):
             data=emoji.to_dict()
         )
 
-        return EmojiModel.from_dict(data)
+        return JsonQuery(data)
     
-    async def edit(self, emoji_id: Snowflake, **options: Unpack[EditGuildEmojiParams]) -> EmojiModel:
+    async def edit(self, emoji_id: Snowflake, **options: Unpack[EditGuildEmojiParams]) -> JsonQuery:
         """Edit a guild emoji in this guild.
-        Fires [`GuildEmojisUpdateEvent`][scurrypy.events.guild_events.GuildEmojisUpdateEvent].
+        Fires [**Guild Emojis Update**](https://docs.discord.com/developers/events/gateway-events#guild-emojis-update).
 
         Args:
             emoji_id (Snowflake): ID of the emoji to edit
             options (EditGuildEmojiParams): params for editing a guild's emoji
 
         Returns:
-            (EmojiModel): updated emoji
+            (JsonQuery): updated emoji
         """
-        opts = dict(options)
-
         data = await self.http.request_json(
             'PATCH', 
             f'/guilds/{self.guild_id}/emojis/{emoji_id}', 
-            data=opts
+            data=dict(options)
         )
 
-        return EmojiModel.from_dict(data)
+        return JsonQuery(data)
 
     async def delete(self, emoji_id: Snowflake) -> None:
         """Delete an emoji from this guild.
-        Fires [`GuildEmojisUpdateEvent`][scurrypy.events.guild_events.GuildEmojisUpdateEvent].
+        Fires [**Guild Emojis Update**](https://docs.discord.com/developers/events/gateway-events#guild-emojis-update).
 
         !!! important "Permissions"
             * `CREATE_GUILD_EXPRESSIONS` → required if created by the current user (or `MANAGE_GUILD_EXPRESSIONS`)
