@@ -2,7 +2,7 @@
 
 This changelog documents all notable and breaking changes to the ScurryPy PyPi package.
 
-## [3.1] - ???
+## [3.1] - 7 Oct 2026
 
 * Added helpers: `Mention`, `Cdn`
 * `Embed.set_user_author` now handles animated avatars
