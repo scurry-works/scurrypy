@@ -522,6 +522,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../getting_started/json_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JsonQuery Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../getting_started/quickstart/" class="md-nav__link">
         
   
@@ -3526,6 +3549,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#scurrypy.api.webhook.WebhookMessagePart.prepare_attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;prepare_attachments
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4070,6 +4102,29 @@
   
   <span class="md-ellipsis">
     Emoji
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ext/helpers/mention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mention
     
   </span>
   
@@ -4697,6 +4752,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#scurrypy.api.webhook.WebhookMessagePart.prepare_attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;prepare_attachments
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5008,7 +5072,7 @@
 
 
 <h4 id="scurrypy.api.webhook.WebhookMessagePart.flags" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">flags</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="n">MessageFlags</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">flags</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="n">MessageFlags</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="n">MessageFlags</span><span class="o">.</span><span class="n">NO_FLAGS</span><span class="p">))</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -5021,10 +5085,6 @@
     <div class="doc doc-contents ">
 
         <p>Message flags. Discord defaults to <code>MessageFlags.NO_FLAGS</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Can only set <code>SUPPRESS_EMBEDS</code>, <code>SUPPRESS_NOTIFICATIONS</code>, and <code>IS_COMPONENTS_V2</code>.</p>
-</div>
 
     </div>
 
@@ -5178,6 +5238,40 @@
 
 
 
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="scurrypy.api.webhook.WebhookMessagePart.prepare_attachments" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">prepare_attachments</span></code>
+
+<a href="#scurrypy.api.webhook.WebhookMessagePart.prepare_attachments" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Prepares WebhookMessagePart for ANY internally set attributes.</p>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              WebhookMessagePart
+
+  
+      dataclass
+   (scurrypy.api.webhook.WebhookMessagePart)" href="#scurrypy.api.webhook.WebhookMessagePart">WebhookMessagePart</a></code>
+          –
+          <div class="doc-md-description">
+            <p>self</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
 
 
 

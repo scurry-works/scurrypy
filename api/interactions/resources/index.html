@@ -522,6 +522,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../getting_started/json_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JsonQuery Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../getting_started/quickstart/" class="md-nav__link">
         
   
@@ -4065,6 +4088,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ext/helpers/mention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mention
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4751,7 +4797,7 @@
 
   
       dataclass
-   (scurrypy.resources.base_resource.BaseResource)" href="../../../internals/model/#scurrypy.resources.base_resource.BaseResource">BaseResource</a></code>, <code><span title="scurrypy.resources.message._EditMessageMixin">_EditMessageMixin</span></code></p>
+   (scurrypy.resources.base_resource.BaseResource)" href="../../../internals/model/#scurrypy.resources.base_resource.BaseResource">BaseResource</a></code></p>
 
             <div style="display: none">
               <a class="autorefs autorefs-internal" title="              Interaction
@@ -4764,23 +4810,18 @@
   
       dataclass
    (scurrypy.resources.base_resource.BaseResource)" href="../../../internals/model/#scurrypy.resources.base_resource.BaseResource" id="mermaid-link-scurrypy.resources.base_resource.BaseResource"></a>
-                  <span title="scurrypy.resources.message._EditMessageMixin"></span>
             </div>
             <pre class="mermaid"><code id="mermaid-diagram-scurrypy.resources.interaction.Interaction">
               flowchart TD
               scurrypy.resources.interaction.Interaction[Interaction]
               scurrypy.resources.base_resource.BaseResource[BaseResource]
-              scurrypy.resources.message._EditMessageMixin[_EditMessageMixin]
 
                               scurrypy.resources.base_resource.BaseResource --> scurrypy.resources.interaction.Interaction
-                
-                scurrypy.resources.message._EditMessageMixin --> scurrypy.resources.interaction.Interaction
                 
 
 
               click scurrypy.resources.interaction.Interaction href "" "scurrypy.resources.interaction.Interaction"
               click scurrypy.resources.base_resource.BaseResource href "" "scurrypy.resources.base_resource.BaseResource"
-              click scurrypy.resources.message._EditMessageMixin href "" "scurrypy.resources.message._EditMessageMixin"
             </code></pre>
             <script>
               var diagram = document.getElementById('mermaid-diagram-scurrypy.resources.interaction.Interaction');
@@ -4907,23 +4948,53 @@ and <a href="https://docs.discord.com/developers/events/gateway-events#message-c
           </div>
         </li>
         <li class="doc-section-item field-body">
-            <b><code>ephemeral</code></b>
-              (<code>(<span title="optional">optional</span>, <span title="bool">bool</span>)</code>, default:
-                  <code>None</code>
+            <b><code>suppress_embeds</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
 )
           –
           <div class="doc-md-description">
-            <p>whether the response should be ephemeral</p>
+            <p>whether to suppress embeds. Defaults to <code>False</code>.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
-            <b><code>suppress_embeds</code></b>
-              (<code>(<span title="optional">optional</span>, <span title="bool">bool</span>)</code>, default:
-                  <code>None</code>
+            <b><code>suppress_notifications</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
 )
           –
           <div class="doc-md-description">
-            <p>whether the response's embeds should be removed</p>
+            <p>whether to suppress notifications. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>is_voice_message</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether this message is a voice message. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>is_components_v2</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether V2 components are in this message. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>ephemeral</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether the response is only visible to the invoking user. Defaults to <code>False</code>.</p>
           </div>
         </li>
     </ul>
@@ -4966,23 +5037,33 @@ and <a href="https://docs.discord.com/developers/events/gateway-events#message-c
 <p><span class="doc-section-title">Parameters:</span></p>
     <ul>
         <li class="doc-section-item field-body">
+            <b><code>suppress_embeds</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether to suppress embeds. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>is_components_v2</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether V2 components are in this message. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
             <b><code>options</code></b>
               (<code><a class="autorefs autorefs-internal" title="            EditMessageParams (scurrypy.params.EditMessageParams)" href="../../messages/params/#scurrypy.params.message.EditMessageParams">EditMessageParams</a></code>, default:
                   <code>{}</code>
 )
           –
           <div class="doc-md-description">
-            <p>fields to edit</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>suppress_embeds</code></b>
-              (<code>(<span title="optional">optional</span>, <span title="bool">bool</span>)</code>, default:
-                  <code>None</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>whether the response's embeds should be removed</p>
+            <p>fields to edit for the message</p>
           </div>
         </li>
     </ul>
@@ -5181,21 +5262,41 @@ Fires <a href="https://docs.discord.com/developers/events/gateway-events#message
         <li class="doc-section-item field-body">
             <b><code>ephemeral</code></b>
               (<code>(<span title="optional">optional</span>, <span title="bool">bool</span>)</code>, default:
-                  <code>None</code>
+                  <code>False</code>
 )
           –
           <div class="doc-md-description">
-            <p>whether the followup should be ephemeral</p>
+            <p>whether the followup should be ephemeral. Defaults to <code>False</code>.</p>
           </div>
         </li>
         <li class="doc-section-item field-body">
             <b><code>suppress_embeds</code></b>
               (<code>(<span title="optional">optional</span>, <span title="bool">bool</span>)</code>, default:
-                  <code>None</code>
+                  <code>False</code>
 )
           –
           <div class="doc-md-description">
-            <p>whether the followup's embeds should be removed</p>
+            <p>whether the followup's embeds should be removed. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>suppress_notifications</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether to suppress notifications. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>is_components_v2</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether V2 components are in this message. Defaults to <code>False</code>.</p>
           </div>
         </li>
     </ul>
@@ -5221,6 +5322,10 @@ Fires <a href="https://docs.discord.com/developers/events/gateway-events#message
     <div class="doc doc-contents ">
 
         <p>Edits the initial Interaction response.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Existing message flags are not automatically preserved. Flags are reset unless explicitly specified.</p>
+</div>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -5234,6 +5339,26 @@ Fires <a href="https://docs.discord.com/developers/events/gateway-events#message
           </div>
         </li>
         <li class="doc-section-item field-body">
+            <b><code>suppress_embeds</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether to suppress embeds. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>is_components_v2</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether V2 components are in this message. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
             <b><code>options</code></b>
               (<code><a class="autorefs autorefs-internal" title="            EditMessageParams (scurrypy.params.EditMessageParams)" href="../../messages/params/#scurrypy.params.message.EditMessageParams">EditMessageParams</a></code>, default:
                   <code>{}</code>
@@ -5241,16 +5366,6 @@ Fires <a href="https://docs.discord.com/developers/events/gateway-events#message
           –
           <div class="doc-md-description">
             <p>fields to edit</p>
-          </div>
-        </li>
-        <li class="doc-section-item field-body">
-            <b><code>suppress_embeds</code></b>
-              (<code>(<span title="optional">optional</span>, <span title="bool">bool</span>)</code>, default:
-                  <code>None</code>
-)
-          –
-          <div class="doc-md-description">
-            <p>whether the response's embeds should be removed</p>
           </div>
         </li>
     </ul>

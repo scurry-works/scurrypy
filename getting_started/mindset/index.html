@@ -527,6 +527,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../json_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JsonQuery Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../quickstart/" class="md-nav__link">
         
   
@@ -3928,6 +3951,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ext/helpers/mention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mention
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4505,6 +4551,13 @@ where:</p>
 <p>Need to get a value from a list of objects?</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;attachments.0.filename&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
 </code></pre></div></td></tr></table></div>
+<p>Need a list of IDs?</p>
+<p>event.get('member.roles', t=list[Snowflake]).value</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a list or dict is supplied, it must have arguments!</p>
+<p>e.g., <code>list[int]</code>, <code>dict[Snowflake, str]</code></p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Keys Not Found</p>
 <p>Keys that are not found return <code>None</code>. Keep an eye out for Omittable fields in event payloads as these fields are NOT always present!</p>
@@ -4533,7 +4586,7 @@ where:</p>
 <h2 id="what-is-a-parameter">What is a Parameter?<a class="headerlink" href="#what-is-a-parameter" title="Permanent link">&para;</a></h2>
 <hr />
 <p>Parameters model the user's contract with <em>modifying</em> endpoints. Use these classes when you want to modify something.</p>
-<p>Parameters are <code>TypedDict</code>s that are meant to be <code>Unpack</code>ed by endpoint functions. 
+<p>Parameters are <code>TypedDict</code>s that are meant to be <code>Unpack</code>ed by endpoint functions.
 They are constructed via keyword arguments rather than manual instantiation.</p>
 <h2 id="what-is-a-context">What is a context?<a class="headerlink" href="#what-is-a-context" title="Permanent link">&para;</a></h2>
 <hr />

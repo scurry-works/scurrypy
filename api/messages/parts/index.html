@@ -522,6 +522,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../getting_started/json_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JsonQuery Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../getting_started/quickstart/" class="md-nav__link">
         
   
@@ -3298,6 +3321,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#scurrypy.api.messages.message.MessagePart.prepare_attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;prepare_attachments
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4467,6 +4499,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ext/helpers/mention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mention
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5471,6 +5526,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#scurrypy.api.messages.message.MessagePart.prepare_attachments" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;prepare_attachments
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5690,7 +5754,7 @@
 
 
 <h4 id="scurrypy.api.messages.attachment.AttachmentPart.id" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="nb">id</span><span class="p">:</span> <span class="n">RequiredPartField</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -5702,9 +5766,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>ID of the attachment.</p>
-<p>For editing attachments, this should be the Discord attachment ID.
-For new attachments, the ID is internally set.</p>
+        <p>ID of the attachment (internally set).</p>
 
     </div>
 
@@ -6750,7 +6812,7 @@ For new attachments, the ID is internally set.</p>
     <ul>
         <li class="doc-section-item field-body">
             <b><code>user</code></b>
-              (<code><span title="JSON">JSON</span></code>)
+              (<code><a class="autorefs autorefs-internal" title="              JsonQuery (scurrypy.core.json_query.JsonQuery)" href="../../../internals/model/#scurrypy.core.json_query.JsonQuery">JsonQuery</a></code>)
           –
           <div class="doc-md-description">
             <p>user author</p>
@@ -7116,7 +7178,7 @@ For new attachments, the ID is internally set.</p>
 
 
 <h4 id="scurrypy.api.messages.message.MessagePart.flags" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">flags</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="n">MessageFlags</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></code>
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <code class="highlight language-python"><span class="n">flags</span><span class="p">:</span> <span class="n">OptionalPartField</span><span class="p">[</span><span class="n">MessageFlags</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">(</span><span class="n">MessageFlags</span><span class="o">.</span><span class="n">NO_FLAGS</span><span class="p">))</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
@@ -7128,7 +7190,8 @@ For new attachments, the ID is internally set.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Message flags. Discord defaults to <code>MessageFlags.NO_FLAGS</code>.</p>
+        <p>Message flags. Defaults to <code>MessageFlags.NO_FLAGS</code>.</p>
+<p>See specific message creation endpoints for what flags can be set.</p>
 
     </div>
 
@@ -7251,6 +7314,40 @@ For new attachments, the ID is internally set.</p>
 
 
 
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="scurrypy.api.messages.message.MessagePart.prepare_attachments" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <code class="highlight language-python"><span class="n">prepare_attachments</span></code>
+
+<a href="#scurrypy.api.messages.message.MessagePart.prepare_attachments" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Prepare attachment metadata for serialization.</p>
+
+
+<p><span class="doc-section-title">Returns:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+              <code><a class="autorefs autorefs-internal" title="              MessagePart
+
+  
+      dataclass
+   (scurrypy.api.messages.message.MessagePart)" href="#scurrypy.api.messages.message.MessagePart">MessagePart</a></code>
+          –
+          <div class="doc-md-description">
+            <p>self</p>
+          </div>
+        </li>
+    </ul>
+
+
+    </div>
+
+</div>
 
 
 

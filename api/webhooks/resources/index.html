@@ -522,6 +522,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../getting_started/json_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JsonQuery Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../getting_started/quickstart/" class="md-nav__link">
         
   
@@ -4038,6 +4061,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ext/helpers/mention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mention
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4697,7 +4743,7 @@
 
   
       dataclass
-   (scurrypy.resources.BaseResource)" href="../../../internals/model/#scurrypy.resources.base_resource.BaseResource">BaseResource</a></code>, <code><span title="scurrypy.resources.message._EditMessageMixin">_EditMessageMixin</span></code></p>
+   (scurrypy.resources.BaseResource)" href="../../../internals/model/#scurrypy.resources.base_resource.BaseResource">BaseResource</a></code></p>
 
             <div style="display: none">
               <a class="autorefs autorefs-internal" title="              Webhook
@@ -4710,23 +4756,18 @@
   
       dataclass
    (scurrypy.resources.base_resource.BaseResource)" href="../../../internals/model/#scurrypy.resources.base_resource.BaseResource" id="mermaid-link-scurrypy.resources.base_resource.BaseResource"></a>
-                  <span title="scurrypy.resources.message._EditMessageMixin"></span>
             </div>
             <pre class="mermaid"><code id="mermaid-diagram-scurrypy.resources.webhook.Webhook">
               flowchart TD
               scurrypy.resources.webhook.Webhook[Webhook]
               scurrypy.resources.base_resource.BaseResource[BaseResource]
-              scurrypy.resources.message._EditMessageMixin[_EditMessageMixin]
 
                               scurrypy.resources.base_resource.BaseResource --> scurrypy.resources.webhook.Webhook
-                
-                scurrypy.resources.message._EditMessageMixin --> scurrypy.resources.webhook.Webhook
                 
 
 
               click scurrypy.resources.webhook.Webhook href "" "scurrypy.resources.webhook.Webhook"
               click scurrypy.resources.base_resource.BaseResource href "" "scurrypy.resources.base_resource.BaseResource"
-              click scurrypy.resources.message._EditMessageMixin href "" "scurrypy.resources.message._EditMessageMixin"
             </code></pre>
             <script>
               var diagram = document.getElementById('mermaid-diagram-scurrypy.resources.webhook.Webhook');
@@ -5150,6 +5191,36 @@
           –
           <div class="doc-md-description">
             <p>Whether to respect the <code>components</code> field. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>suppress_embeds</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether to suppress embeds. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>is_components_v2</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether V2 components are in this message. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>suppress_notifications</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether to suppress notifications. Defaults to <code>False</code>.</p>
           </div>
         </li>
     </ul>

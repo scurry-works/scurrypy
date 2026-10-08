@@ -522,6 +522,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../getting_started/json_query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JsonQuery Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../getting_started/quickstart/" class="md-nav__link">
         
   
@@ -4182,6 +4205,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ext/helpers/mention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mention
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5118,9 +5164,9 @@
 
     <div class="doc doc-contents ">
 
-        <p>Deletes this channel from the server. </p>
+        <p>Deletes this channel from the server.</p>
 <p>Fires <a href="https://docs.discord.com/developers/events/gateway-events#channel-update"><strong>Channel Update</strong></a> if success,
-and <a href="https://docs.discord.com/developers/events/gateway-events#channel-delete"><strong>Channel Delete</strong></a> 
+and <a href="https://docs.discord.com/developers/events/gateway-events#channel-delete"><strong>Channel Delete</strong></a>
     (or <a href="https://docs.discord.com/developers/events/gateway-events#thread-delete"><strong>Thread Delete</strong></a> if a thread).</p>
 <div class="admonition important">
 <p class="admonition-title">Permissions</p>
@@ -5199,7 +5245,7 @@ and <a href="https://docs.discord.com/developers/events/gateway-events#channel-d
 
     <div class="doc doc-contents ">
 
-        <p>Edit this channel. </p>
+        <p>Edit this channel.</p>
 <p>Fires <a href="https://docs.discord.com/developers/events/gateway-events#channel-update"><strong>Channel Update</strong></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5428,6 +5474,46 @@ and <a href="https://docs.discord.com/developers/events/gateway-events#channel-d
           –
           <div class="doc-md-description">
             <p>content as a string or MessagePart</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>suppress_embeds</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether to suppress embeds. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>suppress_notifications</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether to suppress notifications. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>is_voice_message</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether this message is a voice message. Defaults to <code>False</code>.</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>is_components_v2</code></b>
+              (<code><span title="bool">bool</span></code>, default:
+                  <code>False</code>
+)
+          –
+          <div class="doc-md-description">
+            <p>whether V2 components are in this message. Defaults to <code>False</code>.</p>
           </div>
         </li>
     </ul>
@@ -5749,8 +5835,8 @@ and <a href="https://docs.discord.com/developers/events/gateway-events#channel-d
 
     <div class="doc doc-contents ">
 
-        <p>Create a thread from a message (attached to the message). </p>
-<p>Fires <a href="https://docs.discord.com/developers/events/gateway-events#thread-create"><strong>Thread Create</strong></a> 
+        <p>Create a thread from a message (attached to the message).</p>
+<p>Fires <a href="https://docs.discord.com/developers/events/gateway-events#thread-create"><strong>Thread Create</strong></a>
 and <a href="https://docs.discord.com/developers/events/gateway-events#thread-update"><strong>Message Update</strong></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -5867,7 +5953,7 @@ and <a href="https://docs.discord.com/developers/events/gateway-events#thread-up
 
     <div class="doc doc-contents ">
 
-        <p>Edit this thread. </p>
+        <p>Edit this thread.</p>
 <p>Fires <a href="https://docs.discord.com/developers/events/gateway-events#channel-update"><strong>Channel Update</strong></a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Permissions</p>
@@ -5926,7 +6012,7 @@ and <a href="https://docs.discord.com/developers/events/gateway-events#thread-up
     <div class="doc doc-contents ">
 
         <p>Add the bot to this thread.</p>
-<p>Fires <a href="https://docs.discord.com/developers/events/gateway-events#thread-members-update"><strong>Thread Members Update</strong></a> 
+<p>Fires <a href="https://docs.discord.com/developers/events/gateway-events#thread-members-update"><strong>Thread Members Update</strong></a>
 and <a href="https://docs.discord.com/developers/events/gateway-events#thread-create"><strong>Thread Create</strong></a>.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
