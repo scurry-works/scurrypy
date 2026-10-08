@@ -2,6 +2,15 @@
 
 This changelog documents all notable and breaking changes to the ScurryPy PyPi package.
 
+## [3.1] - ???
+
+* Added helpers: `Mention`, `Cdn`
+* `Embed.set_user_author` now handles animated avatars
+* Cleaned up attachment creation and modification
+* Message and interaction flags are no longer configurable during instantiation
+    * Flags are now set by the resource endpoints
+* Bug Fix: `JsonQuery.get` now correctly handles map keys
+
 ## [3.0] - 6 Oct 2026
 
 ScurryPy 3.0 completes a major architectural rewrite.
@@ -36,7 +45,7 @@ ScurryPy's core architecture and API surface are now officially *stable* 🎉
 
 ## [Pre-1.0 Summary] - 13 Dec 2025 to 6 Feb 2026
 
-During the 0.x cycle, ScurryPy underwent rapid architectural refinement and API stabilization. 
+During the 0.x cycle, ScurryPy underwent rapid architectural refinement and API stabilization.
 
 * Finalized endpoint scope (bot scope only)
 * Migrated to Python’s standard logging module

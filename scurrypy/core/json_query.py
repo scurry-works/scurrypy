@@ -13,12 +13,22 @@ def _convert(value: Any, t: type) -> Any:
     return t(value)
 
 class JsonQuery:
+    """Discord payload traversal utility."""
+
     def __init__(self, data: JSON | list[JSON]):
+        """
+        Args:
+            data (JSON | list[JSON]): Discord payload
+        """
+        
         self.data = data
+        """Discord payload."""
+
         self.value: Any = None
+        """Resulting query."""
 
     def get(self, path: str, *, t: Any = None) -> Self:
-        """Traverse data with path
+        """Traverse data with path.
 
         Args:
             path (str): dot-separated key path to value
@@ -31,14 +41,10 @@ class JsonQuery:
 
         for token in path.split('.'):
             try:
-                key: int | str = int(token)
-            except ValueError:
-                key = token
-
-            try:
+                key = int(token) if isinstance(self.value, list) else token
                 self.value = self.value[key]
-            except (KeyError, IndexError):
-                logger.error(f"Key '{key}' not found")
+            except (KeyError, IndexError, ValueError):
+                logger.error(f"Key '{token}' not found")
                 self.value = None
                 break
 
@@ -56,24 +62,16 @@ class JsonQuery:
             elem_type = get_args(t)[0]
             self.value = [_convert(i, elem_type) for i in self.value]
 
-        elif o is dict:
-            assert isinstance(self.value, dict)
-            key_type, value_type = get_args(t)
-            self.value = {
-                _convert(k, key_type): _convert(v, value_type)
-                for k, v in self.value.items()
-            }
-
         return self
-    
+
     def pprint(self) -> Self:
-        """Pretty print data!
+        """Pretty print value!
 
         Returns:
             (Self): self
         """
         from pprint import pprint
-        pprint(self.data)
+        pprint(self.value)
         return self
 
     def __repr__(self) -> str:

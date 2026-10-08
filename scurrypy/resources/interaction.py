@@ -15,10 +15,8 @@ from ..api.commands import CommandOptionChoicePart
 
 from ..params import EditMessageParams
 
-from .message import _EditMessageMixin
-
 @dataclass
-class Interaction(BaseResource, _EditMessageMixin):
+class Interaction(BaseResource):
     """Represents a Discord interaction resource."""
 
     id: Snowflake
@@ -28,12 +26,15 @@ class Interaction(BaseResource, _EditMessageMixin):
     """Continuation token for responding to the interaction."""
 
     async def respond(
-        self, 
-        message: str | MessagePart, 
-        *, 
-        with_response: bool = False, 
-        ephemeral: bool | None = None, 
-        suppress_embeds: bool | None = None
+        self,
+        message: str | MessagePart,
+        *,
+        with_response: bool = False,
+        suppress_embeds: bool = False,
+        suppress_notifications: bool = False,
+        is_voice_message: bool = False,
+        is_components_v2 : bool = False,
+        ephemeral: bool = False
     ) -> JsonQuery | None:
         """Create a message in response to an interaction.
         Fires [**Interaction Create**](https://docs.discord.com/developers/events/gateway-events#interaction-create)
@@ -42,32 +43,42 @@ class Interaction(BaseResource, _EditMessageMixin):
         Args:
             message (str | MessagePart): content as a string or MessagePart
             with_response (bool, optional): if the interaction data should be returned. Defaults to `False`.
-            ephemeral (optional, bool): whether the response should be ephemeral
-            suppress_embeds (optional, bool): whether the response's embeds should be removed
+            suppress_embeds (bool, optional): whether to suppress embeds. Defaults to `False`.
+            suppress_notifications (bool, optional): whether to suppress notifications. Defaults to `False`.
+            is_voice_message (bool, optional): whether this message is a voice message. Defaults to `False`.
+            is_components_v2 (bool, optional): whether V2 components are in this message. Defaults to `False`.
+            ephemeral (bool, optional): whether the response is only visible to the invoking user. Defaults to `False`.
 
         Returns:
             (JsonQuery | None): interaction callback object (if `with_response` is toggled) else None
         """
+
+        # normalize to MessagePart
         msg = MessagePart(content=message) if isinstance(message, str) else message
-
-        msg.flags = MessageFlags.NO_FLAGS
-
-        if ephemeral:
-            msg.flags |= MessageFlags.EPHEMERAL
 
         if suppress_embeds:
             msg.flags |= MessageFlags.SUPPRESS_EMBEDS
 
-        files = [str(f.path) for f in msg.attachments] if msg.attachments else None
+        if suppress_notifications:
+            msg.flags |= MessageFlags.SUPPRESS_NOTIFICATIONS
+
+        if is_voice_message:
+            msg.flags |= MessageFlags.IS_VOICE_MESSAGE
+
+        if is_components_v2:
+            msg.flags |= MessageFlags.IS_COMPONENTS_V2
+
+        if ephemeral:
+            msg.flags |= MessageFlags.EPHEMERAL
 
         data = await self.http.request(
-            'POST', 
-            f'/interactions/{self.id}/{self.token}/callback', 
+            "POST",
+            f'/interactions/{self.id}/{self.token}/callback',
             data={
-                'type': InteractionCallbackType.CHANNEL_MESSAGE_WITH_SOURCE, 
-                'data': msg._prepare().to_dict()
-            }, 
-            files=files,
+                'type': InteractionCallbackType.CHANNEL_MESSAGE_WITH_SOURCE,
+                'data': msg.prepare_attachments().to_dict()
+            },
+            files=[attachment.path for attachment in msg.attachments],
             params={
                 'with_response': with_response
             }
@@ -76,31 +87,42 @@ class Interaction(BaseResource, _EditMessageMixin):
         if with_response:
             assert isinstance(data, dict)
             return JsonQuery(data)
-        
+
         return None
-        
+
     async def update(
         self,
-        *,
-        suppress_embeds: bool | None = None,
+        suppress_embeds: bool = False,
+        is_components_v2 : bool = False,
         **options: Unpack[EditMessageParams]
     ) -> None:
         """Edits the initial Interaction response.
 
         Args:
-            options (EditMessageParams): fields to edit
-            suppress_embeds (optional, bool): whether the response's embeds should be removed
+            suppress_embeds (bool, optional): whether to suppress embeds. Defaults to `False`.
+            is_components_v2 (bool, optional): whether V2 components are in this message. Defaults to `False`.
+            options (EditMessageParams): fields to edit for the message
         """
-        files = self._prepare_attachments(dict(options))
-        opts = serialize(dict(options)) # nested objects in EditMessageParams
-        self._apply_suppress_embeds(opts, suppress_embeds)
+        files = None
+        if options.get('attachments') is not None:
+            for idx, file in enumerate(options['attachments']):
+                file.id = idx
+            files = [attachment.path for attachment in options['attachments']]
+
+        options['flags'] = MessageFlags.NO_FLAGS
+
+        if suppress_embeds:
+            options['flags'] |= MessageFlags.SUPPRESS_EMBEDS
+
+        if is_components_v2:
+            options['flags'] |= MessageFlags.IS_COMPONENTS_V2
 
         await self.http.request(
             "POST",
             f"/interactions/{self.id}/{self.token}/callback",
             data={
                 "type": InteractionCallbackType.UPDATE_MESSAGE,
-                "data": opts,
+                "data": serialize(dict(options)) # nested objects in EditMessageParams
             },
             files=files
         )
@@ -113,8 +135,8 @@ class Interaction(BaseResource, _EditMessageMixin):
             modal (ModalPart): modal data
         """
         await self.http.request(
-            'POST', 
-            f'/interactions/{self.id}/{self.token}/callback', 
+            'POST',
+            f'/interactions/{self.id}/{self.token}/callback',
             data={
                 'type': InteractionCallbackType.MODAL,
                 'data': modal.to_dict()
@@ -170,11 +192,13 @@ class Interaction(BaseResource, _EditMessageMixin):
         )
 
     async def followup(
-        self, 
-        application_id: Snowflake, 
-        message: str | MessagePart, 
-        ephemeral: bool | None = None,
-        suppress_embeds: bool | None = None
+        self,
+        application_id: Snowflake,
+        message: str | MessagePart,
+        ephemeral: bool = False,
+        suppress_embeds: bool = False,
+        suppress_notifications: bool = False,
+        is_components_v2: bool = False
     ) -> None:
         """Create a new message to respond to a deferred interaction.
         Fires [**Message Create**](https://docs.discord.com/developers/events/gateway-events#message-create).
@@ -185,46 +209,70 @@ class Interaction(BaseResource, _EditMessageMixin):
         Args:
             application_id (Snowflake): ID of the application
             message (str | MessagePart): content as a string or MessagePart
-            ephemeral (optional, bool): whether the followup should be ephemeral
-            suppress_embeds (optional, bool): whether the followup's embeds should be removed
+            ephemeral (optional, bool): whether the followup should be ephemeral. Defaults to `False`.
+            suppress_embeds (optional, bool): whether the followup's embeds should be removed. Defaults to `False`.
+            suppress_notifications (bool, optional): whether to suppress notifications. Defaults to `False`.
+            is_components_v2 (bool, optional): whether V2 components are in this message. Defaults to `False`.
         """
-        if isinstance(message, str):
-            message = MessagePart(content=message)
+        # normalize to MessagePart
+        msg = MessagePart(content=message) if isinstance(message, str) else message
 
-        message.flags = MessageFlags.NO_FLAGS
+        msg.flags = MessageFlags.NO_FLAGS
 
         if ephemeral:
-            message.flags |= MessageFlags.EPHEMERAL
+            msg.flags |= MessageFlags.EPHEMERAL
 
         if suppress_embeds:
-            message.flags |= MessageFlags.SUPPRESS_EMBEDS
+            msg.flags |= MessageFlags.SUPPRESS_EMBEDS
+
+        if suppress_notifications:
+            msg.flags |= MessageFlags.SUPPRESS_NOTIFICATIONS
+
+        if is_components_v2:
+            msg.flags |= MessageFlags.IS_COMPONENTS_V2
 
         await self.http.request(
             'POST',
             f'/webhooks/{application_id}/{self.token}',
-            data=message._prepare().to_dict()
+            data=msg.prepare_attachments().to_dict(),
+            files=[attachment.path for attachment in msg.attachments] if msg.attachments is not None else None
         )
 
     async def edit_original(
         self,
         application_id: Snowflake,
-        *,
-        suppress_embeds: bool | None = None,
+        suppress_embeds: bool = False,
+        is_components_v2: bool = False,
         **options: Unpack[EditMessageParams]
     ) -> None:
         """Edits the initial Interaction response.
 
+        !!! note
+            Existing message flags are not automatically preserved. Flags are reset unless explicitly specified.
+
         Args:
             application_id (Snowflake): bot's user ID
+            suppress_embeds (bool, optional): whether to suppress embeds. Defaults to `False`.
+            is_components_v2 (bool, optional): whether V2 components are in this message. Defaults to `False`.
             options (EditMessageParams): fields to edit
-            suppress_embeds (optional, bool): whether the response's embeds should be removed
         """
-        opts = serialize(dict(options)) # nested objects in EditMessageParams
-        self._apply_suppress_embeds(opts, suppress_embeds)
+        files = None
+        if options.get('attachments') is not None:
+            for idx, file in enumerate(options['attachments']):
+                file.id = idx
+            files = [attachment.path for attachment in options['attachments']]
+
+        options['flags'] = MessageFlags.NO_FLAGS
+
+        if suppress_embeds:
+            options['flags'] |= MessageFlags.SUPPRESS_EMBEDS
+
+        if is_components_v2:
+            options['flags'] |= MessageFlags.IS_COMPONENTS_V2
 
         await self.http.request(
             "PATCH",
             f"/webhooks/{application_id}/{self.token}/messages/@original",
-            data=opts,
-            files=self._prepare_attachments(opts)
+            data=serialize(dict(options)), # nested objects in EditMessageParams
+            files=files
         )

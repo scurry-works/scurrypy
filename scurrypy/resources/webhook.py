@@ -4,18 +4,17 @@ from typing import Unpack
 from ..core.json_query import JsonQuery
 from ..core.part import serialize
 from ..core.snowflake import Snowflake
-from ..core.types import JSON
 
 from ..resources import BaseResource
+
+from ..enums import MessageFlags
 
 from ..api import WebhookMessagePart, WebhookPart
 
 from ..params import WebhookParams
 
-from .message import _EditMessageMixin
-
 @dataclass
-class Webhook(BaseResource, _EditMessageMixin):
+class Webhook(BaseResource):
     """Represents a webhook resource."""
 
     async def create(self, channel_id: Snowflake, webhook: WebhookPart) -> JsonQuery:
@@ -32,8 +31,8 @@ class Webhook(BaseResource, _EditMessageMixin):
             (JsonQuery): created webhook
         """
         data = await self.http.request_json(
-            'POST', 
-            f'/channels/{channel_id}/webhooks', 
+            'POST',
+            f'/channels/{channel_id}/webhooks',
             data=webhook.to_dict()
         )
 
@@ -98,10 +97,10 @@ class Webhook(BaseResource, _EditMessageMixin):
 
         Returns:
             (JsonQuery): edited webhook
-        """        
+        """
         data = await self.http.request_json(
-            'PATCH', 
-            f'/webhooks/{webhook_id}', 
+            'PATCH',
+            f'/webhooks/{webhook_id}',
             data=serialize(dict(options))
         )
 
@@ -118,13 +117,17 @@ class Webhook(BaseResource, _EditMessageMixin):
         """
         await self.http.request('DELETE', f'/webhooks/{webhook_id}')
 
-    async def execute(self, 
-        webhook_id: Snowflake, 
-        token: str, 
-        message: WebhookMessagePart | str, 
-        wait: bool = False, 
-        thread_id: Snowflake | None = None, 
-        with_components: bool = False
+    async def execute(self,
+        webhook_id: Snowflake,
+        token: str,
+        message: WebhookMessagePart | str,
+        wait: bool = False,
+        thread_id: Snowflake | None = None,
+        with_components: bool = False,
+        *,
+        suppress_embeds: bool = False,
+        is_components_v2: bool = False,
+        suppress_notifications: bool = False
     ) -> JsonQuery | None:
         """Execute a webhook.
 
@@ -137,6 +140,9 @@ class Webhook(BaseResource, _EditMessageMixin):
                 !!! note
                     Thread will also be unarchived.
             with_components (bool, optional): Whether to respect the `components` field. Defaults to `False`.
+            suppress_embeds (bool, optional): whether to suppress embeds. Defaults to `False`.
+            is_components_v2 (bool, optional): whether V2 components are in this message. Defaults to `False`.
+            suppress_notifications (bool, optional): whether to suppress notifications. Defaults to `False`.
 
         Returns:
             (JsonQuery | None): webhook message if `wait = True` else `None`
@@ -144,18 +150,25 @@ class Webhook(BaseResource, _EditMessageMixin):
         # normalize to WebhookMessagePart
         msg = WebhookMessagePart(content=message) if isinstance(message, str) else message
 
-        files = [str(f.path) for f in msg.attachments] if msg.attachments else None
-        
+        if suppress_embeds:
+            msg.flags |= MessageFlags.SUPPRESS_EMBEDS
+
+        if is_components_v2:
+            msg.flags |= MessageFlags.IS_COMPONENTS_V2
+
+        if suppress_notifications:
+            msg.flags |= MessageFlags.SUPPRESS_NOTIFICATIONS
+
         data = await self.http.request(
-            "POST", 
-            f'/webhooks/{webhook_id}/{token}', 
-            data=msg._prepare().to_dict(),
+            "POST",
+            f'/webhooks/{webhook_id}/{token}',
+            data=msg.prepare_attachments().to_dict(),
             params={
                 'wait': wait,
                 'thread_id': thread_id,
                 'with_components': with_components
             },
-            files=files
+            files=[attachment.path for attachment in message.attachments]
         )
 
         if wait is True:

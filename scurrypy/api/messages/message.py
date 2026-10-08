@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Self
 
 from ...bases.components import ContainerComponent
@@ -6,12 +6,12 @@ from ...bases.components import ContainerComponent
 from ...core.part import Part
 from ...core.snowflake import Snowflake
 from ...core.types import (
-    Serialized, 
+    Serialized,
     OptionalPartField
 )
 
 from ...enums import (
-    MessageFlags, 
+    MessageFlags,
     MessageReferenceType
 )
 
@@ -45,8 +45,11 @@ class MessagePart(Part):
     content: OptionalPartField[str] = None
     """Message text content."""
 
-    flags: OptionalPartField[MessageFlags] = None
-    """Message flags. Discord defaults to `MessageFlags.NO_FLAGS`."""
+    flags: OptionalPartField[MessageFlags] = field(init=False, default=MessageFlags.NO_FLAGS)
+    """Message flags. Defaults to `MessageFlags.NO_FLAGS`.
+
+    See specific message creation endpoints for what flags can be set.
+    """
 
     components: OptionalPartField[list[ContainerComponent]] = None
     """Components to be attached to this message."""
@@ -63,8 +66,8 @@ class MessagePart(Part):
     poll: OptionalPartField[PollPart] = None
     """A poll!"""
 
-    def _prepare(self) -> Self:
-        """Prepares MessagePart for ANY internally set attributes.
+    def prepare_attachments(self) -> Self:
+        """Prepare attachment metadata for serialization.
 
         Returns:
             (MessagePart): self
@@ -75,7 +78,7 @@ class MessagePart(Part):
                 file.id = idx
         else:
             self.attachments = []
-        
+
         return self
 
     def to_dict(self) -> Serialized:
@@ -86,5 +89,5 @@ class MessagePart(Part):
 
                 if not self.flags or MessageFlags.IS_COMPONENTS_V2 not in self.flags:
                     raise ValueError("V2 components are used but MessageFlags.IS_COMPONENTS_V2 is not set.")
-        
+
         return super().to_dict()

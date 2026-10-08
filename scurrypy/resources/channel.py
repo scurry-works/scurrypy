@@ -7,9 +7,11 @@ from ..core.part import serialize
 
 from .base_resource import BaseResource
 
+from ..enums import MessageFlags
+
 from ..api.messages import MessagePart
 from ..api.channels import (
-    ThreadFromMessagePart, 
+    ThreadFromMessagePart,
     ThreadWithoutMessagePart
 )
 from ..api import InvitePart
@@ -35,10 +37,10 @@ class Channel(BaseResource):
         return JsonQuery(data)
 
     async def delete(self) -> None:
-        """Deletes this channel from the server. 
-        
+        """Deletes this channel from the server.
+
         Fires [**Channel Update**](https://docs.discord.com/developers/events/gateway-events#channel-update) if success,
-        and [**Channel Delete**](https://docs.discord.com/developers/events/gateway-events#channel-delete) 
+        and [**Channel Delete**](https://docs.discord.com/developers/events/gateway-events#channel-delete)
             (or [**Thread Delete**](https://docs.discord.com/developers/events/gateway-events#thread-delete) if a thread).
 
         !!! important "Permissions"
@@ -48,7 +50,7 @@ class Channel(BaseResource):
 
     async def follow(self, webhook_channel_id: Snowflake) -> JsonQuery:
         """Follow announcement channel to send messages to a target channel.
-        
+
         Fires [**Webhooks Update**](https://docs.discord.com/developers/events/gateway-events#webhooks-update).
 
         !!! important "Permissions"
@@ -61,8 +63,8 @@ class Channel(BaseResource):
             (JsonQuery): followed channel
         """
         data = await self.http.request_json(
-            'POST', 
-            f'/channels/{self.id}/followers', 
+            'POST',
+            f'/channels/{self.id}/followers',
             params={
                 'webhook_channel_id': webhook_channel_id
             }
@@ -72,10 +74,10 @@ class Channel(BaseResource):
 
     # --- GUILD CHANNEL ---
     async def edit_guild_channel(self, **options: Unpack[EditGuildChannelParams]) -> JsonQuery:
-        """Edit this channel. 
-        
+        """Edit this channel.
+
         Fires [**Channel Update**](https://docs.discord.com/developers/events/gateway-events#channel-update).
-        
+
         !!! note
             If modifying a category, all child channels also fire [**ChannelUpdateEvent**](https://docs.discord.com/developers/events/gateway-events#channel-update).
 
@@ -89,13 +91,13 @@ class Channel(BaseResource):
             (JsonQuery): updated channel
         """
         data = await self.http.request_json(
-            'PATCH', 
-            f'/channels/{self.id}', 
+            'PATCH',
+            f'/channels/{self.id}',
             data=serialize(dict(options)) # nested objects in EditGuildChannelParams
         )
-        
+
         return JsonQuery(data)
-    
+
     # --- MESSAGES ---
     async def fetch_messages(self, limit: int = 50, before: Snowflake | None = None, after: Snowflake | None = None, around: Snowflake | None = None) -> JsonQuery:
         """Fetches this channel's messages.
@@ -114,8 +116,8 @@ class Channel(BaseResource):
         """
 
         data = await self.http.request_list(
-            'GET', 
-            f'/channels/{self.id}/messages', 
+            'GET',
+            f'/channels/{self.id}/messages',
             params={
                 "limit": limit,
                 "before": before,
@@ -131,20 +133,20 @@ class Channel(BaseResource):
 
         !!! important "Permissions"
             Requires `VIEW_CHANNEL` and `READ_MESSAGE_HISTORY`
-            
+
         !!! warning
             Does not work on a `GUILD_FORUM` channel!
 
         Args:
             limit (int, optional): Max number of pinned messages to return. Range 1 - 50. Defaults to `50`.
             before (str, optional): get pinned messages before this ISO8601 timestamp
-        
+
         Returns:
             (JsonQuery): queried list of pinned messages
         """
         data = await self.http.request_list(
-            'GET', 
-            f'/channels/{self.id}/pins', 
+            'GET',
+            f'/channels/{self.id}/pins',
             params={
                 "limit": limit,
                 "before": before
@@ -153,9 +155,16 @@ class Channel(BaseResource):
 
         return JsonQuery(data)
 
-    async def send(self, message: str | MessagePart) -> JsonQuery:
+    async def send(self,
+        message: str | MessagePart,
+        *,
+        suppress_embeds: bool = False,
+        suppress_notifications: bool = False,
+        is_voice_message: bool = False,
+        is_components_v2 : bool = False
+    ) -> JsonQuery:
         """Send a message to this channel.
-        
+
         Fires [**Message Create**](https://docs.discord.com/developers/events/gateway-events#message-create).
 
         !!! important "Permissions"
@@ -165,6 +174,10 @@ class Channel(BaseResource):
 
         Args:
             message (str | MessagePart): content as a string or MessagePart
+            suppress_embeds (bool, optional): whether to suppress embeds. Defaults to `False`.
+            suppress_notifications (bool, optional): whether to suppress notifications. Defaults to `False`.
+            is_voice_message (bool, optional): whether this message is a voice message. Defaults to `False`.
+            is_components_v2 (bool, optional): whether V2 components are in this message. Defaults to `False`.
 
         Returns:
             (JsonQuery): created message
@@ -172,24 +185,32 @@ class Channel(BaseResource):
         # normalize to MessagePart
         msg = MessagePart(content=message) if isinstance(message, str) else message
 
-        msg = msg._prepare()
+        if suppress_embeds:
+            msg.flags |= MessageFlags.SUPPRESS_EMBEDS
 
-        files = [str(f.path) for f in msg.attachments] if msg.attachments else None
-        
+        if suppress_notifications:
+            msg.flags |= MessageFlags.SUPPRESS_NOTIFICATIONS
+
+        if is_voice_message:
+            msg.flags |= MessageFlags.IS_VOICE_MESSAGE
+
+        if is_components_v2:
+            msg.flags |= MessageFlags.IS_COMPONENTS_V2
+
         data = await self.http.request_json(
-            "POST", 
-            f"/channels/{self.id}/messages", 
-            data=msg.to_dict(),
-            files=files
+            "POST",
+            f"/channels/{self.id}/messages",
+            files=[attachment.path for attachment in msg.attachments] if msg.attachments is not None else None,
+            data=msg.prepare_attachments().to_dict()
         )
 
         return JsonQuery(data)
-    
+
     async def bulk_delete_messages(self, message_ids: list[Snowflake]) -> None:
         """Delete multiple messages in a single request.
-        
+
         Fires [**Bulk Message Delete**](https://docs.discord.com/developers/events/gateway-events#message-delete-bulk).
-        
+
         !!! important "Permissions"
             Requires `MANAGE_MESSAGES`
 
@@ -203,8 +224,8 @@ class Channel(BaseResource):
             message_ids (list[Snowflake]): IDs of the messages to delete. Range 2 to 100 (inclusive).
         """
         await self.http.request(
-            'POST', 
-            f'/channels/{self.id}/messages/bulk-delete', 
+            'POST',
+            f'/channels/{self.id}/messages/bulk-delete',
             data={
                 'messages': message_ids
             }
@@ -229,7 +250,7 @@ class Channel(BaseResource):
 
     async def create_invite(self, invite: InvitePart) -> JsonQuery:
         """Create a new invite for this channel.
-        
+
         Fires [**Invite Create**](https://docs.discord.com/developers/events/gateway-events#invite-create).
 
         !!! important "Permissions"
@@ -242,11 +263,11 @@ class Channel(BaseResource):
             invite (InvitePart): invite to create
 
         Returns:
-            (JsonQuery): created invite object 
+            (JsonQuery): created invite object
         """
         data = await self.http.request_json(
-            'POST', 
-            f'/channels/{self.id}/invites', 
+            'POST',
+            f'/channels/{self.id}/invites',
             data=invite.to_dict()
         )
 
@@ -259,20 +280,20 @@ class Channel(BaseResource):
         Args:
             user_id (Snowflake): ID of the user to fetch
             with_member (bool, optional): whether to include the member object. Defaults to `False`.
-        
+
         Returns:
             (JsonQuery): queried thread member
         """
         data = await self.http.request_json(
-            'GET', 
-            f'/channels/{self.id}/thread-members/{user_id}', 
-            params={ 
+            'GET',
+            f'/channels/{self.id}/thread-members/{user_id}',
+            params={
                 'with_member': with_member
             }
         )
 
         return JsonQuery(data)
-    
+
     async def fetch_thread_members(self, limit: int = 100, after: Snowflake | None = None, with_member: bool = False) -> JsonQuery:
         """Fetch all members of this thread.
 
@@ -293,8 +314,8 @@ class Channel(BaseResource):
             (JsonQuery): queried list of thread members
         """
         data = await self.http.request_list(
-            'GET', 
-            f"/channels/{self.id}/thread-members", 
+            'GET',
+            f"/channels/{self.id}/thread-members",
             params={
                 'with_member': with_member,
                 'after': after,
@@ -305,9 +326,9 @@ class Channel(BaseResource):
         return JsonQuery(data)
 
     async def create_thread_from_message(self, message_id: Snowflake, thread: ThreadFromMessagePart) -> JsonQuery:
-        """Create a thread from a message (attached to the message). 
-        
-        Fires [**Thread Create**](https://docs.discord.com/developers/events/gateway-events#thread-create) 
+        """Create a thread from a message (attached to the message).
+
+        Fires [**Thread Create**](https://docs.discord.com/developers/events/gateway-events#thread-create)
         and [**Message Update**](https://docs.discord.com/developers/events/gateway-events#thread-update).
 
         !!! note
@@ -323,8 +344,8 @@ class Channel(BaseResource):
             (JsonQuery): new thread
         """
         data = await self.http.request_json(
-            'POST', 
-            f"/channels/{self.id}/messages/{message_id}/threads", 
+            'POST',
+            f"/channels/{self.id}/messages/{message_id}/threads",
             data=thread.to_dict()
         )
 
@@ -332,7 +353,7 @@ class Channel(BaseResource):
 
     async def create_thread_without_message(self, thread: ThreadWithoutMessagePart) -> JsonQuery:
         """Create a thread not connected to an existing message.
-        
+
         Fires [**Thread Create**](https://docs.discord.com/developers/events/gateway-events#thread-create).
 
         Args:
@@ -342,16 +363,16 @@ class Channel(BaseResource):
             (JsonQuery): new thread
         """
         data = await self.http.request_json(
-            'POST', 
-            f'/channels/{self.id}/threads', 
+            'POST',
+            f'/channels/{self.id}/threads',
             data=thread.to_dict()
         )
 
         return JsonQuery(data)
 
     async def edit_thread(self, **options: Unpack[EditThreadChannelParams]) -> JsonQuery:
-        """Edit this thread. 
-        
+        """Edit this thread.
+
         Fires [**Channel Update**](https://docs.discord.com/developers/events/gateway-events#channel-update).
 
         !!! important "Permissions"
@@ -367,8 +388,8 @@ class Channel(BaseResource):
             (JsonQuery): updated channel
         """
         data = await self.http.request_json(
-            'PATCH', 
-            f'/channels/{self.id}', 
+            'PATCH',
+            f'/channels/{self.id}',
             data=dict(options)
         )
 
@@ -376,8 +397,8 @@ class Channel(BaseResource):
 
     async def join_thread(self) -> None:
         """Add the bot to this thread.
-        
-        Fires [**Thread Members Update**](https://docs.discord.com/developers/events/gateway-events#thread-members-update) 
+
+        Fires [**Thread Members Update**](https://docs.discord.com/developers/events/gateway-events#thread-members-update)
         and [**Thread Create**](https://docs.discord.com/developers/events/gateway-events#thread-create).
 
         !!! important
@@ -387,7 +408,7 @@ class Channel(BaseResource):
 
     async def leave_thread(self) -> None:
         """Remove the bot from a thread.
-        
+
         Fires [**Thread Members Update**](https://docs.discord.com/developers/events/gateway-events#thread-members-update).
 
         !!! important
@@ -397,7 +418,7 @@ class Channel(BaseResource):
 
     async def add_thread_member(self, user_id: Snowflake) -> None:
         """Add a user to this thread.
-        
+
         Fires [**Thread Members Update**](https://docs.discord.com/developers/events/gateway-events#thread-members-update).
 
         !!! important
@@ -410,7 +431,7 @@ class Channel(BaseResource):
 
     async def remove_thread_member(self, user_id: Snowflake) -> None:
         """Remove a user to this thread.
-        
+
         Fires [**Thread Members Update**](https://docs.discord.com/developers/events/gateway-events#thread-members-update).
 
         !!! important "Permissions"
@@ -445,16 +466,16 @@ class Channel(BaseResource):
             (JsonQuery): queried public archived threads
         """
         data = await self.http.request_json(
-            'GET', 
-            f'/channels/{self.id}/threads/archived/public', 
+            'GET',
+            f'/channels/{self.id}/threads/archived/public',
             params={
-                'before': before, 
+                'before': before,
                 'limit': limit
             }
         )
 
         return JsonQuery(data)
-    
+
     async def fetch_private_archived_threads(self, before: str | None = None, limit: int | None = None) -> JsonQuery:
         """Fetch archived private threads in this channel.
 
@@ -472,16 +493,16 @@ class Channel(BaseResource):
             (JsonQuery): queried private archived threads
         """
         data = await self.http.request_json(
-            'GET', 
-            f'/channels/{self.id}/threads/archived/private', 
+            'GET',
+            f'/channels/{self.id}/threads/archived/private',
             params={
-                'before': before, 
+                'before': before,
                 'limit': limit
             }
         )
 
         return JsonQuery(data)
-    
+
     async def fetch_joined_private_archived_threads(self, before: str | None = None, limit: int | None = None) -> JsonQuery:
         """Fetch archived private threads in this channel the bot has joined.
 
@@ -499,10 +520,10 @@ class Channel(BaseResource):
             (JsonQuery): queried private archived threads
         """
         data = await self.http.request_json(
-            'GET', 
-            f'/channels/{self.id}/users/@me/threads/archived/private', 
+            'GET',
+            f'/channels/{self.id}/users/@me/threads/archived/private',
             params={
-                'before': before, 
+                'before': before,
                 'limit': limit
             }
         )

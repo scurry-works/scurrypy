@@ -9,3 +9,4 @@ Extensions build on ScurryPy's core to provide:
 * Event helpers
 * Caching layers
 * Higher-level abstractions
+* Helper classes

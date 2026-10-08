@@ -1,7 +1,5 @@
 from typing import TypedDict
 
-from ..enums.message import MessageFlags
-
 from ..api.components.layout import ActionRow, Container
 from ..api.messages import AttachmentPart, EmbedPart, MessageReferencePart
 
@@ -10,15 +8,6 @@ class EditMessageParams(TypedDict, total=False):
 
     content: str
     """Message text content."""
-
-    flags: MessageFlags
-    """Message flags.
-    
-    !!! note
-        If omitted, existing message flags are not preserved automatically.
-        Passing endpoint flags without explicitly setting `flags`
-        will construct a new flags value.
-    """
 
     components: list[ActionRow | Container]
     """Components to be attached to this message."""

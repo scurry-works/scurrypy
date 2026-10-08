@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Self
 
 from ..core.part import Part
@@ -32,7 +32,7 @@ class WebhookPart(Part):
 @dataclass
 class WebhookMessagePart(Part):
     """Represents fields for creating a webhook message.
-    
+
     !!! important
         Requires at least ONE of `content`, `attachments`, `embeds`, or `polls`.
     """
@@ -40,12 +40,8 @@ class WebhookMessagePart(Part):
     content: RequiredPartField[str] = None
     """Message text content."""
 
-    flags: OptionalPartField[MessageFlags] = None
-    """Message flags. Discord defaults to `MessageFlags.NO_FLAGS`.
-    
-    !!! note
-        Can only set `SUPPRESS_EMBEDS`, `SUPPRESS_NOTIFICATIONS`, and `IS_COMPONENTS_V2`.
-    """
+    flags: OptionalPartField[MessageFlags] = field(init=False, default=MessageFlags.NO_FLAGS)
+    """Message flags. Discord defaults to `MessageFlags.NO_FLAGS`."""
 
     components: OptionalPartField[list[ContainerComponent]] = None
     """Components to be attached to this message."""
@@ -58,7 +54,7 @@ class WebhookMessagePart(Part):
 
     thread_name: OptionalPartField[str] = None
     """Name of thread to create.
-    
+
     !!! important
         Requires forum or media channel.
     """
@@ -73,7 +69,7 @@ class WebhookMessagePart(Part):
     poll: RequiredPartField[PollPart] = None
     """A poll!"""
 
-    def _prepare(self) -> Self:
+    def prepare_attachments(self) -> Self:
         """Prepares WebhookMessagePart for ANY internally set attributes.
 
         Returns:
@@ -85,7 +81,7 @@ class WebhookMessagePart(Part):
                 file.id = idx
         else:
             self.attachments = []
-        
+
         return self
 
     def to_dict(self) -> Serialized:
@@ -96,5 +92,5 @@ class WebhookMessagePart(Part):
 
                 if not self.flags or MessageFlags.IS_COMPONENTS_V2 not in self.flags:
                     raise ValueError("V2 components are used but MessageFlags.IS_COMPONENTS_V2 is not set.")
-        
+
         return super().to_dict()

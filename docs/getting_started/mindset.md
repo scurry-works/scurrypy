@@ -13,8 +13,12 @@ JSON payloads received from Discord are wrapped in [`JsonQuery`][scurrypy.core.j
 For example, if you want an event user's ID:
 
 ```py
-event.get('user.id').transform(Snowflake).value
+event.get('user.id', t=Snowflake).value
 ```
+where:
+
+1. `get` traverses the event data by getting `user > id` and interprets the resulting value as a `Snowflake`.
+2. `value` is the resulting value of the entire chain. It should be the user's ID as a Snowflake!
 
 Need to get a value from a list of objects?
 
@@ -22,11 +26,14 @@ Need to get a value from a list of objects?
 event.get('attachments.0.filename').value
 ```
 
-where:
+Need a list of IDs?
 
-1. `get` traverses the event data by getting the `user` key value and then the `id` of the `user` key value.
-2. `transform` interprets the resulting value as a `Snowflake`.
-3. `value` is the resulting value of the entire chain. It should be the user's ID as a Snowflake!
+event.get('member.roles', t=list[Snowflake]).value
+
+!!! note
+    If a list or dict is supplied, it must have arguments!
+
+    e.g., `list[int]`, `dict[Snowflake, str]`
 
 !!! tip "Keys Not Found"
     Keys that are not found return `None`. Keep an eye out for Omittable fields in event payloads as these fields are NOT always present!
@@ -60,7 +67,7 @@ A: `Event > Resource > Request`. ScurryPy will never do this for you (unless you
 
 Parameters model the user's contract with *modifying* endpoints. Use these classes when you want to modify something.
 
-Parameters are `TypedDict`s that are meant to be `Unpack`ed by endpoint functions. 
+Parameters are `TypedDict`s that are meant to be `Unpack`ed by endpoint functions.
 They are constructed via keyword arguments rather than manual instantiation.
 
 ## What is a context?

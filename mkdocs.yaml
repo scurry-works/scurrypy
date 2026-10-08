@@ -95,6 +95,7 @@ nav:
 
   - Getting Started:
     - Start Here!: getting_started/start_here.md
+    - JsonQuery Examples: getting_started/json_query.md
     - Examples: getting_started/quickstart.md
     - Addons: getting_started/addons.md
     - New Mindset: getting_started/mindset.md
@@ -133,7 +134,7 @@ nav:
       - Parts: api/channels/parts.md
       - Resources: api/channels/resources.md
       - Parameters: api/channels/params.md
-    - Commands: 
+    - Commands:
       - Enums: api/commands/enums.md
       - Parts: api/commands/parts.md
       - Resources: api/commands/resources.md
@@ -210,6 +211,7 @@ nav:
       - Contexts: ext/interactions/ctx.md
     - Helpers:
       - Emoji: ext/helpers/emoji.md
+      - Mention: ext/helpers/mention.md
     - Prefixes:
       - Addon: ext/prefixes/addon.md
       - Contexts: ext/prefixes/ctx.md

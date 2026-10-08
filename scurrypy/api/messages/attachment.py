@@ -1,10 +1,10 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from ...core.part import Part
 from ...core.exceptions import MissingField
 from ...core.types import (
-    Serialized, 
-    RequiredPartField, 
+    Serialized,
+    RequiredPartField,
     OptionalPartField
 )
 
@@ -21,12 +21,8 @@ class AttachmentPart(Part):
     is_spoiler: OptionalPartField[bool] = None
     """Whether this attachment should be blurred."""
 
-    id: RequiredPartField[int] = None
-    """ID of the attachment.
-
-    For editing attachments, this should be the Discord attachment ID.
-    For new attachments, the ID is internally set.
-    """
+    id: RequiredPartField[int] = field(init=False, default=None)
+    """ID of the attachment (internally set)."""
 
     def to_dict(self) -> Serialized:
         """Serialize this attachment.
@@ -39,7 +35,7 @@ class AttachmentPart(Part):
         """
         if self.path is None:
             raise MissingField("AttachmentPart.path must be set before serialization")
-        
+
         return {
             'id': self.id,
             'filename': self.path.split('/')[-1],

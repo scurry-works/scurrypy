@@ -4,73 +4,17 @@ from typing import Unpack
 from ..core.json_query import JsonQuery
 from ..core.snowflake import Snowflake
 from ..core.part import serialize
-from ..core.types import JSON
 
 from .base_resource import BaseResource
 
-from ..enums import MessageFlags, ReactionType
+from ..enums import ReactionType, MessageFlags
 
-from ..api.messages import AttachmentPart
 from ..api import EmojiPart
 
 from ..params.message import EditMessageParams
 
-class _EditMessageMixin:
-    """Common message edit methods."""
-
-    def _apply_suppress_embeds(
-        self,
-        payload: JSON,
-        suppress_embeds: bool | None
-    ) -> None:
-        """Suppress embeds in the new message.
-
-        Args:
-            payload (JSON): partially serialized payload
-            suppress_embeds (bool | None): whether to suppress embeds
-        """
-        if suppress_embeds is not None:
-            flags = payload.get("flags", 0)
-
-            if suppress_embeds:
-                flags |= MessageFlags.SUPPRESS_EMBEDS
-            else:
-                flags &= ~MessageFlags.SUPPRESS_EMBEDS
-
-            payload["flags"] = flags
-
-    def _prepare_attachments(
-        self,
-        payload: JSON
-    ) -> list[str]:
-        """Index new files and prepare a list to be passed to HTTPClient.
-
-        Args:
-            payload (JSON): partially serialized payload
-
-        Returns:
-            list[str]: list of file paths for `files` request param.
-        """
-        if "attachments" not in payload:
-            return []
-
-        attachments: list[AttachmentPart] = payload["attachments"]
-
-        assert isinstance(attachments, list)
-
-        for idx, attachment in enumerate(attachments):
-            if attachment.id is None: # only set new attachments
-                attachment.id = idx
-
-        payload["attachments"] = [
-            attachment.to_dict()
-            for attachment in attachments
-        ]
-
-        return [attachment.path for attachment in attachments if attachment.path is not None]
-
 @dataclass
-class Message(BaseResource, _EditMessageMixin):
+class Message(BaseResource):
     """Represents a Discord message resource."""
 
     id: Snowflake
@@ -91,13 +35,11 @@ class Message(BaseResource, _EditMessageMixin):
         data = await self.http.request_json('GET', f"/channels/{self.channel_id}/messages/{self.id}")
 
         return JsonQuery(data)
-    
-    async def edit(
-        self,
-        *,
-        suppress_embeds: bool | None = None,
-        **options: Unpack[EditMessageParams]
-    ) -> JsonQuery:
+
+    async def edit(self,
+        suppress_embeds: bool = False,
+        is_components_v2: bool = False,
+        **options: Unpack[EditMessageParams]) -> JsonQuery:
         """Edits this message.
 
         Fires [**Message Update Event**](https://docs.discord.com/developers/events/gateway-events#message-update).
@@ -105,22 +47,36 @@ class Message(BaseResource, _EditMessageMixin):
         !!! important "Permissions"
             Requires `MANAGE_MESSAGES` *only* if editing another user's message or to edit flags
 
+        !!! note
+            Existing message flags are not automatically preserved. Flags are reset unless explicitly specified.
+
         Args:
+            suppress_embeds (bool, optional): whether to suppress embeds. Defaults to `False`.
+            is_components_v2 (bool, optional): whether V2 components are in this message. Defaults to `False`.
             options (EditMessageParams): fields to edit for the message
-            suppress_embeds (optional, bool): whether the response's embeds should be removed
 
         Returns:
             (JsonQuery): updated message
         """
-        files = self._prepare_attachments(dict(options))
-        opts = serialize(dict(options)) # nested objects in EditMessageParams
-        self._apply_suppress_embeds(opts, suppress_embeds)
+        files = None
+        if options.get('attachments') is not None:
+            for idx, file in enumerate(options['attachments']):
+                file.id = idx
+            files = [attachment.path for attachment in options['attachments']]
+
+        options['flags'] = MessageFlags.NO_FLAGS
+
+        if suppress_embeds:
+            options['flags'] |= MessageFlags.SUPPRESS_EMBEDS
+
+        if is_components_v2:
+            options['flags'] |= MessageFlags.IS_COMPONENTS_V2
 
         data = await self.http.request_json(
             "PATCH",
             f"/channels/{self.channel_id}/messages/{self.id}",
-            data=opts,
-            files=files,
+            data=serialize(dict(options)), # nested objects in EditMessageParams
+            files=files
         )
 
         return JsonQuery(data)
@@ -161,7 +117,7 @@ class Message(BaseResource, _EditMessageMixin):
             Requires `PIN_MESSAGES`
         """
         await self.http.request('PUT', f'/channels/{self.channel_id}/messages/pins/{self.id}')
-    
+
     async def unpin(self) -> None:
         """Unpin this message from its channel's pins.
 
@@ -172,10 +128,10 @@ class Message(BaseResource, _EditMessageMixin):
         """
         await self.http.request('DELETE', f'/channels/{self.channel_id}/messages/pins/{self.id}')
 
-    async def fetch_emoji_reactions(self, 
-        emoji: EmojiPart | str, 
-        type: ReactionType = ReactionType.NORMAL, 
-        after: int | None = None, 
+    async def fetch_emoji_reactions(self,
+        emoji: EmojiPart | str,
+        type: ReactionType = ReactionType.NORMAL,
+        after: int | None = None,
         limit: int = 25
     ) -> JsonQuery:
         """Fetches users who reacted with the specified emoji parameters.
@@ -201,7 +157,7 @@ class Message(BaseResource, _EditMessageMixin):
                 'limit': limit
             }
         )
-        
+
         return JsonQuery(data)
 
     async def add_reaction(self, emoji: EmojiPart | str) -> None:

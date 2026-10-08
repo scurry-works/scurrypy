@@ -4,6 +4,8 @@ from scurrypy import JsonQuery
 from scurrypy.core.snowflake import Snowflake
 
 class EmojiInfo:
+    """Provides information and representations for Discord emojis."""
+
     def __init__(self, query: JsonQuery):
         self.name: str = query.get('name').value
         self.id: Snowflake = query.get('id', t=Snowflake).value
@@ -21,9 +23,9 @@ class EmojiInfo:
         # animated emoji
         if self.is_animated:
             return f"<a:{self.name}:{self.id}>"
-        
+
         return f"<:{self.name}:{self.id}>"
-    
+
     @property
     def api_code(self) -> str | None:
         """API code for this emoji (URL-safe)."""
@@ -35,7 +37,7 @@ class EmojiInfo:
         # custom emoji
         if self.is_animated:
             return quote(f"a:{self.name}:{self.id}")
-        
+
         return quote(f"{self.name}:{self.id}")
 
     @property
@@ -43,7 +45,7 @@ class EmojiInfo:
         """Full qualifying link for this emoji."""
         if self.id is None:
             return None
-        
+
         ext = 'gif' if self.is_animated else 'png'
 
         return f"https://cdn.discordapp.com/emojis/{self.id}.{ext}"

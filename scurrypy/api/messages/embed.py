@@ -96,11 +96,31 @@ class EmbedPart(Part):
         """Embed author builder.
 
         Args:
-            user (JSON): user author
+            user (JsonQuery): user author
         """
+        name = user.get('username').value
+        avatar: str = user.get('avatar').value
+
+        if not avatar:
+            self.author = EmbedAuthorPart(name=name)
+            return
+
+        user_id = user.get('id', t=Snowflake).value
+
+        if avatar.startswith('a_'):
+            icon_url = (
+                f"https://cdn.discordapp.com/avatars/"
+                f"{user_id}/{avatar}.webp?animated=true"
+            )
+        else:
+            icon_url = (
+                f"https://cdn.discordapp.com/avatars/"
+                f"{user_id}/{avatar}.png"
+            )
+
         self.author = EmbedAuthorPart(
-            name=user.get('username').value,
-            icon_url=f"https://cdn.discordapp.com/avatars/{user.get('id', t=Snowflake).value}/{user.get('avatar').value}.png"
+            name=name,
+            icon_url=icon_url,
         )
 
     def set_timestamp(self, dt: datetime | None = None) -> None:

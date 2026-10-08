@@ -8,7 +8,7 @@ class MessageReferenceType(DiscordTypes):
 
     FORWARD = 1
     """Reference used to point to a message at a point in time.
-    
+
     !!! warning
         Applications must be able to read the message content in order to forward it.
     """
@@ -48,6 +48,9 @@ class MessageFlags(DiscordFlags):
 
     SUPPRESS_NOTIFICATIONS = 1 << 12
     """This message will not trigger push and desktop notifications."""
+
+    IS_VOICE_MESSAGE = 1 << 13
+    """This message is a voice message."""
 
     IS_COMPONENTS_V2 = 1 << 15
     """This message includes Discord's V2 Components."""
